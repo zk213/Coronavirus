@@ -1,7 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+
+public enum TimeMode
+{
+    Pause, OneSpeed, FastSpeed
+}
 
 public class Scr_TimeControl : MonoBehaviour
 {
@@ -11,14 +14,13 @@ public class Scr_TimeControl : MonoBehaviour
     public Image fastspeed;
     public GameObject extendbutton;
 
+    Scr_Event Event;
+
     float iniPosy = 9.1f;
     float finPosy = -64.9f;
     float yMoveSpeed = 300;
 
-    public enum TimeMode
-    {
-        Pause, OneSpeed, FastSpeed
-    }
+
     public TimeMode timeMode = TimeMode.OneSpeed;//刚进游戏，状态是一倍速
 
     public int day = 1;//初始时间，对应2019.12.1
@@ -37,6 +39,7 @@ public class Scr_TimeControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Event = FindObjectOfType<Scr_Event>();
         daySpawn = OneSpeedSpawn;
         ShowFullTime = "2019 12 01";
         extendbutton.SetActive(false);
@@ -63,6 +66,8 @@ public class Scr_TimeControl : MonoBehaviour
             TempDay = 0;
             day++;
             ShowTime();
+
+            Event.EventCheck();
         }
         GlobalTime.text = ShowFullTime;
 
@@ -145,7 +150,7 @@ public class Scr_TimeControl : MonoBehaviour
     }
     public void OneSpeed()
     {
-        if (timeMode == TimeMode.OneSpeed) { return; }
+        if (timeMode == TimeMode.OneSpeed || Event.showEvent) { return; }
 
         timeMode = TimeMode.OneSpeed;
         string path = "UI/TimeFrame/CSpeed2";
@@ -162,7 +167,7 @@ public class Scr_TimeControl : MonoBehaviour
     }
     public void FastSpeed()
     {
-        if (timeMode == TimeMode.FastSpeed) { return; }
+        if (timeMode == TimeMode.FastSpeed || Event.showEvent) { return; }
 
         timeMode = TimeMode.FastSpeed;
         string path = "UI/TimeFrame/FSpeed2";
