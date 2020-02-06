@@ -15,9 +15,4 @@ public class Scr_Mode : MonoBehaviour
         gameMode = GameMode.Normal;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

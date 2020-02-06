@@ -29,3 +29,27 @@ MonoBehaviour:
     priority: 0
     probability: 100
     probabilityAdd: 0
+  - title: Test2
+    describe: 'Test2_Describe '
+    picture: EventPictures/EventPic
+    subEvent: 0
+    isRepeat: 0
+    priority: 0
+    probability: 100
+    probabilityAdd: 0
+  - title: Test3
+    describe: 'Test3_Describe '
+    picture: EventPictures/EventPic
+    subEvent: 0
+    isRepeat: 0
+    priority: 1
+    probability: 100
+    probabilityAdd: 0
+  - title: Test4
+    describe: 'Test4_Describe '
+    picture: EventPictures/EventPic
+    subEvent: 0
+    isRepeat: 0
+    priority: -1
+    probability: 100
+    probabilityAdd: 0

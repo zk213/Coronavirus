@@ -76,7 +76,15 @@ public class Scr_Event : MonoBehaviour
                         break;
                     case 2:
                         //设条件是影响力达到5
-                        EventCondition(value.InfluenceVal == 5, i);
+                        EventCondition(value.InfluenceVal >= 5, i);
+                        break;
+                    case 3:
+                        //设条件是第五天就会触发
+                        EventCondition(time.day == 5, i);
+                        break;
+                    case 4:
+                        //设条件是第五天就会触发
+                        EventCondition(time.day == 5, i);
                         break;
                     default:
                         break;
@@ -87,17 +95,29 @@ public class Scr_Event : MonoBehaviour
 
     void LateUpdate()//事件的发生
     {
+        if (showEvent) { return; }
         if (HappenEvent.Count == 1)
         {
             HappeningEvent(0);
         }
         if (HappenEvent.Count > 1)
         {
+            int tempEvent;
             for (int i = 0; i < HappenEvent.Count; i++)
             {
                 //把要发生的事件排序，先比较优先级，如果优先级相同再比较序号，优先级高的先发生，序号小的先发生
                 //以此发生事件
+                for (int j = 0; j < HappenEvent.Count - i - 1; j++)
+                {
+                    if (gameData.eventGroup[HappenEvent[i]].priority < gameData.eventGroup[HappenEvent[i + 1]].priority)
+                    {
+                        tempEvent = HappenEvent[j];
+                        HappenEvent[j] = HappenEvent[j + 1];
+                        HappenEvent[j + 1] = tempEvent;
+                    }
+                }
             }
+            HappeningEvent(0);
         }
 
 
