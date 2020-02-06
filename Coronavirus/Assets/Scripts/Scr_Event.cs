@@ -7,10 +7,11 @@ using UnityEngine.UI;
 
 public class Scr_Event : MonoBehaviour
 {
-    GameData gameData;
+    EventData eventData;
     Scr_TimeControl time;
     Scr_Num value;
     Scr_Mode mode;
+    Scr_News news;
 
     public GameObject EventGroup;
     public Text Title;
@@ -33,21 +34,22 @@ public class Scr_Event : MonoBehaviour
 
     void Awake()
     {
-        gameData = Resources.Load<GameData>("Event");
+        eventData = Resources.Load<EventData>("ScriptableObject/Event");
         time = FindObjectOfType<Scr_TimeControl>();
         value = FindObjectOfType<Scr_Num>();
         mode = FindObjectOfType<Scr_Mode>();
+        news = FindObjectOfType<Scr_News>();
         EventGroup.SetActive(false);
 
         //对事件的类别进行初始化，分出未激活的子事件与普通事件,并初始化事件发生的概率
         FinishEvent.Add(0);//把事件模板进去，让他不会发生
-        for (int i = 0; i < gameData.eventGroup.Count; i++)
+        for (int i = 0; i < eventData.eventGroup.Count; i++)
         {
-            dynamicProbability.Add(gameData.eventGroup[i].probability);//初始化事件发生的概率
+            dynamicProbability.Add(eventData.eventGroup[i].probability);//初始化事件发生的概率
 
             if (!FinishEvent.Contains(i))//首先不检测已经结束的事件
             {
-                if (gameData.eventGroup[i].subEvent)//如果这个事件是子事件
+                if (eventData.eventGroup[i].subEvent)//如果这个事件是子事件
                 {
                     UnActiveEvent.Add(i);
                 }
@@ -63,7 +65,7 @@ public class Scr_Event : MonoBehaviour
     public void EventCheck()//在Scr_TimeControl里的Update里，这样就可以游戏事件里每增加一天才会检查一次，不至于每帧都查
     {
 
-        for (int i = 0; i < gameData.eventGroup.Count; i++)
+        for (int i = 0; i < eventData.eventGroup.Count; i++)
         {
 
             if (!FinishEvent.Contains(i) && !UnActiveEvent.Contains(i))//首先不检测已经结束的事件和未激活事件
@@ -109,7 +111,7 @@ public class Scr_Event : MonoBehaviour
                 //以此发生事件
                 for (int j = 0; j < HappenEvent.Count - i - 1; j++)
                 {
-                    if (gameData.eventGroup[HappenEvent[i]].priority < gameData.eventGroup[HappenEvent[i + 1]].priority)
+                    if (eventData.eventGroup[HappenEvent[i]].priority < eventData.eventGroup[HappenEvent[i + 1]].priority)
                     {
                         tempEvent = HappenEvent[j];
                         HappenEvent[j] = HappenEvent[j + 1];
@@ -161,7 +163,7 @@ public class Scr_Event : MonoBehaviour
                 }
                 else
                 {
-                    dynamicProbability[i] += gameData.eventGroup[i].probabilityAdd;//概率增加
+                    dynamicProbability[i] += eventData.eventGroup[i].probabilityAdd;//概率增加
                     dynamicProbability[i] = Mathf.Clamp(dynamicProbability[i], 0, 100);//限制概率的范围
                 }
             }
@@ -185,12 +187,12 @@ public class Scr_Event : MonoBehaviour
         {
             var text = workSheet.Cells[row, 1].Text ?? "Name Error";
 
-            if (text == gameData.eventGroup[HappenEvent[EventIndex]].title)
+            if (text == eventData.eventGroup[HappenEvent[EventIndex]].title)
             {
                 Title.text = workSheet.Cells[row, 2].Text ?? "Title Error";
                 hasTitle = true;
             }
-            if (text == gameData.eventGroup[HappenEvent[EventIndex]].describe)
+            if (text == eventData.eventGroup[HappenEvent[EventIndex]].describe)
             {
                 Describe.text = workSheet.Cells[row, 2].Text ?? "Describe Error";
                 hasDescribe = true;
@@ -198,11 +200,11 @@ public class Scr_Event : MonoBehaviour
         }
         if (!hasTitle)
         {
-            Title.text = gameData.eventGroup[HappenEvent[EventIndex]].title;
+            Title.text = eventData.eventGroup[HappenEvent[EventIndex]].title;
         }
         if (!hasDescribe)
         {
-            Describe.text = gameData.eventGroup[HappenEvent[EventIndex]].describe;
+            Describe.text = eventData.eventGroup[HappenEvent[EventIndex]].describe;
         }
     }
 
@@ -229,7 +231,7 @@ public class Scr_Event : MonoBehaviour
                 }
             }
         }
-        Picture.sprite = Resources.Load(gameData.eventGroup[HappenEvent[i]].picture, typeof(Sprite)) as Sprite;
+        Picture.sprite = Resources.Load(eventData.eventGroup[HappenEvent[i]].picture, typeof(Sprite)) as Sprite;
 
         //执行事件的效果
 
@@ -274,7 +276,7 @@ public class Scr_Event : MonoBehaviour
                         }
                         else
                         {
-                            dynamicProbability[i] += gameData.eventGroup[i].probabilityAdd;//概率增加
+                            dynamicProbability[i] += eventData.eventGroup[i].probabilityAdd;//概率增加
                             dynamicProbability[i] = Mathf.Clamp(dynamicProbability[i], 0, 100);//限制概率的范围
                         }
                     }

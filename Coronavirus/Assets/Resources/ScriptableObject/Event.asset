@@ -50,6 +50,6 @@ MonoBehaviour:
     picture: EventPictures/EventPic
     subEvent: 0
     isRepeat: 0
-    priority: -1
+    priority: 0
     probability: 100
     probabilityAdd: 0

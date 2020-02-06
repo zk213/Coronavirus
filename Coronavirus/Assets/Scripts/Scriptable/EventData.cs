@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "Event", menuName = "Creat Event Asset")]
-public class GameData : ScriptableObject
+public class EventData : ScriptableObject
 {
     [Header("事件管理")]
     //[SerializeField]
