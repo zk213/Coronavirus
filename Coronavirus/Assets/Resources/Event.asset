@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Event
   m_EditorClassIdentifier: 
   eventGroup:
-  - title: "\u4E8B\u4EF6\u8303\u4F8B"
-    describe: "\u4E8B\u4EF6\u5185\u5BB9"
+  - title: Example
+    describe: 'Example_Describe '
     picture: EventPictures/EventPic
     subEvent: 0
     isRepeat: 0
     priority: 0
     probability: 0
     probabilityAdd: 0
-  - title: "\u65B0\u5E74\u5C06\u81F3"
-    describe: "12\u6708\u5230\u4E86\uFF0C\u4E00\u4E9B\u57CE\u5E02\u5DF2\u7ECF\u4E0B\u8D77\u4E86\u96EA\uFF0C\u79CD\u79CD\u8FF9\u8C61\u90FD\u8868\u660E\uFF0C\u65B0\u5E74\u8981\u5230\u4E86\u3002\u5728\u5916\u4E0A\u73ED\u4E0A\u5B66\u7684\u4EBA\u9010\u6E10\u6536\u62FE\u884C\u674E\u51C6\u5907\u56DE\u5BB6\uFF0C\u5176\u4ED6\u4EBA\u4E5F\u8981\u8D2D\u7F6E\u5E74\u8D27\u3002\u5728\u6B66\u6C49\uFF0C\u4E00\u4E9B\u4EBA\u9009\u62E9\u5728\u5F53\u5730\u7684\u534E\u5357\u6D77\u9C9C\u5E02\u573A\u91CC\uFF0C\u8D2D\u4E70\u4E00\u4E9B\u91CE\u5473\uFF0C\u8FD9\u6216\u8BB8\u6709\u4E0D\u4E00\u6837\u7684\u6ECB\u5473\u3002"
+  - title: NewYear
+    describe: 'NewYear_Describe '
     picture: EventPictures/Event1
     subEvent: 0
     isRepeat: 0

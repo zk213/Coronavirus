@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum GameMode
 {
@@ -8,13 +6,14 @@ public enum GameMode
 }
 public class Scr_Mode : MonoBehaviour
 {
-    
+
     public GameMode gameMode;
+    public string Language = "SimpleChinese";
 
     void Awake()
     {
         gameMode = GameMode.Normal;
-}
+    }
 
     // Update is called once per frame
     void Update()
