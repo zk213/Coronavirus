@@ -7,6 +7,56 @@ using UnityEngine.UI;
 
 public class Scr_Event : MonoBehaviour
 {
+    void EventConditionControl(int i)
+    {
+        switch (i)
+        {
+            case 1:
+                //设条件是第五天就会触发
+                EventCondition(time.day == 5, i);
+                break;
+            case 2:
+                //设条件是影响力达到5
+                EventCondition(value.InfluenceVal >= 5, i);
+                break;
+            case 3:
+                //设条件是第五天就会触发
+                EventCondition(time.day == 5, i);
+                break;
+            case 4:
+                //设条件是第五天就会触发
+                EventCondition(time.day == 5, i);
+                break;
+            default:
+                break;
+        }
+    }
+
+    void EventEffectControl(int i)
+    {
+        switch (HappenEvent[i])
+        {
+            case 1:
+                value.InfluenceVal += 5;//事件1的效果是影响力+5
+                AddNews(2, value.InfluenceVal.ToString());
+                break;
+            case 2:
+                value.InfluenceVal += 5;//事件2的效果是影响力+5
+                AddNews(2, value.InfluenceVal.ToString());
+                break;
+            case 3:
+                AddNews(1, "");
+                break;
+            case 4:
+                AddNews(1, "");
+                break;
+            default:
+                break;
+        }
+    }
+
+
+
     EventData eventData;
     Scr_TimeControl time;
     Scr_Num value;
@@ -70,27 +120,7 @@ public class Scr_Event : MonoBehaviour
 
             if (!FinishEvent.Contains(i) && !UnActiveEvent.Contains(i))//首先不检测已经结束的事件和未激活事件
             {
-                switch (i)
-                {
-                    case 1:
-                        //设条件是第五天就会触发
-                        EventCondition(time.day == 5, i);
-                        break;
-                    case 2:
-                        //设条件是影响力达到5
-                        EventCondition(value.InfluenceVal >= 5, i);
-                        break;
-                    case 3:
-                        //设条件是第五天就会触发
-                        EventCondition(time.day == 5, i);
-                        break;
-                    case 4:
-                        //设条件是第五天就会触发
-                        EventCondition(time.day == 5, i);
-                        break;
-                    default:
-                        break;
-                }
+                EventConditionControl(i);
             }
         }
     }
@@ -234,22 +264,18 @@ public class Scr_Event : MonoBehaviour
         Picture.sprite = Resources.Load(eventData.eventGroup[HappenEvent[i]].picture, typeof(Sprite)) as Sprite;
 
         //执行事件的效果
+        EventEffectControl(i);
 
-        switch (HappenEvent[i])
-        {
-            case 1:
-                value.InfluenceVal += 5;//事件1的效果是影响力+5
-                break;
-            case 2:
-                value.InfluenceVal += 5;//事件2的效果是影响力+5
-                break;
-            default:
-                break;
-        }
 
         FinishEvent.Add(HappenEvent[i]);
         HappenEvent.Remove(HappenEvent[i]);
         EventGroup.SetActive(true);
+    }
+
+    void AddNews(int NewsIndex, string NewsSlot)
+    {
+        news.NewsList.Add(NewsIndex);
+        news.NewsListSlot.Add(NewsSlot);
     }
 }
 
