@@ -21,6 +21,10 @@ public class EventData : ScriptableObject
         public bool subEvent = false;//事件是否为子事件
         [InspectorShow("重复事件")]
         public bool isRepeat = false;//事件是否可重复发生
+        [InspectorShow("隐藏事件")]
+        public bool isInvisible = false;//事件是否仅仅作为新闻的触发器
+        [InspectorShow("重要事件")]
+        public bool isImportant = false;//事件是否重要，有CG与选项
         [InspectorShow("优先级")]
         public int priority = 0;//事件的优先级，即当多个事件都需要同时发生时，各个事件的优先级，0为默认，越高越优先
         [InspectorShow("事件发生概率")]

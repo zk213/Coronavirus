@@ -18,6 +18,8 @@ MonoBehaviour:
     picture: EventPictures/EventPic
     subEvent: 0
     isRepeat: 0
+    isInvisible: 0
+    isImportant: 0
     priority: 0
     probability: 0
     probabilityAdd: 0
@@ -26,6 +28,8 @@ MonoBehaviour:
     picture: EventPictures/Event1
     subEvent: 0
     isRepeat: 0
+    isInvisible: 0
+    isImportant: 0
     priority: 0
     probability: 100
     probabilityAdd: 0
@@ -34,6 +38,8 @@ MonoBehaviour:
     picture: EventPictures/EventPic
     subEvent: 0
     isRepeat: 0
+    isInvisible: 1
+    isImportant: 0
     priority: 0
     probability: 100
     probabilityAdd: 0
@@ -41,15 +47,19 @@ MonoBehaviour:
     describe: 'Test3_Describe '
     picture: EventPictures/EventPic
     subEvent: 0
-    isRepeat: 0
-    priority: 1
-    probability: 100
-    probabilityAdd: 0
+    isRepeat: 1
+    isInvisible: 0
+    isImportant: 0
+    priority: 0
+    probability: 0
+    probabilityAdd: 10
   - title: Test4
     describe: 'Test4_Describe '
-    picture: EventPictures/EventPic
+    picture: EventPictures/CG/TempCG
     subEvent: 0
     isRepeat: 0
+    isInvisible: 0
+    isImportant: 1
     priority: 0
     probability: 100
     probabilityAdd: 0

@@ -21,7 +21,7 @@ public class Scr_Event : MonoBehaviour
                 break;
             case 3:
                 //设条件是第五天就会触发
-                EventCondition(time.day == 5, i);
+                EventCondition(time.day >= 5, i);
                 break;
             case 4:
                 //设条件是第五天就会触发
@@ -64,9 +64,13 @@ public class Scr_Event : MonoBehaviour
     Scr_News news;
 
     public GameObject EventGroup;
+    public GameObject CG;
     public Text Title;
     public Text Describe;
     public Image Picture;
+    public Text CGTitle;
+    public Text CGDescribe;
+    public Image CGPicture;
 
     [HideInInspector]
     public bool showEvent;
@@ -90,6 +94,7 @@ public class Scr_Event : MonoBehaviour
         mode = FindObjectOfType<Scr_Mode>();
         news = FindObjectOfType<Scr_News>();
         EventGroup.SetActive(false);
+        CG.SetActive(false);
 
         //对事件的类别进行初始化，分出未激活的子事件与普通事件,并初始化事件发生的概率
         FinishEvent.Add(0);//把事件模板进去，让他不会发生
@@ -171,6 +176,7 @@ public class Scr_Event : MonoBehaviour
         }
 
         EventGroup.SetActive(false);
+        CG.SetActive(false);
 
     }
 
@@ -219,57 +225,129 @@ public class Scr_Event : MonoBehaviour
 
             if (text == eventData.eventGroup[HappenEvent[EventIndex]].title)
             {
-                Title.text = workSheet.Cells[row, 2].Text ?? "Title Error";
+                if (eventData.eventGroup[HappenEvent[EventIndex]].isImportant)
+                {
+                    CGTitle.text = workSheet.Cells[row, 2].Text ?? "Title Error";
+                }
+                else
+                {
+                    Title.text = workSheet.Cells[row, 2].Text ?? "Title Error";
+                }
                 hasTitle = true;
             }
             if (text == eventData.eventGroup[HappenEvent[EventIndex]].describe)
             {
-                Describe.text = workSheet.Cells[row, 2].Text ?? "Describe Error";
+                if (eventData.eventGroup[HappenEvent[EventIndex]].isImportant)
+                {
+                    CGDescribe.text = workSheet.Cells[row, 2].Text ?? "Describe Error";
+                }
+                else
+                {
+                    Describe.text = workSheet.Cells[row, 2].Text ?? "Describe Error";
+                }
                 hasDescribe = true;
             }
         }
         if (!hasTitle)
         {
-            Title.text = eventData.eventGroup[HappenEvent[EventIndex]].title;
+            if (eventData.eventGroup[HappenEvent[EventIndex]].isImportant)
+            {
+                CGTitle.text = eventData.eventGroup[HappenEvent[EventIndex]].title;
+            }
+            else
+            {
+                Title.text = eventData.eventGroup[HappenEvent[EventIndex]].title;
+            }
         }
         if (!hasDescribe)
         {
-            Describe.text = eventData.eventGroup[HappenEvent[EventIndex]].describe;
+            if (eventData.eventGroup[HappenEvent[EventIndex]].isImportant)
+            {
+                CGDescribe.text = eventData.eventGroup[HappenEvent[EventIndex]].describe;
+            }
+            else
+            {
+                Describe.text = eventData.eventGroup[HappenEvent[EventIndex]].describe;
+            }
         }
     }
 
     void HappeningEvent(int i)
     {
-        TempTimeMode = time.timeMode;
-        showEvent = true;
-        time.Pause();//发生事件时游戏暂停
-
-        //读取Event.xls文件
-        using (FileStream fs = new FileStream(Application.dataPath + "/Resources/Localization/Event.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+        if (!eventData.eventGroup[HappenEvent[i]].isInvisible)
         {
-            using (ExcelPackage excel = new ExcelPackage(fs))
+            TempTimeMode = time.timeMode;
+            showEvent = true;
+            time.Pause();//发生事件时游戏暂停
+
+            //读取Event.xls文件
+            using (FileStream fs = new FileStream(Application.dataPath + "/Resources/Localization/Event.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
-                ExcelWorksheets workSheets = excel.Workbook.Worksheets;
-                switch (mode.Language)
+                using (ExcelPackage excel = new ExcelPackage(fs))
                 {
-                    case "SimpleChinese":
-                        LoadExcel(workSheets, 1, i);
-                        break;
-                    default:
-                        LoadExcel(workSheets, 1, i);
-                        break;
+                    ExcelWorksheets workSheets = excel.Workbook.Worksheets;
+                    switch (mode.Language)
+                    {
+                        case "SimpleChinese":
+                            LoadExcel(workSheets, 1, i);
+                            break;
+                        default:
+                            LoadExcel(workSheets, 1, i);
+                            break;
+                    }
                 }
             }
+            if (File.Exists(Application.dataPath + "/Resources/" + eventData.eventGroup[HappenEvent[i]].picture + ".png"))
+            {
+                if (eventData.eventGroup[HappenEvent[i]].isImportant)
+                {
+                    CGPicture.sprite = Resources.Load(eventData.eventGroup[HappenEvent[i]].picture, typeof(Sprite)) as Sprite;
+                }
+                else
+                {
+                    Picture.sprite = Resources.Load(eventData.eventGroup[HappenEvent[i]].picture, typeof(Sprite)) as Sprite;
+                }
+            }
+            else
+            {
+                if (eventData.eventGroup[HappenEvent[i]].isImportant)
+                {
+                    CGPicture.sprite = Resources.Load("EventPictures/EventPic", typeof(Sprite)) as Sprite;
+                }
+                else
+                {
+                    Picture.sprite = Resources.Load("EventPictures/EventPic", typeof(Sprite)) as Sprite;
+                }
+
+            }
+            if (eventData.eventGroup[HappenEvent[i]].isImportant)
+            {
+                CG.SetActive(true);
+            }
+            else
+            {
+                EventGroup.SetActive(true);
+            }
         }
-        Picture.sprite = Resources.Load(eventData.eventGroup[HappenEvent[i]].picture, typeof(Sprite)) as Sprite;
+
 
         //执行事件的效果
         EventEffectControl(i);
 
+        if (!eventData.eventGroup[HappenEvent[i]].isRepeat)
+        {
+            FinishEvent.Add(HappenEvent[i]);
+            HappenEvent.Remove(HappenEvent[i]);
+        }
+        else
+        {
+            ReadyEvent.Add(HappenEvent[i]);
+            dynamicProbability[HappenEvent[i]] = eventData.eventGroup[HappenEvent[i]].probability;//概率重置
+            HappenEvent.Remove(HappenEvent[i]);
+            Debug.Log("重复");
+        }
 
-        FinishEvent.Add(HappenEvent[i]);
-        HappenEvent.Remove(HappenEvent[i]);
-        EventGroup.SetActive(true);
+
     }
 
     void AddNews(int NewsIndex, string NewsSlot)
