@@ -11,7 +11,9 @@ public class NewsData : ScriptableObject
     [System.Serializable]
     public class News
     {
+        [InspectorShow("标题")]
         public string title;//新闻的标题
+        [InspectorShow("新闻内容")]
         public string content;//新闻的内容
     }
 

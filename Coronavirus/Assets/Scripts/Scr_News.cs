@@ -12,15 +12,17 @@ public class Scr_News : MonoBehaviour
     Scr_Mode mode;
     NewsData newsData;
 
-    public float speed = 250;
-    public float iniPosx = 1111;
-    public float finPosx = -1123;
-    public float midPosx = -600;
+    float speed = 250;
+    float iniPosx = 1111;
+    float finPosx = -1123;
+    float midPosx = -600;
 
 
     string TempNewsContent;
 
+    [HideInInspector]
     public List<int> NewsList = new List<int>();
+    [HideInInspector]
     public List<string> NewsListSlot = new List<string>();
 
     List<int> NewsListOver = new List<int>();
