@@ -2,15 +2,29 @@
 
 public class Scr_Upgrade : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    public GameObject UpGradePage;
+    public GameObject MainPage;
 
+    void Awake()
+    {
+        UpGradePage.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void OpenUpGradePage()
+    {
+        UpGradePage.SetActive(true);
+        MainPage.SetActive(false);
+    }
+
+    public void CloseUpGradePage()
+    {
+        UpGradePage.SetActive(false);
+        MainPage.SetActive(true);
     }
 }
