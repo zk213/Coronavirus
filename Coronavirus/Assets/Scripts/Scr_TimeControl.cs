@@ -149,15 +149,15 @@ public class Scr_TimeControl : MonoBehaviour
         if (timeMode == TimeMode.Pause) { return; }
 
         timeMode = TimeMode.Pause;
-        string path = "UI/TimeFrame/Pause2";    //image路径
+        string path = "UI/Button/TimeFrame/Pause2";    //image路径
         Sprite sprite = Resources.Load(path, typeof(Sprite)) as Sprite;    //参数为资源路径和资源类型
         pause.sprite = sprite;
 
-        path = "UI/TimeFrame/CSpeed1";
+        path = "UI/Button/TimeFrame/CSpeed1";
         sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         onespeed.sprite = sprite;
 
-        path = "UI/TimeFrame/FSpeed1";
+        path = "UI/Button/TimeFrame/FSpeed1";
         sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         fastspeed.sprite = sprite;
     }
@@ -166,15 +166,15 @@ public class Scr_TimeControl : MonoBehaviour
         if (timeMode == TimeMode.OneSpeed || Event.showEvent) { return; }
 
         timeMode = TimeMode.OneSpeed;
-        string path = "UI/TimeFrame/CSpeed2";
+        string path = "UI/Button/TimeFrame/CSpeed2";
         Sprite sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         onespeed.sprite = sprite;
 
-        path = "UI/TimeFrame/Pause1";
+        path = "UI/Button/TimeFrame/Pause1";
         sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         pause.sprite = sprite;
 
-        path = "UI/TimeFrame/FSpeed1";
+        path = "UI/Button/TimeFrame/FSpeed1";
         sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         fastspeed.sprite = sprite;
     }
@@ -183,15 +183,15 @@ public class Scr_TimeControl : MonoBehaviour
         if (timeMode == TimeMode.FastSpeed || Event.showEvent) { return; }
 
         timeMode = TimeMode.FastSpeed;
-        string path = "UI/TimeFrame/FSpeed2";
+        string path = "UI/Button/TimeFrame/FSpeed2";
         Sprite sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         fastspeed.sprite = sprite;
 
-        path = "UI/TimeFrame/CSpeed1";
+        path = "UI/Button/TimeFrame/CSpeed1";
         sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         onespeed.sprite = sprite;
 
-        path = "UI/TimeFrame/Pause1";
+        path = "UI/Button/TimeFrame/Pause1";
         sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         pause.sprite = sprite;
     }
