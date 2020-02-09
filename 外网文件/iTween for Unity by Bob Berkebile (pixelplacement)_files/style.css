@@ -1,0 +1,321 @@
+body {
+	background-repeat: repeat-x;
+	background-image: url("../images/mainBackground.jpg");
+	background-color: #3d3d3d;
+}
+
+body:before {
+    content: "";
+    height:100%;
+    float: left;
+    width: 0;
+    margin-top: -32767px;
+}
+
+body,html,wrapper{
+	height: 100%;
+}
+
+body>#wrapper{
+	min-height: 100%;
+	height: auto;
+}
+
+#container{
+	background-image: url("../images/identityBackground.png");
+	background-repeat: no-repeat;
+	overflow:auto;
+	padding-bottom: 160px;
+	background-attachment: fixed;
+	background-position:center top;
+}
+
+#iframe{
+	margin-top: 6px;
+	margin-bottom: 20px;
+}
+
+#download{
+	position: absolute;
+	left: 50%;
+	/*top:110px;*/
+	top:0px;
+	margin-left: -390px;
+	width: 780px;
+	z-index: 2;
+}
+
+.downloadShow{
+	position: absolute;
+	width: 254px;
+	height: 99px;
+	background-image: url("../images/downloadPanelButton.png");
+	background-repeat: no-repeat;
+	right: 60px;
+	margin-top: -9px;
+	display: block;
+	cursor: pointer;
+}
+
+.downloadShowActive{
+	background-position: -254px;
+}
+
+#downloadPanel{
+	background-color: #000000;
+	height: 190px;
+	display: none;
+	padding: 20px;
+	text-align: center;
+	background-image: url("../images/downloadPanelBG.jpg");
+	background-position: top;
+	background-repeat: repeat-x;
+}
+
+a.downloadSource{
+	border-color: #a1a1a1;
+	border-width: 1px;
+	border-style: solid;
+	font-weight: bold;
+	margin-top: 20px;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 11px;
+	color: white;
+	background-image: url("../images/black70.png");
+	padding: 10px;
+}
+
+a.downloadSource:hover{
+	background-image: none;
+	background-color: #0e75be;
+}
+
+#header{
+	padding-top: 58px;
+}
+
+#header .versions{
+	top: 17px;
+	left: -130px;
+	position: relative;
+}
+
+#header .powered{
+	top: 40px;
+	left: -14px;
+	position: relative;
+}
+
+#header ul{
+	margin-bottom: 0px;
+	margin-top: 50px;
+	list-style-type: none;
+}
+
+#header li{
+	margin: 0px;
+}
+
+#header li a{
+	background-repeat: repeat;
+	background-image: url("../images/black70.png");
+	margin-right: 4px;
+	float: left;
+	padding-right: 18px;
+	padding-left: 18px;
+	padding-bottom: 7px;
+	padding-top: 9px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: white;
+	font-size: 12px;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+
+#header li a:hover{
+	background-image: none;
+	background-color: #0e75be;
+}
+
+#body{
+	padding-left: 25px;
+	padding-bottom: 1px;
+	padding-right: 25px;
+	padding-top: 20px;
+	margin-top: 6px;
+	margin-bottom: 17px;
+	background-repeat: repeat;
+	background-image: url("../images/black70.png");
+	font-size: 15px;
+	overflow: hidden;
+}
+
+#body .contentBlock{
+	border-color: #0e75be;
+	border-style: solid;
+	border-bottom-width: 7px;
+	margin-bottom: 80px;
+	font-size: 12px;
+	overflow: hidden;
+}
+
+#body ul{
+	margin-top: -15px;
+}
+
+#body table{
+	border-color: #0e75be;
+	border-style: solid;
+	border-width: 1px;
+	width: 100%;
+	font-size: 11px;
+}	
+
+#body th {
+	padding-top: 15px;
+	padding-left: 20px;
+	padding-bottom: 4px;
+	background-repeat: repeat;
+	background-image: url("../images/black70.png");
+	color:#FFFFFF;
+	font-weight:bold;
+	text-align:left;
+	vertical-align:bottom;
+}
+
+#body td{
+	padding-left: 20px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	color: #000000;
+}
+
+#body tr.row0{
+	background-color: #ffffff;
+}
+
+#body tr.row1{
+	background-color:#cbcbcb;
+}
+
+.header{
+	margin-bottom: 30px;
+}
+
+#leftColumn{
+	width: 460px;
+	float: left;
+}
+
+#rightColumn{
+	margin-left: 20px;
+	float: left;
+	width: 250px;
+}
+
+
+#leftColumnSwapped{
+	float: left;
+	width: 250px;
+}
+
+#rightColumnSwapped{
+	margin-left: 20px;
+	width: 460px;
+	float: left;
+}
+
+
+#rightColumn img{
+	margin-bottom: 21px;
+	border-color: #2a7fb9;
+	border-style: solid;
+	border-width: 1px;
+}
+
+#leftColumnSwapped img{
+	margin-bottom: 21px;
+	border-color: #2a7fb9;
+	border-style: solid;
+	border-width: 1px;
+}
+
+pre {
+	background-color:#cbcbcb;
+	border:1px solid #000000;
+	color:#000000;
+	display:block;
+	font-family:"Lucida Console",sans-serif;
+	font-size:10px;
+	padding-top:15px;
+	padding-left:10px;
+	padding-right:10px;
+	overflow: auto;
+}
+
+#footer{
+	padding-top: 36px;
+	background-color: #0a0a0a;
+	background-image: url("../images/footerBackground.jpg");
+	background-repeat: repeat-x;
+	position: relative;
+	margin-top: -160px;
+	height: 160px;
+	clear: both;	
+	overflow: hidden;
+}
+
+.note{
+	text-transform: uppercase;
+	font-weight: bold;
+	color:#0E75BE;
+	text-align: center;
+	font-size: 11px;
+}
+
+.methodName{
+	padding:10px 10px 10px 10px;
+	display:block;
+	color:#272727;
+	font-size:10px;
+	background-image: url("../images/methodBG.jpg");
+	background-repeat:no-repeat; 
+	cursor: pointer;
+	margin:0px;
+}
+
+.methodNameul{
+	padding:20px 20px 20px 20px;
+	display:block;
+	color:#272727;
+	font-size:12px;
+	margin:0px;
+}
+
+.methodNameli{
+	padding-bottom:5px;	
+}
+
+#ads{
+	background-color: black;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#ViewCart{
+	position: absolute;
+	top:-9px;
+	right: -4px;
+}
+
+#social{
+	padding-top: 5px;
+}
+
+#nativeExtension{
+	margin-top: 10px;
+	margin-bottom: 6px;
+}

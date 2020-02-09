@@ -1,0 +1,4398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0054)http://www.pixelplacement.com/itween/documentation.php -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    	<title>iTween for Unity by Bob Berkebile (pixelplacement)</title>
+		
+    	<!-- favicon -->
+    	<link rel="shortcut icon" href="http://www.pixelplacement.com/itween/favicon.ico">
+		
+		<!-- meta -->
+		<meta name="description" content="A simple, powerful and easy to use animation system for Unity developed by Bob Berkebile of Pixelplacement.  Focusing on the established solutions and frameworks of projects such as TweenLite, Tweener, and other tweening systems, iTween is a battle-tested solution for streamlining production in the Unity environment.">
+		<meta name="keywords" content="tween, animation, framework, make games, game engine, game development, iphone development, iphone programming, console development, wii development, xbox development, tool, development tool, visualization, game development tool, architectural visualization, date visualization, how to make games, unity, web 3d, 3d web, game design, multi platform, interactive, installation, free">
+		
+        
+		<!-- sheets -->
+		<link rel="stylesheet" href="./iTween for Unity by Bob Berkebile (pixelplacement)_files/reset.css">
+		<link rel="stylesheet" href="./iTween for Unity by Bob Berkebile (pixelplacement)_files/960.css">
+		<link rel="stylesheet" href="./iTween for Unity by Bob Berkebile (pixelplacement)_files/text.css">
+		<link rel="stylesheet" href="./iTween for Unity by Bob Berkebile (pixelplacement)_files/style.css">
+        
+		<!-- scripts -->				
+		<script src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/unityobject.js.下载" type="text/javascript"></script>
+		<script src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/unityreplace.js.下载" type="text/javascript"></script>
+		<script src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/swfobject.js.下载" type="text/javascript"></script>
+		<script src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/ga.js.下载" type="text/javascript"></script>
+		<script src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/recordOutboundLink.js.下载" type="text/javascript"></script>
+		<script src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/vimeoVideoEmbed.js.下载" type="text/javascript"></script><style type="text/css" media="screen">#videoPlayer1 {visibility:hidden}#videoPlayer2 {visibility:hidden}#videoPlayer3 {visibility:hidden}#videoPlayer1 {visibility:visible}#videoPlayer2 {visibility:visible}#videoPlayer3 {visibility:visible}</style>
+		<script src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/jquery-1.4.2.min.js.下载" type="text/javascript"></script>
+		<script src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/scroll.js.下载" type="text/javascript"></script>
+		
+		<script type="text/javascript">
+		$(document).ready(function()
+		{
+		  jQuery(".methodBody").hide();
+		  
+		  jQuery(".methodName").click(function()
+		  {
+		    jQuery(this).next(".methodBody").slideToggle('fast');
+		  });
+		  
+		  
+		  jQuery(".downloadShow").click(function(){
+			jQuery("#downloadPanel").slideToggle("slow");
+			jQuery(this).toggleClass("downloadShowActive"); return false;
+			});
+		});
+		</script>
+		
+    <style type="text/css">#htmlToothbrush #bodyToothbrush .parentToothbrush .bilibili-player-video {margin:0 !important;}
+#htmlToothbrush, #bodyToothbrush {overflow:hidden !important;zoom:100% !important;}
+#htmlToothbrush #bodyToothbrush .parentToothbrush {overflow:visible !important;z-index:auto !important;transform:none !important;-webkit-transform-style:flat !important;transition:none !important;contain:none !important;}
+#htmlToothbrush #bodyToothbrush .absoluteToothbrush {position:absolute !important;}
+#htmlToothbrush #bodyToothbrush .playerToothbrush {position:fixed !important;top:0px !important;left:0px !important;width:100vw !important;height:100vh !important;max-width:none !important;max-height:none !important;min-width:0 !important;min-height:0 !important;margin:0 !important;padding:0 !important;z-index:2147483647 !important;border:none !important;background-color:#000 !important;transform:none !important;}
+#htmlToothbrush #bodyToothbrush .parentToothbrush video {object-fit:contain !important;}
+#htmlToothbrush #bodyToothbrush .parentToothbrush .videoToothbrush {width:100vw !important;height:100vh !important;}
+#playerControlBtn {text-shadow: none;visibility:hidden;opacity:0;display:none;transition: all 0.5s ease;cursor: pointer;font: 12px "微软雅黑";margin:0;width:64px;height:20px;line-height:20px;border:none;text-align: center;position: fixed;z-index:2147483647;background-color: #27A9D8;color: #FFF;} #playerControlBtn:hover {visibility:visible;opacity:1;background-color:#2774D8;}
+#picinpicBtn {text-shadow: none;visibility:hidden;opacity:0;display:none;transition: all 0.5s ease;cursor: pointer;font: 12px "微软雅黑";margin:0;width:53px;height:20px;line-height:20px;border:none;text-align: center;position: fixed;z-index:2147483647;background-color: #27A9D8;color: #FFF;} #picinpicBtn:hover {visibility:visible;opacity:1;background-color:#2774D8;}
+#leftFullStackButton{display:none;position:fixed;width:1px;height:100vh;top:0;left:0;z-index:2147483647;background:#000;}
+#rightFullStackButton{display:none;position:fixed;width:1px;height:100vh;top:0;right:0;z-index:2147483647;background:#000;}</style></head>
+    <body data-gr-c-s-loaded="true" style="">
+    	<!-- google ad code was here --> 
+	    <div id="download" class="grid_12">
+	   		<div id="downloadPanel">
+	   			<a href="http://u3d.as/content/pixelplacement/i-tween/1s9" target="_blank" onclick="recordOutboundLink(this, &#39;Outbound&#39;, &#39;Google Code Repository&#39;);return false;"><img src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/visitiTween.png"></a>
+	   			<br>
+	   			<br>
+	   			<a href="http://pixelplacement.com/v2/2010/12/03/visual-editor-for-itween-motion-paths/" target="_blank" onclick="recordOutboundLink(this, &#39;Outbound&#39;, &#39;BlogVisualPathEditor&#39;);return false;"><img src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/pathEditorDownload.png"></a>
+	   		</div>
+	   		<img src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/downloadBar.png">
+			<a class="downloadShow" target="_blank"></a>
+		</div>
+    	<div id="wrapper">
+			<div id="container" class="container_12">
+				<div id="header" class="grid_10 prefix_1">
+					<a href="http://www.pixelplacement.com/itween/index.php"><img src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/iTweenLogo.png"></a>
+					<a href="http://unity3d.com/" target="_blank"><img src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/versionsSlug.png" class="versions"></a>
+					<a href="http://pixelplacement.com/" target="_blank"><img src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/poweredByPixelPlacement.png" class="powered"></a>
+					<ul>
+						<li><a href="http://www.pixelplacement.com/itween/gettingstarted.php">getting started</a></li>
+						<li><a href="http://www.pixelplacement.com/itween/documentation.php">documentation</a></li>
+						<li><a href="http://www.pixelplacement.com/itween/examples.php">examples</a></li>
+						<li><a href="http://www.pixelplacement.com/itween/support.php">support</a></li>
+						<li><a href="http://www.pixelplacement.com/itween/credits.php">credits</a></li>
+						<!-- <li><a href="affiliates.php">affiliates</a></li> -->
+					</ul>
+					<div id="social">
+						<a href="http://twitter.com/pixelplacement" target="_blank" onclick="recordOutboundLink(this, &#39;Outbound&#39;, &#39;Twitter&#39;);return false;"><img src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/twitter.png"></a>
+						<!-- <a href="http://code.google.com/feeds/p/itween/updates/basic" target="_blank" onClick="recordOutboundLink(this, 'Outbound', 'RSS Feed');return false;"><img src="images/rss.png"></a> -->				
+					</div>
+				</div>
+<div class="grid_10 prefix_1"><div id="nativeExtension"><a href="http://www.pixelplacement.com/itween/nativeExtension.php"><img src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/nativeExtension.jpg"></a></div></div>
+
+<div class="grid_10 prefix_1" id="top">
+	<div id="body">
+		<img src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/documentation.png" class="header">
+		
+		<div class="contentBlock" style="padding-bottom:20px;">
+			<div style="float:left; width:50%;">
+				<a href="http://www.pixelplacement.com/itween/documentation.php#AudioFrom" class="scroll">AudioFrom</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#AudioTo" class="scroll">AudioTo</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#AudioUpdate" class="scroll">AudioUpdate</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#CameraFadeAdd" class="scroll">CameraFadeAdd</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#CameraFadeDepth" class="scroll">CameraFadeDepth</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#CameraFadeDestroy" class="scroll">CameraFadeDestroy</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#CameraFadeSwap" class="scroll">CameraFadeSwap</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#CameraFadeFrom" class="scroll">CameraFadeFrom</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#CameraFadeTo" class="scroll">CameraFadeTo</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#CameraTexture" class="scroll">CameraTexture</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#ColorFrom" class="scroll">ColorFrom</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#ColorTo" class="scroll">ColorTo</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#ColorUpdate" class="scroll">ColorUpdate</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#Count" class="scroll">Count</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#DrawLine" class="scroll">DrawLine</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#DrawLineGizmos" class="scroll">DrawLineGizmos</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#DrawLineHandles" class="scroll">DrawLineHandles</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#DrawPath" class="scroll">DrawPath</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#DrawPathGizmos" class="scroll">DrawPathGizmos</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#DrawPathHandles" class="scroll">DrawPathHandles</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#PathLength" class="scroll">PathLength</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#EaseType" class="scroll">EaseType</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#FadeFrom" class="scroll">FadeFrom</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#FadeTo" class="scroll">FadeTo</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#FadeUpdate" class="scroll">FadeUpdate</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#FloatUpdate" class="scroll">FloatUpdate</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#Hash" class="scroll">Hash</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#Init" class="scroll">Init</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#LookFrom" class="scroll">LookFrom</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#LookTo" class="scroll">LookTo</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#LookUpdate" class="scroll">LookUpdate</a><br>	
+				<a href="http://www.pixelplacement.com/itween/documentation.php#LoopType" class="scroll">LoopType</a><br>		
+			</div>
+			<div style="float:left;">
+				<a href="http://www.pixelplacement.com/itween/documentation.php#MoveAdd" class="scroll">MoveAdd</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#MoveBy" class="scroll">MoveBy</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#MoveFrom" class="scroll">MoveFrom</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#MoveTo" class="scroll">MoveTo</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#MoveUpdate" class="scroll">MoveUpdate</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#Pause" class="scroll">Pause</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#PunchPosition" class="scroll">PunchPosition</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#PunchRotation" class="scroll">PunchRotation</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#PunchScale" class="scroll">PunchScale</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#PutOnPath" class="scroll">PutOnPath</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#PointOnPath" class="scroll">PointOnPath</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#RectUpdate" class="scroll">RectUpdate</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#Resume" class="scroll">Resume</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#RotateAdd" class="scroll">RotateAdd</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#RotateBy" class="scroll">RotateBy</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#RotateFrom" class="scroll">RotateFrom</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#RotateTo" class="scroll">RotateTo</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#RotateUpdate" class="scroll">RotateUpdate</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#ScaleAdd" class="scroll">ScaleAdd</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#ScaleBy" class="scroll">ScaleBy</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#ScaleFrom" class="scroll">ScaleFrom</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#ScaleTo" class="scroll">ScaleTo</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#ScaleUpdate" class="scroll">ScaleUpdate</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#ShakePosition" class="scroll">ShakePosition</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#ShakeRotation" class="scroll">ShakeRotation</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#ShakeScale" class="scroll">ShakeScale</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#Stab" class="scroll">Stab</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#Stop" class="scroll">Stop</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#StopByName" class="scroll">StopByName</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#ValueTo" class="scroll">ValueTo</a><br>	
+				<a href="http://www.pixelplacement.com/itween/documentation.php#Vector2Update" class="scroll">Vector2Update</a><br>
+				<a href="http://www.pixelplacement.com/itween/documentation.php#Vector3Update" class="scroll">Vector3Update</a><br>
+			</div>
+		</div>
+		
+		<div class="contentBlock">
+			<span id="AudioFrom"><h3>AudioFrom <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Instantly changes an AudioSource's volume and pitch then returns it to it's starting volume and pitch over time. Default AudioSource attached to GameObject will be used (if one exists) if not supplied.</p>
+			<ul>
+				<li>AudioFrom(GameObject target, float volume, float pitch, float time)</li>
+				<li>AudioFrom(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>audiosource</td>
+					<td>AudioSource</td>
+					<td>for which AudioSource to use</td>
+				</tr>
+				<tr class="row1">
+					<td>volume</td>
+					<td>float or double</td>
+					<td>for the target level of volume</td>
+				</tr>
+				<tr class="row0">
+					<td>pitch</td>
+					<td>float or double</td>
+					<td>for the target pitch</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row1">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="AudioTo"><h3>AudioTo <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Fades volume and pitch of an AudioSource.  Default AudioSource attached to GameObject will be used (if one exists) if not supplied.</p>
+			<ul>
+				<li>AudioTo(GameObject target, float volume, float pitch, float time)</li>
+				<li>AudioTo(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>audiosource</td>
+					<td>AudioSource</td>
+					<td>for which AudioSource to use</td>
+				</tr>
+				<tr class="row1">
+					<td>volume</td>
+					<td>float or double</td>
+					<td>for the target level of volume</td>
+				</tr>
+				<tr class="row0">
+					<td>pitch</td>
+					<td>float or double</td>
+					<td>for the target pitch</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row1">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>	
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="AudioUpdate"><h3>AudioUpdate <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Similar to AudioTo but incredibly less expensive for usage inside the Update function or similar looping situations involving a "live" set of changing values. Does not utilize an EaseType.</p>
+			<ul>
+				<li>AudioUpdate(GameObject target, float volume, float pitch, float time)</li>
+				<li>AudioUpdate(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>audiosource</td>
+					<td>AudioSource</td>
+					<td>for which AudioSource to use</td>
+				</tr>
+				<tr class="row1">
+					<td>volume</td>
+					<td>float or double</td>
+					<td>for the target level of volume</td>
+				</tr>
+				<tr class="row0">
+					<td>pitch</td>
+					<td>float or double</td>
+					<td>for the target pitch</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+			</tbody></table>
+		</div>	
+				
+				
+						
+		<div class="contentBlock">	
+			<span id="CameraFadeAdd"><h3>CameraFadeAdd <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Creates a GameObject (if it doesn't exist) at the supplied depth that can be used to simulate a camera fade. If you don't choose to supply a Texture2D a black CameraFade with be created.  If you don't supply a depth the default depth of 999999 will be used.</p>
+			<p>Returns a GameObject reference to the create CameraFade to allow additional customization such as its layer to ensure proper stacking.</p>
+			<ul>
+				<li>CameraFadeAdd()</li>
+				<li>CameraFadeAdd(Texture2D texture)</li>
+				<li>CameraFadeAdd(Texture2D texture, int depth)</li>
+			</ul>
+		</div>				
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="CameraFadeDepth"><h3>CameraFadeDepth <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Changes a camera fade's depth.</p>
+			<ul>
+				<li>CameraFadeDepth(int depth)</li>
+			</ul>
+		</div>
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="CameraFadeDestroy"><h3>CameraFadeDestroy <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Removes and destroys a camera fade.</p>
+			<ul>
+				<li>CameraFadeDestroy()</li>
+			</ul>
+		</div>
+		
+		
+		<div class="contentBlock">	
+			<span id="CameraFadeSwap"><h3>CameraFadeSwap <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Changes the camera fade's texture.</p>
+			<ul>
+				<li>CameraFadeSwap(Texture2D texture)</li>
+			</ul>
+		</div>
+		
+		
+		<div class="contentBlock">	
+			<span id="CameraFadeFrom"><h3>CameraFadeFrom <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Instantly changes the amount(transparency) of a camera fade and then returns it back over time.</p>
+			<ul>
+				<li>CameraFadeFrom(float amount, float time)</li>
+				<li>CameraFadeFrom(Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>amount</td>
+					<td>float or double</td>
+					<td>for how transparent the Texture2D that the camera fade uses is</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row1">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="CameraFadeTo"><h3>CameraFadeTo <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Changes the amount(transparency) of a camera fade over time.</p>
+			<ul>
+				<li>CameraFadeTo(float amount, float time)</li>
+				<li>CameraFadeTo(Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>amount</td>
+					<td>float or double</td>
+					<td>for how transparent the Texture2D that the camera fade uses is</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row1">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>
+		
+		<div class="contentBlock">	
+			<span id="CameraTexture"><h3>CameraTexture <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Creates and returns a full-screen Texture2D for use with CameraFade.</p>
+			<ul>
+				<li>CameraTexture(Color color)</li>
+			</ul>
+		</div>	
+		
+		<div class="contentBlock">	
+			<span id="ColorFrom"><h3>ColorFrom <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Changes a GameObject's color values instantly then returns them to the provided properties over time.  If a Light, GUIText or GUITexture component is attached, it will become the target of the animation.</p>
+			<ul>
+				<li>ColorFrom(GameObject target, Hashtable args)</li>
+				<li>ColorFrom(GameObject target, Color color, float time)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>color</td>
+					<td>Color</td>
+					<td>the color to fade the object to</td>
+				</tr>
+				<tr class="row1">
+					<td>r</td>
+					<td>float or double</td>
+					<td>for the individual setting of the color red</td>
+				</tr>
+				<tr class="row0">
+					<td>g</td>
+					<td>float or double</td>
+					<td>for the individual setting of the color green</td>
+				</tr>
+				<tr class="row1">
+					<td>b</td>
+					<td>float or double</td>
+					<td>for the individual setting of the color blue</td>
+				</tr>
+				<tr class="row0">
+					<td>a</td>
+					<td>float or double</td>
+					<td>for the individual setting of the alpha</td>
+				</tr>
+				<tr class="row1">
+					<td>NamedColorValue</td>
+					<td>NamedColorValue or string</td>
+					<td>for which color of a shader to use. Uses "_Color" by default.</td>
+				</tr>
+				<tr class="row0">
+					<td>includechildren</td>
+					<td>boolean</td>
+					<td>for whether or not to include children of this GameObject. True by default</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row1">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>		
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="ColorTo"><h3>ColorTo <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Changes a GameObject's color values over time.  If a Light, GUIText or GUITexture component is attached, they will become the target of the animation.</p>
+			<ul>
+				<li>ColorTo(GameObject target, Hashtable args)</li>
+				<li>ColorTo(GameObject target, Color color, float time)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>color</td>
+					<td>Color</td>
+					<td>the color to fade the object to</td>
+				</tr>
+				<tr class="row1">
+					<td>r</td>
+					<td>float or double</td>
+					<td>for the individual setting of the color red</td>
+				</tr>
+				<tr class="row0">
+					<td>g</td>
+					<td>float or double</td>
+					<td>for the individual setting of the color green</td>
+				</tr>
+				<tr class="row1">
+					<td>b</td>
+					<td>float or double</td>
+					<td>for the individual setting of the color blue</td>
+				</tr>
+				<tr class="row0">
+					<td>a</td>
+					<td>float or double</td>
+					<td>for the individual setting of the alpha</td>
+				</tr>
+				<tr class="row1">
+					<td>NamedColorValue</td>
+					<td>NamedColorValue or string</td>
+					<td>for which color of a shader to use. Uses "_Color" by default.</td>
+				</tr>
+				<tr class="row0">
+					<td>includechildren</td>
+					<td>boolean</td>
+					<td>for whether or not to include children of this GameObject. True by default</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row1">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>			
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="ColorUpdate"><h3>ColorUpdate <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Similar to ColorTo but incredibly less expensive for usage inside the Update function or similar looping situations involving a "live" set of changing values. Does not utilize an EaseType.</p>
+			<ul>
+				<li>ColorUpdate(GameObject target, Color color, float time)</li>
+				<li>ColorUpdate(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr class="row0">
+					<td>color</td>
+					<td>Color</td>
+					<td>the color to fade the object to</td>
+				</tr>
+				<tr class="row1">
+					<td>r</td>
+					<td>float or double</td>
+					<td>for the individual setting of the color red</td>
+				</tr>
+				<tr class="row0">
+					<td>g</td>
+					<td>float or double</td>
+					<td>for the individual setting of the color green</td>
+				</tr>
+				<tr class="row1">
+					<td>b</td>
+					<td>float or double</td>
+					<td>for the individual setting of the color blue</td>
+				</tr>
+				<tr class="row0">
+					<td>a</td>
+					<td>float or double</td>
+					<td>for the individual setting of the alpha</td>
+				</tr>
+				<tr class="row1">
+					<td>NamedColorValue</td>
+					<td>NamedColorValue or string</td>
+					<td>for which color of a shader to use. Uses "_Color" by default.</td>
+				</tr>
+				<tr class="row0">
+					<td>includechildren</td>
+					<td>boolean</td>
+					<td>for whether or not to include children of this GameObject. True by default</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+			</tbody></table>
+		</div>	
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="Count"><h3>Count <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Returns integer of iTweens.</p>
+			<ul>
+				<li>Count() Count all iTweens in current scene</li>
+				<li>Count(string type) Count all iTweens in current scene of a particular type</li>
+				<li>Count(GameObject target) Count all iTweens on a GameObject</li>
+				<li>Count(GameObject target, string type) Count all iTweens on a GameObject of a particular type</li>
+			</ul>
+		</div>	
+		
+		
+		<div class="contentBlock">	
+			<span id="DrawLine"><h3>DrawLine <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>When called from an OnDrawGizmos() function it will draw a line through the provided array of Vector3 or Transforms.</p>
+
+			<ul>
+				<li>DrawLine(Vector3[] path)</li>
+				<li>DrawLine(Vector3[] path, Color color)</li>
+				<li>DrawLine(Transform[] path)</li>
+				<li>DrawLine(Transform[] path,Color color)</li>
+			</ul>
+		</div>			
+		
+		<div class="contentBlock">	
+			<span id="DrawLineGizmos"><h3>DrawLineGizmos <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Draws a line through the provided array of Vector3s or Transforms with Gizmos.DrawLine(). Identical to DrawLine()</p>
+
+			<ul>
+				<li>DrawLineGizmos(Vector3[] path)</li>
+				<li>DrawLineGizmos(Vector3[] path, Color color)</li>
+				<li>DrawLineGizmos(Transform[] path)</li>
+				<li>DrawLineGizmos(Transform[] path,Color color)</li>
+			</ul>
+		</div>	
+		
+		<div class="contentBlock">	
+			<span id="DrawLineHandles"><h3>DrawLineHandles <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Draws a line through the provided array of Vector3s or Transforms with Handles.DrawLine().</p>
+
+			<ul>
+				<li>DrawLineHandles(Vector3[] path)</li>
+				<li>DrawLineHandles(Vector3[] path, Color color)</li>
+				<li>DrawLineHandles(Transform[] path)</li>
+				<li>DrawLineHandles(Transform[] path,Color color)</li>
+			</ul>
+		</div>	
+		
+		<div class="contentBlock">	
+			<span id="DrawPath"><h3>DrawPath <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>When called from an OnDrawGizmos() function it will draw a curved path through the provided array of Vector3 or Transforms.</p>
+
+			<ul>
+				<li>DrawPath(Vector3[] path)</li>
+				<li>DrawPath(Vector3[] path, Color color)</li>
+				<li>DrawPath(Transform[] path)</li>
+				<li>DrawPath(Transform[] path,Color color)</li>
+			</ul>
+		</div>	
+		
+		<div class="contentBlock">	
+			<span id="DrawPathGizmos"><h3>DrawPathGizmos <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Draws a curved path through the provided array of Vector3s or Transforms with Gizmos.DrawLine(). Identical to DrawPath()</p>
+
+			<ul>
+				<li>DrawPathGizmos(Vector3[] path)</li>
+				<li>DrawPathGizmos(Vector3[] path, Color color)</li>
+				<li>DrawPathGizmos(Transform[] path)</li>
+				<li>DrawPathGizmos(Transform[] path,Color color)</li>
+			</ul>
+		</div>	
+		
+		<div class="contentBlock">	
+			<span id="DrawPathHandles"><h3>DrawPathHandles <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Draws a curved path through the provided array of Vector3s or Transforms with Handles.DrawLine().</p>
+
+			<ul>
+				<li>DrawPathHandles(Vector3[] path)</li>
+				<li>DrawPathHandles(Vector3[] path, Color color)</li>
+				<li>DrawPathHandles(Transform[] path)</li>
+				<li>DrawPathHandles(Transform[] path,Color color)</li>
+			</ul>
+		</div>
+		
+		
+		<div class="contentBlock">	
+			<span id="PathLength"><h3>PathLength <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Returns the length of a curved path drawn through the provided array of Vector3 or Transforms</p>
+
+			<ul>
+				<li>PathLength(Vector3[])</li>
+				<li>PathLength(Transform[])</li>
+			</ul>
+		</div>	
+		
+		
+		<div class="contentBlock">	
+			<span id="EaseType"><h3>EaseType <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>An enumeration of the type of easing to use based on <a href="http://www.robertpenner.com/easing_terms_of_use.html">Robert Penner's open source easing equations</a>.</p>
+			<p>Here's a good reference for what you can expect from each ease type (just click to animate the ball): <a href="http://www.robertpenner.com/easing/easing_demo.html" target="_blank">here</a>.</p>
+			<ul>
+				<li>easeInQuad</li>
+				<li>easeOutQuad</li>
+				<li>easeInOutQuad</li>
+				<li>easeInCubic</li>
+				<li>easeOutCubic</li>
+				<li>easeInOutCubic</li>
+				<li>easeInQuart</li>
+				<li>easeOutQuart</li>
+				<li>easeInOutQuart</li>
+				<li>easeInQuint</li>
+				<li>easeOutQuint</li>
+				<li>easeInOutQuint</li>
+				<li>easeInSine</li>
+				<li>easeOutSine</li>
+				<li>easeInOutSine</li>
+				<li>easeInExpo</li>
+				<li>easeOutExpo</li>
+				<li>easeInOutExpo</li>
+				<li>easeInCirc</li>
+				<li>easeOutCirc</li>
+				<li>easeInOutCirc</li>
+				<li>linear</li>
+				<li>spring</li>
+				<li>easeInBounce</li>
+				<li>easeOutBounce</li>
+				<li>easeInOutBounce</li>
+				<li>easeInBack</li>
+				<li>easeOutBack</li>
+				<li>easeInOutBack</li>
+				<li>easeInElastic</li>
+				<li>easeOutElastic</li>
+				<li>easeInOutElastic</li>
+			</ul>
+		</div>
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="FadeFrom"><h3>FadeFrom <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Changes a GameObject's alpha value instantly then returns it to the provided alpha over time.  If a Light, GUIText or GUITexture component is attached, it will become the target of the animation. Identical to using ColorFrom and using the "a" parameter.</p>
+			<ul>
+				<li>FadeFrom(GameObject target, Hashtable args)</li>
+				<li>FadeFrom(GameObject target, float alpha, float time)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>alpha</td>
+					<td>float or double</td>
+					<td>for the initial alpha value of the animation.</td>
+				</tr>
+				<tr class="row1">
+					<td>amount</td>
+					<td>float or double</td>
+					<td>for the initial alpha value of the animation.</td>
+				</tr>
+				<tr class="row0">
+					<td>includechildren</td>
+					<td>boolean</td>
+					<td>for whether or not to include children of this GameObject. True by default</td>
+				</tr>
+				<tr class="row1">
+					<td>NamedValueColor</td>
+					<td>NamedValueColor or string</td>
+					<td>for which color of a shader to use. Uses "_Color" by default.</td>
+				</tr>
+				<tr class="row0">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>	
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="FadeTo"><h3>FadeTo <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Changes a GameObject's alpha value over time.  If a Light, GUIText or GUITexture component is attached, it will become the target of the animation. Identical to using ColorTo and using the "a" parameter.</p>
+			<ul>
+				<li>FadeTo(GameObject target, Hashtable args)</li>
+				<li>FadeTo(GameObject target, float alpha, float time)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>alpha</td>
+					<td>float or double</td>
+					<td>for the initial alpha value of the animation.</td>
+				</tr>
+				<tr class="row1">
+					<td>amount</td>
+					<td>float or double</td>
+					<td>for the initial alpha value of the animation.</td>
+				</tr>
+				<tr class="row0">
+					<td>includechildren</td>
+					<td>boolean</td>
+					<td>for whether or not to include children of this GameObject. True by default</td>
+				</tr>
+				<tr class="row1">
+					<td>NamedValueColor</td>
+					<td>NamedValueColor or string</td>
+					<td>for which color of a shader to use. Uses "_Color" by default.</td>
+				</tr>
+				<tr class="row0">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="FadeUpdate"><h3>FadeUpdate <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Similar to FadeTo but incredibly less expensive for usage inside the Update function or similar looping situations involving a "live" set of changing values. Does not utilize an EaseType.</p>
+			<ul>
+				<li>FadeUpdate(GameObject target, Hashtable args)</li>
+				<li>FadeUpdate(GameObject target, float alpha, float time)</li>
+			</ul>
+			<table>
+				<tbody><tr class="row0">
+					<td>alpha</td>
+					<td>float or double</td>
+					<td>for the individual setting of the alpha</td>
+				</tr>
+				<tr class="row1">
+					<td>includechildren</td>
+					<td>boolean</td>
+					<td>for whether or not to include children of this GameObject. True by default</td>
+				</tr>
+				<tr class="row0">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+			</tbody></table>
+		</div>	
+		
+		<div class="contentBlock">	
+			<span id="FloatUpdate"><h3>FloatUpdate <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Returns a float that is eased between a current and target value by the supplied speed.</p>
+			<ul>
+				<li>FloatUpdate(float currentValue, float targetValue, float speed) : float</li>
+			</ul>
+		</div>
+		
+		<div class="contentBlock">	
+			<span id="Hash"><h3>Hash <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Universal interface to help in the creation of Hashtables.  Especially useful for C# users.</p>
+			<ul>
+				<li>Hash(params object[] args)</li>
+			</ul>
+		</div>	
+		
+		
+		<div class="contentBlock">	
+			<span id="Init"><h3>Init <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Sets up a GameObject to avoid hiccups when an initial iTween is added. It's advisable to run this on every object you intend to run iTween on in its Start or Awake.</p>
+			<ul>
+				<li>Init(GameObject target)</li>
+			</ul>
+		</div>
+		
+		
+		<div class="contentBlock">	
+			<span id="LookFrom"><h3>LookFrom <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Instantly rotates a GameObject to look at the supplied Vector3 then returns it to it's starting rotation over time.</p>
+			<ul>
+				<li>LookFrom(GameObject target, Vector3 looktarget, float time)</li>
+				<li>LookFrom(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row1">
+					<td>looktarget</td>
+					<td>Transform or Vector3</td>
+					<td>for a target the GameObject will look at.</td>
+				</tr>
+				<tr class="row0">
+					<td>axis</td>
+					<td>string</td>
+					<td>Restricts rotation to the supplied axis only.</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="LookTo"><h3>LookTo <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Rotates a GameObject to look at a supplied Transform or Vector3 over time.</p>
+			<ul>
+				<li>LookTo(GameObject target, Vector3 looktarget, float time)</li>
+				<li>LookTo(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row1">
+					<td>looktarget</td>
+					<td>Transform or Vector3</td>
+					<td>for a target the GameObject will look at.</td>
+				</tr>
+				<tr class="row0">
+					<td>axis</td>
+					<td>string</td>
+					<td>Restricts rotation to the supplied axis only.</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="LookUpdate"><h3>LookUpdate <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Rotates a GameObject to look at a supplied Transform or Vector3 over time.</p>
+			<ul>
+				<li>LookUpdate(GameObject target, Hashtable args)</li>
+				<li>LookUpdate(GameObject target, Vector3 looktarget, float time)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>looktarget</td>
+					<td>Transform or Vector3</td>
+					<td>for a target the GameObject will look at.</td>
+				</tr>
+				<tr class="row1">
+					<td>axis</td>
+					<td>string</td>
+					<td>Restricts rotation to the supplied axis only.</td>
+				</tr>
+				<tr class="row0">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+			</tbody></table>
+		</div>		
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="LoopType"><h3>LoopType <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>An enumeration of the type of loop (if any) to use.</p>
+			<ul>
+				<li>none = Do not loop.</li>
+				<li>loop = Rewind and replay.</li>
+				<li>pingPong = Ping pong the animation back and forth.</li>
+			</ul>
+		</div>				
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="MoveAdd"><h3>MoveAdd <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Translates a GameObject's position over time.</p>
+			<ul>
+				<li>MoveAdd(GameObject target, Vector3 amount, float time)</li>
+				<li>MoveAdd(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>amount</td>
+					<td>Vector3</td>
+					<td>for a point in space the GameObject will animate to.</td>
+				</tr>
+				<tr class="row1">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row0">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row1">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row0">
+					<td>orienttopath</td>
+					<td>boolean</td>
+					<td>for whether or not the GameObject will orient to its direction of travel.  False by default</td>
+				</tr>
+				<tr class="row1">
+					<td>looktarget</td>
+					<td>Transform or Vector3</td>
+					<td>for a target the GameObject will look at</td>
+				</tr>
+				<tr class="row0">
+					<td>looktime</td>
+					<td>float or double</td>
+					<td>for the time in seconds the object will take to look at either the "looktarget" or "orienttopath"</td>
+				</tr>
+				<tr class="row1">
+					<td>axis</td>
+					<td>string</td>
+					<td>restricts rotation to the supplied axis only</td>
+				</tr>
+				<tr class="row0">
+					<td>space</td>
+					<td>Space</td>
+					<td>for applying the transformation in either the world coordinate or local cordinate system. Defaults to local space</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="MoveBy"><h3>MoveBy <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Adds the supplied coordinates to a GameObject's position.</p>
+			<ul>
+				<li>MoveBy(GameObject target, Vector3 amount, float time)</li>
+				<li>MoveBy(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row1">
+					<td>amount</td>
+					<td>Vector3</td>
+					<td>for a point in space the GameObject will animate to.</td>
+				</tr>
+				<tr class="row0">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row1">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row0">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row1">
+					<td>orienttopath</td>
+					<td>boolean</td>
+					<td>for whether or not the GameObject will orient to its direction of travel.  False by default</td>
+				</tr>
+				<tr class="row0">
+					<td>looktarget</td>
+					<td>Transform or Vector3</td>
+					<td>for a target the GameObject will look at</td>
+				</tr>
+				<tr class="row1">
+					<td>looktime</td>
+					<td>float or double</td>
+					<td>for the time in seconds the object will take to look at either the "looktarget" or "orienttopath"</td>
+				</tr>
+				<tr class="row0">
+					<td>axis</td>
+					<td>string</td>
+					<td>restricts rotation to the supplied axis only</td>
+				</tr>
+				<tr class="row1">
+					<td>space</td>
+					<td>Space</td>
+					<td>for applying the transformation in either the world coordinate or local cordinate system. Defaults to local space</td>
+				</tr>
+				<tr class="row0">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row1">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed</td>
+				</tr>
+				<tr class="row0">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row1">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="MoveFrom"><h3>MoveFrom <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Instantly changes a GameObject's position to a supplied destination then returns it to it's starting position over time.</p>
+			<ul>
+				<li>MoveFrom(GameObject target, Vector3 position, float time)</li>
+				<li>MoveFrom(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row1">
+					<td>position</td>
+					<td>Transform or Vector3</td>
+					<td>for a point in space the GameObject will animate to.</td>
+				</tr>
+				<tr class="row0">
+					<td>path</td>
+					<td>Transform[] or Vector3[]</td>
+					<td>for a list of points to draw a Catmull-Rom through for a curved animation path</td>
+				</tr>
+				<tr class="row1">
+					<td>movetopath</td>
+					<td>boolean</td>
+					<td>for whether to automatically generate a curve from the GameObject's current position to the beginning of the path. True by default.</td>
+				</tr>
+				<tr class="row0">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row1">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row0">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row1">
+					<td>orienttopath</td>
+					<td>boolean</td>
+					<td>for whether or not the GameObject will orient to its direction of travel.  False by default</td>
+				</tr>
+				<tr class="row0">
+					<td>looktarget</td>
+					<td>Transform or Vector3</td>
+					<td>for a target the GameObject will look at</td>
+				</tr>
+				<tr class="row1">
+					<td>looktime</td>
+					<td>float or double</td>
+					<td>for the time in seconds the object will take to look at either the "looktarget" or "orienttopath"</td>
+				</tr>
+				<tr class="row0">
+					<td>lookahead</td>
+					<td>float or double</td>
+					<td>for how much of a percentage (from 0 to 1) to look ahead on a path to influence how strict "orienttopath" is and how much the object will anticipate each curve </td>
+				</tr>
+				<tr class="row1">
+					<td>axis</td>
+					<td>string</td>
+					<td>restricts rotation to the supplied axis only</td>
+				</tr>
+				<tr class="row0">
+					<td>islocal</td>
+					<td>boolean</td>
+					<td>for whether to animate in world space or relative to the parent. False be default.</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>
+		
+		
+				
+		<div class="contentBlock">	
+			<span id="MoveTo"><h3>MoveTo <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Changes a GameObject's position over time to a supplied destination.</p>
+			<ul>
+				<li>MoveTo(GameObject target, Vector3 position, float time)</li>
+				<li>MoveTo(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row1">
+					<td>position</td>
+					<td>Transform or Vector3</td>
+					<td>for a point in space the GameObject will animate to.</td>
+				</tr>
+				<tr class="row0">
+					<td>path</td>
+					<td>Transform[] or Vector3[]</td>
+					<td>for a list of points to draw a Catmull-Rom through for a curved animation path</td>
+				</tr>
+				<tr class="row1">
+					<td>movetopath</td>
+					<td>boolean</td>
+					<td>for whether to automatically generate a curve from the GameObject's current position to the beginning of the path. True by default.</td>
+				</tr>
+				<tr class="row0">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row1">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row0">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row1">
+					<td>orienttopath</td>
+					<td>boolean</td>
+					<td>for whether or not the GameObject will orient to its direction of travel.  False by default</td>
+				</tr>
+				<tr class="row0">
+					<td>looktarget</td>
+					<td>Transform or Vector3</td>
+					<td>for a target the GameObject will look at</td>
+				</tr>
+				<tr class="row1">
+					<td>looktime</td>
+					<td>float or double</td>
+					<td>for the time in seconds the object will take to look at either the "looktarget" or "orienttopath"</td>
+				</tr>
+				<tr class="row0">
+					<td>lookahead</td>
+					<td>float or double</td>
+					<td>for how much of a percentage (from 0 to 1) to look ahead on a path to influence how strict "orienttopath" is and how much the object will anticipate each curve </td>
+				</tr>
+				<tr class="row1">
+					<td>axis</td>
+					<td>string</td>
+					<td>restricts rotation to the supplied axis only</td>
+				</tr>
+				<tr class="row0">
+					<td>islocal</td>
+					<td>boolean</td>
+					<td>for whether to animate in world space or relative to the parent. False be default.</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="MoveUpdate"><h3>MoveUpdate <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Similar to MoveTo but incredibly less expensive for usage inside the Update function or similar looping situations involving a "live" set of changing values. Does not utilize an EaseType. </p>
+			<ul>
+				<li>MoveUpdate(GameObject target, Vector3 position, float time)</li>
+				<li>MoveUpdate(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>position</td>
+					<td>Transform or Vector3</td>
+					<td>for a point in space the GameObject will animate to.</td>
+				</tr>
+				<tr class="row1">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row0">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row1">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row0">
+					<td>orienttopath</td>
+					<td>boolean</td>
+					<td>for whether or not the GameObject will orient to its direction of travel.  False by default</td>
+				</tr>
+				<tr class="row1">
+					<td>looktarget</td>
+					<td>Transform or Vector3</td>
+					<td>for a target the GameObject will look at</td>
+				</tr>
+				<tr class="row0">
+					<td>looktime</td>
+					<td>float or double</td>
+					<td>for the time in seconds the object will take to look at either the "looktarget" or "orienttopath"</td>
+				</tr>
+				<tr class="row1">
+					<td>axis</td>
+					<td>string</td>
+					<td>restricts rotation to the supplied axis only</td>
+				</tr>
+				<tr class="row0">
+					<td>islocal</td>
+					<td>boolean</td>
+					<td>for whether to animate in world space or relative to the parent. False be default.</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+			</tbody></table>
+		</div>		
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="Pause"><h3>Pause <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Pauses iTweens.</p>
+			<p>If an iTween is established with "ignoreTimeScale" set to true pause will not currently work. (Sorry)</p>
+			<ul>
+				<li>Pause(GameObject target) Pause all iTweens on a GameObject.</li>
+				<li>Pause(GameObject target, bool includechildren) Pause all iTweens on a GameObject including its children.</li>
+				<li>Pause(GameObject target, string type) Pause all iTweens on a GameObject of a particular type.</li>
+				<li>Pause(GameObject target, string type, bool includechildren) Pause all iTweens on a GameObject of a particular type including its children.</li>
+				<li>Pause() Pause all iTweens in scene.</li>
+			</ul>
+		</div>		
+		
+		
+		<div class="contentBlock">	
+			<span id="PunchPosition"><h3>PunchPosition <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Applies a jolt of force to a GameObject's position and wobbles it back to its initial position.</p>
+			<ul>
+				<li>PunchPosition(GameObject target, Vector3 amount, float time)</li>
+				<li>PunchPosition(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>amount</td>
+					<td>Vector3</td>
+					<td>for a point in space the GameObject will animate to.</td>
+				</tr>
+				<tr class="row1">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x magnitude</td>
+				</tr>
+				<tr class="row0">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y magnitude</td>
+				</tr>
+				<tr class="row1">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z magnitude</td>
+				</tr>
+				<tr class="row0">
+					<td>space</td>
+					<td>Space</td>
+					<td>for applying the transformation in either the world coordinate or local coordinate system. Defaults to local space.</td>
+				</tr>
+				<tr class="row1">
+					<td>looktarget</td>
+					<td>Transform or Vector3</td>
+					<td>for a target the GameObject will look at</td>
+				</tr>
+				<tr class="row0">
+					<td>looktime</td>
+					<td>float or double</td>
+					<td>for the time in seconds the object will take to look at either the "looktarget" or "orienttopath"</td>
+				</tr>
+				<tr class="row1">
+					<td>axis</td>
+					<td>string</td>
+					<td>restricts rotation to the supplied axis only</td>
+				</tr>
+				<tr class="row0">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed (only "loop" is allowed with punches)</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>		
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="PunchRotation"><h3>PunchRotation <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Applies a jolt of force to a GameObject's rotation and wobbles it back to its initial rotation. NOTE: Due to the way iTween utilizes the Transform.Rotate method, PunchRotation works best with single axis usage rather than punching with a Vector3.</p>
+			<ul>
+				<li>PunchRotation(GameObject target, Vector3 amount, float time)</li>
+				<li>PunchRotation(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>amount</td>
+					<td>Vector3</td>
+					<td>for a point in space the GameObject will animate to.</td>
+				</tr>
+				<tr class="row1">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x magnitude</td>
+				</tr>
+				<tr class="row0">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y magnitude</td>
+				</tr>
+				<tr class="row1">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z magnitude</td>
+				</tr>
+				<tr class="row0">
+					<td>space</td>
+					<td>Space</td>
+					<td>for applying the transformation in either the world coordinate or local cordinate system. Defaults to local space.</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed (only "loop" is allowed with punches)</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>	
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="PunchScale"><h3>PunchScale <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Applies a jolt of force to a GameObject's scale and wobbles it back to its initial scale.</p>
+			<ul>
+				<li>PunchScale(GameObject target, Vector3 amount, float time)</li>
+				<li>PunchScale(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>amount</td>
+					<td>Vector3</td>
+					<td>for a point in space the GameObject will animate to.</td>
+				</tr>
+				<tr class="row1">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x magnitude</td>
+				</tr>
+				<tr class="row0">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y magnitude</td>
+				</tr>
+				<tr class="row1">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z magnitude</td>
+				</tr>
+				<tr class="row0">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed (only "loop" is allowed with punches)</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>	
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="PutOnPath"><h3>PutOnPath <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Puts a GameObject on a path at the provided percentage</p>
+			<ul>
+				<li>PutOnPath(GameObject target, Vector3[] path, float percent)</li>
+				<li>PutOnPath(GameObject target, Transform[] path, float percent)</li>
+				<li>PutOnPath(Transform target, Vector3[] path, float percent)</li>
+				<li>PutOnPath(Transform target, Transform[] path, float percent)</li>
+			</ul>
+		</div>	
+		
+		
+			
+		<div class="contentBlock">	
+			<span id="PointOnPath"><h3>PointOnPath <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Returns a Vector3 position on a path at the provided percentage.</p>
+			<ul>
+				<li>PointOnPath(Transform[] path, float percent)</li>
+				<li>PointOnPath(Vector3[] path, float percent)</li>
+			</ul>
+		</div>			
+		
+		
+		<div class="contentBlock">	
+			<span id="RectUpdate"><h3>RectUpdate <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Returns a Rect that is eased between a current and target value by the supplied speed.</p>
+			<ul>
+				<li>RectUpdate(Rect currentValue, Rect targetValue, float speed) : Rect</li>
+			</ul>
+		</div>
+			
+		
+		<div class="contentBlock">	
+			<span id="Resume"><h3>Resume <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Resumes iTweens.</p>
+			<ul>
+				<li>Resume(GameObject target) Resume all iTweens on a GameObject</li>
+				<li>Resume(GameObject target, bool includechildren) Resume all iTweens on a GameObject including its children.</li>
+				<li>Resume(GameObject target, string type) Resume all iTweens on a GameObject of a particular type.</li>
+				<li>Resume(GameObject target, string type, bool includechildren) Resume all iTweens on a GameObject of a particular type including its children.</li>
+				<li>Resume() Resume all iTweens in scene.</li>
+			</ul>
+		</div>	
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="RotateAdd"><h3>RotateAdd <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Adds supplied Euler angles in degrees to a GameObject's rotation over time.</p>
+			<ul>
+				<li>RotateAdd(GameObject target, Vector3 amount, float time)</li>
+				<li>RotateAdd(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row1">
+					<td>amount</td>
+					<td>Vector3</td>
+					<td>for the amount of Euler angles in degrees to add to the current rotation of the GameObject.</td>
+				</tr>
+				<tr class="row0">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row1">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row0">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row1">
+					<td>space</td>
+					<td>Space or string</td>
+					<td>for applying the transformation in either the world coordinate or local cordinate system. Defaults to local space.</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>	
+		
+		
+		<div class="contentBlock">	
+			<span id="RotateBy"><h3>RotateBy <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Multiplies supplied values by 360 and rotates a GameObject by calculated amount over time.</p>
+			<ul>
+				<li>RotateBy(GameObject target, Vector3 amount, float time)</li>
+				<li>RotateBy(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row1">
+					<td>amount</td>
+					<td>Vector3</td>
+					<td>for the amount to be multiplied by 360 to rotate the GameObject.</td>
+				</tr>
+				<tr class="row0">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row1">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row0">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row1">
+					<td>space</td>
+					<td>Space or string</td>
+					<td>for applying the transformation in either the world coordinate or local cordinate system. Defaults to local space.</td>
+				</tr>
+				<tr class="row0">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row1">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed</td>
+				</tr>
+				<tr class="row0">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row1">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>		
+		
+		
+		<div class="contentBlock">	
+			<span id="RotateFrom"><h3>RotateFrom <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Instantly changes a GameObject's Euler angles in degrees then returns it to it's starting rotation over time.</p>
+			<ul>
+				<li>RotateFrom(GameObject target, Vector3 rotation, float time)</li>
+				<li>RotateFrom(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row1">
+					<td>rotation</td>
+					<td>Transform or Vector3</td>
+					<td>for the target Euler angles in degrees to rotate to.</td>
+				</tr>
+				<tr class="row0">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row1">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row0">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row1">
+					<td>islocal</td>
+					<td>boolean</td>
+					<td>for whether to animate in world space or relative to the parent. False be default.</td>
+				</tr>
+				<tr class="row0">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row1">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed</td>
+				</tr>
+				<tr class="row0">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row1">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>	
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="RotateTo"><h3>RotateTo <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Rotates a GameObject to the supplied Euler angles in degrees over time.</p>
+			<ul>
+				<li>RotateTo(GameObject target, Vector3 rotation, float time)</li>
+				<li>RotateTo(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row1">
+					<td>rotation</td>
+					<td>Transform or Vector3</td>
+					<td>for the target Euler angles in degrees to rotate to.</td>
+				</tr>
+				<tr class="row0">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row1">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row0">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row1">
+					<td>islocal</td>
+					<td>boolean</td>
+					<td>for whether to animate in world space or relative to the parent. False be default.</td>
+				</tr>
+				<tr class="row0">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row1">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed</td>
+				</tr>
+				<tr class="row0">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row1">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>	
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="RotateUpdate"><h3>RotateUpdate <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Similar to RotateTo but incredibly less expensive for usage inside the Update function or similar looping situations involving a "live" set of changing values. Does not utilize an EaseType.</p>
+			<ul>
+				<li>RotateUpdate(GameObject target, Hashtable args)</li>
+				<li>RotateUpdate(GameObject target, Vector3 rotation, float time)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>rotation</td>
+					<td>Transform or Vector3</td>
+					<td>for the target Euler angles in degrees to rotate to.</td>
+				</tr>
+				<tr class="row1">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row0">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row1">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row0">
+					<td>islocal</td>
+					<td>boolean</td>
+					<td>for whether to animate in world space or relative to the parent. False be default.</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+			</tbody></table>
+		</div>	
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="ScaleAdd"><h3>ScaleAdd <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Adds to a GameObject's scale over time.</p>
+			<ul>
+				<li>ScaleAdd(GameObject target, Vector3 amount, float time)</li>
+				<li>ScaleAdd(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row1">
+					<td>amount</td>
+					<td>Vector3</td>
+					<td>for the amount to be added to the GameObject's current scale.</td>
+				</tr>
+				<tr class="row0">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row1">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row0">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>				
+			
+			
+		<div class="contentBlock">	
+			<span id="ScaleBy"><h3>ScaleBy <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Multiplies a GameObject's scale over time.</p>
+			<ul>
+				<li>ScaleBy(GameObject target, Vector3 amount, float time)</li>
+				<li>ScaleBy(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row1">
+					<td>amount</td>
+					<td>Vector3</td>
+					<td>for the amount to be added to the GameObject's current scale.</td>
+				</tr>
+				<tr class="row0">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row1">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row0">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>													
+		
+		
+		<div class="contentBlock">	
+			<span id="ScaleFrom"><h3>ScaleFrom <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Instantly changes a GameObject's scale then returns it to it's starting scale over time.</p>
+			<ul>
+				<li>ScaleFrom(GameObject target, Vector3 scale, float time)</li>
+				<li>ScaleFrom(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row1">
+					<td>scale</td>
+					<td>Transform or Vector3</td>
+					<td>for the initial scale</td>
+				</tr>
+				<tr class="row0">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row1">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row0">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>	
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="ScaleTo"><h3>ScaleTo <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Changes a GameObject's scale over time.</p>
+			<ul>
+				<li>ScaleTo(GameObject target, Vector3 scale, float time)</li>
+				<li>ScaleTo(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row1">
+					<td>scale</td>
+					<td>Transform or Vector3</td>
+					<td>for the final scale</td>
+				</tr>
+				<tr class="row0">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row1">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row0">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>	
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="ScaleUpdate"><h3>ScaleUpdate <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Similar to ScaleTo but incredibly less expensive for usage inside the Update function or similar looping situations involving a "live" set of changing values.  Does not utilize an EaseType.</p>
+			<ul>
+				<li>ScaleUpdate(GameObject target, Vector3 scale, float time)</li>
+				<li>ScaleUpdate(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>scale</td>
+					<td>Transform or Vector3</td>
+					<td>for the final scale</td>
+				</tr>
+				<tr class="row1">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x axis</td>
+				</tr>
+				<tr class="row0">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y axis</td>
+				</tr>
+				<tr class="row1">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z axis</td>
+				</tr>
+				<tr class="row0">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+			</tbody></table>
+		</div>	
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="ShakePosition"><h3>ShakePosition <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Randomly shakes a GameObject's position by a diminishing amount over time.</p>
+			<ul>
+				<li>ShakePosition(GameObject target, Vector3 amount, float time)</li>
+				<li>ShakePosition(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>amount</td>
+					<td>Vector3</td>
+					<td>for the magnitude of shake</td>
+				</tr>
+				<tr class="row1">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x magnitude</td>
+				</tr>
+				<tr class="row0">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y magnitude</td>
+				</tr>
+				<tr class="row1">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z magnitude</td>
+				</tr>
+				<tr class="row0">
+					<td>islocal</td>
+					<td>boolean</td>
+					<td>for whether to animate in world space or relative to the parent. False by default.</td>
+				</tr>
+				<tr class="row1">
+					<td>orienttopath</td>
+					<td>boolean</td>
+					<td>for whether or not the GameObject will orient to its direction of travel.  False by default</td>
+				</tr>
+				<tr class="row0">
+					<td>looktarget</td>
+					<td>Transform or Vector3</td>
+					<td>for a target the GameObject will look at</td>
+				</tr>
+				<tr class="row1">
+					<td>looktime</td>
+					<td>float or double</td>
+					<td>for the time in seconds the object will take to look at either the "looktarget" or "orienttopath"</td>
+				</tr>
+				<tr class="row0">
+					<td>axis</td>
+					<td>string</td>
+					<td>restricts rotation to the supplied axis only</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed (only "loop" is allowed with shakes)</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>						
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="ShakeRotation"><h3>ShakeRotation <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Randomly shakes a GameObject's rotation by a diminishing amount over time.</p>
+			<ul>
+				<li>ShakeRotation(GameObject target, Vector3 amount, float time)</li>
+				<li>ShakeRotation(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>amount</td>
+					<td>Vector3</td>
+					<td>for the magnitude of shake</td>
+				</tr>
+				<tr class="row1">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x magnitude</td>
+				</tr>
+				<tr class="row0">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y magnitude</td>
+				</tr>
+				<tr class="row1">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z magnitude</td>
+				</tr>
+				<tr class="row0">
+					<td>space</td>
+					<td>Space</td>
+					<td>for applying the transformation in either the world coordinate or local coordinate system. Defaults to local space.</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row1">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed (only "loop" is allowed with shakes)</td>
+				</tr>
+				<tr class="row0">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="ShakeScale"><h3>ShakeScale <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Randomly shakes a GameObject's scale by a diminishing amount over time.</p>
+			<ul>
+				<li>ShakeScale(GameObject target, Vector3 amount, float time)</li>
+				<li>ShakeScale(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row1">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row0">
+					<td>amount</td>
+					<td>Vector3</td>
+					<td>for the magnitude of shake</td>
+				</tr>
+				<tr class="row1">
+					<td>x</td>
+					<td>float or double</td>
+					<td>for the individual setting of the x magnitude</td>
+				</tr>
+				<tr class="row0">
+					<td>y</td>
+					<td>float or double</td>
+					<td>for the individual setting of the y magnitude</td>
+				</tr>
+				<tr class="row1">
+					<td>z</td>
+					<td>float or double</td>
+					<td>for the individual setting of the z magnitude</td>
+				</tr>
+				<tr class="row0">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>looptype</td>
+					<td>LoopType or string</td>
+					<td>for the type of loop to apply once the animation has completed (only "loop" is allowed with shakes)</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>		
+		
+		
+		
+		<div class="contentBlock">	
+			<span id="Stab"><h3>Stab <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Plays an AudioClip once based on supplied volume and pitch and following any delay. AudioSource is optional as iTween will provide one.</p>
+			<ul>
+				<li>Stab(GameObject target, AudioClip audioclip, float delay)</li>
+				<li>Stab(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>audioclip</td>
+					<td>AudioClip</td>
+					<td>for a reference to the AudioClip to be played.</td>
+				</tr>
+				<tr class="row1">
+					<td>audiosource</td>
+					<td>AudioSource</td>
+					<td>for which AudioSource to use</td>
+				</tr>
+				<tr class="row0">
+					<td>volume</td>
+					<td>float or double</td>
+					<td>for the target level of volume</td>
+				</tr>
+				<tr class="row1">
+					<td>pitch</td>
+					<td>float or double</td>
+					<td>for the target pitch</td>
+				</tr>
+				<tr class="row0">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the action will wait before beginning</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+			</tbody></table>
+		</div>		
+				
+				
+
+		<div class="contentBlock">	
+			<span id="Stop"><h3>Stop <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Stop iTweens.</p>
+			<p>Please note that as a result of how Unity threads some operations you may need to insert an arbitrary (though short) pause after a Stop call before adding a new iTween by using WaitForSeconds().  If you are using mouse or keyboard interaction I would advise calling your Stop in key/mouse down and any new iTween calls on key/mouse up as iTween follows a strict and self imposed "DDD" (Doesn't Destroy Duplicates).</p>
+			<ul>
+				<li>Stop() Stop and destroy all Tweens in current scene</li>
+				<li>Stop(string type) Stop and destroy all iTweens in current scene of a particular type.</li>
+				<li>Stop(GameObject target) Stop and destroy all iTweens on a GameObject.</li>
+				<li>Stop(GameObject target, bool includechildren) Stop and destroy all iTweens on a GameObject including its children.</li>
+				<li>Stop(GameObject target, string type) Stop and destroy all iTweens on a GameObject of a particular type.</li>
+				<li>Stop(GameObject target, string type, bool includechildren) Stop and destroy all iTweens on a GameObject of a particular type including its children.</li>
+			</ul>
+		</div>	
+		
+		
+		<div class="contentBlock">	
+			<span id="StopByName"><h3>Stop By Name <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Stop iTweens by name.</p>
+			<p>Please note that as a result of how Unity threads some operations you may need to insert an arbitrary (though short) pause after a Stop call before adding a new iTween by using WaitForSeconds().  If you are using mouse or keyboard interaction I would advise calling your Stop in key/mouse down and any new iTween calls on key/mouse up as iTween follows a strict and self imposed "DDD" (Doesn't Destroy Duplicates).</p>
+			<ul>
+				<li>StopByName(string name) Stop and destroy and Tweens in current scene with the supplied name</li>
+			</ul>
+		</div>
+		
+		
+		<div class="contentBlock">	
+			<span id="ValueTo"><h3>ValueTo <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Returns a value to a callback method interpolated between the supplied 'from' and 'to' values for application as desired.  Requires an 'onupdate' callback that accepts the same type as the supplied 'from' and 'to' properties.</p>
+			<ul>
+				<li>ValueTo(GameObject target, Hashtable args)</li>
+			</ul>
+			<table>
+				<tbody><tr>
+					<th>Property Name</th>
+					<th>Type</th>
+					<th>Purpose</th>
+				</tr>
+				<tr class="row0">
+					<td>name</td>
+					<td>string</td>
+					<td>an individual name useful for stopping iTweens by name</td>
+				</tr>
+				<tr class="row1">
+					<td>from</td>
+					<td>float or double or Vector3 or Vector2 or Color or Rect</td>
+					<td>for the starting value.</td>
+				</tr>
+				<tr class="row0">
+					<td>to</td>
+					<td>float or double or Vector3 or Vector2 or Color or Rect</td>
+					<td>for the ending value.</td>
+				</tr>
+				<tr class="row1">
+					<td>time</td>
+					<td>float or double</td>
+					<td>for the time in seconds the animation will take to complete</td>
+				</tr>
+				<tr class="row0">
+					<td>speed</td>
+					<td>float or double</td>
+					<td>can be used instead of time to allow animation based on speed (only works with Vector2, Vector3, and Floats)</td>
+				</tr>
+				<tr class="row1">
+					<td>delay</td>
+					<td>float or double</td>
+					<td>for the time in seconds the action will wait before beginning</td>
+				</tr>
+				<tr class="row0">
+					<td>easetype</td>
+					<td>EaseType or string</td>
+					<td>for the shape of the easing curve applied to the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onstart</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the beginning of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>onstarttarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onstart" method</td>
+				</tr>
+				<tr class="row1">
+					<td>onstartparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onstart" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdate</td>
+					<td>string</td>
+					<td>for the name of a function to launch on every step of the animation</td>
+				</tr>
+				<tr class="row1">
+					<td>onupdatetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "onupdate" method</td>
+				</tr>
+				<tr class="row0">
+					<td>onupdateparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "onupdate" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncomplete</td>
+					<td>string</td>
+					<td>for the name of a function to launch at the end of the animation</td>
+				</tr>
+				<tr class="row0">
+					<td>oncompletetarget</td>
+					<td>GameObject</td>
+					<td>for a reference to the GameObject that holds the "oncomplete" method</td>
+				</tr>
+				<tr class="row1">
+					<td>oncompleteparams</td>
+					<td>Object</td>
+					<td>for arguments to be sent to the "oncomplete" method</td>
+				</tr>
+				<tr class="row0">
+					<td>ignoretimescale</td>
+					<td>boolean</td>
+					<td>setting this to true will allow the animation to continue independent of the current time which is helpful for animating menus after a game has been paused by setting Time.timeScale=0</td>
+				</tr>
+			</tbody></table>
+		</div>		
+		
+		<div class="contentBlock">	
+			<span id="Vector2Update"><h3>Vector2Update <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Returns a Vector2 that is eased between a current and target value by the supplied speed.</p>
+			<ul>
+				<li>Vector2Update(Vector2 currentValue, Vector2 targetValue, float speed) : Vector2</li>
+			</ul>
+		</div>
+		
+		<div class="contentBlock">	
+			<span id="Vector3Update"><h3>Vector3Update <a href="http://www.pixelplacement.com/itween/documentation.php#top" class="scroll" style="font-size:9px;">BACK TO TOP</a></h3></span>
+			<p>Returns a Vector3 that is eased between a current and target value by the supplied speed.</p>
+			<ul>
+				<li>Vector3Update(Vector3 currentValue, Vector3 targetValue, float speed) : Vector3</li>
+			</ul>
+		</div>
+		
+	</div>
+</div>
+
+			</div>
+		</div>
+		<div id="footer">
+			<div id="footerContainer" class="container_12">
+				<div class="grid_8 prefix_1">
+					<h3>Donate!</h3>
+					<p>iTween is a free, open-source project. As such, it doesn't require any purchase or licensing to be used on commercial projects or otherwise. However, if you use iTween and would like to support the development of the project, please feel free to make a donation.</p>
+					<p>Your support and generosity is <b>greatly</b> appreciated.</p>
+				</div>
+				<div class="grid_2 suffix_1">
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+						<input type="hidden" name="cmd" value="_s-xclick">
+						<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHPwYJKoZIhvcNAQcEoIIHMDCCBywCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYAizJm7n+/41Hax3PSuSAXpyxwYujHIlbkQy+AT7evUn2SD7WXKcFLxVTmKhccsRpQOXGH2+cLMiRNUgvE8v3Zk97k7W7W3gNp+4V33UhzlHB1tsCC4sjd0ssfs2DcbazuNtclVWPF0ZvpcPP7PEWteq/QIcfhjjTzEMKFqJViN3TELMAkGBSsOAwIaBQAwgbwGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQIO7NmQraz+4mAgZjBtQrJ4rk7RYB5+b0KhqZ98N4DfXrwIvyva9nVZnAFlhzo6MDLLRrYxJbRduHRJggcBsq3feUYyiTME8m64eWfBnbaklVYltbJffIBsUmasEUHrlTq5lQS7AFgItTJCbrTrkIxi6HjnNryKNaetFjKGeA0qDiyLmY03SlsclaDCYn7iM7YGF8wnHl0QHh0oky4UJsa8gPuc6CCA4cwggODMIIC7KADAgECAgEAMA0GCSqGSIb3DQEBBQUAMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbTAeFw0wNDAyMTMxMDEzMTVaFw0zNTAyMTMxMDEzMTVaMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAwUdO3fxEzEtcnI7ZKZL412XvZPugoni7i7D7prCe0AtaHTc97CYgm7NsAtJyxNLixmhLV8pyIEaiHXWAh8fPKW+R017+EmXrr9EaquPmsVvTywAAE1PMNOKqo2kl4Gxiz9zZqIajOm1fZGWcGS0f5JQ2kBqNbvbg2/Za+GJ/qwUCAwEAAaOB7jCB6zAdBgNVHQ4EFgQUlp98u8ZvF71ZP1LXChvsENZklGswgbsGA1UdIwSBszCBsIAUlp98u8ZvF71ZP1LXChvsENZklGuhgZSkgZEwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEFBQADgYEAgV86VpqAWuXvX6Oro4qJ1tYVIT5DgWpE692Ag422H7yRIr/9j/iKG4Thia/Oflx4TdL+IFJBAyPK9v6zZNZtBgPBynXb048hsP16l2vi0k5Q2JKiPDsEfBhGI+HnxLXEaUWAcVfCsQFvd2A1sxRr67ip5y2wwBelUecP3AjJ+YcxggGaMIIBlgIBATCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwCQYFKw4DAhoFAKBdMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTEwMDMzMTAxMzQxM1owIwYJKoZIhvcNAQkEMRYEFIuHT395gqp0n/5SZKDRDnzoeiEcMA0GCSqGSIb3DQEBAQUABIGAWZW6j18sS5XYQ7NQrlKtUp8BiFA9+akDO3YkDXOQlLmIy3vmHI6WJAGAD7Q9s9TVBSRJWrtFVGkjU/P9+Nh/7Crw06ywtxxi9LUdKPPeIjVvCEZoPvrqVr3CtdXCR3+6A/2n0LSr5Cet23/djMJK+mpWHMtymeHWcHC/VsEAV9o=-----END PKCS7-----">
+						<input type="image" src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+						<img alt="" border="0" src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/pixel.gif" width="1" height="1">
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- <script src="http://cdn.wibiya.com/Toolbars/dir_0562/Toolbar_562110/Loader_562110.js" type="text/javascript"></script> -->
+		<script type="text/javascript">
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script><script src="./iTween for Unity by Bob Berkebile (pixelplacement)_files/ga.js(1).下载" type="text/javascript"></script>
+		<script type="text/javascript">
+			try {
+				var pageTracker = _gat._getTracker("UA-4913510-5");
+				pageTracker._trackPageview();
+			} catch(err) {}
+		</script>		
+    
+
+<tbdiv id="picinpicBtn"></tbdiv><tbdiv id="playerControlBtn"></tbdiv><tbdiv id="leftFullStackButton"></tbdiv><tbdiv id="rightFullStackButton"></tbdiv></body></html>

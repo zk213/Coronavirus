@@ -1,0 +1,9 @@
+var pageTracker = _gat._getTracker("UA-4913510-5");
+    
+function recordOutboundLink(item, category, action) {
+  try {
+    pageTracker._trackEvent(category, action);
+    setTimeout('document.location = "' + item + '"', 100);
+   	//setTimeout('window.open(' + item + ')', 100);
+  }catch(err){}
+}

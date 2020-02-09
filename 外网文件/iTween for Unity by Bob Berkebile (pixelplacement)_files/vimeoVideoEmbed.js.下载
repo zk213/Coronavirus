@@ -1,0 +1,36 @@
+var params = {};
+params.menu = "false";
+params.allowfullscreen = "true";
+params.allowscriptaccess = "always";
+
+var attributes = {};
+
+var flashvars1 = {};
+flashvars1.clip_id="10452067"; 
+flashvars1.js_api="1";
+flashvars1.show_title="1";
+flashvars1.show_byline="1";
+flashvars1.show_portrait="0";
+flashvars1.fullscreen="1";
+
+var flashvars2 = {};
+flashvars2.clip_id="10945443"; 
+flashvars2.js_api="1";
+flashvars2.show_title="1";
+flashvars2.show_byline="1";
+flashvars2.show_portrait="0";
+flashvars2.fullscreen="1";
+
+var flashvars3 = {};
+flashvars3.clip_id="13534248"; 
+flashvars3.js_api="1";
+flashvars3.show_title="1";
+flashvars3.show_byline="1";
+flashvars3.show_portrait="0";
+flashvars3.fullscreen="1";
+
+swfobject.embedSWF("http://vimeo.com/moogaloop.swf", "videoPlayer1", "740", "463", "10.0.2", false, flashvars1, params, attributes);
+
+swfobject.embedSWF("http://vimeo.com/moogaloop.swf", "videoPlayer2", "740", "463", "10.0.2", false, flashvars2, params, attributes);	
+
+swfobject.embedSWF("http://vimeo.com/moogaloop.swf", "videoPlayer3", "740", "463", "10.0.2", false, flashvars3, params, attributes);	
