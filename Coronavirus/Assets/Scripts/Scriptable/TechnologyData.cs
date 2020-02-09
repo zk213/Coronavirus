@@ -22,10 +22,12 @@ public class TechnologyData : ScriptableObject
     {
         [InspectorShow("技术标题")]
         public string title;//技术的标题
-        [InspectorShow("技术尤里卡")]
-        public string eureka;//技术的尤里卡
+        [InspectorShow("技术介绍")]
+        public string describe;//技术的介绍
         [InspectorShow("技术图标")]
         public string picture;//技术的图标
+        [InspectorShow("技术尤里卡")]
+        public string eureka;//技术的尤里卡
         [EnumNameAttribute("技术类型")]
         public TypeTechnology type = TypeTechnology.gover;
         [InspectorShow("技术前置")]

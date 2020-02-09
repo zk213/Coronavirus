@@ -3,10 +3,9 @@ using UnityEngine.UI;
 
 public class Scr_Upgrade : MonoBehaviour
 {
-
+    [HideInInspector]
     public int PressNum;
 
-    [Header("附件")]
     public GameObject UpGradePage;
     public GameObject MainPage;
     public GameObject PressPage1;

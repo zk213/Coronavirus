@@ -13,19 +13,21 @@ MonoBehaviour:
   m_Name: Technology
   m_EditorClassIdentifier: Assembly-CSharp::TechnologyData
   technologyGroup:
-  - title: Test1
+  - title: Programe1
+    describe: Programe1_Describe
+    picture: TechnologyPictures/Example1
     eureka: 
-    picture: 
+    type: 0
+    father: -1
+    cost: 5
+    Posx: -722
+    Posy: 158
+  - title: Programe2
+    describe: Programe2_Describe
+    picture: TechnologyPictures/Example22
+    eureka: 
     type: 0
     father: 0
     cost: 5
-    Posx: 0
-    Posy: 0
-  - title: Test2
-    eureka: 
-    picture: 
-    type: 0
-    father: 0
-    cost: 5
-    Posx: 0
-    Posy: 0
+    Posx: -298
+    Posy: 158
