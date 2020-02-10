@@ -21,13 +21,11 @@ public class Scr_Upgrade : MonoBehaviour
     public Text PressText3;
     public Text PressText4;
 
-    Scr_Tech Tech;
     bool isUpdateButton;
 
 
     void OnEnable()
     {
-        Tech = FindObjectOfType<Scr_Tech>();
         PressNum = 1;
         isUpdateButton = true;
         UpGradePage.SetActive(false);
@@ -50,9 +48,6 @@ public class Scr_Upgrade : MonoBehaviour
         MainPage.SetActive(false);
         PressNum = 1;
         isUpdateButton = true;
-        Tech.TechIndex = -1;
-        Tech.page = 1;
-        Tech.TextUpdate = true;
     }
 
     public void CloseUpGradePage()
@@ -65,33 +60,21 @@ public class Scr_Upgrade : MonoBehaviour
     {
         PressNum = 1;
         isUpdateButton = true;
-        Tech.TechIndex = -1;
-        Tech.TextUpdate = true;
-        Tech.page = 1;
     }
     public void Press2Effect()
     {
         PressNum = 2;
         isUpdateButton = true;
-        Tech.TechIndex = -1;
-        Tech.TextUpdate = true;
-        Tech.page = 2;
     }
     public void Press3Effect()
     {
         PressNum = 3;
         isUpdateButton = true;
-        Tech.TechIndex = -1;
-        Tech.TextUpdate = true;
-        Tech.page = 3;
     }
     public void Press4Effect()
     {
         PressNum = 4;
         isUpdateButton = true;
-        Tech.TechIndex = -1;
-        Tech.TextUpdate = true;
-        Tech.page = 4;
     }
     void UpdateButton()
     {

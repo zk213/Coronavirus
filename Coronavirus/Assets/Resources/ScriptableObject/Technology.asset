@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Technology
   m_EditorClassIdentifier: Assembly-CSharp::TechnologyData
   technologyGroup:
-  - title: Gover1
-    describe: Gover1_Describe
+  - title: Programe1
+    describe: Programe1_Describe
     picture: TechnologyPictures/Example1
     eureka: 
     type: 0
@@ -22,48 +22,12 @@ MonoBehaviour:
     cost: 5
     Posx: -722
     Posy: 158
-  - title: Gover2
-    describe: Gover2_Describe
-    picture: TechnologyPictures/Example2
+  - title: Programe2
+    describe: Programe2_Describe
+    picture: TechnologyPictures/Example22
     eureka: 
     type: 0
     father: 0
     cost: 5
-    Posx: -505
-    Posy: 158
-  - title: Medicine1
-    describe: Medicine1_Describe
-    picture: TechnologyPictures/Example1
-    eureka: 
-    type: 1
-    father: -1
-    cost: 5
-    Posx: -722
-    Posy: 158
-  - title: Medicine2
-    describe: Medicine2_Describe
-    picture: TechnologyPictures/Example2
-    eureka: 
-    type: 1
-    father: 2
-    cost: 5
-    Posx: -505
-    Posy: 158
-  - title: Media1
-    describe: Media1_Describe
-    picture: TechnologyPictures/Example1
-    eureka: 
-    type: 2
-    father: -1
-    cost: 5
-    Posx: -722
-    Posy: 158
-  - title: Media2
-    describe: Media2_Describe
-    picture: TechnologyPictures/Example2
-    eureka: 
-    type: 2
-    father: 4
-    cost: 5
-    Posx: -505
+    Posx: -298
     Posy: 158
