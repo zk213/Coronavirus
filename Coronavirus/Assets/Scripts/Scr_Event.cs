@@ -19,10 +19,6 @@ public class Scr_Event : MonoBehaviour
             XmlElement element = elements as XmlElement;
             if (element == null)
                 continue;
-            if (element.LocalName == "eventAmount")
-            {
-                int.TryParse(element.InnerText, out count);
-            }
             if (element.LocalName == "event")
             {
                 if (element.Attributes["id"].Value == i.ToString())
@@ -58,10 +54,6 @@ public class Scr_Event : MonoBehaviour
             XmlElement element = elements as XmlElement;
             if (element == null)
                 continue;
-            if (element.LocalName == "eventAmount")
-            {
-                int.TryParse(element.InnerText, out count);
-            }
             if (element.LocalName == "event")
             {
                 if (element.Attributes["id"].Value == i.ToString())
@@ -411,10 +403,6 @@ public class Scr_Event : MonoBehaviour
             XmlElement element = elements as XmlElement;
             if (element == null)
                 continue;
-            if (element.LocalName == "eventAmount")
-            {
-                int.TryParse(element.InnerText, out count);
-            }
             if (element.LocalName == "event")
             {
                 if (element.Attributes["id"].Value == HappenEvent[EventIndex].ToString())
@@ -515,10 +503,6 @@ public class Scr_Event : MonoBehaviour
                 XmlElement element = elements as XmlElement;
                 if (element == null)
                     continue;
-                if (element.LocalName == "eventAmount")
-                {
-                    int.TryParse(element.InnerText, out count);
-                }
                 if (element.LocalName == "event")
                 {
                     if (element.Attributes["id"].Value == HappenEvent[i].ToString())

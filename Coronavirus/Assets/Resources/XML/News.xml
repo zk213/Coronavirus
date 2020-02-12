@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<newsgroup>
+  <eventAmount>3</eventAmount>
+  <news id="0">Test_News1</news>
+  <news id="1">Test_News2</news>
+  <news id="2">Influence_Value</news>
+</newsgroup>

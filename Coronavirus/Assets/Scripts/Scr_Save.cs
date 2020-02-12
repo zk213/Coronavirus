@@ -252,3 +252,96 @@ public class Scr_Save : MonoBehaviour
             xml.Save(path);
         }
         */
+
+/*
+         string path = Application.dataPath + "/Resources/Xml/News.xml";
+    if (!File.Exists(path))
+    {
+        XmlDocument xml = new XmlDocument();
+        XmlDeclaration xmlDeclaration = xml.CreateXmlDeclaration("1.0", "UTF-8", null);//固定格式
+        xml.AppendChild(xmlDeclaration);
+        XmlElement root = xml.CreateElement("newsgroup");
+        for (int i = 0; i < newsData.newsGroup.Count; i++)
+        {
+            XmlElement element = xml.CreateElement("news");
+            element.SetAttribute("id", i.ToString());
+            //设置节点的属性
+            element.InnerText = newsData.newsGroup[i].content;
+            root.AppendChild(element);
+        }
+
+        xml.AppendChild(root);
+        //最后保存文件
+        xml.Save(path);
+    }
+ */
+
+/*
+ string path = Application.dataPath + "/Resources/Xml/Tech.xml";
+    if (!File.Exists(path))
+    {
+        XmlDocument xml = new XmlDocument();
+        XmlDeclaration xmlDeclaration = xml.CreateXmlDeclaration("1.0", "UTF-8", null);//固定格式
+        xml.AppendChild(xmlDeclaration);
+        XmlElement root = xml.CreateElement("techs");
+        for (int i = 0; i < TechData.technologyGroup.Count; i++)
+        {
+            XmlElement element = xml.CreateElement("tech");
+            element.SetAttribute("id", i.ToString());
+            XmlElement elementTitle = xml.CreateElement("title");
+            elementTitle.InnerText = TechData.technologyGroup[i].title;
+            element.AppendChild(elementTitle);
+
+            XmlElement elementDescribe = xml.CreateElement("describe");
+            elementDescribe.InnerText = TechData.technologyGroup[i].describe;
+            element.AppendChild(elementDescribe);
+
+            XmlElement elementPicture = xml.CreateElement("picture");
+            elementPicture.InnerText = TechData.technologyGroup[i].picture;
+            element.AppendChild(elementPicture);
+
+            XmlElement elementEureka = xml.CreateElement("eureka");
+            elementEureka.InnerText = TechData.technologyGroup[i].eureka;
+            element.AppendChild(elementEureka);
+
+            XmlElement elementType = xml.CreateElement("type");
+            switch (TechData.technologyGroup[i].type)
+            {
+                case TypeTechnology.gover:
+                    elementType.InnerText = "gover";
+                    break;
+                case TypeTechnology.medicine:
+                    elementType.InnerText = "medicine";
+                    break;
+                case TypeTechnology.media:
+                    elementType.InnerText = "media";
+                    break;
+            }
+
+            if (TechData.technologyGroup[i].father != -1)
+            {
+                XmlElement elementFather = xml.CreateElement("father");
+                elementFather.InnerText = TechData.technologyGroup[i].father.ToString();
+                element.AppendChild(elementFather);
+            }
+
+            XmlElement elementCost = xml.CreateElement("cost");
+            elementCost.InnerText = TechData.technologyGroup[i].cost.ToString();
+            element.AppendChild(elementCost);
+
+            XmlElement elementPosx = xml.CreateElement("posx");
+            elementPosx.InnerText = TechData.technologyGroup[i].Posx.ToString();
+            element.AppendChild(elementPosx);
+
+            XmlElement elementPosy = xml.CreateElement("posy");
+            elementPosy.InnerText = TechData.technologyGroup[i].Posy.ToString();
+            element.AppendChild(elementPosy);
+
+            root.AppendChild(element);
+        }
+
+        xml.AppendChild(root);
+        //最后保存文件
+        xml.Save(path);
+    }
+ */

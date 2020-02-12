@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<techs>
+  <techAmount>6</techAmount>
+  <tech id="0">
+    <title>Gover1</title>
+    <describe>Gover1_Describe</describe>
+    <picture>TechnologyPictures/Example1</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">政策1升级</effect>
+    </effects>
+  </tech>
+  <tech id="1">
+    <title>Gover2</title>
+    <describe>Gover2_Describe</describe>
+    <picture>TechnologyPictures/Example2</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <father>0</father>
+    <cost>5</cost>
+    <posx>-505</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">政策2升级</effect>
+    </effects>
+  </tech>
+  <tech id="2">
+    <title>Medicine1</title>
+    <describe>Medicine1_Describe</describe>
+    <picture>TechnologyPictures/Example1</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">医疗1升级</effect>
+    </effects>
+  </tech>
+  <tech id="3">
+    <title>Medicine2</title>
+    <describe>Medicine2_Describe</describe>
+    <picture>TechnologyPictures/Example2</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <father>2</father>
+    <cost>5</cost>
+    <posx>-505</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">医疗2升级</effect>
+    </effects>
+  </tech>
+  <tech id="4">
+    <title>Media1</title>
+    <describe>Media1_Describe</describe>
+    <picture>TechnologyPictures/Example1</picture>
+    <eureka>
+    </eureka>
+	<type>media</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">媒体1升级</effect>
+    </effects>
+  </tech>
+  <tech id="5">
+    <title>Media2</title>
+    <describe>Media2_Describe</describe>
+    <picture>TechnologyPictures/Example2</picture>
+    <eureka>
+    </eureka>
+	<type>media</type>
+    <father>4</father>
+    <cost>5</cost>
+    <posx>-505</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">媒体2升级</effect>
+    </effects>
+  </tech>
+</techs>

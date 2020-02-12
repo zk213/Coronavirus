@@ -1,8 +1,10 @@
 ﻿using OfficeOpenXml;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class Scr_News : MonoBehaviour
 {
@@ -10,7 +12,6 @@ public class Scr_News : MonoBehaviour
     public Text scrollNews2;
 
     Scr_Mode mode;
-    NewsData newsData;
 
     float speed = 250;
     float iniPosx = 1111;
@@ -30,14 +31,30 @@ public class Scr_News : MonoBehaviour
     bool activeNews1;
     bool activeNews2;
 
+    List<string> XmlNews = new List<string>();
+
 
     void Awake()
     {
         mode = FindObjectOfType<Scr_Mode>();
-        newsData = Resources.Load<NewsData>("ScriptableObject/News");
 
         activeNews1 = false;
         activeNews2 = false;
+
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.dataPath + "/Resources/Xml/News.xml");
+        XmlElement xmlNode = xmlDoc.DocumentElement;
+        foreach (XmlNode elements in xmlNode)
+        {
+            XmlElement element = elements as XmlElement;
+            if (element == null)
+                continue;
+            if (element.LocalName == "news")
+            {
+                XmlNews.Add(element.InnerText);
+            }
+        }
+
 
     }
 
@@ -103,19 +120,6 @@ public class Scr_News : MonoBehaviour
             activeNews2 = false;
         }
 
-        /*
-         //新闻板块的轮播
-        if (scrollNews1.GetComponent<RectTransform>().anchoredPosition.x <= midPosx && !activeNews2)
-        {
-            activeNews2 = true;
-        }
-        if (scrollNews2.GetComponent<RectTransform>().anchoredPosition.x <= midPosx && !activeNews1)
-        {
-            activeNews1 = true;
-        }
-         */
-
-
         //新闻板块的移动
         if (activeNews1)
         {
@@ -139,7 +143,7 @@ public class Scr_News : MonoBehaviour
         {
             var text = workSheet.Cells[row, 1].Text ?? "Name Error";
 
-            if (text == newsData.newsGroup[NewsIndex].content)
+            if (text == XmlNews[NewsIndex])
             {
                 TempNewsContent = workSheet.Cells[row, 2].Text ?? "Content Error";
                 hasContent = true;
@@ -147,7 +151,7 @@ public class Scr_News : MonoBehaviour
         }
         if (!hasContent)
         {
-            TempNewsContent = newsData.newsGroup[NewsIndex].content;
+            TempNewsContent = XmlNews[NewsIndex];
         }
     }
 

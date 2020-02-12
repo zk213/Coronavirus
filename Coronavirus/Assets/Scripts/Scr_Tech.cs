@@ -1,6 +1,7 @@
 ﻿using OfficeOpenXml;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,28 +9,34 @@ public class Scr_Tech : MonoBehaviour
 {
     void TechEffect()
     {
-        switch (TechIndex)
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.dataPath + "/Resources/Xml/Tech.xml");
+        XmlElement xmlNode = xmlDoc.DocumentElement;
+        foreach (XmlNode elements in xmlNode)
         {
-            case 0:
-                Debug.Log("政策1升级");
-                break;
-            case 1:
-                Debug.Log("政策2升级");
-                break;
-            case 2:
-                Debug.Log("医疗1升级");
-                break;
-            case 3:
-                Debug.Log("医疗2升级");
-                break;
-            case 4:
-                Debug.Log("媒体1升级");
-                break;
-            case 5:
-                Debug.Log("媒体2升级");
-                break;
-            default:
-                break;
+            XmlElement element = elements as XmlElement;
+            if (element == null)
+                continue;
+            if (element.LocalName == "tech")
+            {
+                if (element.Attributes["id"].Value == TechIndex.ToString())
+                {
+                    XmlElement effects = element.SelectSingleNode("effects") as XmlElement;
+                    int.TryParse(effects.Attributes["amount"].Value, out int amount);
+                    for (int a = 0; a < amount; a++)
+                    {
+                        var effect = effects.ChildNodes[a] as XmlElement;
+                        switch (effect.Attributes["type"].Value)
+                        {
+                            case "message":
+                                Debug.Log(effect.InnerText);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -47,59 +54,87 @@ public class Scr_Tech : MonoBehaviour
 
 
 
-    TechnologyData TechData;
     Scr_Mode mode;
     Scr_Num Value;
 
     string TechTitle;
     string TechDescribe;
 
-
+    int count = 0;
 
     void Awake()
     {
         mode = FindObjectOfType<Scr_Mode>();
         Value = FindObjectOfType<Scr_Num>();
-        TechData = Resources.Load<TechnologyData>("ScriptableObject/Technology");
         TechIndex = -1;
         TextUpdate = true;
         canUpgrade = false;
         //对科技摁扭的初始化
-        for (int i = 0; i < TechData.technologyGroup.Count; i++)
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.dataPath + "/Resources/Xml/Tech.xml");
+        XmlElement xmlNode = xmlDoc.DocumentElement;
+        foreach (XmlNode elements in xmlNode)
         {
-            Tech.Add((GameObject)Instantiate(prefab, transform.position, transform.rotation));
+            XmlElement element = elements as XmlElement;
+            if (element == null)
+                continue;
+            if (element.LocalName == "techAmount")
+            {
+                int.TryParse(element.InnerText, out count);
+            }
+            if (element.LocalName == "tech")
+            {
+                int.TryParse(element.Attributes["id"].Value, out int i);
+                Tech.Add((GameObject)Instantiate(prefab, transform.position, transform.rotation));
 
-            switch (TechData.technologyGroup[i].type)
-            {
-                case TypeTechnology.gover:
-                    page = 2;
-                    break;
-                case TypeTechnology.medicine:
-                    page = 3;
-                    break;
-                case TypeTechnology.media:
-                    page = 4;
-                    break;
-                default:
-                    page = 2;
-                    break;
-            }
-            Tech[i].transform.SetParent(parent.transform.Find("UpGradePage" + page.ToString()), false);
-            if (File.Exists(Application.dataPath + "/Resources/" + TechData.technologyGroup[i].picture + ".png"))
-            {
-                //Tech[i].transform.Find("TechIcon").GetComponent<Image>().sprite = Resources.Load(TechData.technologyGroup[i].picture, typeof(Sprite)) as Sprite;
-                Tech[i].GetComponent<Image>().sprite = Resources.Load(TechData.technologyGroup[i].picture, typeof(Sprite)) as Sprite;
-            }
-            else
-            {
-                Tech[i].GetComponent<Image>().sprite = Resources.Load("TechnologyPictures/1231", typeof(Sprite)) as Sprite;
-            }
-            Tech[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(TechData.technologyGroup[i].Posx, TechData.technologyGroup[i].Posy);
-            Tech[i].GetComponent<Scr_TechButton>().LocalIndex = i;
-            Tech[i].GetComponent<Scr_TechButton>().father = TechData.technologyGroup[i].father;
-            Tech[i].GetComponent<Scr_TechButton>().cost = TechData.technologyGroup[i].cost;
+                switch (element.SelectSingleNode("type").InnerText)
+                {
+                    case "gover":
+                        page = 2;
+                        break;
+                    case "medicine":
+                        page = 3;
+                        break;
+                    case "media":
+                        page = 4;
+                        break;
+                    default:
+                        page = 2;
+                        break;
+                }
+                Tech[i].transform.SetParent(parent.transform.Find("UpGradePage" + page.ToString()), false);
+                if (File.Exists(Application.dataPath + "/Resources/" + element.SelectSingleNode("picture").InnerText + ".png"))
+                {
+                    //Tech[i].transform.Find("TechIcon").GetComponent<Image>().sprite = Resources.Load(TechData.technologyGroup[i].picture, typeof(Sprite)) as Sprite;
+                    Tech[i].GetComponent<Image>().sprite = Resources.Load(element.SelectSingleNode("picture").InnerText, typeof(Sprite)) as Sprite;
+                }
+                else
+                {
+                    Tech[i].GetComponent<Image>().sprite = Resources.Load("TechnologyPictures/1231", typeof(Sprite)) as Sprite;
+                }
+                int.TryParse(element.SelectSingleNode("posx").InnerText, out int posx);
+                int.TryParse(element.SelectSingleNode("posy").InnerText, out int posy);
+                Tech[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(posx, posy);
+                Tech[i].GetComponent<Scr_TechButton>().LocalIndex = i;
+                var fatherNode = element.GetElementsByTagName("father");
+                if (fatherNode.Count != 0)
+                {
+                    var father = fatherNode[0] as XmlElement;
+                    int.TryParse(father.InnerText, out int fatherIndex);
+                    Tech[i].GetComponent<Scr_TechButton>().father = fatherIndex;
+                }
+                else
+                {
+                    Tech[i].GetComponent<Scr_TechButton>().father = -1;
+                }
+                int.TryParse(element.SelectSingleNode("cost").InnerText, out int cost);
+                Tech[i].GetComponent<Scr_TechButton>().cost = cost;
 
+
+            }
         }
+
+
 
     }
 
@@ -141,31 +176,48 @@ public class Scr_Tech : MonoBehaviour
         int rowCount = workSheet.Dimension.End.Row;//统计表的列数
         if (TechIndex != -1)
         {
-            bool hasTitle = false;
-            bool hasDescribe = false;
-            for (int row = 1; row <= rowCount; row++)
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(Application.dataPath + "/Resources/Xml/Tech.xml");
+            XmlElement xmlNode = xmlDoc.DocumentElement;
+            foreach (XmlNode elements in xmlNode)
             {
-                var text = workSheet.Cells[row, 1].Text ?? "Name Error";
+                XmlElement element = elements as XmlElement;
+                if (element == null)
+                    continue;
+                if (element.LocalName == "tech")
+                {
+                    if (element.Attributes["id"].Value == TechIndex.ToString())
+                    {
+                        bool hasTitle = false;
+                        bool hasDescribe = false;
+                        for (int row = 1; row <= rowCount; row++)
+                        {
+                            var text = workSheet.Cells[row, 1].Text ?? "Name Error";
 
-                if (text == TechData.technologyGroup[TechnologyIndex].title)
-                {
-                    TechTitle = workSheet.Cells[row, 2].Text ?? "Title Error";
-                    hasTitle = true;
+                            if (text == element.SelectSingleNode("title").InnerText)
+                            {
+                                TechTitle = workSheet.Cells[row, 2].Text ?? "Title Error";
+                                hasTitle = true;
+                            }
+                            if (text == element.SelectSingleNode("describe").InnerText)
+                            {
+                                TechDescribe = workSheet.Cells[row, 2].Text ?? "Describe Error";
+                                hasDescribe = true;
+                            }
+                        }
+                        if (!hasTitle)
+                        {
+                            TechTitle = element.SelectSingleNode("title").InnerText;
+                        }
+                        if (!hasDescribe)
+                        {
+                            TechDescribe = element.SelectSingleNode("describe").InnerText;
+                        }
+                    }
                 }
-                if (text == TechData.technologyGroup[TechnologyIndex].describe)
-                {
-                    TechDescribe = workSheet.Cells[row, 2].Text ?? "Describe Error";
-                    hasDescribe = true;
-                }
             }
-            if (!hasTitle)
-            {
-                TechTitle = TechData.technologyGroup[TechnologyIndex].title;
-            }
-            if (!hasDescribe)
-            {
-                TechDescribe = TechData.technologyGroup[TechnologyIndex].describe;
-            }
+
+
         }
         else
         {
@@ -228,7 +280,23 @@ public class Scr_Tech : MonoBehaviour
     {
         if (canUpgrade)
         {
-            Value.InfluenceVal -= TechData.technologyGroup[TechIndex].cost;
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(Application.dataPath + "/Resources/Xml/Tech.xml");
+            XmlElement xmlNode = xmlDoc.DocumentElement;
+            foreach (XmlNode elements in xmlNode)
+            {
+                XmlElement element = elements as XmlElement;
+                if (element == null)
+                    continue;
+                if (element.LocalName == "tech")
+                {
+                    if (element.Attributes["id"].Value == TechIndex.ToString())
+                    {
+                        int.TryParse(element.SelectSingleNode("cost").InnerText, out int cost);
+                        Value.InfluenceVal -= cost;
+                    }
+                }
+            }
             Tech[TechIndex].GetComponent<Scr_TechButton>().isLock = false;
             canUpgrade = false;
             TechEffect();
