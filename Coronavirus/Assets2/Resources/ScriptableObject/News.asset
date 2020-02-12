@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc38981367e2a14c8141a3f856707bd, type: 3}
+  m_Name: News
+  m_EditorClassIdentifier: 
+  newsGroup:
+  - title: Test_News1
+    content: Test_News1
+  - title: Test_News2
+    content: Test_News2
+  - title: Influence_Value
+    content: Influence_Value
