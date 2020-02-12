@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Xml;
+using UnityEngine;
 using UnityEngine.UI;
 
 
@@ -14,6 +15,23 @@ public enum TimeMode
 
 public class Scr_TimeControl : MonoBehaviour
 {
+    public void LocalSave()
+    {
+        XmlDocument xmlSave = new XmlDocument();
+        xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
+        XmlElement xmlNodeS = xmlSave.DocumentElement;
+        foreach (XmlNode elementsS in xmlNodeS)
+        {
+            if (elementsS == null)
+                continue;
+            if (elementsS.LocalName == "Day")
+            {
+                elementsS.InnerText = day.ToString();
+            }
+
+        }
+        xmlSave.Save(Application.persistentDataPath + "/save/Save.save");
+    }
     [Header("时间模块")]
     [EnumNameAttribute("时间模式")]
     public TimeMode timeMode = TimeMode.OneSpeed;//刚进游戏，状态是一倍速
@@ -33,6 +51,7 @@ public class Scr_TimeControl : MonoBehaviour
     public GameObject extendbutton;
 
     Scr_Event Event;
+    Scr_Mode mode;
 
     float iniPosy = 9.1f;
     float finPosy = -64.9f;
@@ -53,9 +72,30 @@ public class Scr_TimeControl : MonoBehaviour
     void Start()
     {
         Event = FindObjectOfType<Scr_Event>();
+        mode = FindObjectOfType<Scr_Mode>();
         daySpawn = OneSpeedSpawn;
         ShowFullTime = "2019 12 01";
         extendbutton.SetActive(false);
+        if (mode.isLoad)
+        {
+            XmlDocument xmlSave = new XmlDocument();
+            xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
+            XmlElement xmlNodeS = xmlSave.DocumentElement;
+            foreach (XmlNode elementsS in xmlNodeS)
+            {
+                if (elementsS == null)
+                    continue;
+                if (elementsS.LocalName == "Day")
+                {
+                    int.TryParse(elementsS.InnerText, out day);
+                    for (int tempDay = 1; tempDay < day; tempDay++)
+                    {
+                        ShowTime();
+                    }
+
+                }
+            }
+        }
     }
 
     // Update is called once per frame

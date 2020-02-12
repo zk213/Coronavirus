@@ -1,9 +1,36 @@
-﻿using UnityEngine;
+﻿using System.Xml;
+using UnityEngine;
 using UnityEngine.UI;
 
 
 public class Scr_Num : MonoBehaviour
 {
+    public void LocalSave()
+    {
+        XmlDocument xmlSave = new XmlDocument();
+        xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
+        XmlElement xmlNodeS = xmlSave.DocumentElement;
+        foreach (XmlNode elementsS in xmlNodeS)
+        {
+            if (elementsS == null)
+                continue;
+            if (elementsS.LocalName == "Influence")
+            {
+                elementsS.InnerText = InfluenceVal.ToString();
+            }
+            if (elementsS.LocalName == "Cohesion")
+            {
+                elementsS.InnerText = CohesionVal.ToString();
+            }
+            if (elementsS.LocalName == "Vaccine")
+            {
+                elementsS.InnerText = VaccineProcess.ToString();
+            }
+        }
+        xmlSave.Save(Application.persistentDataPath + "/save/Save.save");
+    }
+
+
     [Header("基本数值")]
     [InspectorShow("影响力")]
     public float InfluenceVal;
@@ -25,6 +52,29 @@ public class Scr_Num : MonoBehaviour
     {
         Mode = FindObjectOfType<Scr_Mode>();
         VaccineProcess = 0;
+        if (Mode.isLoad)
+        {
+            XmlDocument xmlSave = new XmlDocument();
+            xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
+            XmlElement xmlNodeS = xmlSave.DocumentElement;
+            foreach (XmlNode elementsS in xmlNodeS)
+            {
+                if (elementsS == null)
+                    continue;
+                if (elementsS.LocalName == "Influence")
+                {
+                    InfluenceVal = float.Parse(elementsS.InnerText);
+                }
+                if (elementsS.LocalName == "Cohesion")
+                {
+                    CohesionVal = float.Parse(elementsS.InnerText);
+                }
+                if (elementsS.LocalName == "Vaccine")
+                {
+                    VaccineProcess = float.Parse(elementsS.InnerText);
+                }
+            }
+        }
     }
 
     // Update is called once per frame

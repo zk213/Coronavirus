@@ -31,7 +31,7 @@
       <condition sign="ee" value="5">day</condition>
     </conditions>
     <effects amount="2">
-      <effect type="value" sign="+" value="5">Influence</effect>
+      <effect type="value" sign="+" value="50">Influence</effect>
 	  <effect type="news" index="2" slot="Influence"></effect>
     </effects>
   </event>

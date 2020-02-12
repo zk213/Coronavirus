@@ -40,6 +40,38 @@ public class Scr_Tech : MonoBehaviour
         }
     }
 
+    public void LocalSave()
+    {
+        string SaveString = "";
+        for (int i = 0; i < Tech.Count; i++)
+        {
+            if (!Tech[i].GetComponent<Scr_TechButton>().isLock)
+            {
+                if (SaveString.Length == 0)
+                {
+                    SaveString = i.ToString();
+                }
+                else
+                {
+                    SaveString += "," + i.ToString();
+                }
+            }
+        }
+        XmlDocument xmlSave = new XmlDocument();
+        xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
+        XmlElement xmlNodeS = xmlSave.DocumentElement;
+        foreach (XmlNode elementsS in xmlNodeS)
+        {
+            if (elementsS == null)
+                continue;
+            if (elementsS.LocalName == "Tech")
+            {
+                elementsS.InnerText = SaveString;
+            }
+        }
+        xmlSave.Save(Application.persistentDataPath + "/save/Save.save");
+    }
+
     public Text TechText;
     public RectTransform parent;
     //public RectTransform parent2;
@@ -52,7 +84,7 @@ public class Scr_Tech : MonoBehaviour
     public bool TextUpdate;
     public bool canUpgrade;
 
-
+    List<int> finishTech = new List<int>();
 
     Scr_Mode mode;
     Scr_Num Value;
@@ -73,6 +105,29 @@ public class Scr_Tech : MonoBehaviour
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(Application.dataPath + "/Resources/Xml/Tech.xml");
         XmlElement xmlNode = xmlDoc.DocumentElement;
+        if (mode.isLoad)
+        {
+            XmlDocument xmlSave = new XmlDocument();
+            xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
+            XmlElement xmlNodeS = xmlSave.DocumentElement;
+            foreach (XmlNode elementsS in xmlNodeS)
+            {
+                if (elementsS == null)
+                    continue;
+                if (elementsS.LocalName == "Tech")
+                {
+                    if (elementsS.InnerText != "")
+                    {
+                        string[] finishAry = elementsS.InnerText.Split(',');
+                        for (int a = 0; a < finishAry.Length; a++)
+                        {
+                            int.TryParse(finishAry[a], out int b);
+                            finishTech.Add(b);
+                        }
+                    }
+                }
+            }
+        }
         foreach (XmlNode elements in xmlNode)
         {
             XmlElement element = elements as XmlElement;
@@ -129,8 +184,10 @@ public class Scr_Tech : MonoBehaviour
                 }
                 int.TryParse(element.SelectSingleNode("cost").InnerText, out int cost);
                 Tech[i].GetComponent<Scr_TechButton>().cost = cost;
-
-
+                if (finishTech.Contains(i))
+                {
+                    Tech[i].GetComponent<Scr_TechButton>().isLock = false;
+                }
             }
         }
 
@@ -167,7 +224,6 @@ public class Scr_Tech : MonoBehaviour
                 parent.transform.Find("UpGradePage" + page.ToString()).transform.Find("UpGradePage" + page.ToString() + "Ground").transform.Find("Button").GetComponent<Image>().color = Color.grey;
             }
         }
-
     }
 
     void LoadExcel(ExcelWorksheets workSheets, int SheetIndex, int TechnologyIndex)
