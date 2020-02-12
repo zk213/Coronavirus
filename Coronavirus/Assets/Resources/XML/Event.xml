@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?><!-- 固定格式 -->
+<events><!-- 中 -->
+  <eventAmount>4</eventAmount><!-- 事件的总数，由于事件0只是个例子，他不被包括在这里 -->
+  <!-- 事件0是个例子，它不会正式出现在游戏中 -->
+  <event id="0"><!-- 这里是填写事件的序号，应该从0开始按照顺序添加事件，如果不按顺序会出错 -->
+    <title>Example</title><!-- 这里要填写事件的标题变量，对应Assets\Resources\Localization\Event.xlsx文件中的第一列 -->
+    <describe>Example_Describe </describe><!-- 这里要填写事件的内容描述，同样对应上述文件的第一列 -->
+    <picture>EventPictures/EventPic</picture><!-- 这里要填写事件的配图的路径，图片放在Assets\Resources\EventPictures\EventPic文件夹里，在u3d里用的是/符号，图片格式为png -->
+	<priority>-2 </priority><!-- 优先级用来分辨事件的类型，如正面事件则填1，默认为普通事件，可以不填，负面事件为-1，测试事件为-2，不会在正式游戏中出现 -->
+	<trait><!-- 事件的特质信息，下面的内容选填或不填，若不填则可以把这一栏省略 -->
+      <subEvent /><!-- 是否事件为子事件，即有前置事件，或在某种科技解锁后才会触发 -->
+      <isInvisible /><!-- 是否为隐藏事件，即游戏中不会跳出弹窗，比如说单纯控制新闻出现的事件 -->
+	  <isRepeat /><!-- 是否为重复事件，即发生后还会再发生，警告：这种事件一定要设定发生概率，不然会每天发生一次，很影响游戏进程 -->
+	  <isImportant /><!-- 是否是带选项的重要事件，如果是则会以带CG的形式表现出来，且配有选项 -->
+    </trait><!-- 特质内容结束 -->
+	<probability>0</probability><!-- 这里要填写事件的发生概率，默认是100可以省略这行，如果不是则需填写，范围从0到100，建议填写整数 -->
+	<probability Add="0">0</probability><!-- 概率的另外一种形式，即前面的add后面要填每天增加的概率，默认是0可以不填的，如上面的形式，这里不建议数字填太大，建议填整数 -->
+    <conditions amout="1"><!-- 事件的触发条件的数量，默认是1，如果多个条件可以填更大的数字 -->
+      <condition sign="ge" value="0">variable</condition><!-- 这里填的是条件的变量与符号，ge是大于等于，在xml里不能直接输入大于号，所以用英文缩写代替，ge后面接变量的值，里面填变量的名称 -->
+    </conditions><!-- 在条件都填写完成后要结束 -->
+    <effects amout="2"><!-- 事件效果的数量 -->
+      <effect type="value" sign="+" value="5">Influence</effect><!-- 效果的种类包括value，news等，sign是对值的计算符号，value改变值的大小，里面写改变大小的变量名字 -->
+	  <effect type="news" index="2" slot="Influence"></effect><!-- 如果想激发滚动新闻，可以设定成此格式，index接新闻的序号，slot后面接槽的内容 -->
+    </effects><!-- 同样填写完要结束 -->
+  </event><!-- 一个事件结束也要填 -->
+  <event id="1">
+    <title>NewYear</title>
+    <describe>NewYear_Describe </describe>
+    <picture>EventPictures/Event1</picture>
+    <conditions amout="1">
+      <condition sign="ee" value="5">day</condition><!-- ee是等于，ge是大于等于，le是小于等于，ne是不等于 -->
+    </conditions>
+    <effects amout="2">
+      <effect type="value" sign="+" value="5">Influence</effect>
+	  <effect type="news" index="2" slot="Influence"></effect>
+    </effects>
+  </event>
+  <event id="2">
+    <title>Test2</title>
+    <describe>Test2_Describe </describe>
+    <picture>EventPictures/EventPic</picture>
+    <trait>
+      <isInvisible />
+	  <subEvent />
+    </trait>
+    <conditions amout="1">
+      <condition sign="ge" value="6">day</condition>
+    </conditions>
+    <effects amout="2">
+      <effect type="value" sign="+" value="5">Influence</effect>
+	  <effect type="news" index="2" slot="Influence"></effect>
+    </effects>
+  </event>
+  <event id="3">
+    <title>Test3</title>
+    <describe>Test3_Describe </describe>
+    <picture>EventPictures/EventPic</picture>
+    <probability Add="10">0</probability>
+    <trait>
+      <isRepeat />
+    </trait>
+    <conditions amout="1">
+      <condition sign="ge" value="7">day</condition>
+    </conditions>
+    <effects amout="0">
+      <effect type="value" sign="+" value="0">variable</effect>
+    </effects>
+  </event>
+  <event id="4">
+    <title>Test4</title>
+    <describe>Test4_Describe </describe>
+    <picture>EventPictures/CG/TempCG</picture>
+    <trait>
+      <isImportant />
+    </trait>
+    <conditions amout="1">
+      <condition sign="le" value="0">day</condition>
+    </conditions>
+    <effects amout="0">
+      <effect type="value" sign="+" value="0">variable</effect>
+    </effects>
+  </event>
+</events>
