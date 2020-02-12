@@ -15,10 +15,10 @@
     </trait><!-- 特质内容结束 -->
 	<probability>0</probability><!-- 这里要填写事件的发生概率，默认是100可以省略这行，如果不是则需填写，范围从0到100，建议填写整数 -->
 	<probability Add="0">0</probability><!-- 概率的另外一种形式，即前面的add后面要填每天增加的概率，默认是0可以不填的，如上面的形式，这里不建议数字填太大，建议填整数 -->
-    <conditions amout="1"><!-- 事件的触发条件的数量，默认是1，如果多个条件可以填更大的数字 -->
-      <condition sign="ge" value="0">variable</condition><!-- 这里填的是条件的变量与符号，ge是大于等于，在xml里不能直接输入大于号，所以用英文缩写代替，ge后面接变量的值，里面填变量的名称 -->
+    <conditions amount="1"><!-- 事件的触发条件的数量，默认是1，如果多个条件可以填更大的数字 -->
+      <condition sign="ge" value="0">variable</condition><!-- 这里填的是条件的变量与符号，ee是等于，ge是大于等于，le是小于等于，ne是不等于，在xml里不能直接输入大于号，所以用英文缩写代替，ge后面接变量的值，里面填变量的名称 -->
     </conditions><!-- 在条件都填写完成后要结束 -->
-    <effects amout="2"><!-- 事件效果的数量 -->
+    <effects amount="2"><!-- 事件效果的数量 -->
       <effect type="value" sign="+" value="5">Influence</effect><!-- 效果的种类包括value，news等，sign是对值的计算符号，value改变值的大小，里面写改变大小的变量名字 -->
 	  <effect type="news" index="2" slot="Influence"></effect><!-- 如果想激发滚动新闻，可以设定成此格式，index接新闻的序号，slot后面接槽的内容 -->
     </effects><!-- 同样填写完要结束 -->
@@ -27,10 +27,10 @@
     <title>NewYear</title>
     <describe>NewYear_Describe </describe>
     <picture>EventPictures/Event1</picture>
-    <conditions amout="1">
-      <condition sign="ee" value="5">day</condition><!-- ee是等于，ge是大于等于，le是小于等于，ne是不等于 -->
+    <conditions amount="1">
+      <condition sign="ee" value="5">day</condition>
     </conditions>
-    <effects amout="2">
+    <effects amount="2">
       <effect type="value" sign="+" value="5">Influence</effect>
 	  <effect type="news" index="2" slot="Influence"></effect>
     </effects>
@@ -43,10 +43,10 @@
       <isInvisible />
 	  <subEvent />
     </trait>
-    <conditions amout="1">
+    <conditions amount="1">
       <condition sign="ge" value="6">day</condition>
     </conditions>
-    <effects amout="2">
+    <effects amount="2">
       <effect type="value" sign="+" value="5">Influence</effect>
 	  <effect type="news" index="2" slot="Influence"></effect>
     </effects>
@@ -59,10 +59,10 @@
     <trait>
       <isRepeat />
     </trait>
-    <conditions amout="1">
+    <conditions amount="1">
       <condition sign="ge" value="7">day</condition>
     </conditions>
-    <effects amout="0">
+    <effects amount="0">
       <effect type="value" sign="+" value="0">variable</effect>
     </effects>
   </event>
@@ -73,10 +73,10 @@
     <trait>
       <isImportant />
     </trait>
-    <conditions amout="1">
-      <condition sign="le" value="0">day</condition>
+    <conditions amount="1">
+      <condition sign="ge" value="7">day</condition>
     </conditions>
-    <effects amout="0">
+    <effects amount="0">
       <effect type="value" sign="+" value="0">variable</effect>
     </effects>
   </event>

@@ -11,56 +11,147 @@ public class Scr_Event : MonoBehaviour
 {
     void EventConditionControl(int i)
     {
-        switch (i)
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.dataPath + "/Resources/Xml/Event.xml");
+        XmlElement xmlNode = xmlDoc.DocumentElement;
+        foreach (XmlNode elements in xmlNode)
         {
-            case 1:
-                //设条件是第五天就会触发
-                EventCondition(time.day == 5, i);
+            XmlElement element = elements as XmlElement;
+            if (element == null)
+                continue;
+            if (element.LocalName == "eventAmount")
+            {
+                int.TryParse(element.InnerText, out count);
+            }
+            if (element.LocalName == "event")
+            {
+                if (element.Attributes["id"].Value == i.ToString())
+                {
+                    XmlElement conditions = element.SelectSingleNode("conditions") as XmlElement;
+                    int.TryParse(conditions.Attributes["amount"].Value, out int amount);
+                    for (int a = 0; a < amount; a++)
+                    {
+                        var condition = conditions.ChildNodes[a] as XmlElement;
+                        float value = float.Parse(condition.Attributes["value"].Value);
+                        switch (condition.InnerText)
+                        {
+                            case "day":
+                                InnerCondition(condition.Attributes["sign"].Value, time.day, value, i);
+                                break;
+                            default:
+                                break;
+                        }
+
+                    }
+
+                }
+            }
+        }
+    }
+    void EventEffectControl(int i)
+    {
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.dataPath + "/Resources/Xml/Event.xml");
+        XmlElement xmlNode = xmlDoc.DocumentElement;
+        foreach (XmlNode elements in xmlNode)
+        {
+            XmlElement element = elements as XmlElement;
+            if (element == null)
+                continue;
+            if (element.LocalName == "eventAmount")
+            {
+                int.TryParse(element.InnerText, out count);
+            }
+            if (element.LocalName == "event")
+            {
+                if (element.Attributes["id"].Value == i.ToString())
+                {
+                    XmlElement effects = element.SelectSingleNode("effects") as XmlElement;
+                    int.TryParse(effects.Attributes["amount"].Value, out int amount);
+                    for (int a = 0; a < amount; a++)
+                    {
+                        var effect = effects.ChildNodes[a] as XmlElement;
+                        switch (effect.Attributes["type"].Value)
+                        {
+                            case "value":
+                                float value = float.Parse(effect.Attributes["value"].Value);
+                                switch (effect.InnerText)
+                                {
+                                    case "Influence":
+                                        num.InfluenceVal = InnerEffectValue(effect.Attributes["sign"].Value, num.InfluenceVal, value);
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            case "news":
+                                int.TryParse(effect.Attributes["index"].Value, out int newsIndex);
+                                if (effect.HasAttribute("slot"))
+                                {
+                                    switch (effect.Attributes["slot"].Value)
+                                    {
+                                        case "Influence":
+                                            AddNews(newsIndex, num.InfluenceVal.ToString());
+                                            break;
+                                        default:
+                                            AddNews(newsIndex, "");
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    AddNews(newsIndex, "");
+                                }
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+    void InnerCondition(string InnerText, float variable, float InnerValue, int Inneri)
+    {
+        switch (InnerText)
+        {
+            case "ge":
+                EventCondition(variable >= InnerValue, Inneri);
                 break;
-            case 2:
-                //设条件是影响力达到5
-                EventCondition(value.InfluenceVal >= 5, i);
+            case "ee":
+                EventCondition(variable == InnerValue, Inneri);
                 break;
-            case 3:
-                //设条件是第五天就会触发
-                EventCondition(time.day >= 5, i);
+            case "le":
+                EventCondition(variable <= InnerValue, Inneri);
                 break;
-            case 4:
-                //设条件是第五天就会触发
-                EventCondition(time.day == 5, i);
+            case "ne":
+                EventCondition(variable != InnerValue, Inneri);
                 break;
             default:
                 break;
+        }
+    }
+    float InnerEffectValue(string InnerText, float variable, float InnerValue)
+    {
+        switch (InnerText)
+        {
+            case "+":
+                variable += InnerValue;
+                return variable;
+            case "-":
+                variable -= InnerValue;
+                return variable;
+            default:
+                return variable;
         }
     }
 
-    void EventEffectControl(int i)
-    {
-        switch (HappenEvent[i])
-        {
-            case 1:
-                value.InfluenceVal += 5;//事件1的效果是影响力+5
-                AddNews(2, value.InfluenceVal.ToString());
-                break;
-            case 2:
-                value.InfluenceVal += 5;//事件2的效果是影响力+5
-                AddNews(2, value.InfluenceVal.ToString());
-                break;
-            case 3:
-                AddNews(1, "");
-                break;
-            case 4:
-                AddNews(1, "");
-                break;
-            default:
-                break;
-        }
-    }
 
 
 
     Scr_TimeControl time;
-    Scr_Num value;
+    Scr_Num num;
     Scr_Mode mode;
     Scr_News news;
 
@@ -101,7 +192,7 @@ public class Scr_Event : MonoBehaviour
     void Awake()
     {
         time = FindObjectOfType<Scr_TimeControl>();
-        value = FindObjectOfType<Scr_Num>();
+        num = FindObjectOfType<Scr_Num>();
         mode = FindObjectOfType<Scr_Mode>();
         news = FindObjectOfType<Scr_News>();
         EventGroup.SetActive(false);
@@ -476,7 +567,7 @@ public class Scr_Event : MonoBehaviour
 
 
         //执行事件的效果
-        EventEffectControl(i);
+        EventEffectControl(HappenEvent[i]);
 
         if (!isRepeatList.Contains(HappenEvent[i]))
         {
