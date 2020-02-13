@@ -76,11 +76,7 @@ public class Scr_Mode : MonoBehaviour
         }
     }
 
-    public void Load()
-    {
-        isLoad = true;
-        SceneManager.LoadScene("Game");
-    }
+
 
     public void NewStart()
     {

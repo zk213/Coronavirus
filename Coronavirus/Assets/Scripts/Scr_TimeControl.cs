@@ -81,6 +81,7 @@ public class Scr_TimeControl : MonoBehaviour
         daySpawn = OneSpeedSpawn;
         ShowFullTime = "2019 12 01";
         extendbutton.SetActive(false);
+        Debug.Log(mode.isLoad);
         if (mode.isLoad)
         {
             XmlDocument xmlSave = new XmlDocument();
@@ -93,6 +94,7 @@ public class Scr_TimeControl : MonoBehaviour
                 if (elementsS.LocalName == "Day")
                 {
                     int.TryParse(elementsS.InnerText, out day);
+                    Debug.Log(1);
                     for (int tempDay = 1; tempDay < day; tempDay++)
                     {
                         ShowTime();
