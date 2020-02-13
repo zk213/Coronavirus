@@ -139,7 +139,81 @@ public class Scr_Event : MonoBehaviour
         }
     }
 
-
+    public void LocalSave()
+    {
+        string SaveString1 = "";
+        for (int i = 0; i < UnActiveEvent.Count; i++)
+        {
+            if (SaveString1.Length == 0)
+            {
+                SaveString1 = UnActiveEvent[i].ToString();
+            }
+            else
+            {
+                SaveString1 += "," + UnActiveEvent[i].ToString();
+            }
+        }
+        string SaveString2 = "";
+        for (int i = 0; i < ActiveEvent.Count; i++)
+        {
+            if (SaveString2.Length == 0)
+            {
+                SaveString2 = ActiveEvent[i].ToString();
+            }
+            else
+            {
+                SaveString2 += "," + ActiveEvent[i].ToString();
+            }
+        }
+        string SaveString3 = "";
+        for (int i = 0; i < ReadyEvent.Count; i++)
+        {
+            if (SaveString3.Length == 0)
+            {
+                SaveString3 = ReadyEvent[i].ToString();
+            }
+            else
+            {
+                SaveString3 += "," + ReadyEvent[i].ToString();
+            }
+        }
+        string SaveString4 = "";
+        for (int i = 0; i < FinishEvent.Count; i++)
+        {
+            if (SaveString4.Length == 0)
+            {
+                SaveString4 = FinishEvent[i].ToString();
+            }
+            else
+            {
+                SaveString4 += "," + FinishEvent[i].ToString();
+            }
+        }
+        XmlDocument xmlSave = new XmlDocument();
+        xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
+        XmlElement xmlNodeS = xmlSave.DocumentElement;
+        foreach (XmlNode elementsS in xmlNodeS)
+        {
+            if (elementsS == null)
+                continue;
+            switch (elementsS.LocalName)
+            {
+                case "UnActiveEvent":
+                    elementsS.InnerText = SaveString1;
+                    break;
+                case "ActiveEvent":
+                    elementsS.InnerText = SaveString2;
+                    break;
+                case "ReadyEvent":
+                    elementsS.InnerText = SaveString3;
+                    break;
+                case "FinishEvent":
+                    elementsS.InnerText = SaveString4;
+                    break;
+            }
+        }
+        xmlSave.Save(Application.persistentDataPath + "/save/Save.save");
+    }
 
 
     Scr_TimeControl time;
@@ -191,7 +265,70 @@ public class Scr_Event : MonoBehaviour
         CG.SetActive(false);
 
         //对事件的类别进行初始化，分出未激活的子事件与普通事件,并初始化事件发生的概率
-        FinishEvent.Add(0);//把事件模板进去，让他不会发生
+        if (mode.isLoad)
+        {
+            XmlDocument xmlSave = new XmlDocument();
+            xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
+            XmlElement xmlNodeS = xmlSave.DocumentElement;
+            foreach (XmlNode elementsS in xmlNodeS)
+            {
+                if (elementsS == null)
+                    continue;
+                switch (elementsS.LocalName)
+                {
+                    case "FinishEvent":
+                        if (elementsS.InnerText != "")
+                        {
+                            string[] finishAry = elementsS.InnerText.Split(',');
+                            for (int a = 0; a < finishAry.Length; a++)
+                            {
+                                int.TryParse(finishAry[a], out int b);
+                                FinishEvent.Add(b);
+                            }
+                        }
+                        break;
+                    case "UnActiveEvent":
+                        if (elementsS.InnerText != "")
+                        {
+                            string[] finishAry = elementsS.InnerText.Split(',');
+                            for (int a = 0; a < finishAry.Length; a++)
+                            {
+                                int.TryParse(finishAry[a], out int b);
+                                UnActiveEvent.Add(b);
+                            }
+                        }
+                        break;
+                    case "ActiveEvent":
+                        if (elementsS.InnerText != "")
+                        {
+                            string[] finishAry = elementsS.InnerText.Split(',');
+                            for (int a = 0; a < finishAry.Length; a++)
+                            {
+                                int.TryParse(finishAry[a], out int b);
+                                ActiveEvent.Add(b);
+                            }
+                        }
+                        break;
+                    case "ReadyEvent":
+                        if (elementsS.InnerText != "")
+                        {
+                            string[] finishAry = elementsS.InnerText.Split(',');
+                            for (int a = 0; a < finishAry.Length; a++)
+                            {
+                                int.TryParse(finishAry[a], out int b);
+                                ReadyEvent.Add(b);
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        else
+        {
+            FinishEvent.Add(0);//把事件模板进去，让他不会发生
+        }
 
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(Application.dataPath + "/Resources/Xml/Event.xml");
@@ -239,15 +376,18 @@ public class Scr_Event : MonoBehaviour
                     var trait = element.GetElementsByTagName("trait");
                     if (trait.Count != 0)
                     {
-                        //是否是子事件
                         var straitE = trait[0] as XmlElement;
-                        if (straitE.GetElementsByTagName("subEvent").Count == 1)
+                        if (!mode.isLoad)
                         {
-                            UnActiveEvent.Add(i);
-                        }
-                        else
-                        {
-                            ActiveEvent.Add(i);
+                            //是否是子事件
+                            if (straitE.GetElementsByTagName("subEvent").Count == 1)
+                            {
+                                UnActiveEvent.Add(i);
+                            }
+                            else
+                            {
+                                ActiveEvent.Add(i);
+                            }
                         }
                         //是否是隐藏事件
                         if (straitE.GetElementsByTagName("isInvisible").Count == 1)
@@ -269,7 +409,10 @@ public class Scr_Event : MonoBehaviour
                     }
                     else
                     {
-                        ActiveEvent.Add(i);
+                        if (!mode.isLoad)
+                        {
+                            ActiveEvent.Add(i);
+                        }
                     }
                 }
                 //初始化优先级
@@ -288,6 +431,8 @@ public class Scr_Event : MonoBehaviour
 
             }
         }
+        //Debug.Log(ActiveEvent.Count);
+
     }
 
     //以下是事件触发机制
@@ -296,6 +441,7 @@ public class Scr_Event : MonoBehaviour
 
         for (int i = 0; i <= count; i++)
         {
+            //Debug.Log(ActiveEvent.Count);
 
             if (!FinishEvent.Contains(i) && !UnActiveEvent.Contains(i))//首先不检测已经结束的事件和未激活事件
             {
@@ -359,17 +505,31 @@ public class Scr_Event : MonoBehaviour
     {
         if (isMeetingConditions)//看是否满足条件
         {
+            /*
+             for (int a = 0; a < ActiveEvent.Count; a++)//如果这个事件是激活事件
+            {
+                if (ActiveEvent[a] == i)
+                {
+                    ReadyEvent.Add(i);//再放在就绪事件列表里
+                    ActiveEvent.RemoveAt(a);//从激活事件的列表中移除该事件
+                    Debug.Log(ActiveEvent.Count);
+                }
+            }
+             */
+
+
             if (ActiveEvent.Contains(i))//如果这个事件是激活事件
             {
-                ActiveEvent.Remove(i);//从激活事件的列表中移除该事件
                 ReadyEvent.Add(i);//再放在就绪事件列表里
+                ActiveEvent.Remove(i);//从激活事件的列表中移除该事件
             }
+
             if (ReadyEvent.Contains(i))//如果这个事件是就绪事件
             {
                 if (UnityEngine.Random.Range(0, 100) <= dynamicProbability[i])//过一次概率
                 {
-                    ReadyEvent.Remove(i);//从就绪事件的列表中移除该事件
                     HappenEvent.Add(i);//放在正在发生事件列表里
+                    ReadyEvent.Remove(i);//从就绪事件的列表中移除该事件
                 }
                 else
                 {
@@ -385,8 +545,11 @@ public class Scr_Event : MonoBehaviour
         else
         {
             //如果条件不符合，则从就绪列表返回到之前的激活列表里
-            ReadyEvent.Remove(i);
-            ActiveEvent.Add(i);
+            if (ReadyEvent.Contains(i))
+            {
+                ActiveEvent.Add(i);
+                ReadyEvent.Remove(i);
+            }
         }
     }
 

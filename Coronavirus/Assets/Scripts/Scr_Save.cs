@@ -19,5 +19,6 @@ public class Scr_Save : MonoBehaviour
         tech.LocalSave();
         num.LocalSave();
         time.LocalSave();
+        events.LocalSave();
     }
 }

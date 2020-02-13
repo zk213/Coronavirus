@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System;
+using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,10 @@ public class Scr_TimeControl : MonoBehaviour
             if (elementsS.LocalName == "Day")
             {
                 elementsS.InnerText = day.ToString();
+            }
+            if (elementsS.LocalName == "Time")
+            {
+                elementsS.InnerText = string.Format("{0:D2}:{1:D2}:{2:D2} " + "{3:D4}/{4:D2}/{5:D2}", DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second, DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             }
 
         }
