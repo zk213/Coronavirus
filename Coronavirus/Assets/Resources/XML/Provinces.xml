@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <provinces>
   <provincesAmount>5</provincesAmount>
-  <province id="0" color="FF5100" r="255" g="81" b="0">Red</province>
-  <province id="1" color="76ef1f" r="164" g="47" b="231">Green</province>
-  <province id="2" color="0040ff" r="0" g="64" b="255">Blue</province>
-  <province id="3" color="fb00ff" r="251" g="0" b="255">Purple</province>
-  <province id="4" color="ffbf00" r="255" g="191" b="0">Yellow</province>
+  <province id="0" r="255" g="81" b="0">Red</province>
+  <province id="1" r="0" g="255" b="110">Green</province>
+  <province id="2" r="0" g="64" b="255">Blue</province>
+  <province id="3" r="251" g="0" b="255">Purple</province>
+  <province id="4" r="255" g="191" b="0">Yellow</province>
 </provinces>

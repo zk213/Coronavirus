@@ -7,25 +7,25 @@ public class Scr_Color : MonoBehaviour
 {
     public Texture2D map;
     public Text provincesName;
+    public Object prefab;
+
+    public int thisIndex;
 
     int colorNum = 3;
 
     List<Color32> colorList = new List<Color32>();
-    Color32 m_red = new Color32(255, 81, 0, 255);
-    Color32 m_green = new Color32(34, 177, 76, 255);
-    Color32 m_blue = new Color32(0, 64, 255, 255);
-    Color32 m_purple = new Color32(251, 0, 255, 255);
-    Color32 m_yellow = new Color32(255, 191, 0, 255);
+    List<GameObject> Provinces = new List<GameObject>();
 
     Color32[] textureCol;
     List<Texture2D> col = new List<Texture2D>();
-    List<string> name = new List<string>();
+    List<string> nameS = new List<string>();
     int w = 0;
     int h = 0;
 
 
     void Start()
     {
+        provincesName.text = "";
         textureCol = map.GetPixels32();
         w = map.width;
         h = map.height;
@@ -46,7 +46,7 @@ public class Scr_Color : MonoBehaviour
                 int.TryParse(elements.Attributes["g"].Value, out int g);
                 int.TryParse(elements.Attributes["b"].Value, out int b);
                 colorList.Add(new Color32((byte)r, (byte)g, (byte)b, 255));
-                name.Add(elements.InnerText);
+                nameS.Add(elements.InnerText);
                 //Debug.Log(r + "+" + g + "+" + b);
             }
         }
@@ -70,8 +70,14 @@ public class Scr_Color : MonoBehaviour
             }
             col[a].SetPixels32(Col);
             col[a].Apply();
+            Provinces.Add((GameObject)Instantiate(prefab, transform.position, transform.rotation));
+            Provinces[a].transform.SetParent(gameObject.transform);
+            Provinces[a].transform.name = nameS[a];
+            Provinces[a].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
+            Provinces[a].GetComponent<Scr_Provinces>().provinceIndex = a;
+            Provinces[a].GetComponent<Scr_Provinces>().provinceName = nameS[a];
 
-            gameObject.transform.Find(name[a]).GetComponent<SpriteRenderer>().sprite = Sprite.Create(col[a], new Rect(0, 0, col[a].width, col[a].height), new Vector2(0, 0));
+            Provinces[a].GetComponent<SpriteRenderer>().sprite = Sprite.Create(col[a], new Rect(0, 0, col[a].width, col[a].height), new Vector2(0, 0));
 
         }
     }
@@ -81,41 +87,35 @@ public class Scr_Color : MonoBehaviour
     {
 
         Vector2 mouseP = new Vector2((int)((Input.mousePosition.x - Screen.width / 2) * 0.93), (int)((Input.mousePosition.y - Screen.height / 2) * 0.93));//获得鼠标的坐标
-        if (Input.GetMouseButtonDown(0) && (mouseP.x >= 0 && mouseP.x < w) && (mouseP.y >= 0 && mouseP.y < h))
-        {
-            //Debug.Log(mouseP);
-
-            Color32[] textureCol = map.GetPixels32(); ;
-            for (int a = 0; a < colorNum; a++)
-            {
-                string name = "";
-                Color32 tempColor = new Color32(255, 255, 255, 255); ;
-                switch (a)
-                {
-                    case 0:
-                        name = "Red";
-                        tempColor = m_red;
-                        break;
-                    case 1:
-                        name = "Blue";
-                        tempColor = m_blue;
-                        break;
-                    case 2:
-                        name = "Green";
-                        tempColor = m_green;
-                        break;
-                }
-
-                if (textureCol[(int)(mouseP.x + mouseP.y * w)].Equals(tempColor))
-                {
-                    Debug.Log(name);
-                }
-            }
-        }
         if (Input.GetMouseButtonDown(0))
         {
+            bool hasHit = false;
+
+            if ((mouseP.x >= 0 && mouseP.x < w) && (mouseP.y >= 0 && mouseP.y < h))
+            {
+                Color32[] textureCol = map.GetPixels32(); ;
+                for (int a = 0; a < colorNum; a++)
+                {
+
+
+                    if (textureCol[(int)(mouseP.x + mouseP.y * w)].Equals(colorList[a]))
+                    {
+                        hasHit = true;
+                        provincesName.text = nameS[a];
+                        thisIndex = a;
+                        Provinces[a].GetComponent<Scr_Provinces>().isMe = true;
+                    }
+                }
+            }
+
             //Debug.Log(mouseP);
 
+
+            if (!hasHit)
+            {
+                provincesName.text = "";
+                thisIndex = -1;
+            }
         }
     }
 }
