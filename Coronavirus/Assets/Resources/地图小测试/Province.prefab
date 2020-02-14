@@ -109,3 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   provinceName: 
   provinceIndex: 0
+  isMe: 0
+  myColor:
+    serializedVersion: 2
+    rgba: 4294967295
