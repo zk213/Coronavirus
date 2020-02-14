@@ -8,6 +8,10 @@ public class Scr_Color : MonoBehaviour
     public Texture2D map;
     public Text provincesName;
     public Object prefab;
+    public GameObject CCamera;
+    float MoveSpeed;
+
+    public float correct = 0.93f;
 
     public int thisIndex;
 
@@ -25,6 +29,7 @@ public class Scr_Color : MonoBehaviour
 
     void Start()
     {
+        MoveSpeed = CCamera.GetComponent<Scr_Camera>().speed;
         provincesName.text = "";
         textureCol = map.GetPixels32();
         w = map.width;
@@ -84,9 +89,9 @@ public class Scr_Color : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {// + CCamera.transform.position.x * MoveSpeed * 20
 
-        Vector2 mouseP = new Vector2((int)((Input.mousePosition.x - Screen.width / 2) * 0.93), (int)((Input.mousePosition.y - Screen.height / 2) * 0.93));//获得鼠标的坐标
+        Vector2 mouseP = new Vector2((int)((Input.mousePosition.x - Screen.width / 2) * correct * Camera.main.orthographicSize / 5 + CCamera.transform.position.x * MoveSpeed * 20), (int)((Input.mousePosition.y - Screen.height / 2) * correct * Camera.main.orthographicSize / 5 + CCamera.transform.position.y * MoveSpeed * 20));//获得鼠标的坐标
         if (Input.GetMouseButtonDown(0))
         {
             bool hasHit = false;

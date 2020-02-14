@@ -218,6 +218,8 @@ MonoBehaviour:
   map: {fileID: 2800000, guid: 6ca2135ee0cc2de4f84c1a278123c840, type: 3}
   provincesName: {fileID: 1826574519}
   prefab: {fileID: 1858391630839961956, guid: 10b3dbe59c1e0a24ab9be6777ca3399e, type: 3}
+  CCamera: {fileID: 523655442}
+  correct: 0.93
   thisIndex: 0
 --- !u!4 &498001547
 Transform:
@@ -376,6 +378,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6d55080b4fc7940a685584c4467d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CameraSize: 0
+  speed: 5
 --- !u!1 &969123281
 GameObject:
   m_ObjectHideFlags: 0
