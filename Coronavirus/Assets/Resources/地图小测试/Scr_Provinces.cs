@@ -19,7 +19,6 @@ public class Scr_Provinces : MonoBehaviour
         spr = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isMe)

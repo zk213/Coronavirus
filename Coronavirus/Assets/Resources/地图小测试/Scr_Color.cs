@@ -52,14 +52,8 @@ public class Scr_Color : MonoBehaviour
                 int.TryParse(elements.Attributes["b"].Value, out int b);
                 colorList.Add(new Color32((byte)r, (byte)g, (byte)b, 255));
                 nameS.Add(elements.InnerText);
-                //Debug.Log(r + "+" + g + "+" + b);
             }
         }
-        /*
-         Debug.Log(textureCol[1]);
-        Debug.Log(colorList[0]);
-        Debug.Log(textureCol[1].Equals(colorList[0]));
-         */
 
         for (int a = 0; a < colorNum; a++)
         {
@@ -113,7 +107,6 @@ public class Scr_Color : MonoBehaviour
                 }
             }
 
-            //Debug.Log(mouseP);
 
 
             if (!hasHit)
