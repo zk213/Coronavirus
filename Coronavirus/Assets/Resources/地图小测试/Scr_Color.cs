@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,28 +58,56 @@ public class Scr_Color : MonoBehaviour
 
         for (int a = 0; a < colorNum; a++)
         {
-            col.Add(new Texture2D(w, h));
-            Color32[] Col = new Color32[w * h];
-            for (int i = 0; i < textureCol.Length; i++)
-            {
-                if (textureCol[i].Equals(colorList[a]))
-                {
-                    Col[i] = Color.white;
-                }
-
-            }
-            col[a].SetPixels32(Col);
-            col[a].Apply();
             Provinces.Add((GameObject)Instantiate(prefab, transform.position, transform.rotation));
             Provinces[a].transform.SetParent(gameObject.transform);
             Provinces[a].transform.name = nameS[a];
             Provinces[a].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
             Provinces[a].GetComponent<Scr_Provinces>().provinceIndex = a;
             Provinces[a].GetComponent<Scr_Provinces>().provinceName = nameS[a];
+            if (!Directory.Exists(Application.persistentDataPath + "/provinces"))
+            {
+                Directory.CreateDirectory(Application.persistentDataPath + "/provinces");
+            }
+            string path = Application.persistentDataPath + "/provinces/" + a.ToString() + ".png";
+            if (!File.Exists(path))
+            {
 
-            Provinces[a].GetComponent<SpriteRenderer>().sprite = Sprite.Create(col[a], new Rect(0, 0, col[a].width, col[a].height), new Vector2(0, 0));
+
+                col.Add(new Texture2D(w, h));
+                Color32[] Col = new Color32[w * h];
+                for (int i = 0; i < textureCol.Length; i++)
+                {
+                    if (textureCol[i].Equals(colorList[a]))
+                    {
+                        Col[i] = Color.white;
+                    }
+
+                }
+                col[a].SetPixels32(Col);
+                col[a].Apply();
+                var bytes = col[a].EncodeToPNG();
+
+                File.WriteAllBytes(path, bytes);
+                Provinces[a].GetComponent<SpriteRenderer>().sprite = Sprite.Create(col[a], new Rect(0, 0, col[a].width, col[a].height), new Vector2(0, 0));
+            }
+            else
+            {
+                Texture2D colTexture = new Texture2D(w, h);
+                FileStream files = new FileStream(path, FileMode.Open);
+                //新建比特流对象
+                byte[] imgByte = new byte[files.Length];
+                //将文件写入对应比特流对象
+                files.Read(imgByte, 0, imgByte.Length);
+                //关闭文件
+                files.Close();
+                colTexture.LoadImage(imgByte);
+                Provinces[a].GetComponent<SpriteRenderer>().sprite = Sprite.Create(colTexture, new Rect(0, 0, colTexture.width, colTexture.height), new Vector2(0, 0));
+            }
+
+
 
         }
+
     }
 
     // Update is called once per frame
