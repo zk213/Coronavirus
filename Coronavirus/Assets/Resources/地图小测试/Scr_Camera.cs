@@ -10,7 +10,7 @@ public class Scr_Camera : MonoBehaviour
 
     void Awake()
     {
-        transform.position = new Vector2(15, 10);
+        transform.position = new Vector2(iniX, iniY);
     }
 
     void Update()

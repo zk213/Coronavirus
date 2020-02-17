@@ -12,7 +12,8 @@ public class Scr_Color : MonoBehaviour
     public GameObject CCamera;
     float MoveSpeed;
 
-    public float correct = 0.93f;
+    public float correctX = 1;//0.93f;
+    public float correctY = 1;//0.93f;
 
     public int thisIndex;
 
@@ -113,10 +114,50 @@ public class Scr_Color : MonoBehaviour
     // Update is called once per frame
     void Update()
     {// + CCamera.transform.position.x * MoveSpeed * 20
+        Debug.Log(Screen.width + "," + Screen.height);
+        switch (((float)Screen.width / (float)Screen.height))
+        {
+            case (16f / 9f):
+                correctX = 7.00386f * Mathf.Pow(10, -7) * Mathf.Pow(Screen.width, 2) - 0.00299f * Screen.width + 4.10058f;
+                correctY = 2.19997f * Mathf.Pow(10, -6) * Mathf.Pow(Screen.height, 2) - 0.00530f * Screen.height + 4.10270f;
+                break;
+            case (5f / 4f):
+                if (Screen.width == 800)
+                {
+                    correctX = 1.576f;
+                    correctY = 1.585f;
+                }
+                if (Screen.width == 1280)
+                {
+                    correctX = 0.9883f;
+                    correctY = 0.9894f;
+                }
+                break;
+            case (4f / 3f):
+                correctX = -8.27256f * Mathf.Pow(10, -4) * Screen.width + 2.14126f;
+                correctY = -0.00110f * Screen.height + 2.14183f;
+                break;
+            case (16f / 10f):
+                correctX = 4.25843f * Mathf.Pow(10, -7) * Mathf.Pow(Screen.width, 2) - 0.00202f * Screen.width + 3.14612f;
+                correctY = 1.02948f * Mathf.Pow(10, -6) * Mathf.Pow(Screen.height, 2) - 0.00310f * Screen.height + 3.08079f;
+                break;
+            default:
 
-        Vector2 mouseP = new Vector2((int)((Input.mousePosition.x - Screen.width / 2) * correct * Camera.main.orthographicSize / 5 + CCamera.transform.position.x * MoveSpeed * 20), (int)((Input.mousePosition.y - Screen.height / 2) * correct * Camera.main.orthographicSize / 5 + CCamera.transform.position.y * MoveSpeed * 20));//获得鼠标的坐标
+                break;
+        }
+
+
+
+
+        Vector2 mouseP = new Vector2((int)((Input.mousePosition.x - Screen.width / 2) * correctX * Camera.main.orthographicSize / 5 + CCamera.transform.position.x * MoveSpeed * 20), (int)((Input.mousePosition.y - Screen.height / 2) * correctY * Camera.main.orthographicSize / 5 + CCamera.transform.position.y * MoveSpeed * 20));//获得鼠标的坐标
         if (Input.GetMouseButtonDown(0))
         {
+            /*
+             float corX = 591 / mouseP.x;
+            float corY = 279 / mouseP.y;
+            Debug.Log(string.Format("{0:F6}", corX) + "," + string.Format("{0:F6}", corY));
+             */
+            Debug.Log(mouseP);
             bool hasHit = false;
 
             if ((mouseP.x >= 0 && mouseP.x < w) && (mouseP.y >= 0 && mouseP.y < h))

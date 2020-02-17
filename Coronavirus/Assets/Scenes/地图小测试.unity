@@ -219,7 +219,8 @@ MonoBehaviour:
   provincesName: {fileID: 1826574519}
   prefab: {fileID: 1858391630839961956, guid: 10b3dbe59c1e0a24ab9be6777ca3399e, type: 3}
   CCamera: {fileID: 523655442}
-  correct: 0.93
+  correctX: 1
+  correctY: 1
   thisIndex: 0
 --- !u!4 &498001547
 Transform:
@@ -659,9 +660,9 @@ RectTransform:
   m_Father: {fileID: 516909225}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -376}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 37}
   m_SizeDelta: {x: 301.9, y: 122.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1826574519
