@@ -114,7 +114,7 @@ public class Scr_Color : MonoBehaviour
     // Update is called once per frame
     void Update()
     {// + CCamera.transform.position.x * MoveSpeed * 20
-        Debug.Log(Screen.width + "," + Screen.height);
+        //Debug.Log(Screen.width + "," + Screen.height);
         switch (((float)Screen.width / (float)Screen.height))
         {
             case (16f / 9f):
@@ -157,7 +157,7 @@ public class Scr_Color : MonoBehaviour
             float corY = 279 / mouseP.y;
             Debug.Log(string.Format("{0:F6}", corX) + "," + string.Format("{0:F6}", corY));
              */
-            Debug.Log(mouseP);
+            //Debug.Log(mouseP);
             bool hasHit = false;
 
             if ((mouseP.x >= 0 && mouseP.x < w) && (mouseP.y >= 0 && mouseP.y < h))

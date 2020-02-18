@@ -56,7 +56,6 @@ public class Scr_TimeControl : MonoBehaviour
     public GameObject extendbutton;
 
     Scr_Event Event;
-    Scr_Mode mode;
 
     float iniPosy = 9.1f;
     float finPosy = -64.9f;
@@ -72,17 +71,33 @@ public class Scr_TimeControl : MonoBehaviour
     bool showbutton = false;
     bool showbuttonmovefinish = true;
 
+    bool isLoad = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        XmlDocument SxmlDoc = new XmlDocument();
+        SxmlDoc.Load(Application.persistentDataPath + "setting.set");
+        XmlElement SxmlNode = SxmlDoc.DocumentElement;
+        foreach (XmlNode elements in SxmlNode)
+        {
+            if (elements == null)
+                continue;
+            if (elements.LocalName == "SMode")
+            {
+                if (elements.InnerText == "Load")
+                {
+                    isLoad = true;
+                }
+            }
+        }
+
         Event = FindObjectOfType<Scr_Event>();
-        mode = FindObjectOfType<Scr_Mode>();
         daySpawn = OneSpeedSpawn;
         ShowFullTime = "2019 12 01";
         extendbutton.SetActive(false);
-        Debug.Log(mode.isLoad);
-        if (mode.isLoad)
+        Debug.Log(isLoad);
+        if (isLoad)
         {
             XmlDocument xmlSave = new XmlDocument();
             xmlSave.Load(Application.persistentDataPath + "/save/Save.save");

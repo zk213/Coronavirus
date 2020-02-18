@@ -11,7 +11,6 @@ public class Scr_News : MonoBehaviour
     public Text scrollNews1;
     public Text scrollNews2;
 
-    Scr_Mode mode;
 
     float speed = 250;
     float iniPosx = 1111;
@@ -33,10 +32,25 @@ public class Scr_News : MonoBehaviour
 
     List<string> XmlNews = new List<string>();
 
-
+    string Language = "";
     void Awake()
     {
-        mode = FindObjectOfType<Scr_Mode>();
+        XmlDocument SxmlDoc = new XmlDocument();
+        SxmlDoc.Load(Application.persistentDataPath + "setting.set");
+        XmlElement SxmlNode = SxmlDoc.DocumentElement;
+        foreach (XmlNode elements in SxmlNode)
+        {
+            if (elements == null)
+                continue;
+            if (elements.LocalName == "Language")
+            {
+                if (elements.InnerText == "SimpleChinese")
+                {
+                    Language = "SimpleChinese";
+                }
+            }
+        }
+
 
         activeNews1 = false;
         activeNews2 = false;
@@ -163,7 +177,7 @@ public class Scr_News : MonoBehaviour
             using (ExcelPackage excel = new ExcelPackage(fs))
             {
                 ExcelWorksheets workSheets = excel.Workbook.Worksheets;
-                switch (mode.Language)
+                switch (Language)
                 {
                     case "SimpleChinese":
                         LoadExcel(workSheets, 1, i);

@@ -21,12 +21,11 @@ public class Scr_Mode : MonoBehaviour
     [InspectorShow("当前语言")]
     public string Language = "SimpleChinese";
     [HideInInspector]
-    public bool isLoad = false;
 
     void Awake()
     {
         gameMode = GameMode.Normal;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         if (!Directory.Exists(Application.persistentDataPath + "/save"))
         {
             Directory.CreateDirectory(Application.persistentDataPath + "/save");
@@ -76,13 +75,93 @@ public class Scr_Mode : MonoBehaviour
         }
     }
 
+    public void Load()
+    {
+        string path = Application.persistentDataPath + "setting.set";
+        if (!File.Exists(path))
+        {
+            XmlDocument xml = new XmlDocument();
+            XmlDeclaration xmlDeclaration = xml.CreateXmlDeclaration("1.0", "UTF-8", null);//固定格式
+            xml.AppendChild(xmlDeclaration);
+            XmlElement root = xml.CreateElement("Set");
 
+            XmlElement XLanguage = xml.CreateElement("Language");
+            XLanguage.InnerText = Language;
+            root.AppendChild(XLanguage);
+
+            XmlElement XMode = xml.CreateElement("Mode");
+            XMode.InnerText = gameMode.ToString();
+            root.AppendChild(XMode);
+
+            XmlElement XSMode = xml.CreateElement("SMode");
+            XSMode.InnerText = "Load";
+            root.AppendChild(XSMode);
+
+            xml.AppendChild(root);
+            //最后保存文件
+            xml.Save(path);
+        }
+        else
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(path);
+            XmlElement xmlNode = xmlDoc.DocumentElement;
+            foreach (XmlNode elements in xmlNode)
+            {
+                if (elements == null)
+                    continue;
+                if (elements.LocalName == "SMode")
+                {
+                    elements.InnerText = "Load";
+                }
+            }
+            xmlDoc.Save(path);
+        }
+        SceneManager.LoadScene("StartA");
+    }
 
     public void NewStart()
     {
-        SceneManager.LoadScene("Game");
+        string path = Application.persistentDataPath + "setting.set";
+        if (!File.Exists(path))
+        {
+            XmlDocument xml = new XmlDocument();
+            XmlDeclaration xmlDeclaration = xml.CreateXmlDeclaration("1.0", "UTF-8", null);//固定格式
+            xml.AppendChild(xmlDeclaration);
+            XmlElement root = xml.CreateElement("Set");
+
+            XmlElement XLanguage = xml.CreateElement("Language");
+            XLanguage.InnerText = Language;
+            root.AppendChild(XLanguage);
+
+            XmlElement XMode = xml.CreateElement("Mode");
+            XMode.InnerText = gameMode.ToString();
+            root.AppendChild(XMode);
+
+            XmlElement XSMode = xml.CreateElement("SMode");
+            XSMode.InnerText = "New";
+            root.AppendChild(XSMode);
+
+            xml.AppendChild(root);
+            //最后保存文件
+            xml.Save(path);
+        }
+        else
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(path);
+            XmlElement xmlNode = xmlDoc.DocumentElement;
+            foreach (XmlNode elements in xmlNode)
+            {
+                if (elements == null)
+                    continue;
+                if (elements.LocalName == "SMode")
+                {
+                    elements.InnerText = "New";
+                }
+            }
+            xmlDoc.Save(path);
+        }
+        SceneManager.LoadScene("StartA");
     }
-
-
-
 }
