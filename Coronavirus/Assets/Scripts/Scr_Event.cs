@@ -218,7 +218,6 @@ public class Scr_Event : MonoBehaviour
 
     Scr_TimeControl time;
     Scr_Num num;
-    Scr_Mode mode;
     Scr_News news;
 
     public GameObject EventGroup;
@@ -252,6 +251,8 @@ public class Scr_Event : MonoBehaviour
     List<float> staticProbability = new List<float>();//事件的发生概率
     List<int> isImportantList = new List<int>();//看事件是否是重要
 
+    string Language = "";
+    bool isLoad = false;
 
     int count;
 
@@ -259,13 +260,35 @@ public class Scr_Event : MonoBehaviour
     {
         time = FindObjectOfType<Scr_TimeControl>();
         num = FindObjectOfType<Scr_Num>();
-        mode = FindObjectOfType<Scr_Mode>();
         news = FindObjectOfType<Scr_News>();
         EventGroup.SetActive(false);
         CG.SetActive(false);
 
+        XmlDocument SxmlDoc = new XmlDocument();
+        SxmlDoc.Load(Application.persistentDataPath + "setting.set");
+        XmlElement SxmlNode = SxmlDoc.DocumentElement;
+        foreach (XmlNode elements in SxmlNode)
+        {
+            if (elements == null)
+                continue;
+            if (elements.LocalName == "SMode")
+            {
+                if (elements.InnerText == "Load")
+                {
+                    isLoad = true;
+                }
+            }
+            if (elements.LocalName == "Language")
+            {
+                if (elements.InnerText == "SimpleChinese")
+                {
+                    Language = "SimpleChinese";
+                }
+            }
+        }
+
         //对事件的类别进行初始化，分出未激活的子事件与普通事件,并初始化事件发生的概率
-        if (mode.isLoad)
+        if (isLoad)
         {
             XmlDocument xmlSave = new XmlDocument();
             xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
@@ -377,7 +400,7 @@ public class Scr_Event : MonoBehaviour
                     if (trait.Count != 0)
                     {
                         var straitE = trait[0] as XmlElement;
-                        if (!mode.isLoad)
+                        if (!isLoad)
                         {
                             //是否是子事件
                             if (straitE.GetElementsByTagName("subEvent").Count == 1)
@@ -409,7 +432,7 @@ public class Scr_Event : MonoBehaviour
                     }
                     else
                     {
-                        if (!mode.isLoad)
+                        if (!isLoad)
                         {
                             ActiveEvent.Add(i);
                         }
@@ -646,7 +669,7 @@ public class Scr_Event : MonoBehaviour
                 using (ExcelPackage excel = new ExcelPackage(fs))
                 {
                     ExcelWorksheets workSheets = excel.Workbook.Worksheets;
-                    switch (mode.Language)
+                    switch (Language)
                     {
                         case "SimpleChinese":
                             LoadExcel(workSheets, 1, i);

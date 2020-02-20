@@ -45,14 +45,44 @@ public class Scr_Num : MonoBehaviour
     public Text ProcessText;
     public Image FullProcess;
 
-
-    Scr_Mode Mode;
+    GameMode gamemode = GameMode.Normal;
+    bool isLoad = false;
 
     void Awake()
     {
-        Mode = FindObjectOfType<Scr_Mode>();
+        XmlDocument SxmlDoc = new XmlDocument();
+        SxmlDoc.Load(Application.persistentDataPath + "setting.set");
+        XmlElement SxmlNode = SxmlDoc.DocumentElement;
+        foreach (XmlNode elements in SxmlNode)
+        {
+            if (elements == null)
+                continue;
+            if (elements.LocalName == "Mode")
+            {
+                switch (elements.InnerText)
+                {
+                    case "Normal":
+                        gamemode = GameMode.Normal;
+                        break;
+                    case "Test":
+                        gamemode = GameMode.Test;
+                        break;
+                    case "Tutorial":
+                        gamemode = GameMode.Tutorial;
+                        break;
+                }
+            }
+            if (elements.LocalName == "SMode")
+            {
+                if (elements.InnerText == "Load")
+                {
+                    isLoad = true;
+                }
+            }
+        }
+
         VaccineProcess = 0;
-        if (Mode.isLoad)
+        if (isLoad)
         {
             XmlDocument xmlSave = new XmlDocument();
             xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
@@ -80,7 +110,7 @@ public class Scr_Num : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mode.gameMode == GameMode.Normal)
+        if (gamemode == GameMode.Normal)
         {
             if (InfluenceVal <= 999 && InfluenceVal >= -99)
             {

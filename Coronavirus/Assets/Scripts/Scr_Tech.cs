@@ -86,7 +86,6 @@ public class Scr_Tech : MonoBehaviour
 
     List<int> finishTech = new List<int>();
 
-    Scr_Mode mode;
     Scr_Num Value;
 
     string TechTitle;
@@ -94,9 +93,34 @@ public class Scr_Tech : MonoBehaviour
 
     int count = 0;
 
+    string Language = "";
+    bool isLoad = false;
+
     void Awake()
     {
-        mode = FindObjectOfType<Scr_Mode>();
+        XmlDocument SxmlDoc = new XmlDocument();
+        SxmlDoc.Load(Application.persistentDataPath + "setting.set");
+        XmlElement SxmlNode = SxmlDoc.DocumentElement;
+        foreach (XmlNode elements in SxmlNode)
+        {
+            if (elements == null)
+                continue;
+            if (elements.LocalName == "SMode")
+            {
+                if (elements.InnerText == "Load")
+                {
+                    isLoad = true;
+                }
+            }
+            if (elements.LocalName == "Language")
+            {
+                if (elements.InnerText == "SimpleChinese")
+                {
+                    Language = "SimpleChinese";
+                }
+            }
+        }
+
         Value = FindObjectOfType<Scr_Num>();
         TechIndex = -1;
         TextUpdate = true;
@@ -105,7 +129,7 @@ public class Scr_Tech : MonoBehaviour
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(Application.dataPath + "/Resources/Xml/Tech.xml");
         XmlElement xmlNode = xmlDoc.DocumentElement;
-        if (mode.isLoad)
+        if (isLoad)
         {
             XmlDocument xmlSave = new XmlDocument();
             xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
@@ -312,7 +336,7 @@ public class Scr_Tech : MonoBehaviour
             using (ExcelPackage excel = new ExcelPackage(fs))
             {
                 ExcelWorksheets workSheets = excel.Workbook.Worksheets;
-                switch (mode.Language)
+                switch (Language)
                 {
                     case "SimpleChinese":
                         LoadExcel(workSheets, 1, i);

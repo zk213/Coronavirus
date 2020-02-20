@@ -5,11 +5,11 @@ public class Scr_Camera : MonoBehaviour
     public float speed = 5;
     public float iniX = 15;
     public float iniY = 10;
-    public float iniS = 12;
+    public float iniS = 13;
 
     public float zoomSpeed = 0.2f;
     public float minZoom = 4;
-    public float maxZoom = 12;
+    public float maxZoom = 13;
 
     float maxW = 21.5f;
     float maxH = 12.5f;
@@ -18,6 +18,15 @@ public class Scr_Camera : MonoBehaviour
 
     void Awake()
     {
+        speed = 5;
+        iniX = 15;
+        iniY = 10;
+        iniS = 15;
+
+        zoomSpeed = 0.2f;
+        minZoom = 4;
+        maxZoom = iniS;
+
         transform.position = new Vector2(iniX, iniY);
         rigid = GetComponent<Rigidbody2D>();
         Camera.main.orthographicSize = iniS;
