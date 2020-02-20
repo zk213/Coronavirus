@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using OfficeOpenXml;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using UnityEngine;
@@ -28,11 +29,44 @@ public class Scr_Color : MonoBehaviour
     int w = 0;
     int h = 0;
 
+    string Language = "";
+    string TotalName = "";
 
     void Start()
     {
+        XmlDocument SxmlDoc = new XmlDocument();
+        SxmlDoc.Load(Application.persistentDataPath + "setting.set");
+        XmlElement SxmlNode = SxmlDoc.DocumentElement;
+        foreach (XmlNode elements in SxmlNode)
+        {
+            if (elements == null)
+                continue;
+            if (elements.LocalName == "Language")
+            {
+                if (elements.InnerText == "SimpleChinese")
+                {
+                    Language = "SimpleChinese";
+                }
+            }
+        }
+        using (FileStream fs = new FileStream(Application.dataPath + "/Resources/Localization/Provinces.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+        {
+            using (ExcelPackage excel = new ExcelPackage(fs))
+            {
+                ExcelWorksheets workSheets = excel.Workbook.Worksheets;
+                switch (Language)
+                {
+                    case "SimpleChinese":
+                        LoadExcel(workSheets, 1, "Total");
+                        break;
+                    default:
+                        LoadExcel(workSheets, 1, "Total");
+                        break;
+                }
+            }
+        }
+        provincesName.text = TotalName;
         MoveSpeed = CCamera.GetComponent<Scr_Camera>().speed;
-        provincesName.text = "";
         textureCol = map.GetPixels32();
         w = map.width;
         h = map.height;
@@ -46,6 +80,7 @@ public class Scr_Color : MonoBehaviour
             if (elements.LocalName == "provincesAmount")
             {
                 int.TryParse(elements.InnerText, out colorNum);
+
             }
             if (elements.LocalName == "province")
             {
@@ -65,6 +100,16 @@ public class Scr_Color : MonoBehaviour
             Provinces[a].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
             Provinces[a].GetComponent<Scr_Provinces>().provinceIndex = a;
             Provinces[a].GetComponent<Scr_Provinces>().provinceName = nameS[a];
+
+            //
+            for (int i = 0; i < 35; i++)
+            {
+                Provinces[a].GetComponent<Scr_Provinces>().People.Add(0);
+            }
+            Provinces[a].GetComponent<Scr_Provinces>().People[0] = 5;
+            //
+
+
             if (!Directory.Exists(Application.persistentDataPath + "/provinces"))
             {
                 Directory.CreateDirectory(Application.persistentDataPath + "/provinces");
@@ -108,7 +153,15 @@ public class Scr_Color : MonoBehaviour
 
 
         }
+        Debug.Log(3);
+    }
 
+    public void ProvincesCheck()
+    {
+        for (int i = 0; i < Provinces.Count; i++)
+        {
+            Provinces[i].GetComponent<Scr_Provinces>().PeopleTurn();
+        }
     }
 
     // Update is called once per frame
@@ -170,7 +223,23 @@ public class Scr_Color : MonoBehaviour
                     if (textureCol[(int)(mouseP.x + mouseP.y * w)].Equals(colorList[a]))
                     {
                         hasHit = true;
-                        provincesName.text = nameS[a];
+                        using (FileStream fs = new FileStream(Application.dataPath + "/Resources/Localization/Provinces.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                        {
+                            using (ExcelPackage excel = new ExcelPackage(fs))
+                            {
+                                ExcelWorksheets workSheets = excel.Workbook.Worksheets;
+                                switch (Language)
+                                {
+                                    case "SimpleChinese":
+                                        LoadExcel(workSheets, 1, nameS[a]);
+                                        break;
+                                    default:
+                                        LoadExcel(workSheets, 1, nameS[a]);
+                                        break;
+                                }
+                            }
+                        }
+
                         thisIndex = a;
                         Provinces[a].GetComponent<Scr_Provinces>().isMe = true;
                     }
@@ -181,9 +250,34 @@ public class Scr_Color : MonoBehaviour
 
             if (!hasHit)
             {
-                provincesName.text = "";
+                provincesName.text = TotalName;
                 thisIndex = -1;
             }
+        }
+    }
+    void LoadExcel(ExcelWorksheets workSheets, int SheetIndex, string Province)
+    {
+        ExcelWorksheet workSheet = workSheets[SheetIndex];//表1，即简体中文那张表
+        int rowCount = workSheet.Dimension.End.Row;//统计表的列数
+        bool hasProvince = false;
+        for (int row = 1; row <= rowCount; row++)
+        {
+            var text = workSheet.Cells[row, 1].Text ?? "Name Error";
+
+            if (text == Province)
+            {
+                provincesName.text = workSheet.Cells[row, 2].Text ?? "Province";
+                hasProvince = true;
+                if (TotalName == "")
+                {
+                    TotalName = workSheet.Cells[row, 2].Text ?? "Province"; ;
+                }
+            }
+
+        }
+        if (!hasProvince)
+        {
+            provincesName.text = Province;
         }
     }
 }

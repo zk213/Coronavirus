@@ -17,28 +17,46 @@ public class Scr_LoadScene : MonoBehaviour
 
     bool LoadOver = false;
 
+    int step = 0;
+
     private void Start()
 
     {
         trunButton.SetActive(false);
         //loadingSlider.value = 0.0f;
 
-        StartCoroutine(AsyncLoading());
 
     }
 
     IEnumerator AsyncLoading()
 
     {
-
+        yield return new WaitForEndOfFrame();
         //异步加载场景
 
         async = SceneManager.LoadSceneAsync("Game");
 
         //阻止当加载完成自动切换
-
+        Debug.Log("Pro :" + async.progress);
         async.allowSceneActivation = false;
+        while (!async.isDone)
+        {
+            //Output the current progress
+            loadingText.text = "Loading progress: " + (async.progress * 100) + "%";
 
+            // Check if the load has finished
+            if (async.progress >= 0.9f)
+            {
+                //Change the Text to show the Scene is ready
+                loadingText.text = "Press the space bar to continue";
+                //Wait to you press the space key to activate the Scene
+                if (Input.GetKeyDown(KeyCode.Space))
+                    //Activate the Scene
+                    async.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
         //读取完毕后返回，系统会自动进入C场景
 
         yield return async;
@@ -48,7 +66,12 @@ public class Scr_LoadScene : MonoBehaviour
     void Update()
 
     {
+        step += 1;
+        if (step == 5)
+        {
+            StartCoroutine(AsyncLoading());
 
+        }
         if (async == null) { return; }
 
         targetValue = async.progress;
@@ -63,18 +86,15 @@ public class Scr_LoadScene : MonoBehaviour
             LoadOver = true;
         }
 
-        //为滑动条赋值
-
 
 
         loadingText.text = ((targetValue / 9 * 10 * 100)).ToString() + "%";
 
         if (LoadOver)
         {
-            Debug.Log(1);
             trunButton.SetActive(true);
 
-
+            //async.allowSceneActivation = true;
         }
 
     }

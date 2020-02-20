@@ -258,6 +258,7 @@ public class Scr_Event : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log(1);
         time = FindObjectOfType<Scr_TimeControl>();
         num = FindObjectOfType<Scr_Num>();
         news = FindObjectOfType<Scr_News>();

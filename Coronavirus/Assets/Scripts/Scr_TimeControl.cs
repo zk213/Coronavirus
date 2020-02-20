@@ -56,6 +56,7 @@ public class Scr_TimeControl : MonoBehaviour
     public GameObject extendbutton;
 
     Scr_Event Event;
+    Scr_Color provinces;
 
     float iniPosy = 9.1f;
     float finPosy = -64.9f;
@@ -93,10 +94,10 @@ public class Scr_TimeControl : MonoBehaviour
         }
 
         Event = FindObjectOfType<Scr_Event>();
+        provinces = FindObjectOfType<Scr_Color>();
         daySpawn = OneSpeedSpawn;
         ShowFullTime = "2019 12 01";
         extendbutton.SetActive(false);
-        Debug.Log(isLoad);
         if (isLoad)
         {
             XmlDocument xmlSave = new XmlDocument();
@@ -143,6 +144,7 @@ public class Scr_TimeControl : MonoBehaviour
             ShowTime();
 
             Event.EventCheck();
+            provinces.ProvincesCheck();
         }
         GlobalTime.text = ShowFullTime;
 
