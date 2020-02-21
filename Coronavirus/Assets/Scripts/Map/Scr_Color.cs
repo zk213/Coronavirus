@@ -9,6 +9,7 @@ public class Scr_Color : MonoBehaviour
 {
     public Texture2D map;
     public Text provincesName;
+    public Text InfectedPeople;
     public Object prefab;
     public GameObject CCamera;
     float MoveSpeed;
@@ -16,7 +17,7 @@ public class Scr_Color : MonoBehaviour
     public float correctX = 1;//0.93f;
     public float correctY = 1;//0.93f;
 
-    public int thisIndex;
+    public int thisIndex = -1;
 
     int colorNum = 3;
 
@@ -31,6 +32,14 @@ public class Scr_Color : MonoBehaviour
 
     string Language = "";
     string TotalName = "";
+
+    List<int> PPTransport = new List<int>();
+    List<int> IPTransport = new List<int>();
+    List<int> Population = new List<int>();
+    List<int> Medicine = new List<int>();
+
+    public int HuBeiPeople = 0;
+    public int GlobalPeople;
 
     void Start()
     {
@@ -66,6 +75,7 @@ public class Scr_Color : MonoBehaviour
             }
         }
         provincesName.text = TotalName;
+        InfectedPeople.text = "感染人数：" + GlobalPeople.ToString();
         MoveSpeed = CCamera.GetComponent<Scr_Camera>().speed;
         textureCol = map.GetPixels32();
         w = map.width;
@@ -88,10 +98,36 @@ public class Scr_Color : MonoBehaviour
                 int.TryParse(elements.Attributes["g"].Value, out int g);
                 int.TryParse(elements.Attributes["b"].Value, out int b);
                 colorList.Add(new Color32((byte)r, (byte)g, (byte)b, 255));
-                nameS.Add(elements.InnerText);
+                foreach (XmlElement element in elements)
+                {
+                    if (element.LocalName == "Name")
+                    {
+                        nameS.Add(element.InnerText);
+                    }
+                    if (element.LocalName == "PPTransport")
+                    {
+                        int.TryParse(element.InnerText, out int a);
+                        PPTransport.Add(a);
+                    }
+                    if (element.LocalName == "IPTransport")
+                    {
+                        int.TryParse(element.InnerText, out int a);
+                        IPTransport.Add(a);
+                    }
+                    if (element.LocalName == "Population")
+                    {
+                        int.TryParse(element.InnerText, out int a);
+                        Population.Add(a);
+                    }
+                    if (element.LocalName == "Medicine")
+                    {
+                        int.TryParse(element.InnerText, out int a);
+                        Medicine.Add(a);
+                    }
+                }
+
             }
         }
-
         for (int a = 0; a < colorNum; a++)
         {
             Provinces.Add((GameObject)Instantiate(prefab, transform.position, transform.rotation));
@@ -100,13 +136,20 @@ public class Scr_Color : MonoBehaviour
             Provinces[a].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
             Provinces[a].GetComponent<Scr_Provinces>().provinceIndex = a;
             Provinces[a].GetComponent<Scr_Provinces>().provinceName = nameS[a];
+            Provinces[a].GetComponent<Scr_Provinces>().PPTransport = PPTransport[a];
+            Provinces[a].GetComponent<Scr_Provinces>().IPTransport = IPTransport[a];
+            Provinces[a].GetComponent<Scr_Provinces>().Population = Population[a];
+            Provinces[a].GetComponent<Scr_Provinces>().Medicine = Medicine[a];
 
             //
             for (int i = 0; i < 35; i++)
             {
                 Provinces[a].GetComponent<Scr_Provinces>().People.Add(0);
             }
-            Provinces[a].GetComponent<Scr_Provinces>().People[0] = 5;
+            if (a == 18)
+            {
+                Provinces[a].GetComponent<Scr_Provinces>().People[0] = 1;
+            }
             //
 
 
@@ -153,15 +196,25 @@ public class Scr_Color : MonoBehaviour
 
 
         }
-        Debug.Log(3);
     }
 
     public void ProvincesCheck()
     {
+        GlobalPeople = 0;
         for (int i = 0; i < Provinces.Count; i++)
         {
             Provinces[i].GetComponent<Scr_Provinces>().PeopleTurn();
+            GlobalPeople += Provinces[i].GetComponent<Scr_Provinces>().TotalPeople;
         }
+        if (thisIndex >= 0)
+        {
+            InfectedPeople.text = "感染人数：" + Provinces[thisIndex].GetComponent<Scr_Provinces>().TotalPeople.ToString();
+        }
+        else
+        {
+            InfectedPeople.text = "感染人数：" + GlobalPeople.ToString();
+        }
+        Debug.Log(thisIndex);
     }
 
     // Update is called once per frame
@@ -242,6 +295,7 @@ public class Scr_Color : MonoBehaviour
 
                         thisIndex = a;
                         Provinces[a].GetComponent<Scr_Provinces>().isMe = true;
+                        InfectedPeople.text = "感染人数：" + Provinces[a].GetComponent<Scr_Provinces>().TotalPeople.ToString();
                     }
                 }
             }
@@ -252,6 +306,7 @@ public class Scr_Color : MonoBehaviour
             {
                 provincesName.text = TotalName;
                 thisIndex = -1;
+                InfectedPeople.text = "感染人数：" + GlobalPeople.ToString();
             }
         }
     }

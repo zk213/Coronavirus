@@ -1,13 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Scr_LoadScene : MonoBehaviour
 {
     //public Slider loadingSlider;     //显示进度的滑动条
-
-    public Text loadingText;          //显示进度的文本
 
     public GameObject trunButton;
 
@@ -37,23 +34,12 @@ public class Scr_LoadScene : MonoBehaviour
         async = SceneManager.LoadSceneAsync("Game");
 
         //阻止当加载完成自动切换
-        Debug.Log("Pro :" + async.progress);
         async.allowSceneActivation = false;
         while (!async.isDone)
         {
             //Output the current progress
-            loadingText.text = "Loading progress: " + (async.progress * 100) + "%";
 
             // Check if the load has finished
-            if (async.progress >= 0.9f)
-            {
-                //Change the Text to show the Scene is ready
-                loadingText.text = "Press the space bar to continue";
-                //Wait to you press the space key to activate the Scene
-                if (Input.GetKeyDown(KeyCode.Space))
-                    //Activate the Scene
-                    async.allowSceneActivation = true;
-            }
 
             yield return null;
         }
@@ -88,7 +74,6 @@ public class Scr_LoadScene : MonoBehaviour
 
 
 
-        loadingText.text = ((targetValue / 9 * 10 * 100)).ToString() + "%";
 
         if (LoadOver)
         {

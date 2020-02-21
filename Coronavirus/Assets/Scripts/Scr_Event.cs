@@ -462,16 +462,19 @@ public class Scr_Event : MonoBehaviour
     //以下是事件触发机制
     public void EventCheck()//在Scr_TimeControl里的Update里，这样就可以游戏事件里每增加一天才会检查一次，不至于每帧都查
     {
-
-        for (int i = 0; i <= count; i++)
+        if (false)//测试时候先不显示事件
         {
-            //Debug.Log(ActiveEvent.Count);
-
-            if (!FinishEvent.Contains(i) && !UnActiveEvent.Contains(i))//首先不检测已经结束的事件和未激活事件
+            for (int i = 0; i <= count; i++)
             {
-                EventConditionControl(i);
+                //Debug.Log(ActiveEvent.Count);
+
+                if (!FinishEvent.Contains(i) && !UnActiveEvent.Contains(i))//首先不检测已经结束的事件和未激活事件
+                {
+                    EventConditionControl(i);
+                }
             }
         }
+
     }
 
     void LateUpdate()//事件的发生
