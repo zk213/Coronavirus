@@ -9,7 +9,7 @@ public class Scr_Camera : MonoBehaviour
 
     public float zoomSpeed = 0.2f;
     public float minZoom = 4;
-    public float maxZoom = 13;
+    public float maxZoom = 15;
 
     float maxW = 21.5f;
     float maxH = 12.5f;

@@ -167,6 +167,10 @@ public class Scr_Color : MonoBehaviour
             {
                 Provinces[a].GetComponent<Scr_Provinces>().People[0] = 1;
             }
+            else
+            {
+                Provinces[a].GetComponent<Scr_Provinces>().r0 -= 0.5f;
+            }
             //
 
 

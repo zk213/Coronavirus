@@ -26,13 +26,14 @@ public class Scr_Provinces : MonoBehaviour
     int IncubationTurn1 = 60;
     int IncubationTurn2 = 10;
 
-    int r0 = 3;
+    public float r0 = 3;
 
 
     void Awake()
     {
         provinces = FindObjectOfType<Scr_Color>();
         spr = GetComponent<SpriteRenderer>();
+
     }
 
     void Update()
@@ -75,14 +76,14 @@ public class Scr_Provinces : MonoBehaviour
 
         if (TotalPeople != 0)
         {
-            int InfectionProbability = 0;
+            float InfectionProbability = 0;
             switch (IPTransport)
             {
                 case 0:
                     InfectionProbability = 0;
                     break;
                 case 1:
-                    InfectionProbability = 5;
+                    InfectionProbability = 7.5f;
                     break;
                 case 2:
                     InfectionProbability = 10;
@@ -101,12 +102,37 @@ public class Scr_Provinces : MonoBehaviour
                     break;
             }
 
+            switch (Population)
+            {
+                case 0:
+                    InfectionProbability *= 0f;
+                    break;
+                case 1:
+                    InfectionProbability *= 0.3f;
+                    break;
+                case 2:
+                    InfectionProbability *= 0.4f;
+                    break;
+                case 3:
+                    InfectionProbability *= 0.6f;
+                    break;
+                case 4:
+                    InfectionProbability *= 0.8f;
+                    break;
+                case 5:
+                    InfectionProbability *= 1f;
+                    break;
+                default:
+                    InfectionProbability *= 0;
+                    break;
+            }
+
             int InfectionPeople = 0;
             for (int i = 4; i >= 0; i--)
             {
                 if (i != 0)
                 {
-                    InfectionPeople += People[i] * r0 * Random.Range(0, InfectionProbability) / 100;
+                    InfectionPeople += (int)(People[i] * r0 * Random.Range(0, InfectionProbability) / 100);
                     int turn0 = People[i] * Random.Range(0, IncubationTurn0) / 100;
                     if (i != 4)
                     {
@@ -125,7 +151,7 @@ public class Scr_Provinces : MonoBehaviour
                 }
                 else
                 {
-                    InfectionPeople += People[i] * r0 * Random.Range(0, InfectionProbability) / 50;
+                    InfectionPeople += (int)(People[i] * r0 * Random.Range(0, InfectionProbability) / 50);
                     int turn1 = People[i] * Random.Range(0, IncubationTurn1) / 100;
                     int turn2 = People[i] * Random.Range(0, IncubationTurn2) / 100;
                     People[i + 2] += turn2;
@@ -170,8 +196,8 @@ public class Scr_Provinces : MonoBehaviour
             }
             if (provinces.HuBeiPeople > 10)
             {
-                int HuBeiPeople = Mathf.Clamp(provinces.HuBeiPeople, 0, 100);
-                People[0] += HuBeiPeople * r0 * Random.Range(0, MoveProbability) / 100;
+                int HuBeiPeople = Mathf.Clamp(provinces.HuBeiPeople, 0, 20);
+                People[0] += (int)(HuBeiPeople * r0 * Random.Range(0, MoveProbability) / 100);
             }
         }
         TotalPeople = 0;
