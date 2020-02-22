@@ -96,62 +96,13 @@ public class Scr_Tech : MonoBehaviour
     string Language = "";
     bool isLoad = false;
 
-    void Awake()
+    public void Start1()
     {
-        XmlDocument SxmlDoc = new XmlDocument();
-        SxmlDoc.Load(Application.persistentDataPath + "setting.set");
-        XmlElement SxmlNode = SxmlDoc.DocumentElement;
-        foreach (XmlNode elements in SxmlNode)
-        {
-            if (elements == null)
-                continue;
-            if (elements.LocalName == "SMode")
-            {
-                if (elements.InnerText == "Load")
-                {
-                    isLoad = true;
-                }
-            }
-            if (elements.LocalName == "Language")
-            {
-                if (elements.InnerText == "SimpleChinese")
-                {
-                    Language = "SimpleChinese";
-                }
-            }
-        }
-
-        Value = FindObjectOfType<Scr_Num>();
-        TechIndex = -1;
-        TextUpdate = true;
-        canUpgrade = false;
         //对科技摁扭的初始化
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(Application.dataPath + "/Resources/Xml/Tech.xml");
         XmlElement xmlNode = xmlDoc.DocumentElement;
-        if (isLoad)
-        {
-            XmlDocument xmlSave = new XmlDocument();
-            xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
-            XmlElement xmlNodeS = xmlSave.DocumentElement;
-            foreach (XmlNode elementsS in xmlNodeS)
-            {
-                if (elementsS == null)
-                    continue;
-                if (elementsS.LocalName == "Tech")
-                {
-                    if (elementsS.InnerText != "")
-                    {
-                        string[] finishAry = elementsS.InnerText.Split(',');
-                        for (int a = 0; a < finishAry.Length; a++)
-                        {
-                            int.TryParse(finishAry[a], out int b);
-                            finishTech.Add(b);
-                        }
-                    }
-                }
-            }
-        }
+
         foreach (XmlNode elements in xmlNode)
         {
             XmlElement element = elements as XmlElement;
@@ -208,12 +159,76 @@ public class Scr_Tech : MonoBehaviour
                 }
                 int.TryParse(element.SelectSingleNode("cost").InnerText, out int cost);
                 Tech[i].GetComponent<Scr_TechButton>().cost = cost;
-                if (finishTech.Contains(i))
+
+            }
+        }
+    }
+    public void Start2()
+    {
+        XmlDocument SxmlDoc = new XmlDocument();
+        SxmlDoc.Load(Application.persistentDataPath + "setting.set");
+        XmlElement SxmlNode = SxmlDoc.DocumentElement;
+        foreach (XmlNode elements in SxmlNode)
+        {
+            if (elements == null)
+                continue;
+            if (elements.LocalName == "SMode")
+            {
+                if (elements.InnerText == "Load")
                 {
-                    Tech[i].GetComponent<Scr_TechButton>().isLock = false;
+                    isLoad = true;
+                }
+            }
+            if (elements.LocalName == "Language")
+            {
+                if (elements.InnerText == "SimpleChinese")
+                {
+                    Language = "SimpleChinese";
                 }
             }
         }
+        if (isLoad)
+        {
+            XmlDocument xmlSave = new XmlDocument();
+            xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
+            XmlElement xmlNodeS = xmlSave.DocumentElement;
+            foreach (XmlNode elementsS in xmlNodeS)
+            {
+                if (elementsS == null)
+                    continue;
+                if (elementsS.LocalName == "Tech")
+                {
+                    if (elementsS.InnerText != "")
+                    {
+                        string[] finishAry = elementsS.InnerText.Split(',');
+                        for (int a = 0; a < finishAry.Length; a++)
+                        {
+                            int.TryParse(finishAry[a], out int b);
+                            finishTech.Add(b);
+                        }
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < Tech.Count; i++)
+        {
+            if (finishTech.Contains(i))
+            {
+                Tech[i].GetComponent<Scr_TechButton>().isLock = false;
+            }
+        }
+
+    }
+
+    void Awake()
+    {
+
+
+        Value = FindObjectOfType<Scr_Num>();
+        TechIndex = -1;
+        TextUpdate = true;
+        canUpgrade = false;
+
 
 
 

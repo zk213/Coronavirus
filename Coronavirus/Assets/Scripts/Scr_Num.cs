@@ -48,7 +48,7 @@ public class Scr_Num : MonoBehaviour
     GameMode gamemode = GameMode.Normal;
     bool isLoad = false;
 
-    void Awake()
+    public void Start1()
     {
         XmlDocument SxmlDoc = new XmlDocument();
         SxmlDoc.Load(Application.persistentDataPath + "setting.set");
@@ -106,6 +106,7 @@ public class Scr_Num : MonoBehaviour
             }
         }
     }
+
 
     // Update is called once per frame
     void Update()

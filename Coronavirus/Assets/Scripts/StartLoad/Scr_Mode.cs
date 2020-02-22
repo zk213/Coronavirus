@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using System.Xml;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public enum GameMode
 {
@@ -20,10 +19,21 @@ public class Scr_Mode : MonoBehaviour
     public GameMode gameMode;
     [InspectorShow("当前语言")]
     public string Language = "SimpleChinese";
+
+    public GameObject Scene1;
+    public GameObject Scene2;
+    public GameObject Scene3;
     [HideInInspector]
+
 
     void Awake()
     {
+        /*
+         Scene1.SetActive(true);
+        Scene2.SetActive(false);
+        Scene3.SetActive(false);
+         */
+
         gameMode = GameMode.Normal;
         //DontDestroyOnLoad(gameObject);
         if (!Directory.Exists(Application.persistentDataPath + "/save"))
@@ -117,7 +127,9 @@ public class Scr_Mode : MonoBehaviour
             }
             xmlDoc.Save(path);
         }
-        SceneManager.LoadScene("StartA");
+        Scene2.SetActive(true);
+        Scene1.SetActive(false);
+        //SceneManager.LoadScene("StartA");
     }
 
     public void NewStart()
@@ -162,6 +174,7 @@ public class Scr_Mode : MonoBehaviour
             }
             xmlDoc.Save(path);
         }
-        SceneManager.LoadScene("StartA");
+        Scene2.SetActive(true);
+        Scene1.SetActive(false);
     }
 }

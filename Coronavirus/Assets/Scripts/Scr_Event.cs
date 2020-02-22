@@ -219,6 +219,7 @@ public class Scr_Event : MonoBehaviour
     Scr_TimeControl time;
     Scr_Num num;
     Scr_News news;
+    Scr_Load LoadControl;
 
     public GameObject EventGroup;
     public GameObject CG;
@@ -256,15 +257,112 @@ public class Scr_Event : MonoBehaviour
 
     int count;
 
-    void Awake()
+    public void Start1()
     {
-        Debug.Log(1);
-        time = FindObjectOfType<Scr_TimeControl>();
-        num = FindObjectOfType<Scr_Num>();
-        news = FindObjectOfType<Scr_News>();
-        EventGroup.SetActive(false);
-        CG.SetActive(false);
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(Application.dataPath + "/Resources/Xml/Event.xml");
+        XmlElement xmlNode = xmlDoc.DocumentElement;//SelectSingleNode("events").ChildNodes;
+        foreach (XmlNode elements in xmlNode)
+        {
+            //首先要帮憨憨u3d过滤掉注释部分
+            XmlElement element = elements as XmlElement;
+            if (element == null)
+                continue;
+            if (element.LocalName == "eventAmount")
+            {
+                int.TryParse(element.InnerText, out count);
+            }
+            if (element.LocalName == "event")
+            {
+                int.TryParse(element.Attributes["id"].Value, out int i);
 
+                //初始化事件发生的概率
+                var probability = element.GetElementsByTagName("probability");
+                //如果未填写概率，即默认100
+                if (probability.Count == 0)
+                {
+                    dynamicProbability.Add(100);
+                }
+                else
+                {
+                    int.TryParse(probability[0].InnerText, out int TempProbability);
+                    var probabilityA = probability[0] as XmlElement;
+                    dynamicProbability.Add(TempProbability);
+                    if (!FinishEvent.Contains(i))//不检测已经结束的事件
+                    {
+                        //对增加概率的初始化
+                        if (probabilityA.HasAttribute("Add"))
+                        {
+                            isaddProbability.Add(i);
+
+                            addProbability.Add(Convert.ToSingle(probabilityA.Attributes["Add"].Value));
+                        }
+                    }
+                }
+                //检测事件特质
+
+                var trait = element.GetElementsByTagName("trait");
+                if (trait.Count != 0)
+                {
+                    var straitE = trait[0] as XmlElement;
+
+                    //是否是子事件
+                    if (straitE.GetElementsByTagName("subEvent").Count == 1)
+                    {
+                        UnActiveEvent.Add(i);
+                    }
+                    else
+                    {
+                        ActiveEvent.Add(i);
+                    }
+
+                    //是否是隐藏事件
+                    if (straitE.GetElementsByTagName("isInvisible").Count == 1)
+                    {
+                        isInvisibleList.Add(i);
+                    }
+                    //是否是重复事件
+                    if (straitE.GetElementsByTagName("isRepeat").Count == 1)
+                    {
+                        isRepeatList.Add(i);
+                        staticProbability.Add(dynamicProbability[i]);
+                    }
+                    //是否是重要事件
+                    if (straitE.GetElementsByTagName("isImportant").Count == 1)
+                    {
+                        isImportantList.Add(i);
+
+                    }
+                }
+                else
+                {
+                    if (!isLoad)
+                    {
+                        ActiveEvent.Add(i);
+                    }
+                }
+
+                //初始化优先级
+                var priority = element.GetElementsByTagName("priority");
+                //未填写，默认是0
+                if (priority.Count == 0)
+                {
+                    priorityList.Add(0);
+                }
+                else
+                {
+                    var priorityE = priority[0] as XmlElement;
+                    int.TryParse(priorityE.InnerText, out int priorityI);
+                    priorityList.Add(priorityI);
+                }
+
+            }
+        }
+    }
+
+
+    public void Start2()
+    {
         XmlDocument SxmlDoc = new XmlDocument();
         SxmlDoc.Load(Application.persistentDataPath + "setting.set");
         XmlElement SxmlNode = SxmlDoc.DocumentElement;
@@ -291,6 +389,8 @@ public class Scr_Event : MonoBehaviour
         //对事件的类别进行初始化，分出未激活的子事件与普通事件,并初始化事件发生的概率
         if (isLoad)
         {
+            UnActiveEvent = new List<int>();
+            ActiveEvent = new List<int>();
             XmlDocument xmlSave = new XmlDocument();
             xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
             XmlElement xmlNodeS = xmlSave.DocumentElement;
@@ -353,116 +453,22 @@ public class Scr_Event : MonoBehaviour
         {
             FinishEvent.Add(0);//把事件模板进去，让他不会发生
         }
-
-        XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.Load(Application.dataPath + "/Resources/Xml/Event.xml");
-        XmlElement xmlNode = xmlDoc.DocumentElement;//SelectSingleNode("events").ChildNodes;
-        foreach (XmlNode elements in xmlNode)
-        {
-            //首先要帮憨憨u3d过滤掉注释部分
-            XmlElement element = elements as XmlElement;
-            if (element == null)
-                continue;
-            if (element.LocalName == "eventAmount")
-            {
-                int.TryParse(element.InnerText, out count);
-            }
-            if (element.LocalName == "event")
-            {
-                int.TryParse(element.Attributes["id"].Value, out int i);
-
-                //初始化事件发生的概率
-                var probability = element.GetElementsByTagName("probability");
-                //如果未填写概率，即默认100
-                if (probability.Count == 0)
-                {
-                    dynamicProbability.Add(100);
-                }
-                else
-                {
-                    int.TryParse(probability[0].InnerText, out int TempProbability);
-                    var probabilityA = probability[0] as XmlElement;
-                    dynamicProbability.Add(TempProbability);
-                    if (!FinishEvent.Contains(i))//不检测已经结束的事件
-                    {
-                        //对增加概率的初始化
-                        if (probabilityA.HasAttribute("Add"))
-                        {
-                            isaddProbability.Add(i);
-
-                            addProbability.Add(Convert.ToSingle(probabilityA.Attributes["Add"].Value));
-                        }
-                    }
-                }
-                //检测事件特质
-                if (!FinishEvent.Contains(i))//不检测已经结束的事件
-                {
-                    var trait = element.GetElementsByTagName("trait");
-                    if (trait.Count != 0)
-                    {
-                        var straitE = trait[0] as XmlElement;
-                        if (!isLoad)
-                        {
-                            //是否是子事件
-                            if (straitE.GetElementsByTagName("subEvent").Count == 1)
-                            {
-                                UnActiveEvent.Add(i);
-                            }
-                            else
-                            {
-                                ActiveEvent.Add(i);
-                            }
-                        }
-                        //是否是隐藏事件
-                        if (straitE.GetElementsByTagName("isInvisible").Count == 1)
-                        {
-                            isInvisibleList.Add(i);
-                        }
-                        //是否是重复事件
-                        if (straitE.GetElementsByTagName("isRepeat").Count == 1)
-                        {
-                            isRepeatList.Add(i);
-                            staticProbability.Add(dynamicProbability[i]);
-                        }
-                        //是否是重要事件
-                        if (straitE.GetElementsByTagName("isImportant").Count == 1)
-                        {
-                            isImportantList.Add(i);
-
-                        }
-                    }
-                    else
-                    {
-                        if (!isLoad)
-                        {
-                            ActiveEvent.Add(i);
-                        }
-                    }
-                }
-                //初始化优先级
-                var priority = element.GetElementsByTagName("priority");
-                //未填写，默认是0
-                if (priority.Count == 0)
-                {
-                    priorityList.Add(0);
-                }
-                else
-                {
-                    var priorityE = priority[0] as XmlElement;
-                    int.TryParse(priorityE.InnerText, out int priorityI);
-                    priorityList.Add(priorityI);
-                }
-
-            }
-        }
-        //Debug.Log(ActiveEvent.Count);
+    }
+    void Awake()
+    {
+        time = FindObjectOfType<Scr_TimeControl>();
+        num = FindObjectOfType<Scr_Num>();
+        news = FindObjectOfType<Scr_News>();
+        LoadControl = FindObjectOfType<Scr_Load>();
+        EventGroup.SetActive(false);
+        CG.SetActive(false);
 
     }
 
     //以下是事件触发机制
     public void EventCheck()//在Scr_TimeControl里的Update里，这样就可以游戏事件里每增加一天才会检查一次，不至于每帧都查
     {
-        if (false)//测试时候先不显示事件
+        if (true)//测试时候先不显示事件
         {
             for (int i = 0; i <= count; i++)
             {
@@ -479,6 +485,7 @@ public class Scr_Event : MonoBehaviour
 
     void LateUpdate()//事件的发生
     {
+        if (!LoadControl.StartControl) { return; }
         if (showEvent) { return; }
         if (HappenEvent.Count == 1)
         {
@@ -661,7 +668,7 @@ public class Scr_Event : MonoBehaviour
 
     void HappeningEvent(int i)
     {
-        if (!isInvisibleList.Contains(i))
+        if (!isInvisibleList.Contains(HappenEvent[i]))
         {
             TempTimeMode = time.timeMode;
             showEvent = true;
@@ -754,7 +761,6 @@ public class Scr_Event : MonoBehaviour
             ReadyEvent.Add(HappenEvent[i]);
             dynamicProbability[HappenEvent[i]] = staticProbability[isRepeatList.FindIndex(a => a == HappenEvent[i])];//概率重置
             HappenEvent.Remove(HappenEvent[i]);
-            Debug.Log("重复");
         }
 
 

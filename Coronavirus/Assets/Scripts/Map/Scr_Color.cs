@@ -14,12 +14,14 @@ public class Scr_Color : MonoBehaviour
     public GameObject CCamera;
     float MoveSpeed;
 
+    Scr_Load LoadControl;
+
     public float correctX = 1;//0.93f;
     public float correctY = 1;//0.93f;
 
     public int thisIndex = -1;
 
-    int colorNum = 3;
+    public int colorNum = 0;
 
     List<Color32> colorList = new List<Color32>();
     List<GameObject> Provinces = new List<GameObject>();
@@ -41,8 +43,11 @@ public class Scr_Color : MonoBehaviour
     public int HuBeiPeople = 0;
     public int GlobalPeople;
 
-    void Start()
+    public int LoadOrder = 0;
+
+    public void Start3()
     {
+        //语言的初始化
         XmlDocument SxmlDoc = new XmlDocument();
         SxmlDoc.Load(Application.persistentDataPath + "setting.set");
         XmlElement SxmlNode = SxmlDoc.DocumentElement;
@@ -76,10 +81,12 @@ public class Scr_Color : MonoBehaviour
         }
         provincesName.text = TotalName;
         InfectedPeople.text = "感染人数：" + GlobalPeople.ToString();
-        MoveSpeed = CCamera.GetComponent<Scr_Camera>().speed;
-        textureCol = map.GetPixels32();
-        w = map.width;
-        h = map.height;
+
+
+    }
+    public void Start1()
+    {
+        //省份信息的初始化
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(Application.dataPath + "/Resources/Xml/Provinces.xml");
         XmlElement xmlNode = xmlDoc.DocumentElement;
@@ -128,7 +135,17 @@ public class Scr_Color : MonoBehaviour
 
             }
         }
-        for (int a = 0; a < colorNum; a++)
+    }
+    public void Start2()
+    {
+        int LoadOrder1 = LoadOrder;
+        int LoadOrder2 = LoadOrder + 2;
+        if (LoadOrder2 >= colorNum)
+        {
+            LoadOrder2 = colorNum;
+        }
+
+        for (int a = LoadOrder1; a < LoadOrder2; a++)
         {
             Provinces.Add((GameObject)Instantiate(prefab, transform.position, transform.rotation));
             Provinces[a].transform.SetParent(gameObject.transform);
@@ -192,10 +209,23 @@ public class Scr_Color : MonoBehaviour
                 colTexture.LoadImage(imgByte);
                 Provinces[a].GetComponent<SpriteRenderer>().sprite = Sprite.Create(colTexture, new Rect(0, 0, colTexture.width, colTexture.height), new Vector2(0, 0));
             }
-
-
-
         }
+        LoadOrder += 2;
+        if (LoadOrder >= colorNum)
+        {
+            LoadOrder = -1;
+        }
+    }
+    void Start()
+    {
+        LoadControl = FindObjectOfType<Scr_Load>();
+
+        MoveSpeed = CCamera.GetComponent<Scr_Camera>().speed;
+        textureCol = map.GetPixels32();
+        w = map.width;
+        h = map.height;
+
+
     }
 
     public void ProvincesCheck()
@@ -221,6 +251,7 @@ public class Scr_Color : MonoBehaviour
     void Update()
     {// + CCamera.transform.position.x * MoveSpeed * 20
         //Debug.Log(Screen.width + "," + Screen.height);
+        if (!LoadControl.StartControl) { return; }
         switch (((float)Screen.width / (float)Screen.height))
         {
             case (16f / 9f):

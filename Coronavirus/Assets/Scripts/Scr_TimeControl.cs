@@ -57,6 +57,7 @@ public class Scr_TimeControl : MonoBehaviour
 
     Scr_Event Event;
     Scr_Color provinces;
+    Scr_Load LoadControl;
 
     float iniPosy = 9.1f;
     float finPosy = -64.9f;
@@ -74,8 +75,7 @@ public class Scr_TimeControl : MonoBehaviour
 
     bool isLoad = false;
 
-    // Start is called before the first frame update
-    void Start()
+    public void Start1()
     {
         XmlDocument SxmlDoc = new XmlDocument();
         SxmlDoc.Load(Application.persistentDataPath + "setting.set");
@@ -93,11 +93,6 @@ public class Scr_TimeControl : MonoBehaviour
             }
         }
 
-        Event = FindObjectOfType<Scr_Event>();
-        provinces = FindObjectOfType<Scr_Color>();
-        daySpawn = OneSpeedSpawn;
-        ShowFullTime = "2019 12 01";
-        extendbutton.SetActive(false);
         if (isLoad)
         {
             XmlDocument xmlSave = new XmlDocument();
@@ -121,9 +116,25 @@ public class Scr_TimeControl : MonoBehaviour
         }
     }
 
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+
+        Event = FindObjectOfType<Scr_Event>();
+        provinces = FindObjectOfType<Scr_Color>();
+        LoadControl = FindObjectOfType<Scr_Load>();
+        daySpawn = OneSpeedSpawn;
+        ShowFullTime = "2019 12 01";
+        extendbutton.SetActive(false);
+
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (!LoadControl.StartControl) { return; }
         if (timeMode != TimeMode.Pause)
         {
             TempDay += Time.deltaTime;
