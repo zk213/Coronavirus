@@ -50,6 +50,11 @@ public class Scr_Num : MonoBehaviour
 
     public void Start1()
     {
+        InfluenceVal = 0;
+        CohesionVal = 0;
+        VaccineProcess = 0;
+        gamemode = GameMode.Normal;
+        isLoad = false;
         XmlDocument SxmlDoc = new XmlDocument();
         SxmlDoc.Load(Application.persistentDataPath + "setting.set");
         XmlElement SxmlNode = SxmlDoc.DocumentElement;

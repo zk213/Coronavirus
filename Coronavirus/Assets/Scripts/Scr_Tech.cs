@@ -165,6 +165,13 @@ public class Scr_Tech : MonoBehaviour
     }
     public void Start2()
     {
+        Language = "";
+        isLoad = false;
+        finishTech = new List<int>();
+        TechIndex = -1;
+        TextUpdate = true;
+        canUpgrade = false;
+
         XmlDocument SxmlDoc = new XmlDocument();
         SxmlDoc.Load(Application.persistentDataPath + "setting.set");
         XmlElement SxmlNode = SxmlDoc.DocumentElement;

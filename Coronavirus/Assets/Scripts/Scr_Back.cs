@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Scr_Back : MonoBehaviour
 {
@@ -7,8 +6,12 @@ public class Scr_Back : MonoBehaviour
     public GameObject UpGradePage;
     public GameObject StatisticPage;
 
+    public GameObject Scene1;
+    public GameObject Scene3;
+
     Scr_Save save;
     Scr_TimeControl time;
+    Scr_Load load;
 
     TimeMode TempTimeMode;
     bool OpenBack = false;
@@ -18,6 +21,7 @@ public class Scr_Back : MonoBehaviour
         BackPage.SetActive(false);
         save = FindObjectOfType<Scr_Save>();
         time = FindObjectOfType<Scr_TimeControl>();
+        load = FindObjectOfType<Scr_Load>();
     }
 
     // Update is called once per frame
@@ -56,7 +60,9 @@ public class Scr_Back : MonoBehaviour
     public void ReturnStartScene()
     {
         save.SaveButton();
-        SceneManager.LoadScene("Start");
+        load.StartControl = false;
+        Scene1.SetActive(true);
+        Scene3.SetActive(false);
     }
 
     public void OpenSettingPage()

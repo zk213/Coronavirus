@@ -7305,6 +7305,8 @@ MonoBehaviour:
   BackPage: {fileID: 1394114993}
   UpGradePage: {fileID: 134378224}
   StatisticPage: {fileID: 1129727342}
+  Scene1: {fileID: 1278395229}
+  Scene3: {fileID: 339385667}
 --- !u!1 &1040661515
 GameObject:
   m_ObjectHideFlags: 0

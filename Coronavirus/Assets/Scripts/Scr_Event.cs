@@ -257,6 +257,16 @@ public class Scr_Event : MonoBehaviour
 
     int count;
 
+    //记录事件列表，便于初始化
+    List<int> RUnActiveEvent = new List<int>();//未激活事件，未激活事件就像事件2那样，需要有前一个事件的完成才会激活，在游戏运行时，游戏不会检测未激活事件的触发条件
+    List<int> RActiveEvent = new List<int>();//激活事件，已激活事件就是母事件（没有前置需求的事件）和已经激活的子事件，游戏会检测他们的条件
+    List<int> RReadyEvent = new List<int>();//就绪事件，就绪事件就是所有条件都满足的事件，他会每回合过一次概率，如果概率过了就会触发事件，如果没有继续等待下一回合
+    List<int> RFinishEvent = new List<int>();//已发生事件,无论如何也不会再检测了，即使触发条件都成立
+    List<float> RdynamicProbability = new List<float>();//事件的发生概率
+    List<float> RaddProbability = new List<float>();//事件增加的概率
+    List<int> RisaddProbability = new List<int>();//有增加的概率的事件
+    //
+
     public void Start1()
     {
         XmlDocument xmlDoc = new XmlDocument();
@@ -358,11 +368,29 @@ public class Scr_Event : MonoBehaviour
 
             }
         }
+        //储存一下
+        RUnActiveEvent = UnActiveEvent;
+        RActiveEvent = ActiveEvent;
+        RReadyEvent = ReadyEvent;
+        RFinishEvent = FinishEvent;
+        RdynamicProbability = dynamicProbability;
+        RaddProbability = addProbability;
+        RisaddProbability = isaddProbability;
     }
 
 
     public void Start2()
     {
+        bool isLoad = false;
+
+        UnActiveEvent = RUnActiveEvent;
+        ActiveEvent = RActiveEvent;
+        ReadyEvent = RReadyEvent;
+        FinishEvent = RFinishEvent;
+        dynamicProbability = RdynamicProbability;
+        addProbability = RaddProbability;
+        isaddProbability = RisaddProbability;
+
         XmlDocument SxmlDoc = new XmlDocument();
         SxmlDoc.Load(Application.persistentDataPath + "setting.set");
         XmlElement SxmlNode = SxmlDoc.DocumentElement;
@@ -391,6 +419,8 @@ public class Scr_Event : MonoBehaviour
         {
             UnActiveEvent = new List<int>();
             ActiveEvent = new List<int>();
+            FinishEvent = new List<int>();
+            ReadyEvent = new List<int>();
             XmlDocument xmlSave = new XmlDocument();
             xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
             XmlElement xmlNodeS = xmlSave.DocumentElement;

@@ -77,6 +77,13 @@ public class Scr_TimeControl : MonoBehaviour
 
     public void Start1()
     {
+        Year = 2019;
+        Month = 12;
+        Day = 1;
+        showbutton = false;
+        showbuttonmovefinish = true;
+
+        bool isLoad = false;
         XmlDocument SxmlDoc = new XmlDocument();
         SxmlDoc.Load(Application.persistentDataPath + "setting.set");
         XmlElement SxmlNode = SxmlDoc.DocumentElement;

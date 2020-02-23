@@ -34,6 +34,9 @@ public class Scr_Color : MonoBehaviour
 
     string Language = "";
     string TotalName = "";
+    string NumInfected = "";
+    bool isLoad = false;
+
 
     List<int> PPTransport = new List<int>();
     List<int> IPTransport = new List<int>();
@@ -45,8 +48,17 @@ public class Scr_Color : MonoBehaviour
 
     public int LoadOrder = 0;
 
+
+
     public void Start3()
     {
+        thisIndex = -1;
+        Language = "";
+        TotalName = "";
+        NumInfected = "";
+        isLoad = false;
+        HuBeiPeople = 0;
+        GlobalPeople = 0;
         //语言的初始化
         XmlDocument SxmlDoc = new XmlDocument();
         SxmlDoc.Load(Application.persistentDataPath + "setting.set");
@@ -62,6 +74,13 @@ public class Scr_Color : MonoBehaviour
                     Language = "SimpleChinese";
                 }
             }
+            if (elements.LocalName == "SMode")
+            {
+                if (elements.InnerText == "Load")
+                {
+                    isLoad = true;
+                }
+            }
         }
         using (FileStream fs = new FileStream(Application.dataPath + "/Resources/Localization/Provinces.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
         {
@@ -72,17 +91,204 @@ public class Scr_Color : MonoBehaviour
                 {
                     case "SimpleChinese":
                         LoadExcel(workSheets, 1, "Total");
+                        LoadExcel(workSheets, 1, "NumInfected");
                         break;
                     default:
                         LoadExcel(workSheets, 1, "Total");
+                        LoadExcel(workSheets, 1, "NumInfected");
                         break;
                 }
             }
         }
         provincesName.text = TotalName;
-        InfectedPeople.text = "感染人数：" + GlobalPeople.ToString();
 
 
+
+        if (isLoad)
+        {
+            PPTransport = new List<int>();
+            IPTransport = new List<int>();
+            Population = new List<int>();
+            Medicine = new List<int>();
+            XmlDocument xmlSave = new XmlDocument();
+            xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
+            XmlElement xmlNodeS = xmlSave.DocumentElement;
+            foreach (XmlNode elementsS in xmlNodeS)
+            {
+                if (elementsS == null)
+                    continue;
+                switch (elementsS.LocalName)
+                {
+                    case "PPTransport":
+                        if (elementsS.InnerText != "")
+                        {
+                            string[] finishAry = elementsS.InnerText.Split(',');
+                            for (int a = 0; a < finishAry.Length; a++)
+                            {
+                                int.TryParse(finishAry[a], out int bb);
+                                PPTransport.Add(bb);
+                            }
+                        }
+                        break;
+                    case "IPTransport":
+                        if (elementsS.InnerText != "")
+                        {
+                            string[] finishAry = elementsS.InnerText.Split(',');
+                            for (int a = 0; a < finishAry.Length; a++)
+                            {
+                                int.TryParse(finishAry[a], out int bb);
+                                IPTransport.Add(bb);
+                            }
+                        }
+                        break;
+                    case "Population":
+                        if (elementsS.InnerText != "")
+                        {
+                            string[] finishAry = elementsS.InnerText.Split(',');
+                            for (int a = 0; a < finishAry.Length; a++)
+                            {
+                                int.TryParse(finishAry[a], out int bb);
+                                Population.Add(bb);
+                            }
+                        }
+                        break;
+                    case "Medicine":
+                        if (elementsS.InnerText != "")
+                        {
+                            string[] finishAry = elementsS.InnerText.Split(',');
+                            for (int a = 0; a < finishAry.Length; a++)
+                            {
+                                int.TryParse(finishAry[a], out int bb);
+                                Medicine.Add(bb);
+                            }
+                        }
+                        break;
+                    case "Material":
+                        int.TryParse(elementsS.InnerText, out int b);
+                        Provinces[18].GetComponent<Scr_Provinces>().Material = b;
+                        break;
+                    case "Personnel":
+                        int.TryParse(elementsS.InnerText, out int c);
+                        Provinces[18].GetComponent<Scr_Provinces>().Personnel = c;
+                        break;
+                    case "Bed":
+                        int.TryParse(elementsS.InnerText, out int d);
+                        Provinces[18].GetComponent<Scr_Provinces>().Bed = d;
+                        break;
+                    default:
+                        break;
+                }
+                for (int i = 0; i < 35; i++)
+                {
+                    if (elementsS.LocalName == "People" + (i + 1).ToString())
+                    {
+                        if (elementsS.InnerText != "")
+                        {
+                            string[] finishAry = elementsS.InnerText.Split(',');
+                            for (int a = 0; a < colorNum; a++)
+                            {
+                                int.TryParse(finishAry[a], out int b);
+                                Provinces[a].GetComponent<Scr_Provinces>().People[i] = b;
+                            }
+                        }
+                    }
+                }
+            }
+            for (int a = 0; a < colorNum; a++)
+            {
+                Provinces[a].GetComponent<Scr_Provinces>().PPTransport = PPTransport[a];
+                Provinces[a].GetComponent<Scr_Provinces>().IPTransport = IPTransport[a];
+                Provinces[a].GetComponent<Scr_Provinces>().Population = Population[a];
+                Provinces[a].GetComponent<Scr_Provinces>().Medicine = Medicine[a];
+            }
+        }
+        for (int i = 0; i < Provinces.Count; i++)
+        {
+            Provinces[i].GetComponent<Scr_Provinces>().PeopleTurn();
+            GlobalPeople += Provinces[i].GetComponent<Scr_Provinces>().TotalPeople;
+        }
+        InfectedPeople.text = NumInfected + GlobalPeople.ToString();
+    }
+
+    public void LocalSave()
+    {
+
+        string SaveString1 = "";
+        string SaveString2 = "";
+        string SaveString3 = "";
+        string SaveString4 = "";
+        for (int a = 0; a < colorNum; a++)
+        {
+            if (SaveString1.Length == 0)
+            {
+                SaveString1 = Provinces[a].GetComponent<Scr_Provinces>().PPTransport.ToString();
+                SaveString2 = Provinces[a].GetComponent<Scr_Provinces>().IPTransport.ToString();
+                SaveString3 = Provinces[a].GetComponent<Scr_Provinces>().Population.ToString();
+                SaveString4 = Provinces[a].GetComponent<Scr_Provinces>().Medicine.ToString();
+            }
+            else
+            {
+                SaveString1 += "," + Provinces[a].GetComponent<Scr_Provinces>().PPTransport.ToString();
+                SaveString2 += "," + Provinces[a].GetComponent<Scr_Provinces>().IPTransport.ToString();
+                SaveString3 += "," + Provinces[a].GetComponent<Scr_Provinces>().Population.ToString();
+                SaveString4 += "," + Provinces[a].GetComponent<Scr_Provinces>().Medicine.ToString();
+            }
+        }
+
+        XmlDocument xmlSave = new XmlDocument();
+        xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
+        XmlElement xmlNodeS = xmlSave.DocumentElement;
+        foreach (XmlNode elementsS in xmlNodeS)
+        {
+            if (elementsS == null)
+                continue;
+            switch (elementsS.LocalName)
+            {
+                case "PPTransport":
+                    elementsS.InnerText = SaveString1;
+                    break;
+                case "IPTransport":
+                    elementsS.InnerText = SaveString2;
+                    break;
+                case "Population":
+                    elementsS.InnerText = SaveString3;
+                    break;
+                case "Medicine":
+                    elementsS.InnerText = SaveString4;
+                    break;
+                case "Material":
+                    elementsS.InnerText = Provinces[18].GetComponent<Scr_Provinces>().Material.ToString();
+                    break;
+                case "Personnel":
+                    elementsS.InnerText = Provinces[18].GetComponent<Scr_Provinces>().Personnel.ToString();
+                    break;
+                case "Bed":
+                    elementsS.InnerText = Provinces[18].GetComponent<Scr_Provinces>().Bed.ToString();
+                    break;
+            }
+            for (int i = 0; i < 35; i++)
+            {
+                string People = "";
+                if (elementsS.LocalName == "People" + (i + 1).ToString())
+                {
+
+                    for (int a = 0; a < colorNum; a++)
+                    {
+                        if (People.Length == 0)
+                        {
+                            People = Provinces[a].GetComponent<Scr_Provinces>().People[i].ToString();
+                        }
+                        else
+                        {
+                            People += "," + Provinces[a].GetComponent<Scr_Provinces>().People[i].ToString();
+                        }
+                    }
+                    elementsS.InnerText = People;
+                }
+
+            }
+        }
+        xmlSave.Save(Application.persistentDataPath + "/save/Save.save");
     }
     public void Start1()
     {
@@ -242,11 +448,11 @@ public class Scr_Color : MonoBehaviour
         }
         if (thisIndex >= 0)
         {
-            InfectedPeople.text = "感染人数：" + Provinces[thisIndex].GetComponent<Scr_Provinces>().TotalPeople.ToString();
+            InfectedPeople.text = NumInfected + Provinces[thisIndex].GetComponent<Scr_Provinces>().TotalPeople.ToString();
         }
         else
         {
-            InfectedPeople.text = "感染人数：" + GlobalPeople.ToString();
+            InfectedPeople.text = NumInfected + GlobalPeople.ToString();
         }
         Debug.Log(thisIndex);
     }
@@ -330,7 +536,7 @@ public class Scr_Color : MonoBehaviour
 
                         thisIndex = a;
                         Provinces[a].GetComponent<Scr_Provinces>().isMe = true;
-                        InfectedPeople.text = "感染人数：" + Provinces[a].GetComponent<Scr_Provinces>().TotalPeople.ToString();
+                        InfectedPeople.text = NumInfected + Provinces[a].GetComponent<Scr_Provinces>().TotalPeople.ToString();
                     }
                 }
             }
@@ -341,7 +547,7 @@ public class Scr_Color : MonoBehaviour
             {
                 provincesName.text = TotalName;
                 thisIndex = -1;
-                InfectedPeople.text = "感染人数：" + GlobalPeople.ToString();
+                InfectedPeople.text = NumInfected + GlobalPeople.ToString();
             }
         }
     }
@@ -356,12 +562,21 @@ public class Scr_Color : MonoBehaviour
 
             if (text == Province)
             {
-                provincesName.text = workSheet.Cells[row, 2].Text ?? "Province";
-                hasProvince = true;
-                if (TotalName == "")
+                if (TotalName == "" && Province == "Total")
                 {
-                    TotalName = workSheet.Cells[row, 2].Text ?? "Province"; ;
+                    TotalName = workSheet.Cells[row, 2].Text ?? "Province";
                 }
+                else if (NumInfected == "" && Province == "NumInfected")
+                {
+                    NumInfected = workSheet.Cells[row, 2].Text ?? "Province";
+                }
+                else
+                {
+                    provincesName.text = workSheet.Cells[row, 2].Text ?? "Province";
+
+                }
+                hasProvince = true;
+
             }
 
         }

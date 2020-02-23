@@ -13,6 +13,11 @@ public class Scr_Provinces : MonoBehaviour
     public int IPTransport = 0;
     public int Population = 0;
     public int Medicine = 0;
+
+    public int Material = 0;
+    public int Personnel = 0;
+    public int Bed = 0;
+
     //public float
     public int TotalPeople = 0;
     public List<int> People = new List<int>();
