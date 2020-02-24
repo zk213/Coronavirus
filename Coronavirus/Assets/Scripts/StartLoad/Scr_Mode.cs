@@ -79,6 +79,39 @@ public class Scr_Mode : MonoBehaviour
             XmlElement Vaccine = xml.CreateElement("Vaccine");
             root.AppendChild(Vaccine);
 
+            XmlElement PPTransport = xml.CreateElement("Vaccine");
+            root.AppendChild(PPTransport);
+
+            XmlElement IPTransport = xml.CreateElement("Vaccine");
+            root.AppendChild(IPTransport);
+
+            XmlElement Population = xml.CreateElement("Vaccine");
+            root.AppendChild(Population);
+
+            XmlElement Medicine = xml.CreateElement("Vaccine");
+            root.AppendChild(Medicine);
+
+            XmlElement Material = xml.CreateElement("Vaccine");
+            root.AppendChild(Material);
+
+            XmlElement Personnel = xml.CreateElement("Vaccine");
+            root.AppendChild(Personnel);
+
+            XmlElement Bed = xml.CreateElement("Vaccine");
+            root.AppendChild(Bed);
+
+            XmlElement Death = xml.CreateElement("Vaccine");
+            root.AppendChild(Death);
+
+            XmlElement Cure = xml.CreateElement("Vaccine");
+            root.AppendChild(Cure);
+
+            for (int a = 1; a <= 35; a++)
+            {
+                XmlElement People = xml.CreateElement("People" + a.ToString());
+                root.AppendChild(People);
+            }
+
             xml.AppendChild(root);
             //最后保存文件
             xml.Save(path);

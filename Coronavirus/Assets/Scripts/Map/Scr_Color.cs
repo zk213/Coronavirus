@@ -42,6 +42,8 @@ public class Scr_Color : MonoBehaviour
     List<int> IPTransport = new List<int>();
     List<int> Population = new List<int>();
     List<int> Medicine = new List<int>();
+    List<int> Death = new List<int>();
+    List<int> Cure = new List<int>();
 
     public int HuBeiPeople = 0;
     public int GlobalPeople;
@@ -110,6 +112,8 @@ public class Scr_Color : MonoBehaviour
             IPTransport = new List<int>();
             Population = new List<int>();
             Medicine = new List<int>();
+            Death = new List<int>();
+            Cure = new List<int>();
             XmlDocument xmlSave = new XmlDocument();
             xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
             XmlElement xmlNodeS = xmlSave.DocumentElement;
@@ -175,6 +179,28 @@ public class Scr_Color : MonoBehaviour
                         int.TryParse(elementsS.InnerText, out int d);
                         Provinces[18].GetComponent<Scr_Provinces>().Bed = d;
                         break;
+                    case "Death":
+                        if (elementsS.InnerText != "")
+                        {
+                            string[] finishAry = elementsS.InnerText.Split(',');
+                            for (int a = 0; a < finishAry.Length; a++)
+                            {
+                                int.TryParse(finishAry[a], out int bb);
+                                Death.Add(bb);
+                            }
+                        }
+                        break;
+                    case "Cure":
+                        if (elementsS.InnerText != "")
+                        {
+                            string[] finishAry = elementsS.InnerText.Split(',');
+                            for (int a = 0; a < finishAry.Length; a++)
+                            {
+                                int.TryParse(finishAry[a], out int bb);
+                                Cure.Add(bb);
+                            }
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -200,6 +226,8 @@ public class Scr_Color : MonoBehaviour
                 Provinces[a].GetComponent<Scr_Provinces>().IPTransport = IPTransport[a];
                 Provinces[a].GetComponent<Scr_Provinces>().Population = Population[a];
                 Provinces[a].GetComponent<Scr_Provinces>().Medicine = Medicine[a];
+                Provinces[a].GetComponent<Scr_Provinces>().Death = Death[a];
+                Provinces[a].GetComponent<Scr_Provinces>().Cure = Cure[a];
             }
         }
         for (int i = 0; i < Provinces.Count; i++)
@@ -217,6 +245,8 @@ public class Scr_Color : MonoBehaviour
         string SaveString2 = "";
         string SaveString3 = "";
         string SaveString4 = "";
+        string SaveString5 = "";
+        string SaveString6 = "";
         for (int a = 0; a < colorNum; a++)
         {
             if (SaveString1.Length == 0)
@@ -225,6 +255,8 @@ public class Scr_Color : MonoBehaviour
                 SaveString2 = Provinces[a].GetComponent<Scr_Provinces>().IPTransport.ToString();
                 SaveString3 = Provinces[a].GetComponent<Scr_Provinces>().Population.ToString();
                 SaveString4 = Provinces[a].GetComponent<Scr_Provinces>().Medicine.ToString();
+                SaveString5 = Provinces[a].GetComponent<Scr_Provinces>().Death.ToString();
+                SaveString6 = Provinces[a].GetComponent<Scr_Provinces>().Cure.ToString();
             }
             else
             {
@@ -232,6 +264,8 @@ public class Scr_Color : MonoBehaviour
                 SaveString2 += "," + Provinces[a].GetComponent<Scr_Provinces>().IPTransport.ToString();
                 SaveString3 += "," + Provinces[a].GetComponent<Scr_Provinces>().Population.ToString();
                 SaveString4 += "," + Provinces[a].GetComponent<Scr_Provinces>().Medicine.ToString();
+                SaveString5 += "," + Provinces[a].GetComponent<Scr_Provinces>().Death.ToString();
+                SaveString6 += "," + Provinces[a].GetComponent<Scr_Provinces>().Cure.ToString();
             }
         }
 
@@ -256,6 +290,12 @@ public class Scr_Color : MonoBehaviour
                 case "Medicine":
                     elementsS.InnerText = SaveString4;
                     break;
+                case "Death":
+                    elementsS.InnerText = SaveString5;
+                    break;
+                case "Cure":
+                    elementsS.InnerText = SaveString6;
+                    break;
                 case "Material":
                     elementsS.InnerText = Provinces[18].GetComponent<Scr_Provinces>().Material.ToString();
                     break;
@@ -265,6 +305,7 @@ public class Scr_Color : MonoBehaviour
                 case "Bed":
                     elementsS.InnerText = Provinces[18].GetComponent<Scr_Provinces>().Bed.ToString();
                     break;
+
             }
             for (int i = 0; i < 35; i++)
             {

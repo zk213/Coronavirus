@@ -17,6 +17,8 @@ public class Scr_Provinces : MonoBehaviour
     public int Material = 0;
     public int Personnel = 0;
     public int Bed = 0;
+    public int Death = 0;
+    public int Cure = 0;
 
     //public float
     public int TotalPeople = 0;
