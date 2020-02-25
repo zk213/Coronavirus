@@ -5,7 +5,7 @@
   <event id="0"><!-- 这里是填写事件的序号，应该从0开始按照顺序添加事件，如果不按顺序会出错 -->
     <title>Example</title><!-- 这里要填写事件的标题变量，对应Assets\Resources\Localization\Event.xlsx文件中的第一列 -->
     <describe>Example_Describe </describe><!-- 这里要填写事件的内容描述，同样对应上述文件的第一列 -->
-    <picture>EventPictures/EventPic</picture><!-- 这里要填写事件的配图的路径，图片放在Assets\Resources\EventPictures\EventPic文件夹里，在u3d里用的是/符号，图片格式为png -->
+    <picture>EventPictures/EventPic</picture><!-- 这里要填写事件的配图的路径，图片放在Assets\Resources\EventPictures文件夹里，在u3d里用的是/符号，图片格式为png -->
 	<priority>-2 </priority><!-- 优先级用来分辨事件的类型，如正面事件则填1，默认为普通事件，可以不填，负面事件为-1，测试事件为-2，不会在正式游戏中出现 -->
 	<trait><!-- 事件的特质信息，下面的内容选填或不填，若不填则可以把这一栏省略 -->
       <subEvent /><!-- 是否事件为子事件，即有前置事件，或在某种科技解锁后才会触发 -->
@@ -30,9 +30,10 @@
     <conditions amount="1">
       <condition sign="ee" value="5">day</condition>
     </conditions>
-    <effects amount="2">
+    <effects amount="3">
       <effect type="value" sign="+" value="50">Influence</effect>
 	  <effect type="news" index="2" slot="Influence"></effect>
+	  <effect type="event" index="2" delay="3"></effect>
     </effects>
   </event>
   <event id="2">
@@ -40,7 +41,6 @@
     <describe>Test2_Describe </describe>
     <picture>EventPictures/EventPic</picture>
     <trait>
-      <isInvisible />
 	  <subEvent />
     </trait>
     <conditions amount="1">
@@ -56,11 +56,9 @@
     <describe>Test3_Describe </describe>
     <picture>EventPictures/EventPic</picture>
     <probability Add="10">0</probability>
-    <trait>
-      <isRepeat />
-    </trait>
-    <conditions amount="1">
+    <conditions amount="2">
       <condition sign="ge" value="7">day</condition>
+      <condition sign="ge" value="5">Influence</condition>
     </conditions>
     <effects amount="0">
       <effect type="value" sign="+" value="0">variable</effect>

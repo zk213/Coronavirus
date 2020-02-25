@@ -25,6 +25,7 @@ public class Scr_Event : MonoBehaviour
                 {
                     XmlElement conditions = element.SelectSingleNode("conditions") as XmlElement;
                     int.TryParse(conditions.Attributes["amount"].Value, out int amount);
+                    int amountNow = 0;
                     for (int a = 0; a < amount; a++)
                     {
                         var condition = conditions.ChildNodes[a] as XmlElement;
@@ -32,16 +33,70 @@ public class Scr_Event : MonoBehaviour
                         switch (condition.InnerText)
                         {
                             case "day":
-                                InnerCondition(condition.Attributes["sign"].Value, time.day, value, i);
+                                if (InnerCondition(condition.Attributes["sign"].Value, time.day, value))
+                                {
+                                    amountNow += 1;
+                                }
+                                break;
+                            case "Influence":
+                                if (InnerCondition(condition.Attributes["sign"].Value, num.InfluenceVal, value))
+                                {
+                                    amountNow += 1;
+                                }
                                 break;
                             default:
                                 break;
                         }
 
                     }
-
+                    //
+                    EventCondition(amountNow >= amount, i);
                 }
             }
+        }
+    }
+    bool InnerCondition(string InnerText, float variable, float InnerValue)
+    {
+        switch (InnerText)
+        {
+            case "ge":
+                if (variable >= InnerValue)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "ee":
+                if (variable == InnerValue)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "le":
+                if (variable <= InnerValue)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            case "ne":
+                if (variable != InnerValue)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            default:
+                return false;
         }
     }
     void EventEffectControl(int i)
@@ -95,6 +150,30 @@ public class Scr_Event : MonoBehaviour
                                     AddNews(newsIndex, "");
                                 }
                                 break;
+                            case "event":
+                                int delayDay = 0;
+                                int.TryParse(effect.Attributes["index"].Value, out int eventIndex);
+                                if (effect.HasAttribute("delay"))
+                                {
+                                    int.TryParse(effect.Attributes["delay"].Value, out delayDay);
+                                }
+                                if (UnActiveEvent.Contains(eventIndex))
+                                {
+                                    if (delayDay > 0)
+                                    {
+                                        DelayEvent.Add(eventIndex);
+                                        DelayDay.Add(delayDay);
+                                        UnActiveEvent.Remove(eventIndex);
+
+                                    }
+                                    else
+                                    {
+                                        ActiveEvent.Add(eventIndex);
+                                        UnActiveEvent.Remove(eventIndex);
+                                    }
+                                }
+
+                                break;
                             default:
                                 break;
                         }
@@ -104,26 +183,7 @@ public class Scr_Event : MonoBehaviour
             }
         }
     }
-    void InnerCondition(string InnerText, float variable, float InnerValue, int Inneri)
-    {
-        switch (InnerText)
-        {
-            case "ge":
-                EventCondition(variable >= InnerValue, Inneri);
-                break;
-            case "ee":
-                EventCondition(variable == InnerValue, Inneri);
-                break;
-            case "le":
-                EventCondition(variable <= InnerValue, Inneri);
-                break;
-            case "ne":
-                EventCondition(variable != InnerValue, Inneri);
-                break;
-            default:
-                break;
-        }
-    }
+
     float InnerEffectValue(string InnerText, float variable, float InnerValue)
     {
         switch (InnerText)
@@ -189,6 +249,30 @@ public class Scr_Event : MonoBehaviour
                 SaveString4 += "," + FinishEvent[i].ToString();
             }
         }
+        string SaveString5 = "";
+        for (int i = 0; i < DelayEvent.Count; i++)
+        {
+            if (SaveString5.Length == 0)
+            {
+                SaveString5 = DelayEvent[i].ToString();
+            }
+            else
+            {
+                SaveString5 += "," + DelayEvent[i].ToString();
+            }
+        }
+        string SaveString6 = "";
+        for (int i = 0; i < DelayDay.Count; i++)
+        {
+            if (SaveString6.Length == 0)
+            {
+                SaveString6 = DelayDay[i].ToString();
+            }
+            else
+            {
+                SaveString6 += "," + DelayDay[i].ToString();
+            }
+        }
         XmlDocument xmlSave = new XmlDocument();
         xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
         XmlElement xmlNodeS = xmlSave.DocumentElement;
@@ -209,6 +293,12 @@ public class Scr_Event : MonoBehaviour
                     break;
                 case "FinishEvent":
                     elementsS.InnerText = SaveString4;
+                    break;
+                case "DelayEvent":
+                    elementsS.InnerText = SaveString5;
+                    break;
+                case "DelayDay":
+                    elementsS.InnerText = SaveString6;
                     break;
             }
         }
@@ -241,6 +331,8 @@ public class Scr_Event : MonoBehaviour
     List<int> ReadyEvent = new List<int>();//就绪事件，就绪事件就是所有条件都满足的事件，他会每回合过一次概率，如果概率过了就会触发事件，如果没有继续等待下一回合
     List<int> HappenEvent = new List<int>();//正在发生的事件,将发生的事件按照一定顺序排序，并依次发生
     List<int> FinishEvent = new List<int>();//已发生事件,无论如何也不会再检测了，即使触发条件都成立
+    List<int> DelayEvent = new List<int>();//延迟事件
+    List<int> DelayDay = new List<int>();//延迟天数
 
     List<float> dynamicProbability = new List<float>();//事件的发生概率
     List<float> addProbability = new List<float>();//事件增加的概率
@@ -265,6 +357,7 @@ public class Scr_Event : MonoBehaviour
     List<float> RdynamicProbability = new List<float>();//事件的发生概率
     List<float> RaddProbability = new List<float>();//事件增加的概率
     List<int> RisaddProbability = new List<int>();//有增加的概率的事件
+
     //
 
     public void Start1()
@@ -413,7 +506,8 @@ public class Scr_Event : MonoBehaviour
                 }
             }
         }
-
+        DelayEvent = new List<int>();
+        DelayDay = new List<int>();
         //对事件的类别进行初始化，分出未激活的子事件与普通事件,并初始化事件发生的概率
         if (isLoad)
         {
@@ -421,6 +515,7 @@ public class Scr_Event : MonoBehaviour
             ActiveEvent = new List<int>();
             FinishEvent = new List<int>();
             ReadyEvent = new List<int>();
+
             XmlDocument xmlSave = new XmlDocument();
             xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
             XmlElement xmlNodeS = xmlSave.DocumentElement;
@@ -474,6 +569,28 @@ public class Scr_Event : MonoBehaviour
                             }
                         }
                         break;
+                    case "DelayEvent":
+                        if (elementsS.InnerText != "")
+                        {
+                            string[] finishAry = elementsS.InnerText.Split(',');
+                            for (int a = 0; a < finishAry.Length; a++)
+                            {
+                                int.TryParse(finishAry[a], out int b);
+                                DelayEvent.Add(b);
+                            }
+                        }
+                        break;
+                    case "DelayDay":
+                        if (elementsS.InnerText != "")
+                        {
+                            string[] finishAry = elementsS.InnerText.Split(',');
+                            for (int a = 0; a < finishAry.Length; a++)
+                            {
+                                int.TryParse(finishAry[a], out int b);
+                                DelayDay.Add(b);
+                            }
+                        }
+                        break;
                     default:
                         break;
                 }
@@ -500,6 +617,22 @@ public class Scr_Event : MonoBehaviour
     {
         if (true)//测试时候先不显示事件
         {
+            if (DelayEvent.Count > 0)
+            {
+                for (int i = 0; i < DelayDay.Count; i++)
+                {
+                    if (DelayDay[i] > 0)
+                    {
+                        DelayDay[i] -= 1;
+                    }
+                    else
+                    {
+                        DelayDay.RemoveAt(i);
+                        ActiveEvent.Add(DelayEvent[i]);
+                        DelayEvent.RemoveAt(i);
+                    }
+                }
+            }
             for (int i = 0; i <= count; i++)
             {
                 //Debug.Log(ActiveEvent.Count);
@@ -508,7 +641,9 @@ public class Scr_Event : MonoBehaviour
                 {
                     EventConditionControl(i);
                 }
+
             }
+
         }
 
     }

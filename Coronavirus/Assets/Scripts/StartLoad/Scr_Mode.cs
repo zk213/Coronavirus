@@ -64,6 +64,12 @@ public class Scr_Mode : MonoBehaviour
             XmlElement FinishEvent = xml.CreateElement("FinishEvent");
             root.AppendChild(FinishEvent);
 
+            XmlElement DelayEvent = xml.CreateElement("DelayEvent");
+            root.AppendChild(DelayEvent);
+
+            XmlElement DelayDay = xml.CreateElement("DelayDay");
+            root.AppendChild(DelayDay);
+
             XmlElement Tech = xml.CreateElement("Tech");
             root.AppendChild(Tech);
 
