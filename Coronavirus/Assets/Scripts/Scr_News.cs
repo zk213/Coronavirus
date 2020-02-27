@@ -32,11 +32,11 @@ public class Scr_News : MonoBehaviour
 
     List<string> XmlNews = new List<string>();
 
-    string Language = "";
+    int Language = 1;
     void Awake()
     {
         XmlDocument SxmlDoc = new XmlDocument();
-        SxmlDoc.Load(Application.persistentDataPath + "setting.set");
+        SxmlDoc.Load(Application.persistentDataPath + "/setting.set");
         XmlElement SxmlNode = SxmlDoc.DocumentElement;
         foreach (XmlNode elements in SxmlNode)
         {
@@ -44,10 +44,7 @@ public class Scr_News : MonoBehaviour
                 continue;
             if (elements.LocalName == "Language")
             {
-                if (elements.InnerText == "SimpleChinese")
-                {
-                    Language = "SimpleChinese";
-                }
+                int.TryParse(elements.InnerText, out Language);
             }
         }
 
@@ -177,15 +174,7 @@ public class Scr_News : MonoBehaviour
             using (ExcelPackage excel = new ExcelPackage(fs))
             {
                 ExcelWorksheets workSheets = excel.Workbook.Worksheets;
-                switch (Language)
-                {
-                    case "SimpleChinese":
-                        LoadExcel(workSheets, 1, i);
-                        break;
-                    default:
-                        LoadExcel(workSheets, 1, i);
-                        break;
-                }
+                LoadExcel(workSheets, Language, i);
             }
         }
     }

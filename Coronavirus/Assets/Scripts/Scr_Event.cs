@@ -172,7 +172,6 @@ public class Scr_Event : MonoBehaviour
                                         UnActiveEvent.Remove(eventIndex);
                                     }
                                 }
-
                                 break;
                             default:
                                 break;
@@ -344,7 +343,7 @@ public class Scr_Event : MonoBehaviour
     List<float> staticProbability = new List<float>();//事件的发生概率
     List<int> isImportantList = new List<int>();//看事件是否是重要
 
-    string Language = "";
+    int Language = 1;
     bool isLoad = false;
 
     int count;
@@ -485,7 +484,7 @@ public class Scr_Event : MonoBehaviour
         isaddProbability = RisaddProbability;
 
         XmlDocument SxmlDoc = new XmlDocument();
-        SxmlDoc.Load(Application.persistentDataPath + "setting.set");
+        SxmlDoc.Load(Application.persistentDataPath + "/setting.set");
         XmlElement SxmlNode = SxmlDoc.DocumentElement;
         foreach (XmlNode elements in SxmlNode)
         {
@@ -500,10 +499,7 @@ public class Scr_Event : MonoBehaviour
             }
             if (elements.LocalName == "Language")
             {
-                if (elements.InnerText == "SimpleChinese")
-                {
-                    Language = "SimpleChinese";
-                }
+                int.TryParse(elements.InnerText, out Language);
             }
         }
         DelayEvent = new List<int>();
@@ -845,15 +841,7 @@ public class Scr_Event : MonoBehaviour
                 using (ExcelPackage excel = new ExcelPackage(fs))
                 {
                     ExcelWorksheets workSheets = excel.Workbook.Worksheets;
-                    switch (Language)
-                    {
-                        case "SimpleChinese":
-                            LoadExcel(workSheets, 1, i);
-                            break;
-                        default:
-                            LoadExcel(workSheets, 1, i);
-                            break;
-                    }
+                    LoadExcel(workSheets, Language, i);
                 }
             }
             string path = "";

@@ -19,19 +19,26 @@ public class Scr_Provinces : MonoBehaviour
     public int Bed = 0;
     public int Death = 0;
     public int Cure = 0;
+    public int Heavy = 0;
+    public int Suspected = 0;
 
     //public float
     public int TotalPeople = 0;
     public List<int> People = new List<int>();
+    public List<float> DIPTransport = new List<float>();
+    public List<float> DPopulation = new List<float>();
+    public List<float> DPPTransport = new List<float>();
+    public List<float> DMedicine = new List<float>();
 
     SpriteRenderer spr;
 
     float t = 0;
     bool tAdd = false;
 
-    int IncubationTurn0 = 10;
-    int IncubationTurn1 = 60;
-    int IncubationTurn2 = 10;
+    public List<float> IncubationTurn = new List<float>();
+    public List<float> MildTurn = new List<float>();
+    public List<float> HeavyTurn = new List<float>();
+    public List<float> CureTurn = new List<float>();
 
     public float r0 = 3;
 
@@ -83,124 +90,368 @@ public class Scr_Provinces : MonoBehaviour
 
         if (TotalPeople != 0)
         {
-            float InfectionProbability = 0;
-            switch (IPTransport)
-            {
-                case 0:
-                    InfectionProbability = 0;
-                    break;
-                case 1:
-                    InfectionProbability = 7.5f;
-                    break;
-                case 2:
-                    InfectionProbability = 10;
-                    break;
-                case 3:
-                    InfectionProbability = 15;
-                    break;
-                case 4:
-                    InfectionProbability = 20;
-                    break;
-                case 5:
-                    InfectionProbability = 25;
-                    break;
-                default:
-                    InfectionProbability = 0;
-                    break;
-            }
+            float InfectionProbability = DIPTransport[IPTransport];
+            InfectionProbability *= DPopulation[Population];
+            float MedicineTurn = DMedicine[Medicine] + 1;
 
-            switch (Population)
-            {
-                case 0:
-                    InfectionProbability *= 0f;
-                    break;
-                case 1:
-                    InfectionProbability *= 0.3f;
-                    break;
-                case 2:
-                    InfectionProbability *= 0.4f;
-                    break;
-                case 3:
-                    InfectionProbability *= 0.6f;
-                    break;
-                case 4:
-                    InfectionProbability *= 0.8f;
-                    break;
-                case 5:
-                    InfectionProbability *= 1f;
-                    break;
-                default:
-                    InfectionProbability *= 0;
-                    break;
-            }
 
             int InfectionPeople = 0;
+            //潜伏患者
+            int turn0 = 0;
+            int turn1 = 0;
             for (int i = 4; i >= 0; i--)
             {
                 if (i != 0)
                 {
-                    InfectionPeople += (int)(People[i] * r0 * Random.Range(0, InfectionProbability) / 100);
-                    int turn0 = People[i] * Random.Range(0, IncubationTurn0) / 100;
+                    int tempTurn0 = turn0;
+                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100);
+                    turn0 = (int)(People[i] * IncubationTurn[0] / 100);
+                    turn1 = (int)(People[i] * IncubationTurn[1] / 100);
                     if (i != 4)
                     {
-                        int turn1 = People[i] * Random.Range(0, IncubationTurn1) / 100;
+
                         if (i != 3)
                         {
-                            int turn2 = People[i] * Random.Range(0, IncubationTurn2) / 100;
+                            int turn2 = (int)(People[i] * IncubationTurn[2] / 100);
                             People[i + 2] += turn2;
                             People[i] -= turn2;
                         }
+                        else
+                        {
+                            turn1 += (int)(People[i] * IncubationTurn[2] / 100);
+                        }
                         People[i + 1] += turn1;
-                        People[i] -= turn1;
                     }
-                    People[i - 1] += turn0;
-                    People[i] -= turn0;
+                    else
+                    {
+                        turn1 += (int)(People[i] * IncubationTurn[2] / 100);
+                        int turnB = (int)(turn1 * provinces.goToDoc / 100);
+                        People[5] += turn1 - turnB;
+                        People[10] += turnB;
+                    }
+                    People[i] += tempTurn0;
                 }
                 else
                 {
-                    InfectionPeople += (int)(People[i] * r0 * Random.Range(0, InfectionProbability) / 50);
-                    int turn1 = People[i] * Random.Range(0, IncubationTurn1) / 100;
-                    int turn2 = People[i] * Random.Range(0, IncubationTurn2) / 100;
+                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 50);
+                    turn1 = (int)(People[i] * IncubationTurn[1] / 100);
+                    int turn2 = (int)(People[i] * IncubationTurn[2] / 100);
+                    People[i + 2] += turn2;
+                    People[i] -= turn2;
+                    People[i + 1] += turn1;
+                }
+                People[i] -= (turn1 + turn0);
+            }
+            //疑似未确诊
+            turn0 = 0;
+            turn1 = 0;
+            for (int i = 9; i >= 5; i--)
+            {
+                int turnA = (int)(People[i] * provinces.goToDoc / 100);
+                People[i] -= turnA;
+                People[i + 5] += turnA;
+                if (i != 5)
+                {
+                    int tempTurn0 = turn0;
+                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.SuspectedInfected);
+                    turn0 = (int)(People[i] * MildTurn[0] / 100);
+                    turn1 = (int)(People[i] * MildTurn[1] / 100);
+                    if (i != 9)
+                    {
+
+                        if (i != 8)
+                        {
+                            int turn2 = (int)(People[i] * MildTurn[2] / 100);
+                            People[i + 2] += turn2;
+                            People[i] -= turn2;
+                        }
+                        else
+                        {
+                            turn1 += (int)(People[i] * MildTurn[2] / 100);
+                        }
+                        People[i + 1] += turn1;
+                    }
+                    else
+                    {
+                        turn1 += (int)(People[i] * MildTurn[2] / 100);
+                        int turnB = (int)(turn1 * provinces.goToDoc / 100);
+                        People[15] += turn1 - turnB;
+                        People[20] += turnB;
+                    }
+                    People[i] -= turn1;
+                    People[i] -= turn0;
+                    People[i] += tempTurn0;
+                }
+                else
+                {
+                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.SuspectedInfected);
+                    turn1 = (int)(People[i] * MildTurn[1] / 100);
+                    int turn2 = (int)(People[i] * MildTurn[2] / 100);
                     People[i + 2] += turn2;
                     People[i] -= turn2;
                     People[i + 1] += turn1;
                     People[i] -= turn1;
                 }
-
-
             }
-            People[0] += InfectionPeople;
 
+            //轻症确诊
+            turn0 = 0;
+            turn1 = 0;
+            for (int i = 14; i >= 10; i--)
+            {
+                if (i != 10)
+                {
+                    int tempTurn0 = turn0;
+                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    turn0 = (int)(People[i] * MildTurn[0] / 100);
+                    turn1 = (int)(People[i] * MildTurn[1] / 100);
+                    if (i != 14)
+                    {
+
+                        if (i != 13)
+                        {
+                            int turn2 = (int)(People[i] * MildTurn[2] / 100);
+                            People[i + 2] += turn2;
+                            People[i] -= turn2;
+                        }
+                        else
+                        {
+                            turn1 += (int)(People[i] * MildTurn[2] / 100);
+                        }
+                        People[i + 1] += turn1;
+                    }
+                    else
+                    {
+                        turn1 += (int)(People[i] * MildTurn[2] / 100);
+                        int turnB = (int)(turn1 * Mathf.Clamp((CureTurn[1] + 5 * MedicineTurn) / 100, 0, 1));
+                        People[20] += turn1 - turnB;
+                        People[25] += turnB;
+                    }
+                    People[i] -= turn1;
+                    People[i] -= turn0;
+                    People[i] += tempTurn0;
+                }
+                else
+                {
+                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    turn1 = (int)(People[i] * MildTurn[1] / 100);
+                    int turn2 = (int)(People[i] * MildTurn[2] / 100);
+                    People[i + 2] += turn2;
+                    People[i] -= turn2;
+                    People[i + 1] += turn1;
+                    People[i] -= turn1;
+                }
+            }
+
+
+            //疑似重症
+            turn0 = 0;
+            turn1 = 0;
+            for (int i = 19; i >= 15; i--)
+            {
+                int turnA = (int)(People[i] * provinces.goToDoc / 100);
+                People[i] -= turnA;
+                People[i + 5] += turnA;
+                if (i != 15)
+                {
+                    int tempTurn0 = turn0;
+                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.SuspectedInfected);
+                    turn0 = (int)(People[i] * Mathf.Clamp(HeavyTurn[0] / 100 * MedicineTurn, 0, 1));
+                    turn1 = (int)(People[i] * HeavyTurn[1] / 100);
+                    if (i != 19)
+                    {
+
+                        if (i != 18)
+                        {
+                            int turn2 = (int)(People[i] * HeavyTurn[2] / 100);
+                            People[i + 2] += turn2;
+                            People[i] -= turn2;
+                        }
+                        else
+                        {
+                            turn1 += (int)(People[i] * HeavyTurn[2] / 100);
+                        }
+                        People[i + 1] += turn1;
+                    }
+                    else
+                    {
+                        turn1 += (int)(People[i] * HeavyTurn[2] / 100);
+                        Death += turn1;
+                    }
+                    People[i] -= turn1;
+                    People[i] -= turn0;
+                    People[i] += tempTurn0;
+                }
+                else
+                {
+                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.SuspectedInfected);
+                    turn1 = (int)(People[i] * HeavyTurn[1] / 100);
+                    int turn2 = (int)(People[i] * HeavyTurn[2] / 100);
+                    turn0 = (int)(People[i] * Mathf.Clamp(HeavyTurn[0] / 100 * MedicineTurn, 0, 1));
+                    People[i + 2] += turn2;
+                    People[i] -= turn2;
+                    People[i + 1] += turn1;
+                    People[i] -= turn1;
+                    People[i] -= turn0;
+                    People[25] += turn0;
+                }
+            }
+
+            //重症确诊
+            turn0 = 0;
+            turn1 = 0;
+            for (int i = 24; i >= 20; i--)
+            {
+                if (i != 20)
+                {
+                    int tempTurn0 = turn0;
+                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    turn0 = (int)(People[i] * Mathf.Clamp(HeavyTurn[0] / 100 * MedicineTurn, 0, 1));
+                    turn1 = (int)(People[i] * HeavyTurn[1] / 100);
+                    if (i != 24)
+                    {
+
+                        if (i != 23)
+                        {
+                            int turn2 = (int)(People[i] * HeavyTurn[2] / 100);
+                            People[i + 2] += turn2;
+                            People[i] -= turn2;
+                        }
+                        else
+                        {
+                            turn1 += (int)(People[i] * HeavyTurn[2] / 100);
+                        }
+                        People[i + 1] += turn1;
+                    }
+                    else
+                    {
+                        turn1 += (int)(People[i] * HeavyTurn[2] / 100);
+                        Death += turn1;
+                    }
+                    People[i] -= turn1;
+                    People[i] -= turn0;
+                    People[i] += tempTurn0;
+                }
+                else
+                {
+                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    turn1 = (int)(People[i] * HeavyTurn[1] / 100);
+                    int turn2 = (int)(People[i] * HeavyTurn[2] / 100);
+                    turn0 = (int)(People[i] * Mathf.Clamp(HeavyTurn[0] / 100 * MedicineTurn, 0, 1));
+                    People[i + 2] += turn2;
+                    People[i] -= turn2;
+                    People[i + 1] += turn1;
+                    People[i] -= turn1;
+                    People[i] -= turn0;
+                    People[25] += turn0;
+                }
+            }
+
+            //治愈1阶段
+            turn0 = 0;
+            turn1 = 0;
+            for (int i = 29; i >= 25; i--)
+            {
+                if (i != 25)
+                {
+                    int tempTurn0 = turn0;
+                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    turn0 = (int)(People[i] * CureTurn[0] / 100);
+                    turn1 = (int)(People[i] * CureTurn[1] / 100);
+                    if (i != 29)
+                    {
+
+                        if (i != 28)
+                        {
+                            int turn2 = (int)(People[i] * CureTurn[2] / 100);
+                            People[i + 2] += turn2;
+                            People[i] -= turn2;
+                        }
+                        else
+                        {
+                            turn1 += (int)(People[i] * CureTurn[2] / 100);
+                        }
+                        People[i + 1] += turn1;
+                    }
+                    else
+                    {
+                        turn1 += (int)(People[i] * CureTurn[2] / 100);
+                        People[30] += turn1;
+                    }
+                    People[i] -= turn1;
+                    People[i] -= turn0;
+                    People[i] += tempTurn0;
+                }
+                else
+                {
+                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    turn1 = (int)(People[i] * CureTurn[1] / 100);
+                    int turn2 = (int)(People[i] * CureTurn[2] / 100);
+                    turn0 = (int)(People[i] * Mathf.Clamp(HeavyTurn[0] / 100 / MedicineTurn, 0, 1));
+                    People[i + 2] += turn2;
+                    People[i] -= turn2;
+                    People[i + 1] += turn1;
+                    People[i] -= turn1;
+                    People[i] -= turn0;
+                    People[20] += turn0;
+                }
+            }
+
+            //治愈2阶段
+            turn0 = 0;
+            turn1 = 0;
+            for (int i = 34; i >= 30; i--)
+            {
+                if (i != 30)
+                {
+                    int tempTurn0 = turn0;
+                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    turn0 = (int)(People[i] * CureTurn[0] / 100);
+                    turn1 = (int)(People[i] * CureTurn[1] / 100);
+                    if (i != 34)
+                    {
+
+                        if (i != 33)
+                        {
+                            int turn2 = (int)(People[i] * CureTurn[2] / 100);
+                            People[i + 2] += turn2;
+                            People[i] -= turn2;
+                        }
+                        else
+                        {
+                            turn1 += (int)(People[i] * CureTurn[2] / 100);
+                        }
+                        People[i + 1] += turn1;
+                    }
+                    else
+                    {
+                        turn1 += (int)(People[i] * CureTurn[2] / 100);
+                        Cure += turn1;
+                    }
+                    People[i] -= turn1;
+                    People[i] -= turn0;
+                    People[i] += tempTurn0;
+                }
+                else
+                {
+                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    turn1 = (int)(People[i] * CureTurn[1] / 100);
+                    int turn2 = (int)(People[i] * CureTurn[2] / 100);
+                    People[i + 2] += turn2;
+                    People[i] -= turn2;
+                    People[i + 1] += turn1;
+                    People[i] -= turn1;
+                }
+            }
+
+            People[0] += InfectionPeople;
 
         }
 
         if (provinceIndex != 18)
         {
-            int MoveProbability = 0;
-            switch (PPTransport)
-            {
-                case 0:
-                    MoveProbability = 0;
-                    break;
-                case 1:
-                    MoveProbability = 2;
-                    break;
-                case 2:
-                    MoveProbability = 3;
-                    break;
-                case 3:
-                    MoveProbability = 4;
-                    break;
-                case 4:
-                    MoveProbability = 5;
-                    break;
-                case 5:
-                    MoveProbability = 6;
-                    break;
-                default:
-                    MoveProbability = 0;
-                    break;
-            }
+            float MoveProbability = DPPTransport[PPTransport];
+
             if (provinces.HuBeiPeople > 10)
             {
                 int HuBeiPeople = Mathf.Clamp(provinces.HuBeiPeople, 0, 20);
@@ -211,7 +462,89 @@ public class Scr_Provinces : MonoBehaviour
         for (int i = 0; i < People.Count; i++)
         {
             TotalPeople += People[i];
+            /*
+             if (i >= 10)
+            {
+                TotalPeople += People[i];
+            }
+             */
+
+            if ((i >= 5 && i < 10) || (i >= 15 && i < 20))
+            {
+                Suspected += People[i];
+            }
+            if (i >= 20 && i < 25)
+            {
+                Heavy += People[i];
+            }
         }
+        int digit = TotalPeople.ToString().Length;
+        switch (digit)
+        {
+            case 1:
+                if (TotalPeople == 0)
+                {
+                    myColor = Color.white;
+                }
+                else
+                {
+                    myColor = new Color32(252, 235, 207, 255);
+                }
+                break;
+            case 2:
+                myColor = new Color32(245, 158, 131, 255);
+                break;
+            case 3:
+                if (TotalPeople < 500)
+                {
+                    myColor = new Color32(228, 90, 79, 255);
+                }
+                else
+                {
+                    myColor = new Color32(203, 42, 47, 255);
+                }
+                break;
+            case 4:
+                myColor = new Color32(129, 28, 36, 255);
+                break;
+            default:
+                myColor = new Color32(79, 9, 13, 255);
+                break;
+        }
+        spr.color = myColor;
+        if (provinceIndex == 18)
+        {
+            int HuBeiPeople = 0;
+            for (int i = 0; i < 5; i++)
+            {
+                HuBeiPeople += People[i];
+            }
+            provinces.HuBeiPeople = HuBeiPeople;
+        }
+    }
+    public void PeopleCheck()
+    {
+        TotalPeople = 0;
+        for (int i = 0; i < People.Count; i++)
+        {
+
+            TotalPeople += People[i];
+            /*
+             if (i >= 10)
+            {
+                TotalPeople += People[i];
+            }
+             */
+            if ((i >= 5 && i < 10) || (i >= 15 && i < 20))
+            {
+                Suspected += People[i];
+            }
+            if (i >= 20 && i < 25)
+            {
+                Heavy += People[i];
+            }
+        }
+        TotalPeople += (Death + Cure);
         int digit = TotalPeople.ToString().Length;
         switch (digit)
         {

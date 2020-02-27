@@ -93,7 +93,7 @@ public class Scr_Tech : MonoBehaviour
 
     int count = 0;
 
-    string Language = "";
+    int Language = 1;
     bool isLoad = false;
 
     public void Start1()
@@ -165,7 +165,7 @@ public class Scr_Tech : MonoBehaviour
     }
     public void Start2()
     {
-        Language = "";
+        Language = 1;
         isLoad = false;
         finishTech = new List<int>();
         TechIndex = -1;
@@ -173,7 +173,7 @@ public class Scr_Tech : MonoBehaviour
         canUpgrade = false;
 
         XmlDocument SxmlDoc = new XmlDocument();
-        SxmlDoc.Load(Application.persistentDataPath + "setting.set");
+        SxmlDoc.Load(Application.persistentDataPath + "/setting.set");
         XmlElement SxmlNode = SxmlDoc.DocumentElement;
         foreach (XmlNode elements in SxmlNode)
         {
@@ -188,10 +188,7 @@ public class Scr_Tech : MonoBehaviour
             }
             if (elements.LocalName == "Language")
             {
-                if (elements.InnerText == "SimpleChinese")
-                {
-                    Language = "SimpleChinese";
-                }
+                int.TryParse(elements.InnerText, out Language);
             }
         }
         if (isLoad)
@@ -358,15 +355,7 @@ public class Scr_Tech : MonoBehaviour
             using (ExcelPackage excel = new ExcelPackage(fs))
             {
                 ExcelWorksheets workSheets = excel.Workbook.Worksheets;
-                switch (Language)
-                {
-                    case "SimpleChinese":
-                        LoadExcel(workSheets, 1, i);
-                        break;
-                    default:
-                        LoadExcel(workSheets, 1, i);
-                        break;
-                }
+                LoadExcel(workSheets, Language, i);
             }
         }
     }

@@ -85,7 +85,7 @@ public class Scr_TimeControl : MonoBehaviour
 
         bool isLoad = false;
         XmlDocument SxmlDoc = new XmlDocument();
-        SxmlDoc.Load(Application.persistentDataPath + "setting.set");
+        SxmlDoc.Load(Application.persistentDataPath + "/setting.set");
         XmlElement SxmlNode = SxmlDoc.DocumentElement;
         foreach (XmlNode elements in SxmlNode)
         {

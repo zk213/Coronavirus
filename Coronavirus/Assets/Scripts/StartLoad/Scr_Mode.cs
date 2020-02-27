@@ -18,7 +18,7 @@ public class Scr_Mode : MonoBehaviour
     [EnumNameAttribute("游戏模式")]
     public GameMode gameMode;
     [InspectorShow("当前语言")]
-    public string Language = "SimpleChinese";
+    public int Language = 1;
 
     public GameObject Scene1;
     public GameObject Scene2;
@@ -126,7 +126,7 @@ public class Scr_Mode : MonoBehaviour
 
     public void Load()
     {
-        string path = Application.persistentDataPath + "setting.set";
+        string path = Application.persistentDataPath + "/setting.set";
         if (!File.Exists(path))
         {
             XmlDocument xml = new XmlDocument();
@@ -135,7 +135,7 @@ public class Scr_Mode : MonoBehaviour
             XmlElement root = xml.CreateElement("Set");
 
             XmlElement XLanguage = xml.CreateElement("Language");
-            XLanguage.InnerText = Language;
+            XLanguage.InnerText = Language.ToString();
             root.AppendChild(XLanguage);
 
             XmlElement XMode = xml.CreateElement("Mode");
@@ -173,7 +173,7 @@ public class Scr_Mode : MonoBehaviour
 
     public void NewStart()
     {
-        string path = Application.persistentDataPath + "setting.set";
+        string path = Application.persistentDataPath + "/setting.set";
         if (!File.Exists(path))
         {
             XmlDocument xml = new XmlDocument();
@@ -182,7 +182,7 @@ public class Scr_Mode : MonoBehaviour
             XmlElement root = xml.CreateElement("Set");
 
             XmlElement XLanguage = xml.CreateElement("Language");
-            XLanguage.InnerText = Language;
+            XLanguage.InnerText = Language.ToString();
             root.AppendChild(XLanguage);
 
             XmlElement XMode = xml.CreateElement("Mode");
