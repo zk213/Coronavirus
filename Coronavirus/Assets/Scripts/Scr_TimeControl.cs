@@ -83,7 +83,7 @@ public class Scr_TimeControl : MonoBehaviour
         showbutton = false;
         showbuttonmovefinish = true;
 
-        bool isLoad = false;
+        isLoad = false;
         XmlDocument SxmlDoc = new XmlDocument();
         SxmlDoc.Load(Application.persistentDataPath + "/setting.set");
         XmlElement SxmlNode = SxmlDoc.DocumentElement;

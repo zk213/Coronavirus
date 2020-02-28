@@ -29,7 +29,6 @@ public class Scr_Tech : MonoBehaviour
                         switch (effect.Attributes["type"].Value)
                         {
                             case "message":
-                                Debug.Log(effect.InnerText);
                                 break;
                             default:
                                 break;
@@ -72,17 +71,20 @@ public class Scr_Tech : MonoBehaviour
         xmlSave.Save(Application.persistentDataPath + "/save/Save.save");
     }
 
-    public Text TechText;
+    //public Text TechText;
     public RectTransform parent;
     //public RectTransform parent2;
     public Object prefab;
 
     public List<GameObject> Tech = new List<GameObject>();
+    public List<string> Label = new List<string>();
+
 
     public int TechIndex;
     public int page = 2;
     public bool TextUpdate;
     public bool canUpgrade;
+    public bool hasLabel;
 
     List<int> finishTech = new List<int>();
 
@@ -95,6 +97,9 @@ public class Scr_Tech : MonoBehaviour
 
     int Language = 1;
     bool isLoad = false;
+
+    Color32 ButtonCol = new Color32(175, 219, 240, 255);
+    Color32 ButtonCol2 = Color.grey;
 
     public void Start1()
     {
@@ -125,14 +130,10 @@ public class Scr_Tech : MonoBehaviour
                     case "medicine":
                         page = 3;
                         break;
-                    case "media":
-                        page = 4;
-                        break;
                     default:
                         page = 2;
                         break;
                 }
-                Debug.Log(i);
                 Tech[i].transform.SetParent(parent.transform.Find("UpGradePage" + page.ToString()), false);
                 if (File.Exists(Application.dataPath + "/Resources/" + element.SelectSingleNode("picture").InnerText + ".png"))
                 {
@@ -160,7 +161,7 @@ public class Scr_Tech : MonoBehaviour
                 }
                 int.TryParse(element.SelectSingleNode("cost").InnerText, out int cost);
                 Tech[i].GetComponent<Scr_TechButton>().cost = cost;
-
+                Tech[i].transform.name = element.SelectSingleNode("title").InnerText;
             }
         }
     }
@@ -172,7 +173,6 @@ public class Scr_Tech : MonoBehaviour
         TechIndex = -1;
         TextUpdate = true;
         canUpgrade = false;
-
         XmlDocument SxmlDoc = new XmlDocument();
         SxmlDoc.Load(Application.persistentDataPath + "/setting.set");
         XmlElement SxmlNode = SxmlDoc.DocumentElement;
@@ -222,7 +222,38 @@ public class Scr_Tech : MonoBehaviour
                 Tech[i].GetComponent<Scr_TechButton>().isLock = false;
             }
         }
+        using (FileStream fs = new FileStream(Application.dataPath + "/Resources/Localization/Button.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+        {
+            using (ExcelPackage excel = new ExcelPackage(fs))
+            {
+                ExcelWorksheets workSheets = excel.Workbook.Worksheets;
+                ExcelWorksheet workSheet = workSheets[Language];//表1，即简体中文那张表
+                int rowCount = workSheet.Dimension.End.Row;//统计表的列数
 
+                for (int row = 1; row <= rowCount; row++)
+                {
+                    var text = workSheet.Cells[row, 1].Text ?? "Name Error";
+
+                    if (text == "NationalCondition")
+                    {
+                        Label[0] = workSheet.Cells[row, 2].Text ?? "Label Error";
+                    }
+                    if (text == "PolicyIssuance")
+                    {
+                        Label[1] = workSheet.Cells[row, 2].Text ?? "Label Error";
+                    }
+                    if (text == "MedicalResearch")
+                    {
+                        Label[2] = workSheet.Cells[row, 2].Text ?? "Label Error";
+                    }
+                    if (text == "Back")
+                    {
+                        Label[3] = workSheet.Cells[row, 2].Text ?? "Label Error";
+                    }
+                }
+            }
+        }
+        hasLabel = true;
     }
 
     void Awake()
@@ -233,7 +264,10 @@ public class Scr_Tech : MonoBehaviour
         TechIndex = -1;
         TextUpdate = true;
         canUpgrade = false;
-
+        for (int i = 0; i < 4; i++)
+        {
+            Label.Add("");
+        }
 
 
 
@@ -261,11 +295,11 @@ public class Scr_Tech : MonoBehaviour
         {
             if (canUpgrade)
             {
-                parent.transform.Find("UpGradePage" + page.ToString()).transform.Find("UpGradePage" + page.ToString() + "Ground").transform.Find("Button").GetComponent<Image>().color = Color.white;
+                parent.transform.Find("UpGradePage" + page.ToString()).transform.Find("UpGradePage" + page.ToString() + "Ground").transform.Find("Button").GetComponent<Image>().color = ButtonCol;
             }
             else
             {
-                parent.transform.Find("UpGradePage" + page.ToString()).transform.Find("UpGradePage" + page.ToString() + "Ground").transform.Find("Button").GetComponent<Image>().color = Color.grey;
+                parent.transform.Find("UpGradePage" + page.ToString()).transform.Find("UpGradePage" + page.ToString() + "Ground").transform.Find("Button").GetComponent<Image>().color = ButtonCol2;
             }
         }
     }

@@ -25,7 +25,7 @@ public class Scr_Start : MonoBehaviour
         Scene1.SetActive(false);
         Scene2.SetActive(false);
         Scene3.SetActive(false);
-        string path = "EventPictures/CG/StartCG/" + ((int)Random.Range(1, 6)).ToString();
+        string path = "EventPictures/CG/OP/" + ((int)Random.Range(1, 1)).ToString();
         CG.GetComponent<Image>().sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         CG.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
 

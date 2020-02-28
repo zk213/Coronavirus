@@ -9,11 +9,11 @@ public class Scr_Color : MonoBehaviour
 {
     public Texture2D map;
     public Text provincesName;
-    public Text InfectedPeople;
-    public Text DeadPeople;
-    public Text CurePeople;
-    public Text HeavyPeople;
-    public Text SuspectedPeople;
+    public GameObject InfectedGrid;
+    public GameObject DeadGrid;
+    public GameObject CureGrid;
+    public GameObject HeavyGrid;
+    public GameObject SuspectedGrid;
     public Object prefab;
     public GameObject CCamera;
     float MoveSpeed;
@@ -259,11 +259,17 @@ public class Scr_Color : MonoBehaviour
             GlobalCurePeople += Provinces[i].GetComponent<Scr_Provinces>().Cure;
             GlobalDeadPeople += Provinces[i].GetComponent<Scr_Provinces>().Death;
         }
-        InfectedPeople.text = NumInfected + GlobalPeople.ToString();
-        DeadPeople.text = NumDead + GlobalDeadPeople.ToString();
-        CurePeople.text = NumCure + GlobalCurePeople.ToString();
-        HeavyPeople.text = NumHeavy + GlobalHeavyPeople.ToString();
-        SuspectedPeople.text = NumSuspected + GlobalSuspectedPeople.ToString();
+        InfectedGrid.transform.Find("Number").GetComponent<Text>().text = GlobalPeople.ToString();
+        DeadGrid.transform.Find("Number").GetComponent<Text>().text = GlobalDeadPeople.ToString();
+        CureGrid.transform.Find("Number").GetComponent<Text>().text = GlobalCurePeople.ToString();
+        HeavyGrid.transform.Find("Number").GetComponent<Text>().text = GlobalHeavyPeople.ToString();
+        SuspectedGrid.transform.Find("Number").GetComponent<Text>().text = GlobalSuspectedPeople.ToString();
+
+        InfectedGrid.transform.Find("Name").GetComponent<Text>().text = NumInfected;
+        DeadGrid.transform.Find("Name").GetComponent<Text>().text = NumDead;
+        CureGrid.transform.Find("Name").GetComponent<Text>().text = NumHeavy;
+        HeavyGrid.transform.Find("Name").GetComponent<Text>().text = NumInfected;
+        SuspectedGrid.transform.Find("Name").GetComponent<Text>().text = NumSuspected;
     }
 
     public void LocalSave()
@@ -612,19 +618,19 @@ public class Scr_Color : MonoBehaviour
         }
         if (thisIndex >= 0)
         {
-            InfectedPeople.text = NumInfected + Provinces[thisIndex].GetComponent<Scr_Provinces>().TotalPeople.ToString();
-            DeadPeople.text = NumDead + Provinces[thisIndex].GetComponent<Scr_Provinces>().Death.ToString();
-            CurePeople.text = NumCure + Provinces[thisIndex].GetComponent<Scr_Provinces>().Cure.ToString();
-            HeavyPeople.text = NumHeavy + Provinces[thisIndex].GetComponent<Scr_Provinces>().Heavy.ToString();
-            SuspectedPeople.text = NumSuspected + Provinces[thisIndex].GetComponent<Scr_Provinces>().Suspected.ToString();
+            InfectedGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().TotalPeople.ToString();
+            DeadGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Death.ToString();
+            CureGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Cure.ToString();
+            HeavyGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Heavy.ToString();
+            SuspectedGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Suspected.ToString();
         }
         else
         {
-            InfectedPeople.text = NumInfected + GlobalPeople.ToString();
-            DeadPeople.text = NumDead + GlobalDeadPeople.ToString();
-            CurePeople.text = NumCure + GlobalCurePeople.ToString();
-            HeavyPeople.text = NumHeavy + GlobalHeavyPeople.ToString();
-            SuspectedPeople.text = NumSuspected + GlobalSuspectedPeople.ToString();
+            InfectedGrid.transform.Find("Number").GetComponent<Text>().text = GlobalPeople.ToString();
+            DeadGrid.transform.Find("Number").GetComponent<Text>().text = GlobalDeadPeople.ToString();
+            CureGrid.transform.Find("Number").GetComponent<Text>().text = GlobalCurePeople.ToString();
+            HeavyGrid.transform.Find("Number").GetComponent<Text>().text = GlobalHeavyPeople.ToString();
+            SuspectedGrid.transform.Find("Number").GetComponent<Text>().text = GlobalSuspectedPeople.ToString();
         }
     }
 
@@ -699,7 +705,11 @@ public class Scr_Color : MonoBehaviour
 
                         thisIndex = a;
                         Provinces[a].GetComponent<Scr_Provinces>().isMe = true;
-                        InfectedPeople.text = NumInfected + Provinces[a].GetComponent<Scr_Provinces>().TotalPeople.ToString();
+                        InfectedGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().TotalPeople.ToString();
+                        DeadGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Death.ToString();
+                        CureGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Cure.ToString();
+                        HeavyGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Heavy.ToString();
+                        SuspectedGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Suspected.ToString();
                     }
                 }
             }
@@ -710,7 +720,11 @@ public class Scr_Color : MonoBehaviour
             {
                 provincesName.text = TotalName;
                 thisIndex = -1;
-                InfectedPeople.text = NumInfected + GlobalPeople.ToString();
+                InfectedGrid.transform.Find("Number").GetComponent<Text>().text = GlobalPeople.ToString();
+                DeadGrid.transform.Find("Number").GetComponent<Text>().text = GlobalDeadPeople.ToString();
+                CureGrid.transform.Find("Number").GetComponent<Text>().text = GlobalCurePeople.ToString();
+                HeavyGrid.transform.Find("Number").GetComponent<Text>().text = GlobalHeavyPeople.ToString();
+                SuspectedGrid.transform.Find("Number").GetComponent<Text>().text = GlobalSuspectedPeople.ToString();
             }
         }
     }
