@@ -1,39 +1,42 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <techs>
-  <techAmount>6</techAmount>
+  <techAmount>66</techAmount>
+  <!-- 医患隔离 -->
   <tech id="0">
-    <title>Gover1</title>
-    <describe>Gover1_Describe</describe>
-    <picture>TechnologyPictures/Example1</picture>
+    <title>DocPatIso</title>
+    <describe>DocPatIso_Describe</describe>
+    <picture>TechnologyPictures/Tech0</picture>
     <eureka>
     </eureka>
-	<type>gover</type>
+	<type>medicine</type>
     <cost>5</cost>
     <posx>-722</posx>
     <posy>158</posy>
 	<effects amount="1">
-      <effect type="message">政策1升级</effect>
+      <effect type="message">医患隔离升级</effect>
     </effects>
   </tech>
+  <!-- 病房改造 -->
   <tech id="1">
-    <title>Gover2</title>
-    <describe>Gover2_Describe</describe>
-    <picture>TechnologyPictures/Example2</picture>
+    <title>WardReform</title>
+    <describe>WardReform_Describe</describe>
+    <picture>TechnologyPictures/Tech1</picture>
     <eureka>
     </eureka>
-	<type>gover</type>
+	<type>medicine</type>
     <father>0</father>
     <cost>5</cost>
     <posx>-505</posx>
     <posy>158</posy>
 	<effects amount="1">
-      <effect type="message">政策2升级</effect>
+      <effect type="message">病房改造升级</effect>
     </effects>
   </tech>
+  <!-- 免费医疗 -->
   <tech id="2">
-    <title>Medicine1</title>
-    <describe>Medicine1_Describe</describe>
-    <picture>TechnologyPictures/Example1</picture>
+    <title>FreeTreatment</title>
+    <describe>FreeTreatment_Describe</describe>
+    <picture>TechnologyPictures/Tech2</picture>
     <eureka>
     </eureka>
 	<type>medicine</type>
@@ -41,51 +44,952 @@
     <posx>-722</posx>
     <posy>158</posy>
 	<effects amount="1">
-      <effect type="message">医疗1升级</effect>
+      <effect type="message">免费医疗升级</effect>
     </effects>
   </tech>
+  <!-- 新建医院 -->
   <tech id="3">
-    <title>Medicine2</title>
-    <describe>Medicine2_Describe</describe>
-    <picture>TechnologyPictures/Example2</picture>
+    <title>BuildHospital</title>
+    <describe>BuildHospital_Describe</describe>
+    <picture>TechnologyPictures/Tech3</picture>
     <eureka>
     </eureka>
 	<type>medicine</type>
-    <father>2</father>
-    <cost>5</cost>
-    <posx>-505</posx>
-    <posy>158</posy>
-	<effects amount="1">
-      <effect type="message">医疗2升级</effect>
-    </effects>
-  </tech>
-  <tech id="4">
-    <title>Media1</title>
-    <describe>Media1_Describe</describe>
-    <picture>TechnologyPictures/Example1</picture>
-    <eureka>
-    </eureka>
-	<type>media</type>
     <cost>5</cost>
     <posx>-722</posx>
     <posy>158</posy>
 	<effects amount="1">
-      <effect type="message">媒体1升级</effect>
+      <effect type="message">新建医院升级</effect>
     </effects>
   </tech>
-  <tech id="5">
-    <title>Media2</title>
-    <describe>Media2_Describe</describe>
-    <picture>TechnologyPictures/Example2</picture>
+  <!-- 方舱医院 -->
+  <tech id="4">
+    <title>ModuleHospital</title>
+    <describe>ModuleHospital_Describe</describe>
+    <picture>TechnologyPictures/Tech4</picture>
     <eureka>
     </eureka>
-	<type>media</type>
-    <father>4</father>
+	<type>medicine</type>
     <cost>5</cost>
-    <posx>-505</posx>
+    <posx>-722</posx>
     <posy>158</posy>
 	<effects amount="1">
-      <effect type="message">媒体2升级</effect>
+      <effect type="message">方舱医院升级</effect>
+    </effects>
+  </tech>
+  <!-- 宿舍征用 -->
+  <tech id="5">
+    <title>DormitoryRequisition</title>
+    <describe>DormitoryRequisition_Describe</describe>
+    <picture>TechnologyPictures/Tech5</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">宿舍征用升级</effect>
+    </effects>
+  </tech>
+  <!-- 军队进驻 -->
+  <tech id="6">
+    <title>TroopStationed</title>
+    <describe>TroopStationed_Describe</describe>
+    <picture>TechnologyPictures/Tech6</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">军队进驻升级</effect>
+    </effects>
+  </tech>
+  <!-- 取缔交易 -->
+  <tech id="7">
+    <title>BanningTransaction</title>
+    <describe>BanningTransaction_Describe</describe>
+    <picture>TechnologyPictures/Tech7</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">取缔交易升级</effect>
+    </effects>
+  </tech>
+  <!-- 城市封锁 -->
+  <tech id="8">
+    <title>CityBlockade</title>
+    <describe>CityBlockade_Describe</describe>
+    <picture>TechnologyPictures/Tech8</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">城市封锁升级</effect>
+    </effects>
+  </tech>
+  <!-- 延期复工 -->
+  <tech id="9">
+    <title>DeferredBack</title>
+    <describe>DeferredBack_Describe</describe>
+    <picture>TechnologyPictures/Tech9</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">延期复工升级</effect>
+    </effects>
+  </tech>
+  <!-- 交通协调 -->
+  <tech id="10">
+    <title>TrafficCoordination</title>
+    <describe>TrafficCoordination_Describe</describe>
+    <picture>TechnologyPictures/Tech10</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">交通协调升级</effect>
+    </effects>
+  </tech>
+  <!-- 复工保护 -->
+  <tech id="11">
+    <title>BackProtection</title>
+    <describe>BackProtection_Describe</describe>
+    <picture>TechnologyPictures/Tech11</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">复工保护升级</effect>
+    </effects>
+  </tech>
+  <!-- 城市消毒 -->
+  <tech id="12">
+    <title>CityDisinfection</title>
+    <describe>CityDisinfection_Describe</describe>
+    <picture>TechnologyPictures/Tech12</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">城市消毒升级</effect>
+    </effects>
+  </tech>
+  <!-- 封闭管理 -->
+  <tech id="13">
+    <title>ClosedManagement</title>
+    <describe>ClosedManagement_Describe</describe>
+    <picture>TechnologyPictures/Tech13</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">封闭管理升级</effect>
+    </effects>
+  </tech>
+  <!-- 官员调查 -->
+  <tech id="14">
+    <title>OfficialInvestigation</title>
+    <describe>OfficialInvestigation_Describe</describe>
+    <picture>TechnologyPictures/Tech14</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">官员调查升级</effect>
+    </effects>
+  </tech>
+  <!-- 物流管理 -->
+  <tech id="15">
+    <title>LogisticsManagement</title>
+    <describe>LogisticsManagement_Describe</describe>
+    <picture>TechnologyPictures/Tech15</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">物流管理升级</effect>
+    </effects>
+  </tech>
+  <!-- 价格调控 -->
+  <tech id="16">
+    <title>PriceRegulation</title>
+    <describe>PriceRegulation_Describe</describe>
+    <picture>TechnologyPictures/Tech16</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">价格调控升级</effect>
+    </effects>
+  </tech>
+  <!-- 志愿服务 -->
+  <tech id="17">
+    <title>VolunteerService</title>
+    <describe>VolunteerService_Describe</describe>
+    <picture>TechnologyPictures/Tech17</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">志愿服务升级</effect>
+    </effects>
+  </tech>
+  <!-- 增加产能 -->
+  <tech id="18">
+    <title>IncreaseProductivity</title>
+    <describe>IncreaseProductivity_Describe</describe>
+    <picture>TechnologyPictures/Tech18</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">增加产能升级</effect>
+    </effects>
+  </tech>
+  <!-- 稳定股市 -->
+  <tech id="19">
+    <title>StabilizeStock</title>
+    <describe>StabilizeStock_Describe</describe>
+    <picture>TechnologyPictures/Tech19</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">稳定股市升级</effect>
+    </effects>
+  </tech>
+  <!-- 国家补助 -->
+  <tech id="20">
+    <title>StateSubsidy</title>
+    <describe>StateSubsidy_Describe</describe>
+    <picture>TechnologyPictures/Tech20</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">国家补助升级</effect>
+    </effects>
+  </tech>
+  <!-- 驳斥谣言 -->
+  <tech id="21">
+    <title>RumorRefuting</title>
+    <describe>RumorRefuting_Describe</describe>
+    <picture>TechnologyPictures/Tech21</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">驳斥谣言升级</effect>
+    </effects>
+  </tech>
+  <!-- 就医宣传 -->
+  <tech id="22">
+    <title>GoToDoc﻿</title>
+    <describe>GoToDoc﻿_Describe</describe>
+    <picture>TechnologyPictures/Tech22</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">就医宣传升级</effect>
+    </effects>
+  </tech>
+  <!-- 民众齐心 -->
+  <tech id="23">
+    <title>UnitedPeople</title>
+    <describe>UnitedPeople_Describe</describe>
+    <picture>TechnologyPictures/Tech23</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">民众齐心升级</effect>
+    </effects>
+  </tech>
+  <!-- 村落宣传 -->
+  <tech id="24">
+    <title>VillagePropaganda</title>
+    <describe>VillagePropaganda_Describe</describe>
+    <picture>TechnologyPictures/Tech24</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">村落宣传升级</effect>
+    </effects>
+  </tech>
+  <!-- 血浆捐献 -->
+  <tech id="25">
+    <title>PlasmaDonation</title>
+    <describe>PlasmaDonation_Describe</describe>
+    <picture>TechnologyPictures/Tech25</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">血浆捐献升级</effect>
+    </effects>
+  </tech>
+  <!-- 英雄介绍 -->
+  <tech id="26">
+    <title>HeroIntroduction</title>
+    <describe>HeroIntroduction_Describe</describe>
+    <picture>TechnologyPictures/Tech26</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">英雄介绍升级</effect>
+    </effects>
+  </tech>
+  <!-- 症状公示 -->
+  <tech id="27">
+    <title>SymptomsPublicity</title>
+    <describe>SymptomsPublicity_Describe</describe>
+    <picture>TechnologyPictures/Tech27</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">症状公示升级</effect>
+    </effects>
+  </tech>
+  <!-- 平台建设 -->
+  <tech id="28">
+    <title>PlatformConstruction</title>
+    <describe>PlatformConstruction_Describe</describe>
+    <picture>TechnologyPictures/Tech28</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">平台建设升级</effect>
+    </effects>
+  </tech>
+  <!-- 补充真相 -->
+  <tech id="29">
+    <title>ReplenishTruth</title>
+    <describe>ReplenishTruth_Describe</describe>
+    <picture>TechnologyPictures/Tech29</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">补充真相升级</effect>
+    </effects>
+  </tech>
+  <!-- 云监工 -->
+  <tech id="30">
+    <title>CloudSupervisor</title>
+    <describe>CloudSupervisor_Describe</describe>
+    <picture>TechnologyPictures/Tech30</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">云监工升级</effect>
+    </effects>
+  </tech>
+  <!-- 接触调查 -->
+  <tech id="31">
+    <title>ContactSurvey</title>
+    <describe>ContactSurvey_Describe</describe>
+    <picture>TechnologyPictures/Tech31</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">接触调查升级</effect>
+    </effects>
+  </tech>
+  <!-- 途径调查 -->
+  <tech id="32">
+    <title>PathwaySurvey</title>
+    <describe>PathwaySurvey_Describe</describe>
+    <picture>TechnologyPictures/Tech32</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">途径调查升级</effect>
+    </effects>
+  </tech>
+  <!-- 上报津贴 -->
+  <tech id="33">
+    <title>ReportBonus</title>
+    <describe>ReportBonus_Describe</describe>
+    <picture>TechnologyPictures/Tech33</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">上报津贴升级</effect>
+    </effects>
+  </tech>
+  <!-- 红外测温 -->
+  <tech id="34">
+    <title>InfraredMeasurement</title>
+    <describe>InfraredMeasurement_Describe</describe>
+    <picture>TechnologyPictures/Tech34</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">红外测温升级</effect>
+    </effects>
+  </tech>
+  <!-- 强制口罩 -->
+  <tech id="35">
+    <title>ForcedMask</title>
+    <describe>ForcedMask_Describe</describe>
+    <picture>TechnologyPictures/Tech35</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">强制口罩升级</effect>
+    </effects>
+  </tech>
+  <!-- 全民普查 -->
+  <tech id="36">
+    <title>GeneralSurvey</title>
+    <describe>GeneralSurvey_Describe</describe>
+    <picture>TechnologyPictures/Tech36</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">全民普查升级</effect>
+    </effects>
+  </tech>
+  <!-- 娱乐减停 -->
+  <tech id="37">
+    <title>ReducedEntertainment</title>
+    <describe>ReducedEntertainment_Describe</describe>
+    <picture>TechnologyPictures/Tech37</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">娱乐减停升级</effect>
+    </effects>
+  </tech>
+  <!-- 特别国债 -->
+  <tech id="38">
+    <title>GovernmentBonds</title>
+    <describe>GovernmentBonds_Describe</describe>
+    <picture>TechnologyPictures/Tech38</picture>
+    <eureka>
+    </eureka>
+	<type>gover</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">特别国债升级</effect>
+    </effects>
+  </tech>
+  <!-- 专家调查 -->
+  <tech id="39">
+    <title>ExpertSurvey</title>
+    <describe>ExpertSurvey_Describe</describe>
+    <picture>TechnologyPictures/Tech39</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">专家调查升级</effect>
+    </effects>
+  </tech>
+  <!-- 国际交流 -->
+  <tech id="40">
+    <title>InternationalExchange</title>
+    <describe>InternationalExchange_Describe</describe>
+    <picture>TechnologyPictures/Tech40</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">国际交流升级</effect>
+    </effects>
+  </tech>
+  <!-- 一级响应 -->
+  <tech id="41">
+    <title>PrimaryResponse</title>
+    <describe>PrimaryResponse_Describe</describe>
+    <picture>TechnologyPictures/Tech41</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">一级响应升级</effect>
+    </effects>
+  </tech>
+  <!-- 甲类防控 -->
+  <tech id="42">
+    <title>ClassAPrevention</title>
+    <describe>ClassAPrevention_Describe</describe>
+    <picture>TechnologyPictures/Tech42</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">甲类防控升级</effect>
+    </effects>
+  </tech>
+  <!-- 集中救治 -->
+  <tech id="43">
+    <title>CentralizedTreatment</title>
+    <describe>CentralizedTreatment_Describe</describe>
+    <picture>TechnologyPictures/Tech43</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">集中救治升级</effect>
+    </effects>
+  </tech>
+  <!-- 直报系统 -->
+  <tech id="44">
+    <title>DirectReporting</title>
+    <describe>DirectReporting_Describe</describe>
+    <picture>TechnologyPictures/Tech44</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">直报系统升级</effect>
+    </effects>
+  </tech>
+  <!-- 加快发放 -->
+  <tech id="45">
+    <title>ExpediteDistribution</title>
+    <describe>ExpediteDistribution_Describe</describe>
+    <picture>TechnologyPictures/Tech45</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">加快发放升级</effect>
+    </effects>
+  </tech>
+  <!-- 轮休制度 -->
+  <tech id="46">
+    <title>RotationSystem</title>
+    <describe>RotationSystem_Describe</describe>
+    <picture>TechnologyPictures/Tech46</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">轮休制度升级</effect>
+    </effects>
+  </tech>
+  <!-- 电子化管理 -->
+  <tech id="47">
+    <title>ElectronicManagement</title>
+    <describe>ElectronicManagement_Describe</describe>
+    <picture>TechnologyPictures/Tech47</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">电子化管理升级</effect>
+    </effects>
+  </tech>
+  <!-- 党员组织 -->
+  <tech id="48">
+    <title>PartyOrganization</title>
+    <describe>PartyOrganization_Describe</describe>
+    <picture>TechnologyPictures/Tech48</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">党员组织升级</effect>
+    </effects>
+  </tech>
+  <!-- 女性补助 -->
+  <tech id="49">
+    <title>FemaleSupplement</title>
+    <describe>FemaleSupplement_Describe</describe>
+    <picture>TechnologyPictures/Tech49</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">女性补助升级</effect>
+    </effects>
+  </tech>
+  <!-- 定点医疗 -->
+  <tech id="50">
+    <title>ContractedMedical</title>
+    <describe>ContractedMedical_Describe</describe>
+    <picture>TechnologyPictures/Tech50</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">定点医疗升级</effect>
+    </effects>
+  </tech>
+  <!-- 病例筛查 -->
+  <tech id="51">
+    <title>CaseScreening</title>
+    <describe>CaseScreening_Describe</describe>
+    <picture>TechnologyPictures/Tech51</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">病例筛查升级</effect>
+    </effects>
+  </tech>
+  <!-- 基因测序 -->
+  <tech id="52">
+    <title>GeneSequencing</title>
+    <describe>GeneSequencing_Describe</describe>
+    <picture>TechnologyPictures/Tech52</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">基因测序升级</effect>
+    </effects>
+  </tech>
+  <!-- 核酸检测 -->
+  <tech id="53">
+    <title>NucleicDetection</title>
+    <describe>NucleicDetection_Describe</describe>
+    <picture>TechnologyPictures/Tech53</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">核酸检测升级</effect>
+    </effects>
+  </tech>
+  <!-- 降低标准 -->
+  <tech id="54">
+    <title>LowerStandards</title>
+    <describe>LowerStandards_Describe</describe>
+    <picture>TechnologyPictures/Tech54</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">降低标准升级</effect>
+    </effects>
+  </tech>
+  <!-- 影像调查 -->
+  <tech id="55">
+    <title>VideoSurvey</title>
+    <describe>VideoSurvey_Describe</describe>
+    <picture>TechnologyPictures/Tech55</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">影像调查升级</effect>
+    </effects>
+  </tech>
+  <!-- 临床诊断 -->
+  <tech id="56">
+    <title>ClinicalDiagnosis</title>
+    <describe>ClinicalDiagnosis_Describe</describe>
+    <picture>TechnologyPictures/Tech56</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">临床诊断升级</effect>
+    </effects>
+  </tech>
+  <!-- lgM快速检测 -->
+  <tech id="57">
+    <title>LgMDetection</title>
+    <describe>LgMDetection_Describe</describe>
+    <picture>TechnologyPictures/Tech57</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">lgM快速检测升级</effect>
+    </effects>
+  </tech>
+  <!-- 药物实践 -->
+  <tech id="58">
+    <title>DrugPractice</title>
+    <describe>DrugPractice_Describe</describe>
+    <picture>TechnologyPictures/Tech58</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">药物实践升级</effect>
+    </effects>
+  </tech>
+  <!-- 疫苗研发 -->
+  <tech id="59">
+    <title>VaccineDevelopment</title>
+    <describe>CVaccineDevelopment_Describe</describe>
+    <picture>TechnologyPictures/Tech59</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">疫苗研发升级</effect>
+    </effects>
+  </tech>
+  <!-- 药物筛选 -->
+  <tech id="60">
+    <title>DrugScreening</title>
+    <describe>DrugScreening_Describe</describe>
+    <picture>TechnologyPictures/Tech60</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">药物筛选升级</effect>
+    </effects>
+  </tech>
+  <!-- 中西结合 -->
+  <tech id="61">
+    <title>CombinationCW</title>
+    <describe>CombinationCW_Describe</describe>
+    <picture>TechnologyPictures/Tech61</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">中西结合升级</effect>
+    </effects>
+  </tech>
+  <!-- 血桨研究 -->
+  <tech id="62">
+    <title>BloodResearch</title>
+    <describe>BloodResearch_Describe</describe>
+    <picture>TechnologyPictures/Tech62</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">血桨研究升级</effect>
+    </effects>
+  </tech>
+  <!-- 新式芯片 -->
+  <tech id="63">
+    <title>NewChip</title>
+    <describe>NewChip_Describe</describe>
+    <picture>TechnologyPictures/Tech63</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">新式芯片升级</effect>
+    </effects>
+  </tech>
+  <!-- 疫苗审批 -->
+  <tech id="64">
+    <title>VaccineApproval</title>
+    <describe>VaccineApproval_Describe</describe>
+    <picture>TechnologyPictures/Tech64</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">疫苗审批升级</effect>
+    </effects>
+  </tech>
+  <!-- 病理解剖 -->
+  <tech id="65">
+    <title>PathologicalAnatomy</title>
+    <describe>PathologicalAnatomy_Describe</describe>
+    <picture>TechnologyPictures/Tech65</picture>
+    <eureka>
+    </eureka>
+	<type>medicine</type>
+    <cost>5</cost>
+    <posx>-722</posx>
+    <posy>158</posy>
+	<effects amount="1">
+      <effect type="message">病理解剖升级</effect>
     </effects>
   </tech>
 </techs>

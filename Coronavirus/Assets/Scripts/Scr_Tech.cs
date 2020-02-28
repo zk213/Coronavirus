@@ -132,6 +132,7 @@ public class Scr_Tech : MonoBehaviour
                         page = 2;
                         break;
                 }
+                Debug.Log(i);
                 Tech[i].transform.SetParent(parent.transform.Find("UpGradePage" + page.ToString()), false);
                 if (File.Exists(Application.dataPath + "/Resources/" + element.SelectSingleNode("picture").InnerText + ".png"))
                 {
@@ -140,7 +141,7 @@ public class Scr_Tech : MonoBehaviour
                 }
                 else
                 {
-                    Tech[i].GetComponent<Image>().sprite = Resources.Load("TechnologyPictures/1231", typeof(Sprite)) as Sprite;
+                    Tech[i].GetComponent<Image>().sprite = Resources.Load("TechnologyPictures/TechError", typeof(Sprite)) as Sprite;
                 }
                 int.TryParse(element.SelectSingleNode("posx").InnerText, out int posx);
                 int.TryParse(element.SelectSingleNode("posy").InnerText, out int posy);
