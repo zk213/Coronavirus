@@ -75,6 +75,8 @@ public class Scr_Color : MonoBehaviour
     List<float> HeavyTurn = new List<float>();
     List<float> CureTurn = new List<float>();
 
+
+    public string testString = "";
     public void Start3()
     {
         thisIndex = -1;
@@ -369,7 +371,7 @@ public class Scr_Color : MonoBehaviour
     {
         //省份信息的初始化
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.Load(Application.dataPath + "/Resources/Xml/Provinces.xml");
+        xmlDoc.Load(Application.dataPath + "/Resources/Xml/Provinces.xml");// (((TextAsset)Resources.Load("/Resources/Xml/Provinces")).text);
         XmlElement xmlNode = xmlDoc.DocumentElement;
         foreach (XmlNode elements in xmlNode)
         {

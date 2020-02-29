@@ -6,11 +6,8 @@ using UnityEngine.UI;
 
 public enum TimeMode
 {
-    [EnumNameAttribute("暂停")]
     Pause,
-    [EnumNameAttribute("一倍速")]
     OneSpeed,
-    [EnumNameAttribute("快速")]
     FastSpeed
 }
 
@@ -37,18 +34,12 @@ public class Scr_TimeControl : MonoBehaviour
         }
         xmlSave.Save(Application.persistentDataPath + "/save/Save.save");
     }
-    [Header("时间模块")]
-    [EnumNameAttribute("时间模式")]
     public TimeMode timeMode = TimeMode.OneSpeed;//刚进游戏，状态是一倍速
 
-    [InspectorShow("当前时间")]
     public int day = 1;//初始时间，对应2019.12.1
-    [InspectorShow("一倍速时间间隔")]
     public float OneSpeedSpawn = 1;//一倍速时的时间间隔
-    [InspectorShow("快速时间间隔")]
     public float FastSpeedSpawn = 0.5f;//快速时的时间间隔
 
-    [Header("附加组件")]
     public Text GlobalTime;
     public GameObject extendbutton;
 

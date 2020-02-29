@@ -31,13 +31,10 @@ public class Scr_Num : MonoBehaviour
     }
 
 
-    [Header("基本数值")]
-    [InspectorShow("影响力")]
+
     public float InfluenceVal;
-    [InspectorShow("凝聚力")]
     public float CohesionVal;
 
-    [Header("疫苗进程")]
     [Range(0, 100)]
     public float VaccineProcess;
     public Text InfluenceNum;

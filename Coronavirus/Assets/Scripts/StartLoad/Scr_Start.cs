@@ -47,8 +47,11 @@ public class Scr_Start : MonoBehaviour
         if (step == 0)
         {
             TextInfor.GetComponent<Text>().text = "正在加载基本信息";
+            TextProcess.GetComponent<Text>().text = "1";
             Provinces.Start1();
+            TextProcess.GetComponent<Text>().text = "2";
             stepFull = (int)Mathf.Ceil(Provinces.colorNum / 2) + 2;
+            TextProcess.GetComponent<Text>().text = "3";
         }
         if (step <= stepFull - 2 && step != 0)
         {
@@ -70,6 +73,8 @@ public class Scr_Start : MonoBehaviour
             TextInfor.GetComponent<Text>().text = "加载完成";
             LoadOver = true;
         }
+        TextProcess.GetComponent<Text>().text = "4";
+
         if (!LoadOver)
         {
             TextProcess.GetComponent<Text>().text = string.Format("{0:F0}", ((float)step / (float)stepFull) * 100) + "%";
