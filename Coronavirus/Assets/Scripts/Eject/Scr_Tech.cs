@@ -29,6 +29,15 @@ public class Scr_Tech : MonoBehaviour
                         switch (effect.Attributes["type"].Value)
                         {
                             case "message":
+                                Debug.Log(effect.InnerText);
+                                break;
+                            case "event":
+                                int.TryParse(effect.InnerText, out int eventIndex);
+                                if (Events.UnActiveEvent.Contains(eventIndex))
+                                {
+                                    Events.ActiveEvent.Add(eventIndex);
+                                    Events.UnActiveEvent.Remove(eventIndex);
+                                }
                                 break;
                             default:
                                 break;
@@ -89,6 +98,7 @@ public class Scr_Tech : MonoBehaviour
     List<int> finishTech = new List<int>();
 
     Scr_Num Value;
+    Scr_Event Events;
 
     string TechTitle;
     string TechDescribe;
@@ -265,6 +275,7 @@ public class Scr_Tech : MonoBehaviour
 
 
         Value = FindObjectOfType<Scr_Num>();
+        Events = FindObjectOfType<Scr_Event>();
         TechIndex = -1;
         TextUpdate = true;
         canUpgrade = false;

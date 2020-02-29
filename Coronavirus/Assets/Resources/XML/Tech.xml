@@ -13,7 +13,7 @@
     <posx>-60</posx>
     <posy>280</posy>
 	<effects amount="1">
-      <effect type="message">医患隔离升级</effect>
+      <effect type="event">1</effect>
     </effects>
   </tech>
   <!-- 病房改造 -->
@@ -29,7 +29,7 @@
     <posx>-60</posx>
     <posy>140</posy>
 	<effects amount="1">
-      <effect type="message">病房改造升级</effect>
+      <effect type="event">2</effect>
     </effects>
   </tech>
   <!-- 免费医疗 -->
@@ -45,7 +45,7 @@
     <posx>-60</posx>
     <posy>0</posy>
 	<effects amount="1">
-      <effect type="message">免费医疗升级</effect>
+      <effect type="event">3</effect>
     </effects>
   </tech>
   <!-- 新建医院 -->
@@ -61,7 +61,7 @@
     <posx>-60</posx>
     <posy>-140</posy>
 	<effects amount="1">
-      <effect type="message">新建医院升级</effect>
+      <effect type="event">4</effect>
     </effects>
   </tech>
   <!-- 方舱医院 -->

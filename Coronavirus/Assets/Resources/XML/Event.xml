@@ -21,61 +21,63 @@
     <effects amount="2"><!-- 事件效果的数量 -->
       <effect type="value" sign="+" value="5">Influence</effect><!-- 效果的种类包括value，news等，sign是对值的计算符号，value改变值的大小，里面写改变大小的变量名字 -->
 	  <effect type="news" index="2" slot="Influence"></effect><!-- 如果想激发滚动新闻，可以设定成此格式，index接新闻的序号，slot后面接槽的内容 -->
+	  <effect type="event" index="2" delay="3"></effect><!-- 如果想激活事件，index填想激活的事件的序号，delay天延迟激活的天数 -->
     </effects><!-- 同样填写完要结束 -->
   </event><!-- 一个事件结束也要填 -->
+  <!-- 医患隔离开始实施 -->
   <event id="1">
-    <title>NewYear</title>
-    <describe>NewYear_Describe </describe>
-    <picture>EventPictures/Event1</picture>
-    <conditions amount="1">
-      <condition sign="ee" value="5">day</condition>
-    </conditions>
-    <effects amount="3">
-      <effect type="value" sign="+" value="50">Influence</effect>
-	  <effect type="news" index="2" slot="Influence"></effect>
-	  <effect type="event" index="2" delay="3"></effect>
-    </effects>
-  </event>
-  <event id="2">
-    <title>Test2</title>
-    <describe>Test2_Describe </describe>
-    <picture>EventPictures/EventPic</picture>
-    <trait>
+    <title>DocPatIso</title>
+    <describe>*</describe>
+    <picture>*</picture>
+	<trait>
+	  <isInvisible />
 	  <subEvent />
     </trait>
-    <conditions amount="1">
-      <condition sign="ge" value="6">day</condition>
+    <conditions amount="0">
     </conditions>
-    <effects amount="2">
-      <effect type="value" sign="+" value="5">Influence</effect>
-	  <effect type="news" index="2" slot="Influence"></effect>
+    <effects amount="1">
+	  <effect type="news" index="1" slot=""></effect>
     </effects>
   </event>
+  <!-- 病房改造开始 -->
+  <event id="2">
+    <title>WardReform</title>
+    <describe>*</describe>
+    <picture>*</picture>
+	<trait>
+	  <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+	  <effect type="news" index="2" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 免费医疗开始推行 -->
   <event id="3">
-    <title>Test3</title>
-    <describe>Test3_Describe </describe>
+    <title>FreeTreatment</title>
+    <describe>FreeTreatment_Describe </describe>
     <picture>EventPictures/EventPic</picture>
-    <probability Add="10">0</probability>
-    <conditions amount="2">
-      <condition sign="ge" value="7">day</condition>
-      <condition sign="ge" value="5">Influence</condition>
+	<trait>
+	  <subEvent />
+    </trait>
+    <conditions amount="0">
     </conditions>
     <effects amount="0">
-      <effect type="value" sign="+" value="0">variable</effect>
     </effects>
   </event>
+  <!-- “雷神”与“火神” -->
   <event id="4">
-    <title>Test4</title>
-    <describe>Test4_Describe </describe>
+    <title>BuildHospital</title>
+    <describe>BuildHospital_Describe </describe>
     <picture>EventPictures/CG/TempCG</picture>
     <trait>
       <isImportant />
+	  <subEvent />
     </trait>
-    <conditions amount="1">
-      <condition sign="ge" value="7">day</condition>
+    <conditions amount="0">
     </conditions>
     <effects amount="0">
-      <effect type="value" sign="+" value="0">variable</effect>
     </effects>
   </event>
 </events>

@@ -13,9 +13,9 @@ public class Scr_News : MonoBehaviour
 
 
     float speed = 250;
-    float iniPosx = 1240;
-    float finPosx = -900;
-    float midPosx = -240;
+    float iniPosx = 1320;
+    float finPosx = -1300;
+    float midPosx = -800;
 
 
     string TempNewsContent;
