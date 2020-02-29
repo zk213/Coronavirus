@@ -1,0 +1,6 @@
+Example:事件范例
+Example_Describe:事件内容
+FreeTreatment:免费医疗开始推行
+FreeTreatment_Describe:疫情期间，新冠肺炎患者（包括确诊和疑似）发生的医疗费用，在基本医保、大病保险、医疗救助等按规定支付后，个人负担部分由财政给予补助，实行免费医疗救治。
+BuildHospital:“雷神”与“火神”
+BuildHospital_Describe:为了以最快的速度最大限度地解决病房短缺等问题，今起新建医院的计划开始实施，雷神山与火神山齐头并进，与时间赛跑。

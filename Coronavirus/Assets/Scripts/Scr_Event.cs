@@ -1,7 +1,5 @@
-﻿using OfficeOpenXml;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +10,7 @@ public class Scr_Event : MonoBehaviour
     void EventConditionControl(int i)
     {
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.Load(Application.dataPath + "/Resources/Xml/Event.xml");
+        xmlDoc.LoadXml(((TextAsset)Resources.Load("Xml/Event")).text);
         XmlElement xmlNode = xmlDoc.DocumentElement;
         foreach (XmlNode elements in xmlNode)
         {
@@ -102,7 +100,7 @@ public class Scr_Event : MonoBehaviour
     void EventEffectControl(int i)
     {
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.Load(Application.dataPath + "/Resources/Xml/Event.xml");
+        xmlDoc.LoadXml(((TextAsset)Resources.Load("Xml/Event")).text);
         XmlElement xmlNode = xmlDoc.DocumentElement;
         foreach (XmlNode elements in xmlNode)
         {
@@ -356,13 +354,16 @@ public class Scr_Event : MonoBehaviour
     List<float> RdynamicProbability = new List<float>();//事件的发生概率
     List<float> RaddProbability = new List<float>();//事件增加的概率
     List<int> RisaddProbability = new List<int>();//有增加的概率的事件
+                                                  //
 
-    //
+    List<string> Key = new List<string>();
+    List<string> TextInfor = new List<string>();
+
 
     public void Start1()
     {
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.Load(Application.dataPath + "/Resources/Xml/Event.xml");
+        xmlDoc.LoadXml(((TextAsset)Resources.Load("Xml/Event")).text);
         XmlElement xmlNode = xmlDoc.DocumentElement;//SelectSingleNode("events").ChildNodes;
         foreach (XmlNode elements in xmlNode)
         {
@@ -504,6 +505,20 @@ public class Scr_Event : MonoBehaviour
         }
         DelayEvent = new List<int>();
         DelayDay = new List<int>();
+
+        Key = new List<string>();
+        TextInfor = new List<string>();
+        string LocalizationText = ((TextAsset)Resources.Load("Localization/" + Language.ToString() + "/Events")).text;
+        string[] LocalizationArray = LocalizationText.Split('\n');
+        for (int l = 0; l < LocalizationArray.Length; l++)
+        {
+            string[] LocalArray = LocalizationArray[l].Split(':');
+            Key.Add(LocalArray[0]);
+            TextInfor.Add(LocalArray[1]);
+        }
+
+
+
         //对事件的类别进行初始化，分出未激活的子事件与普通事件,并初始化事件发生的概率
         if (isLoad)
         {
@@ -749,83 +764,7 @@ public class Scr_Event : MonoBehaviour
     }
 
     //读取Localization中的事件excel文件
-    void LoadExcel(ExcelWorksheets workSheets, int SheetIndex, int EventIndex)
-    {
-        string xmlTitle = "Title Missing";
-        string xmlDescribe = "Describe Missing";
-        XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.Load(Application.dataPath + "/Resources/Xml/Event.xml");
-        XmlElement xmlNode = xmlDoc.DocumentElement;//SelectSingleNode("events").ChildNodes;
-        foreach (XmlNode elements in xmlNode)
-        {
-            XmlElement element = elements as XmlElement;
-            if (element == null)
-                continue;
-            if (element.LocalName == "event")
-            {
-                if (element.Attributes["id"].Value == HappenEvent[EventIndex].ToString())
-                {
-                    xmlTitle = element.SelectSingleNode("title").InnerText;
-                    xmlDescribe = element.SelectSingleNode("describe").InnerText;
-                }
-            }
-        }
-        ExcelWorksheet workSheet = workSheets[SheetIndex];//表1，即简体中文那张表
-        int rowCount = workSheet.Dimension.End.Row;//统计表的列数
-        bool hasTitle = false;
-        bool hasDescribe = false;
-        for (int row = 1; row <= rowCount; row++)
-        {
-            var text = workSheet.Cells[row, 1].Text ?? "Name Error";
 
-            if (text == xmlTitle)
-            {
-                if (isImportantList.Contains(HappenEvent[EventIndex]))
-                {
-                    CGTitle.text = workSheet.Cells[row, 2].Text ?? "Title Error";
-                }
-                else
-                {
-                    Title.text = workSheet.Cells[row, 2].Text ?? "Title Error";
-                }
-                hasTitle = true;
-            }
-            if (text == xmlDescribe)
-            {
-                if (isImportantList.Contains(HappenEvent[EventIndex]))
-                {
-                    CGDescribe.text = workSheet.Cells[row, 2].Text ?? "Describe Error";
-                }
-                else
-                {
-                    Describe.text = workSheet.Cells[row, 2].Text ?? "Describe Error";
-                }
-                hasDescribe = true;
-            }
-        }
-        if (!hasTitle)
-        {
-            if (isImportantList.Contains(HappenEvent[EventIndex]))
-            {
-                CGTitle.text = xmlTitle;
-            }
-            else
-            {
-                Title.text = xmlTitle;
-            }
-        }
-        if (!hasDescribe)
-        {
-            if (isImportantList.Contains(HappenEvent[EventIndex]))
-            {
-                CGDescribe.text = xmlDescribe;
-            }
-            else
-            {
-                Describe.text = xmlDescribe;
-            }
-        }
-    }
 
     void HappeningEvent(int i)
     {
@@ -835,18 +774,16 @@ public class Scr_Event : MonoBehaviour
             showEvent = true;
             time.Pause();//发生事件时游戏暂停
 
+
+
+
             //读取Event.xls文件
-            using (FileStream fs = new FileStream(Application.dataPath + "/Resources/Localization/Event.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            {
-                using (ExcelPackage excel = new ExcelPackage(fs))
-                {
-                    ExcelWorksheets workSheets = excel.Workbook.Worksheets;
-                    LoadExcel(workSheets, Language, i);
-                }
-            }
+
             string path = "";
+            string xmlTitle = "Title Missing";
+            string xmlDescribe = "Describe Missing";
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(Application.dataPath + "/Resources/Xml/Event.xml");
+            xmlDoc.LoadXml(((TextAsset)Resources.Load("Xml/Event")).text);
             XmlElement xmlNode = xmlDoc.DocumentElement;//SelectSingleNode("events").ChildNodes;
             foreach (XmlNode elements in xmlNode)
             {
@@ -857,11 +794,71 @@ public class Scr_Event : MonoBehaviour
                 {
                     if (element.Attributes["id"].Value == HappenEvent[i].ToString())
                     {
+                        xmlTitle = element.SelectSingleNode("title").InnerText;
+                        xmlDescribe = element.SelectSingleNode("describe").InnerText;
                         path = element.SelectSingleNode("picture").InnerText;
                     }
                 }
             }
-            if (File.Exists(Application.dataPath + "/Resources/" + path + ".png"))
+
+            bool hasTitle = false;
+            bool hasDescribe = false;
+            for (int l = 0; l < Key.Count; l++)
+            {
+                if (Key[l] == xmlTitle)
+                {
+                    if (isImportantList.Contains(HappenEvent[i]))
+                    {
+                        CGTitle.text = TextInfor[l];
+                    }
+                    else
+                    {
+                        Title.text = TextInfor[l];
+                    }
+                    hasTitle = true;
+                }
+                if (Key[l] == xmlDescribe)
+                {
+                    if (isImportantList.Contains(HappenEvent[i]))
+                    {
+                        CGDescribe.text = TextInfor[l];
+                    }
+                    else
+                    {
+                        Describe.text = TextInfor[l];
+                    }
+                    hasDescribe = true;
+                    Debug.Log(TextInfor[l]);
+                }
+                Debug.Log(Key[l]);
+                Debug.Log(xmlDescribe);
+            }
+            if (!hasTitle)
+            {
+                if (isImportantList.Contains(HappenEvent[i]))
+                {
+                    CGTitle.text = xmlTitle;
+                }
+                else
+                {
+                    Title.text = xmlTitle;
+                }
+            }
+            if (!hasDescribe)
+            {
+                if (isImportantList.Contains(HappenEvent[i]))
+                {
+                    CGDescribe.text = xmlDescribe;
+                }
+                else
+                {
+                    Describe.text = xmlDescribe;
+                }
+
+            }
+
+
+            if (path != "*")// File.Exists(Application.dataPath + "/Resources/" + path + ".png")
             {
 
 

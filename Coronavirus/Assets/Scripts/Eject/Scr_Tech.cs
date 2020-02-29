@@ -10,7 +10,7 @@ public class Scr_Tech : MonoBehaviour
     void TechEffect()
     {
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.Load(Application.dataPath + "/Resources/Xml/Tech.xml");
+        xmlDoc.LoadXml(((TextAsset)Resources.Load("Xml/Tech")).text);
         XmlElement xmlNode = xmlDoc.DocumentElement;
         foreach (XmlNode elements in xmlNode)
         {
@@ -115,7 +115,7 @@ public class Scr_Tech : MonoBehaviour
     {
         //对科技摁扭的初始化
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.Load(Application.dataPath + "/Resources/Xml/Tech.xml");
+        xmlDoc.LoadXml(((TextAsset)Resources.Load("Xml/Tech")).text);
         XmlElement xmlNode = xmlDoc.DocumentElement;
         Color32 baseColor;
         foreach (XmlNode elements in xmlNode)
@@ -326,7 +326,7 @@ public class Scr_Tech : MonoBehaviour
         if (TechIndex != -1)
         {
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(Application.dataPath + "/Resources/Xml/Tech.xml");
+            xmlDoc.LoadXml(((TextAsset)Resources.Load("Xml/Tech")).text);
             XmlElement xmlNode = xmlDoc.DocumentElement;
             foreach (XmlNode elements in xmlNode)
             {
@@ -422,7 +422,7 @@ public class Scr_Tech : MonoBehaviour
         if (canUpgrade)
         {
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(Application.dataPath + "/Resources/Xml/Tech.xml");
+            xmlDoc.LoadXml(((TextAsset)Resources.Load("Xml/Tech")).text);
             XmlElement xmlNode = xmlDoc.DocumentElement;
             foreach (XmlNode elements in xmlNode)
             {

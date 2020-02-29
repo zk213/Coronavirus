@@ -57,7 +57,7 @@
   <!-- 免费医疗开始推行 -->
   <event id="3">
     <title>FreeTreatment</title>
-    <describe>FreeTreatment_Describe </describe>
+    <describe>FreeTreatment_Describe</describe>
     <picture>EventPictures/EventPic</picture>
 	<trait>
 	  <subEvent />
@@ -70,7 +70,7 @@
   <!-- “雷神”与“火神” -->
   <event id="4">
     <title>BuildHospital</title>
-    <describe>BuildHospital_Describe </describe>
+    <describe>BuildHospital_Describe</describe>
     <picture>EventPictures/CG/TempCG</picture>
     <trait>
       <isImportant />
