@@ -45,6 +45,7 @@
     <describe>*</describe>
     <picture>*</picture>
 	<trait>
+	  <isInvisible />
 	  <subEvent />
     </trait>
     <conditions amount="0">
