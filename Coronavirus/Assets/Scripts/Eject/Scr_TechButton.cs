@@ -5,20 +5,21 @@ public class Scr_TechButton : MonoBehaviour
 {
     Scr_Tech Tech;
     Scr_Num Value;
-    Image Base;
     public int LocalIndex;
     public int father;
     public int cost;
     public bool isLock;
 
+
     float t = 0;
     bool tAdd = false;
+    Color32 colorEmpty = new Color32(255, 255, 255, 0);
+    Color colorGrey = new Color(0.5f, 0.5f, 0.5f, 0.5f);
 
     void Awake()
     {
         Tech = FindObjectOfType<Scr_Tech>();
         Value = FindObjectOfType<Scr_Num>();
-        Base = GetComponent<Image>();
         isLock = true;
     }
 
@@ -52,7 +53,8 @@ public class Scr_TechButton : MonoBehaviour
 
                 if (cost <= Value.InfluenceVal && !Tech.Tech[father].GetComponent<Scr_TechButton>().isLock)
                 {
-                    Base.color = Color.Lerp(Color.gray, Color.white, t);
+
+                    gameObject.transform.Find("TechIcon").transform.Find("TechShadow").GetComponent<Image>().color = Color.Lerp(colorEmpty, colorGrey, t);
                     if (Tech.TechIndex == LocalIndex && !Tech.canUpgrade)
                     {
                         Tech.canUpgrade = true;
@@ -60,12 +62,12 @@ public class Scr_TechButton : MonoBehaviour
                 }
                 else
                 {
-                    Base.color = Color.grey;
+                    gameObject.transform.Find("TechIcon").transform.Find("TechShadow").GetComponent<Image>().color = colorGrey;
                 }
             }
             else if (cost <= Value.InfluenceVal)
             {
-                Base.color = Color.Lerp(Color.gray, Color.white, t);
+                gameObject.transform.Find("TechIcon").transform.Find("TechShadow").GetComponent<Image>().color = Color.Lerp(colorEmpty, colorGrey, t);
                 if (Tech.TechIndex == LocalIndex && !Tech.canUpgrade)
                 {
                     Tech.canUpgrade = true;
@@ -73,12 +75,12 @@ public class Scr_TechButton : MonoBehaviour
             }
             else
             {
-                Base.color = Color.grey;
+                gameObject.transform.Find("TechIcon").transform.Find("TechShadow").GetComponent<Image>().color = colorGrey;
             }
         }
         else
         {
-            Base.color = Color.white;
+            gameObject.transform.Find("TechIcon").transform.Find("TechShadow").GetComponent<Image>().color = colorEmpty;
         }
     }
 

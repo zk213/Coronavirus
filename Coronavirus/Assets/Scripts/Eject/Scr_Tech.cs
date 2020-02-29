@@ -107,7 +107,7 @@ public class Scr_Tech : MonoBehaviour
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(Application.dataPath + "/Resources/Xml/Tech.xml");
         XmlElement xmlNode = xmlDoc.DocumentElement;
-
+        Color32 baseColor;
         foreach (XmlNode elements in xmlNode)
         {
             XmlElement element = elements as XmlElement;
@@ -126,23 +126,27 @@ public class Scr_Tech : MonoBehaviour
                 {
                     case "gover":
                         page = 2;
+                        baseColor = new Color32(102, 202, 255, 255);
                         break;
                     case "medicine":
                         page = 3;
+                        baseColor = new Color32(140, 255, 171, 255);
                         break;
                     default:
                         page = 2;
+                        baseColor = new Color32(102, 202, 255, 255);
                         break;
                 }
                 Tech[i].transform.SetParent(parent.transform.Find("UpGradePage" + page.ToString()), false);
+                Tech[i].transform.Find("TechBase").GetComponent<Image>().color = baseColor;
                 if (File.Exists(Application.dataPath + "/Resources/" + element.SelectSingleNode("picture").InnerText + ".png"))
                 {
                     //Tech[i].transform.Find("TechIcon").GetComponent<Image>().sprite = Resources.Load(TechData.technologyGroup[i].picture, typeof(Sprite)) as Sprite;
-                    Tech[i].GetComponent<Image>().sprite = Resources.Load(element.SelectSingleNode("picture").InnerText, typeof(Sprite)) as Sprite;
+                    Tech[i].transform.Find("TechIcon").GetComponent<Image>().sprite = Resources.Load(element.SelectSingleNode("picture").InnerText, typeof(Sprite)) as Sprite;
                 }
                 else
                 {
-                    Tech[i].GetComponent<Image>().sprite = Resources.Load("TechnologyPictures/TechError", typeof(Sprite)) as Sprite;
+                    Tech[i].transform.Find("TechIcon").GetComponent<Image>().sprite = Resources.Load("TechnologyPictures/TechError", typeof(Sprite)) as Sprite;
                 }
                 int.TryParse(element.SelectSingleNode("posx").InnerText, out int posx);
                 int.TryParse(element.SelectSingleNode("posy").InnerText, out int posy);

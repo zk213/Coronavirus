@@ -10,8 +10,8 @@
     </eureka>
 	<type>medicine</type>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-60</posx>
+    <posy>280</posy>
 	<effects amount="1">
       <effect type="message">医患隔离升级</effect>
     </effects>
@@ -26,8 +26,8 @@
 	<type>medicine</type>
     <father>0</father>
     <cost>5</cost>
-    <posx>-505</posx>
-    <posy>158</posy>
+    <posx>-60</posx>
+    <posy>140</posy>
 	<effects amount="1">
       <effect type="message">病房改造升级</effect>
     </effects>
@@ -40,9 +40,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>1</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-60</posx>
+    <posy>0</posy>
 	<effects amount="1">
       <effect type="message">免费医疗升级</effect>
     </effects>
@@ -55,9 +56,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>2</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-60</posx>
+    <posy>-140</posy>
 	<effects amount="1">
       <effect type="message">新建医院升级</effect>
     </effects>
@@ -70,9 +72,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>3</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-60</posx>
+    <posy>-280</posy>
 	<effects amount="1">
       <effect type="message">方舱医院升级</effect>
     </effects>
@@ -85,9 +88,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>4</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>0</posx>
+    <posy>-420</posy>
 	<effects amount="1">
       <effect type="message">宿舍征用升级</effect>
     </effects>
@@ -100,9 +104,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>4</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-130</posx>
+    <posy>-420</posy>
 	<effects amount="1">
       <effect type="message">军队进驻升级</effect>
     </effects>
@@ -116,8 +121,8 @@
     </eureka>
 	<type>gover</type>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-600</posx>
+    <posy>280</posy>
 	<effects amount="1">
       <effect type="message">取缔交易升级</effect>
     </effects>
@@ -130,9 +135,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>7</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-600</posx>
+    <posy>140</posy>
 	<effects amount="1">
       <effect type="message">城市封锁升级</effect>
     </effects>
@@ -145,9 +151,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>8</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-480</posx>
+    <posy>0</posy>
 	<effects amount="1">
       <effect type="message">延期复工升级</effect>
     </effects>
@@ -160,9 +167,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>9</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-480</posx>
+    <posy>-140</posy>
 	<effects amount="1">
       <effect type="message">交通协调升级</effect>
     </effects>
@@ -175,9 +183,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>10</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-480</posx>
+    <posy>-280</posy>
 	<effects amount="1">
       <effect type="message">复工保护升级</effect>
     </effects>
@@ -190,9 +199,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>8</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-360</posx>
+    <posy>0</posy>
 	<effects amount="1">
       <effect type="message">城市消毒升级</effect>
     </effects>
@@ -205,9 +215,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>12</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-360</posx>
+    <posy>-140</posy>
 	<effects amount="1">
       <effect type="message">封闭管理升级</effect>
     </effects>
@@ -220,9 +231,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>8</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-840</posx>
+    <posy>0</posy>
 	<effects amount="1">
       <effect type="message">官员调查升级</effect>
     </effects>
@@ -235,9 +247,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>14</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-840</posx>
+    <posy>-140</posy>
 	<effects amount="1">
       <effect type="message">物流管理升级</effect>
     </effects>
@@ -250,9 +263,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>8</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-660</posx>
+    <posy>0</posy>
 	<effects amount="1">
       <effect type="message">价格调控升级</effect>
     </effects>
@@ -265,9 +279,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>16</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-720</posx>
+    <posy>-140</posy>
 	<effects amount="1">
       <effect type="message">志愿服务升级</effect>
     </effects>
@@ -280,9 +295,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>16</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-600</posx>
+    <posy>-140</posy>
 	<effects amount="1">
       <effect type="message">增加产能升级</effect>
     </effects>
@@ -295,9 +311,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>18</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-600</posx>
+    <posy>-280</posy>
 	<effects amount="1">
       <effect type="message">稳定股市升级</effect>
     </effects>
@@ -310,9 +327,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>19</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-600</posx>
+    <posy>-420</posy>
 	<effects amount="1">
       <effect type="message">国家补助升级</effect>
     </effects>
@@ -326,8 +344,8 @@
     </eureka>
 	<type>gover</type>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-190</posx>
+    <posy>280</posy>
 	<effects amount="1">
       <effect type="message">驳斥谣言升级</effect>
     </effects>
@@ -340,9 +358,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>21</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-190</posx>
+    <posy>140</posy>
 	<effects amount="1">
       <effect type="message">就医宣传升级</effect>
     </effects>
@@ -355,9 +374,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>22</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-190</posx>
+    <posy>0</posy>
 	<effects amount="1">
       <effect type="message">民众齐心升级</effect>
     </effects>
@@ -370,9 +390,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>23</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-190</posx>
+    <posy>-140</posy>
 	<effects amount="1">
       <effect type="message">村落宣传升级</effect>
     </effects>
@@ -385,9 +406,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>26</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-190</posx>
+    <posy>-420</posy>
 	<effects amount="1">
       <effect type="message">血浆捐献升级</effect>
     </effects>
@@ -400,9 +422,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>24</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-190</posx>
+    <posy>-280</posy>
 	<effects amount="1">
       <effect type="message">英雄介绍升级</effect>
     </effects>
@@ -415,9 +438,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>21</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-310</posx>
+    <posy>140</posy>
 	<effects amount="1">
       <effect type="message">症状公示升级</effect>
     </effects>
@@ -430,9 +454,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>21</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-70</posx>
+    <posy>140</posy>
 	<effects amount="1">
       <effect type="message">平台建设升级</effect>
     </effects>
@@ -445,9 +470,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>30</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-70</posx>
+    <posy>-140</posy>
 	<effects amount="1">
       <effect type="message">补充真相升级</effect>
     </effects>
@@ -460,9 +486,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>28</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-70</posx>
+    <posy>0</posy>
 	<effects amount="1">
       <effect type="message">云监工升级</effect>
     </effects>
@@ -476,8 +503,8 @@
     </eureka>
 	<type>gover</type>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>160</posx>
+    <posy>280</posy>
 	<effects amount="1">
       <effect type="message">接触调查升级</effect>
     </effects>
@@ -490,9 +517,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>31</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>100</posx>
+    <posy>140</posy>
 	<effects amount="1">
       <effect type="message">途径调查升级</effect>
     </effects>
@@ -505,9 +533,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>32</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>100</posx>
+    <posy>0</posy>
 	<effects amount="1">
       <effect type="message">上报津贴升级</effect>
     </effects>
@@ -520,9 +549,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>31</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>220</posx>
+    <posy>140</posy>
 	<effects amount="1">
       <effect type="message">红外测温升级</effect>
     </effects>
@@ -535,9 +565,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>34</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>220</posx>
+    <posy>0</posy>
 	<effects amount="1">
       <effect type="message">强制口罩升级</effect>
     </effects>
@@ -550,9 +581,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>35</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>220</posx>
+    <posy>-140</posy>
 	<effects amount="1">
       <effect type="message">全民普查升级</effect>
     </effects>
@@ -565,9 +597,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>36</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>220</posx>
+    <posy>-280</posy>
 	<effects amount="1">
       <effect type="message">娱乐减停升级</effect>
     </effects>
@@ -580,9 +613,10 @@
     <eureka>
     </eureka>
 	<type>gover</type>
+	<father>37</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>220</posx>
+    <posy>-420</posy>
 	<effects amount="1">
       <effect type="message">特别国债升级</effect>
     </effects>
@@ -596,8 +630,8 @@
     </eureka>
 	<type>medicine</type>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-410</posx>
+    <posy>280</posy>
 	<effects amount="1">
       <effect type="message">专家调查升级</effect>
     </effects>
@@ -610,9 +644,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>39</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-590</posx>
+    <posy>140</posy>
 	<effects amount="1">
       <effect type="message">国际交流升级</effect>
     </effects>
@@ -625,9 +660,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>39</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-290</posx>
+    <posy>140</posy>
 	<effects amount="1">
       <effect type="message">一级响应升级</effect>
     </effects>
@@ -640,9 +676,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>41</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-290</posx>
+    <posy>0</posy>
 	<effects amount="1">
       <effect type="message">甲类防控升级</effect>
     </effects>
@@ -655,9 +692,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>42</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-350</posx>
+    <posy>-140</posy>
 	<effects amount="1">
       <effect type="message">集中救治升级</effect>
     </effects>
@@ -670,9 +708,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>42</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-230</posx>
+    <posy>-140</posy>
 	<effects amount="1">
       <effect type="message">直报系统升级</effect>
     </effects>
@@ -686,8 +725,8 @@
     </eureka>
 	<type>medicine</type>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>170</posx>
+    <posy>280</posy>
 	<effects amount="1">
       <effect type="message">加快发放升级</effect>
     </effects>
@@ -700,9 +739,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>50</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>170</posx>
+    <posy>0</posy>
 	<effects amount="1">
       <effect type="message">轮休制度升级</effect>
     </effects>
@@ -715,9 +755,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>46</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>170</posx>
+    <posy>-140</posy>
 	<effects amount="1">
       <effect type="message">电子化管理升级</effect>
     </effects>
@@ -730,9 +771,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>47</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>170</posx>
+    <posy>-280</posy>
 	<effects amount="1">
       <effect type="message">党员组织升级</effect>
     </effects>
@@ -745,9 +787,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>48</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>170</posx>
+    <posy>-420</posy>
 	<effects amount="1">
       <effect type="message">女性补助升级</effect>
     </effects>
@@ -760,9 +803,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>45</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>170</posx>
+    <posy>140</posy>
 	<effects amount="1">
       <effect type="message">定点医疗升级</effect>
     </effects>
@@ -775,9 +819,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>39</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-470</posx>
+    <posy>140</posy>
 	<effects amount="1">
       <effect type="message">病例筛查升级</effect>
     </effects>
@@ -790,9 +835,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>51</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-470</posx>
+    <posy>0</posy>
 	<effects amount="1">
       <effect type="message">基因测序升级</effect>
     </effects>
@@ -805,9 +851,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>52</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-470</posx>
+    <posy>-140</posy>
 	<effects amount="1">
       <effect type="message">核酸检测升级</effect>
     </effects>
@@ -820,9 +867,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>53</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-410</posx>
+    <posy>-280</posy>
 	<effects amount="1">
       <effect type="message">降低标准升级</effect>
     </effects>
@@ -835,9 +883,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>53</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-530</posx>
+    <posy>-280</posy>
 	<effects amount="1">
       <effect type="message">影像调查升级</effect>
     </effects>
@@ -850,9 +899,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>55</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-530</posx>
+    <posy>-420</posy>
 	<effects amount="1">
       <effect type="message">临床诊断升级</effect>
     </effects>
@@ -865,9 +915,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>54</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-410</posx>
+    <posy>-420</posy>
 	<effects amount="1">
       <effect type="message">lgM快速检测升级</effect>
     </effects>
@@ -881,8 +932,8 @@
     </eureka>
 	<type>medicine</type>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-760</posx>
+    <posy>280</posy>
 	<effects amount="1">
       <effect type="message">药物实践升级</effect>
     </effects>
@@ -890,14 +941,15 @@
   <!-- 疫苗研发 -->
   <tech id="59">
     <title>VaccineDevelopment</title>
-    <describe>CVaccineDevelopment_Describe</describe>
+    <describe>VaccineDevelopment_Describe</describe>
     <picture>TechnologyPictures/Tech59</picture>
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>58</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-760</posx>
+    <posy>140</posy>
 	<effects amount="1">
       <effect type="message">疫苗研发升级</effect>
     </effects>
@@ -910,9 +962,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>59</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-760</posx>
+    <posy>0</posy>
 	<effects amount="1">
       <effect type="message">药物筛选升级</effect>
     </effects>
@@ -925,9 +978,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>60</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-760</posx>
+    <posy>-140</posy>
 	<effects amount="1">
       <effect type="message">中西结合升级</effect>
     </effects>
@@ -940,9 +994,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>61</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-820</posx>
+    <posy>-280</posy>
 	<effects amount="1">
       <effect type="message">血桨研究升级</effect>
     </effects>
@@ -955,26 +1010,28 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>62</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-820</posx>
+    <posy>-420</posy>
 	<effects amount="1">
       <effect type="message">新式芯片升级</effect>
     </effects>
   </tech>
-  <!-- 疫苗审批 -->
+  <!-- 分类治疗 -->
   <tech id="64">
-    <title>VaccineApproval</title>
-    <describe>VaccineApproval_Describe</describe>
+    <title>ClassifiedTreatment</title>
+    <describe>ClassifiedTreatment_Describe</describe>
     <picture>TechnologyPictures/Tech64</picture>
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>65</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-700</posx>
+    <posy>-420</posy>
 	<effects amount="1">
-      <effect type="message">疫苗审批升级</effect>
+      <effect type="message">分类治疗升级</effect>
     </effects>
   </tech>
   <!-- 病理解剖 -->
@@ -985,9 +1042,10 @@
     <eureka>
     </eureka>
 	<type>medicine</type>
+	<father>61</father>
     <cost>5</cost>
-    <posx>-722</posx>
-    <posy>158</posy>
+    <posx>-700</posx>
+    <posy>-280</posy>
 	<effects amount="1">
       <effect type="message">病理解剖升级</effect>
     </effects>

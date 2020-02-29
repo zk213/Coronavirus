@@ -50,17 +50,14 @@ public class Scr_TimeControl : MonoBehaviour
 
     [Header("附加组件")]
     public Text GlobalTime;
-    public Image pause;
-    public Image onespeed;
-    public Image fastspeed;
     public GameObject extendbutton;
 
     Scr_Event Event;
     Scr_Color provinces;
     Scr_Load LoadControl;
 
-    float iniPosy = 9.1f;
-    float finPosy = -64.9f;
+    float iniPosy = -5;
+    float finPosy = -105;
     float yMoveSpeed = 300;
 
 
@@ -74,6 +71,9 @@ public class Scr_TimeControl : MonoBehaviour
     bool showbuttonmovefinish = true;
 
     bool isLoad = false;
+    Color32 colorWhite2 = new Color32(255, 255, 255, 203);
+    Color32 colorBlue1 = new Color32(0, 183, 255, 255);
+    Color32 colorBlue2 = new Color32(0, 183, 255, 203);
 
     public void Start1()
     {
@@ -112,7 +112,6 @@ public class Scr_TimeControl : MonoBehaviour
                 if (elementsS.LocalName == "Day")
                 {
                     int.TryParse(elementsS.InnerText, out day);
-                    Debug.Log(1);
                     for (int tempDay = 1; tempDay < day; tempDay++)
                     {
                         ShowTime();
@@ -121,6 +120,8 @@ public class Scr_TimeControl : MonoBehaviour
                 }
             }
         }
+        timeMode = TimeMode.Pause;
+        OneSpeed();
     }
 
 
@@ -231,7 +232,15 @@ public class Scr_TimeControl : MonoBehaviour
         if (timeMode == TimeMode.Pause) { return; }
 
         timeMode = TimeMode.Pause;
-        string path = "UI/Button/TimeFrame/Pause2";    //image路径
+
+        extendbutton.transform.Find("Pause").GetComponent<Image>().color = colorBlue2;
+        extendbutton.transform.Find("Pause").transform.Find("PauseIcon").GetComponent<Image>().color = Color.white;
+        extendbutton.transform.Find("OneSpeed").GetComponent<Image>().color = colorWhite2;
+        extendbutton.transform.Find("OneSpeed").transform.Find("OneSpeedIcon").GetComponent<Image>().color = colorBlue1;
+        extendbutton.transform.Find("FastSpeed").GetComponent<Image>().color = colorWhite2;
+        extendbutton.transform.Find("FastSpeed").transform.Find("FastSpeedIcon").GetComponent<Image>().color = colorBlue1;
+        /*
+         string path = "UI/Button/TimeFrame/Pause2";    //image路径
         Sprite sprite = Resources.Load(path, typeof(Sprite)) as Sprite;    //参数为资源路径和资源类型
         pause.sprite = sprite;
 
@@ -242,13 +251,23 @@ public class Scr_TimeControl : MonoBehaviour
         path = "UI/Button/TimeFrame/FSpeed1";
         sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         fastspeed.sprite = sprite;
+         */
+
     }
     public void OneSpeed()
     {
         if (timeMode == TimeMode.OneSpeed || Event.showEvent) { return; }
 
         timeMode = TimeMode.OneSpeed;
-        string path = "UI/Button/TimeFrame/CSpeed2";
+
+        extendbutton.transform.Find("Pause").GetComponent<Image>().color = colorWhite2;
+        extendbutton.transform.Find("Pause").transform.Find("PauseIcon").GetComponent<Image>().color = colorBlue1;
+        extendbutton.transform.Find("OneSpeed").GetComponent<Image>().color = colorBlue2;
+        extendbutton.transform.Find("OneSpeed").transform.Find("OneSpeedIcon").GetComponent<Image>().color = Color.white;
+        extendbutton.transform.Find("FastSpeed").GetComponent<Image>().color = colorWhite2;
+        extendbutton.transform.Find("FastSpeed").transform.Find("FastSpeedIcon").GetComponent<Image>().color = colorBlue1;
+        /*
+         string path = "UI/Button/TimeFrame/CSpeed2";
         Sprite sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         onespeed.sprite = sprite;
 
@@ -259,13 +278,23 @@ public class Scr_TimeControl : MonoBehaviour
         path = "UI/Button/TimeFrame/FSpeed1";
         sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         fastspeed.sprite = sprite;
+         */
+
     }
     public void FastSpeed()
     {
         if (timeMode == TimeMode.FastSpeed || Event.showEvent) { return; }
 
         timeMode = TimeMode.FastSpeed;
-        string path = "UI/Button/TimeFrame/FSpeed2";
+
+        extendbutton.transform.Find("Pause").GetComponent<Image>().color = colorWhite2;
+        extendbutton.transform.Find("Pause").transform.Find("PauseIcon").GetComponent<Image>().color = colorBlue1;
+        extendbutton.transform.Find("OneSpeed").GetComponent<Image>().color = colorWhite2;
+        extendbutton.transform.Find("OneSpeed").transform.Find("OneSpeedIcon").GetComponent<Image>().color = colorBlue1;
+        extendbutton.transform.Find("FastSpeed").GetComponent<Image>().color = colorBlue2;
+        extendbutton.transform.Find("FastSpeed").transform.Find("FastSpeedIcon").GetComponent<Image>().color = Color.white;
+        /*
+         string path = "UI/Button/TimeFrame/FSpeed2";
         Sprite sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         fastspeed.sprite = sprite;
 
@@ -276,6 +305,8 @@ public class Scr_TimeControl : MonoBehaviour
         path = "UI/Button/TimeFrame/Pause1";
         sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
         pause.sprite = sprite;
+         */
+
     }
 
     //展现与隐藏控制时间的摁扭
