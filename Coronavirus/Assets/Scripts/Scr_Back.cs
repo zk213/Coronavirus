@@ -12,6 +12,7 @@ public class Scr_Back : MonoBehaviour
     Scr_Save save;
     Scr_TimeControl time;
     Scr_Load load;
+    Scr_Event Events;
 
     TimeMode TempTimeMode;
     bool OpenBack = false;
@@ -22,6 +23,7 @@ public class Scr_Back : MonoBehaviour
         save = FindObjectOfType<Scr_Save>();
         time = FindObjectOfType<Scr_TimeControl>();
         load = FindObjectOfType<Scr_Load>();
+        Events = FindObjectOfType<Scr_Event>();
     }
 
     // Update is called once per frame
@@ -31,7 +33,10 @@ public class Scr_Back : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                OpenBackPage();
+                if (!Events.showEvent)
+                {
+                    OpenBackPage();
+                }
             }
         }
         else if (OpenBack && !UpGradePage.activeInHierarchy && !StatisticPage.activeInHierarchy)
@@ -47,13 +52,16 @@ public class Scr_Back : MonoBehaviour
     {
         OpenBack = false;
         BackPage.SetActive(false);
-        if (TempTimeMode == TimeMode.OneSpeed)
+        if (!Events.showEvent)
         {
-            time.OneSpeed();
-        }
-        if (TempTimeMode == TimeMode.FastSpeed)
-        {
-            time.FastSpeed();
+            if (TempTimeMode == TimeMode.OneSpeed)
+            {
+                time.OneSpeed();
+            }
+            if (TempTimeMode == TimeMode.FastSpeed)
+            {
+                time.FastSpeed();
+            }
         }
     }
 

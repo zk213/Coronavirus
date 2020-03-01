@@ -828,10 +828,7 @@ public class Scr_Event : MonoBehaviour
                         Describe.text = TextInfor[l];
                     }
                     hasDescribe = true;
-                    Debug.Log(TextInfor[l]);
                 }
-                Debug.Log(Key[l]);
-                Debug.Log(xmlDescribe);
             }
             if (!hasTitle)
             {

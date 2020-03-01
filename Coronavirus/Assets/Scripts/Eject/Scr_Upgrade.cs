@@ -15,13 +15,17 @@ public class Scr_Upgrade : MonoBehaviour
     public Text MedicalResearch;
     public Text Back;
 
-
+    TimeMode TempTimeMode;
 
     Scr_Tech Tech;
+    Scr_TimeControl Time;
+    Scr_Event Events;
 
     void OnEnable()
     {
         Tech = FindObjectOfType<Scr_Tech>();
+        Time = FindObjectOfType<Scr_TimeControl>();
+        Events = FindObjectOfType<Scr_Event>();
         UpGradePage.SetActive(false);
         PressPage1.SetActive(true);
         PressPage2.SetActive(false);
@@ -44,8 +48,33 @@ public class Scr_Upgrade : MonoBehaviour
         }
     }
 
+    void Pause()
+    {
+        if (!Events.showEvent)
+        {
+            TempTimeMode = Time.timeMode;
+            Time.Pause();
+        }
+    }
+
+    void StopPause()
+    {
+        if (!Events.showEvent)
+        {
+            if (TempTimeMode == TimeMode.OneSpeed)
+            {
+                Time.OneSpeed();
+            }
+            if (TempTimeMode == TimeMode.FastSpeed)
+            {
+                Time.FastSpeed();
+            }
+        }
+    }
+
     public void OpenUpGradePage1()
     {
+        Pause();
         UpGradePage.SetActive(true);
         MainPage.SetActive(false);
         PressPage1.SetActive(true);
@@ -55,6 +84,7 @@ public class Scr_Upgrade : MonoBehaviour
     }
     public void OpenUpGradePage2()
     {
+        Pause();
         UpGradePage.SetActive(true);
         MainPage.SetActive(false);
         PressPage2.SetActive(true);
@@ -64,6 +94,7 @@ public class Scr_Upgrade : MonoBehaviour
     }
     public void OpenUpGradePage3()
     {
+        Pause();
         UpGradePage.SetActive(true);
         MainPage.SetActive(false);
         PressPage3.SetActive(true);
@@ -74,6 +105,7 @@ public class Scr_Upgrade : MonoBehaviour
 
     public void CloseUpGradePage()
     {
+        StopPause();
         UpGradePage.SetActive(false);
         MainPage.SetActive(true);
         PressPage1.SetActive(false);

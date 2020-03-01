@@ -75,8 +75,6 @@ public class Scr_Color : MonoBehaviour
     List<float> HeavyTurn = new List<float>();
     List<float> CureTurn = new List<float>();
 
-    public Text TextTest;
-    string testString = "";
     public void Start3()
     {
         thisIndex = -1;
@@ -369,12 +367,10 @@ public class Scr_Color : MonoBehaviour
     }
     public void Start1()
     {
-        TextTest.text = "1";
         //省份信息的初始化
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.LoadXml(((TextAsset)Resources.Load("Xml/Provinces")).text);// (Application.dataPath + "/Resources/Xml/Provinces.xml");
         XmlElement xmlNode = xmlDoc.DocumentElement;
-        TextTest.text = "2";
         foreach (XmlNode elements in xmlNode)
         {
             if (elements == null)
@@ -420,7 +416,6 @@ public class Scr_Color : MonoBehaviour
 
             }
         }
-        TextTest.text = "3";
         XmlDocument DxmlDoc = new XmlDocument();
         DxmlDoc.LoadXml(((TextAsset)Resources.Load("Xml/Data")).text);
         XmlElement DxmlNode = DxmlDoc.DocumentElement;
@@ -505,7 +500,6 @@ public class Scr_Color : MonoBehaviour
                 float.TryParse(elements.InnerText, out QuarantineInfected);
             }
         }
-        TextTest.text = "4";
     }
     public void Start2()
     {
