@@ -13,7 +13,7 @@
     <posx>-60</posx>
     <posy>280</posy>
 	<effects amount="1">
-      <effect type="event">1</effect>
+      <effect type="event" delay="5">1</effect>
     </effects>
   </tech>
   <!-- 病房改造 -->

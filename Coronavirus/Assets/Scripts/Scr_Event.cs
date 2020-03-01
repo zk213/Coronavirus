@@ -328,8 +328,8 @@ public class Scr_Event : MonoBehaviour
     List<int> ReadyEvent = new List<int>();//就绪事件，就绪事件就是所有条件都满足的事件，他会每回合过一次概率，如果概率过了就会触发事件，如果没有继续等待下一回合
     List<int> HappenEvent = new List<int>();//正在发生的事件,将发生的事件按照一定顺序排序，并依次发生
     List<int> FinishEvent = new List<int>();//已发生事件,无论如何也不会再检测了，即使触发条件都成立
-    List<int> DelayEvent = new List<int>();//延迟事件
-    List<int> DelayDay = new List<int>();//延迟天数
+    public List<int> DelayEvent = new List<int>();//延迟事件
+    public List<int> DelayDay = new List<int>();//延迟天数
 
     List<float> dynamicProbability = new List<float>();//事件的发生概率
     List<float> addProbability = new List<float>();//事件增加的概率

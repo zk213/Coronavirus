@@ -30,11 +30,27 @@ public class Scr_Tech : MonoBehaviour
                                 Debug.Log(effect.InnerText);
                                 break;
                             case "event":
+                                int delayDay = 0;
                                 int.TryParse(effect.InnerText, out int eventIndex);
+                                if (effect.HasAttribute("delay"))
+                                {
+                                    int.TryParse(effect.Attributes["delay"].Value, out delayDay);
+                                }
                                 if (Events.UnActiveEvent.Contains(eventIndex))
                                 {
-                                    Events.ActiveEvent.Add(eventIndex);
-                                    Events.UnActiveEvent.Remove(eventIndex);
+                                    if (delayDay > 0)
+                                    {
+
+                                        Events.DelayEvent.Add(eventIndex);
+                                        Events.DelayDay.Add(delayDay);
+                                        Events.UnActiveEvent.Remove(eventIndex);
+
+                                    }
+                                    else
+                                    {
+                                        Events.ActiveEvent.Add(eventIndex);
+                                        Events.UnActiveEvent.Remove(eventIndex);
+                                    }
                                 }
                                 break;
                             default:

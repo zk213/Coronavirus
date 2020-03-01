@@ -36,7 +36,7 @@
     <conditions amount="0">
     </conditions>
     <effects amount="1">
-	  <effect type="news" index="1" slot=""></effect>
+	  <effect type="news" index="1"></effect>
     </effects>
   </event>
   <!-- 病房改造开始 -->
