@@ -1,5 +1,4 @@
-﻿using OfficeOpenXml;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using UnityEngine;
@@ -66,6 +65,7 @@ public class Scr_Color : MonoBehaviour
 
     public int LoadOrder = 0;
 
+
     List<float> DIPTransport = new List<float>();
     List<float> DPopulation = new List<float>();
     List<float> DPPTransport = new List<float>();
@@ -74,6 +74,9 @@ public class Scr_Color : MonoBehaviour
     List<float> MildTurn = new List<float>();
     List<float> HeavyTurn = new List<float>();
     List<float> CureTurn = new List<float>();
+
+    List<string> Key = new List<string>();
+    List<string> TextInfor = new List<string>();
 
     public void Start3()
     {
@@ -109,19 +112,45 @@ public class Scr_Color : MonoBehaviour
                 }
             }
         }
-        using (FileStream fs = new FileStream(Application.dataPath + "/Resources/Localization/Provinces.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+        Key = new List<string>();
+        TextInfor = new List<string>();
+        string LocalizationText = ((TextAsset)Resources.Load("Localization/" + Language.ToString() + "/Provinces")).text;
+        string[] LocalizationArray = LocalizationText.Split('\n');
+        for (int l = 0; l < LocalizationArray.Length; l++)
         {
-            using (ExcelPackage excel = new ExcelPackage(fs))
+            string[] LocalArray = LocalizationArray[l].Split(':');
+            switch (LocalArray[0])
             {
-                ExcelWorksheets workSheets = excel.Workbook.Worksheets;
-                LoadExcel(workSheets, Language, "Total");
-                LoadExcel(workSheets, Language, "NumInfected");
-                LoadExcel(workSheets, Language, "NumDead");
-                LoadExcel(workSheets, Language, "NumCure");
-                LoadExcel(workSheets, Language, "NumHeavy");
-                LoadExcel(workSheets, Language, "NumSuspected");
+                case "Total":
+                    TotalName = LocalArray[1];
+                    break;
+                case "NumInfected":
+                    NumInfected = LocalArray[1];
+                    break;
+                case "NumDead":
+                    NumDead = LocalArray[1];
+                    break;
+                case "NumCure":
+                    NumDead = LocalArray[1];
+                    break;
+                case "NumHeavy":
+                    NumHeavy = LocalArray[1];
+                    break;
+                case "NumSuspected":
+                    NumSuspected = LocalArray[1];
+                    break;
+                default:
+                    if (LocalArray.Length == 2)
+                    {
+                        Key.Add(LocalArray[0]);
+                        TextInfor.Add(LocalArray[1]);
+                    }
+                    break;
+
             }
+
         }
+
         provincesName.text = TotalName;
 
 
@@ -242,12 +271,13 @@ public class Scr_Color : MonoBehaviour
             }
             for (int a = 0; a < colorNum; a++)
             {
-                Provinces[a].GetComponent<Scr_Provinces>().PPTransport = PPTransport[a];
-                Provinces[a].GetComponent<Scr_Provinces>().IPTransport = IPTransport[a];
-                Provinces[a].GetComponent<Scr_Provinces>().Population = Population[a];
-                Provinces[a].GetComponent<Scr_Provinces>().Medicine = Medicine[a];
-                Provinces[a].GetComponent<Scr_Provinces>().Death = Death[a];
-                Provinces[a].GetComponent<Scr_Provinces>().Cure = Cure[a];
+                Scr_Provinces ScrCompent = Provinces[a].GetComponent<Scr_Provinces>();
+                ScrCompent.PPTransport = PPTransport[a];
+                ScrCompent.IPTransport = IPTransport[a];
+                ScrCompent.Population = Population[a];
+                ScrCompent.Medicine = Medicine[a];
+                ScrCompent.Death = Death[a];
+                ScrCompent.Cure = Cure[a];
             }
         }
         for (int i = 0; i < Provinces.Count; i++)
@@ -283,23 +313,24 @@ public class Scr_Color : MonoBehaviour
         string SaveString6 = "";
         for (int a = 0; a < colorNum; a++)
         {
+            Scr_Provinces ScrCompent = Provinces[a].GetComponent<Scr_Provinces>();
             if (SaveString1.Length == 0)
             {
-                SaveString1 = Provinces[a].GetComponent<Scr_Provinces>().PPTransport.ToString();
-                SaveString2 = Provinces[a].GetComponent<Scr_Provinces>().IPTransport.ToString();
-                SaveString3 = Provinces[a].GetComponent<Scr_Provinces>().Population.ToString();
-                SaveString4 = Provinces[a].GetComponent<Scr_Provinces>().Medicine.ToString();
-                SaveString5 = Provinces[a].GetComponent<Scr_Provinces>().Death.ToString();
-                SaveString6 = Provinces[a].GetComponent<Scr_Provinces>().Cure.ToString();
+                SaveString1 = ScrCompent.PPTransport.ToString();
+                SaveString2 = ScrCompent.IPTransport.ToString();
+                SaveString3 = ScrCompent.Population.ToString();
+                SaveString4 = ScrCompent.Medicine.ToString();
+                SaveString5 = ScrCompent.Death.ToString();
+                SaveString6 = ScrCompent.Cure.ToString();
             }
             else
             {
-                SaveString1 += "," + Provinces[a].GetComponent<Scr_Provinces>().PPTransport.ToString();
-                SaveString2 += "," + Provinces[a].GetComponent<Scr_Provinces>().IPTransport.ToString();
-                SaveString3 += "," + Provinces[a].GetComponent<Scr_Provinces>().Population.ToString();
-                SaveString4 += "," + Provinces[a].GetComponent<Scr_Provinces>().Medicine.ToString();
-                SaveString5 += "," + Provinces[a].GetComponent<Scr_Provinces>().Death.ToString();
-                SaveString6 += "," + Provinces[a].GetComponent<Scr_Provinces>().Cure.ToString();
+                SaveString1 += "," + ScrCompent.PPTransport.ToString();
+                SaveString2 += "," + ScrCompent.IPTransport.ToString();
+                SaveString3 += "," + ScrCompent.Population.ToString();
+                SaveString4 += "," + ScrCompent.Medicine.ToString();
+                SaveString5 += "," + ScrCompent.Death.ToString();
+                SaveString6 += "," + ScrCompent.Cure.ToString();
             }
         }
 
@@ -515,33 +546,34 @@ public class Scr_Color : MonoBehaviour
             Provinces.Add((GameObject)Instantiate(prefab, transform.position, transform.rotation));
             Provinces[a].transform.SetParent(gameObject.transform);
             Provinces[a].transform.name = nameS[a];
+            Scr_Provinces ScrCompent = Provinces[a].GetComponent<Scr_Provinces>();
             Provinces[a].GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 0);
-            Provinces[a].GetComponent<Scr_Provinces>().provinceIndex = a;
-            Provinces[a].GetComponent<Scr_Provinces>().provinceName = nameS[a];
-            Provinces[a].GetComponent<Scr_Provinces>().PPTransport = PPTransport[a];
-            Provinces[a].GetComponent<Scr_Provinces>().IPTransport = IPTransport[a];
-            Provinces[a].GetComponent<Scr_Provinces>().Population = Population[a];
-            Provinces[a].GetComponent<Scr_Provinces>().Medicine = Medicine[a];
-            Provinces[a].GetComponent<Scr_Provinces>().DIPTransport = DIPTransport;
-            Provinces[a].GetComponent<Scr_Provinces>().DPopulation = DPopulation;
-            Provinces[a].GetComponent<Scr_Provinces>().DPPTransport = DPPTransport;
-            Provinces[a].GetComponent<Scr_Provinces>().DMedicine = DMedicine;
-            Provinces[a].GetComponent<Scr_Provinces>().IncubationTurn = IncubationTurn;
-            Provinces[a].GetComponent<Scr_Provinces>().MildTurn = MildTurn;
-            Provinces[a].GetComponent<Scr_Provinces>().CureTurn = CureTurn;
-            Provinces[a].GetComponent<Scr_Provinces>().HeavyTurn = HeavyTurn;
+            ScrCompent.provinceIndex = a;
+            ScrCompent.provinceName = nameS[a];
+            ScrCompent.PPTransport = PPTransport[a];
+            ScrCompent.IPTransport = IPTransport[a];
+            ScrCompent.Population = Population[a];
+            ScrCompent.Medicine = Medicine[a];
+            ScrCompent.DIPTransport = DIPTransport;
+            ScrCompent.DPopulation = DPopulation;
+            ScrCompent.DPPTransport = DPPTransport;
+            ScrCompent.DMedicine = DMedicine;
+            ScrCompent.IncubationTurn = IncubationTurn;
+            ScrCompent.MildTurn = MildTurn;
+            ScrCompent.CureTurn = CureTurn;
+            ScrCompent.HeavyTurn = HeavyTurn;
             //
             for (int i = 0; i < 35; i++)
             {
-                Provinces[a].GetComponent<Scr_Provinces>().People.Add(0);
+                ScrCompent.People.Add(0);
             }
             if (a == 18)
             {
-                Provinces[a].GetComponent<Scr_Provinces>().People[0] = 1;
+                ScrCompent.People[0] = 1;
             }
             else
             {
-                Provinces[a].GetComponent<Scr_Provinces>().r0 -= 0.5f;
+                ScrCompent.r0 -= 0.5f;
             }
             //
 
@@ -574,6 +606,7 @@ public class Scr_Color : MonoBehaviour
             }
             else
             {
+
                 Texture2D colTexture = new Texture2D(w, h);
                 FileStream files = new FileStream(path, FileMode.Open);
                 //新建比特流对象
@@ -584,6 +617,8 @@ public class Scr_Color : MonoBehaviour
                 files.Close();
                 colTexture.LoadImage(imgByte);
                 Provinces[a].GetComponent<SpriteRenderer>().sprite = Sprite.Create(colTexture, new Rect(0, 0, colTexture.width, colTexture.height), new Vector2(0, 0));
+
+
             }
         }
         LoadOrder += 2;
@@ -592,6 +627,8 @@ public class Scr_Color : MonoBehaviour
             LoadOrder = -1;
         }
     }
+
+
     void Start()
     {
         LoadControl = FindObjectOfType<Scr_Load>();
@@ -694,12 +731,13 @@ public class Scr_Color : MonoBehaviour
                     if (textureCol[(int)(mouseP.x + mouseP.y * w)].Equals(colorList[a]))
                     {
                         hasHit = true;
-                        using (FileStream fs = new FileStream(Application.dataPath + "/Resources/Localization/Provinces.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                        provincesName.text = nameS[a];
+                        for (int l = 0; l < Key.Count; l++)
                         {
-                            using (ExcelPackage excel = new ExcelPackage(fs))
+                            if (Key[l] == nameS[a])
                             {
-                                ExcelWorksheets workSheets = excel.Workbook.Worksheets;
-                                LoadExcel(workSheets, Language, nameS[a]);
+                                provincesName.text = TextInfor[l]; ;
+                                break;
                             }
                         }
 
@@ -728,54 +766,5 @@ public class Scr_Color : MonoBehaviour
             }
         }
     }
-    void LoadExcel(ExcelWorksheets workSheets, int SheetIndex, string Province)
-    {
-        ExcelWorksheet workSheet = workSheets[SheetIndex];//表1，即简体中文那张表
-        int rowCount = workSheet.Dimension.End.Row;//统计表的列数
-        bool hasProvince = false;
-        for (int row = 1; row <= rowCount; row++)
-        {
-            var text = workSheet.Cells[row, 1].Text ?? "Name Error";
 
-            if (text == Province)
-            {
-                if (TotalName == "" && Province == "Total")
-                {
-                    TotalName = workSheet.Cells[row, 2].Text ?? "Province";
-                }
-                else if (NumInfected == "" && Province == "NumInfected")
-                {
-                    NumInfected = workSheet.Cells[row, 2].Text ?? "Province";
-                }
-                else if (NumDead == "" && Province == "NumDead")
-                {
-                    NumDead = workSheet.Cells[row, 2].Text ?? "Province";
-                }
-                else if (NumCure == "" && Province == "NumCure")
-                {
-                    NumCure = workSheet.Cells[row, 2].Text ?? "Province";
-                }
-                else if (NumHeavy == "" && Province == "NumHeavy")
-                {
-                    NumHeavy = workSheet.Cells[row, 2].Text ?? "Province";
-                }
-                else if (NumSuspected == "" && Province == "NumSuspected")
-                {
-                    NumSuspected = workSheet.Cells[row, 2].Text ?? "Province";
-                }
-                else
-                {
-                    provincesName.text = workSheet.Cells[row, 2].Text ?? "Province";
-
-                }
-                hasProvince = true;
-
-            }
-
-        }
-        if (!hasProvince)
-        {
-            provincesName.text = Province;
-        }
-    }
 }

@@ -32,6 +32,7 @@ public class Scr_Upgrade : MonoBehaviour
         PressPage3.SetActive(false);
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -42,6 +43,7 @@ public class Scr_Upgrade : MonoBehaviour
             MedicalResearch.text = Tech.Label[2];
             Back.text = Tech.Label[3];
             Tech.hasLabel = false;
+            UpGradePage.SetActive(false);
             PressPage1.SetActive(false);
             PressPage2.SetActive(false);
             PressPage3.SetActive(false);

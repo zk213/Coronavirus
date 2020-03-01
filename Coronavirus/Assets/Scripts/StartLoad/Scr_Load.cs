@@ -11,6 +11,7 @@ public class Scr_Load : MonoBehaviour
     Scr_Event Events;
     Scr_Num Num;
     Scr_Tech Tech;
+    Scr_News News;
 
     public bool StartControl = false;
     void Start()
@@ -20,6 +21,7 @@ public class Scr_Load : MonoBehaviour
         Events = FindObjectOfType<Scr_Event>();
         Num = FindObjectOfType<Scr_Num>();
         Tech = FindObjectOfType<Scr_Tech>();
+        News = FindObjectOfType<Scr_News>();
     }
 
     public void LoadScene()
@@ -31,6 +33,7 @@ public class Scr_Load : MonoBehaviour
         Provinces.Start3();
         Events.Start2();
         Tech.Start2();
+        News.Start1();
         StartControl = true;
     }
 }

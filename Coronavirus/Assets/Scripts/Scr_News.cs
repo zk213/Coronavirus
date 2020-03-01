@@ -1,6 +1,4 @@
-﻿using OfficeOpenXml;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,8 +30,12 @@ public class Scr_News : MonoBehaviour
 
     List<string> XmlNews = new List<string>();
 
+    List<string> Key = new List<string>();
+    List<string> TextInfor = new List<string>();
+
     int Language = 1;
-    void Awake()
+
+    public void Start1()
     {
         XmlDocument SxmlDoc = new XmlDocument();
         SxmlDoc.Load(Application.persistentDataPath + "/setting.set");
@@ -47,11 +49,26 @@ public class Scr_News : MonoBehaviour
                 int.TryParse(elements.InnerText, out Language);
             }
         }
-
-
         activeNews1 = false;
         activeNews2 = false;
 
+        Key = new List<string>();
+        TextInfor = new List<string>();
+        string LocalizationText = ((TextAsset)Resources.Load("Localization/" + Language.ToString() + "/News")).text;
+        string[] LocalizationArray = LocalizationText.Split('\n');
+        for (int l = 0; l < LocalizationArray.Length; l++)
+        {
+            string[] LocalArray = LocalizationArray[l].Split(':');
+            if (LocalArray.Length == 2)
+            {
+                Key.Add(LocalArray[0]);
+
+                TextInfor.Add(LocalArray[1]);
+            }
+        }
+    }
+    void Awake()
+    {
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(Application.dataPath + "/Resources/Xml/News.xml");
         XmlElement xmlNode = xmlDoc.DocumentElement;
@@ -145,37 +162,18 @@ public class Scr_News : MonoBehaviour
 
     }
 
-    void LoadExcel(ExcelWorksheets workSheets, int SheetIndex, int NewsIndex)
-    {
-        ExcelWorksheet workSheet = workSheets[SheetIndex];//表1，即简体中文那张表
-        int rowCount = workSheet.Dimension.End.Row;//统计表的列数
-        bool hasContent = false;
-        for (int row = 1; row <= rowCount; row++)
-        {
-            var text = workSheet.Cells[row, 1].Text ?? "Name Error";
-
-            if (text == XmlNews[NewsIndex])
-            {
-                TempNewsContent = workSheet.Cells[row, 2].Text ?? "Content Error";
-                hasContent = true;
-            }
-        }
-        if (!hasContent)
-        {
-            TempNewsContent = XmlNews[NewsIndex];
-        }
-    }
-
     void PlayNews(int i)
     {
-        //读取News.xls文件
-        using (FileStream fs = new FileStream(Application.dataPath + "/Resources/Localization/News.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+        TempNewsContent = XmlNews[i];
+        for (int l = 0; l < Key.Count; l++)
         {
-            using (ExcelPackage excel = new ExcelPackage(fs))
+
+            if (Key[l] == XmlNews[i])
             {
-                ExcelWorksheets workSheets = excel.Workbook.Worksheets;
-                LoadExcel(workSheets, Language, i);
+                TempNewsContent = TextInfor[l]; ;
+                break;
             }
+
         }
     }
 

@@ -513,8 +513,11 @@ public class Scr_Event : MonoBehaviour
         for (int l = 0; l < LocalizationArray.Length; l++)
         {
             string[] LocalArray = LocalizationArray[l].Split(':');
-            Key.Add(LocalArray[0]);
-            TextInfor.Add(LocalArray[1]);
+            if (LocalArray.Length == 2)
+            {
+                Key.Add(LocalArray[0]);
+                TextInfor.Add(LocalArray[1]);
+            }
         }
 
 
@@ -801,8 +804,16 @@ public class Scr_Event : MonoBehaviour
                 }
             }
 
-            bool hasTitle = false;
-            bool hasDescribe = false;
+            if (isImportantList.Contains(HappenEvent[i]))
+            {
+                CGTitle.text = xmlTitle;
+                CGDescribe.text = xmlDescribe;
+            }
+            else
+            {
+                Title.text = xmlTitle;
+                Describe.text = xmlDescribe;
+            }
             for (int l = 0; l < Key.Count; l++)
             {
                 if (Key[l] == xmlTitle)
@@ -815,7 +826,6 @@ public class Scr_Event : MonoBehaviour
                     {
                         Title.text = TextInfor[l];
                     }
-                    hasTitle = true;
                 }
                 if (Key[l] == xmlDescribe)
                 {
@@ -827,31 +837,7 @@ public class Scr_Event : MonoBehaviour
                     {
                         Describe.text = TextInfor[l];
                     }
-                    hasDescribe = true;
                 }
-            }
-            if (!hasTitle)
-            {
-                if (isImportantList.Contains(HappenEvent[i]))
-                {
-                    CGTitle.text = xmlTitle;
-                }
-                else
-                {
-                    Title.text = xmlTitle;
-                }
-            }
-            if (!hasDescribe)
-            {
-                if (isImportantList.Contains(HappenEvent[i]))
-                {
-                    CGDescribe.text = xmlDescribe;
-                }
-                else
-                {
-                    Describe.text = xmlDescribe;
-                }
-
             }
 
 

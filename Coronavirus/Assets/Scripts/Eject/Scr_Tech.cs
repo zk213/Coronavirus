@@ -1,6 +1,4 @@
-﻿using OfficeOpenXml;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
@@ -97,6 +95,9 @@ public class Scr_Tech : MonoBehaviour
 
     List<int> finishTech = new List<int>();
 
+    List<string> Key = new List<string>();
+    List<string> TextInfor = new List<string>();
+
     Scr_Num Value;
     Scr_Event Events;
 
@@ -149,15 +150,8 @@ public class Scr_Tech : MonoBehaviour
                 }
                 Tech[i].transform.SetParent(parent.transform.Find("UpGradePage" + page.ToString()), false);
                 Tech[i].transform.Find("TechBase").GetComponent<Image>().color = baseColor;
-                if (File.Exists(Application.dataPath + "/Resources/" + element.SelectSingleNode("picture").InnerText + ".png"))
-                {
-                    //Tech[i].transform.Find("TechIcon").GetComponent<Image>().sprite = Resources.Load(TechData.technologyGroup[i].picture, typeof(Sprite)) as Sprite;
-                    Tech[i].transform.Find("TechIcon").GetComponent<Image>().sprite = Resources.Load(element.SelectSingleNode("picture").InnerText, typeof(Sprite)) as Sprite;
-                }
-                else
-                {
-                    Tech[i].transform.Find("TechIcon").GetComponent<Image>().sprite = Resources.Load("TechnologyPictures/TechError", typeof(Sprite)) as Sprite;
-                }
+                Tech[i].transform.Find("TechIcon").GetComponent<Image>().sprite = Resources.Load(element.SelectSingleNode("picture").InnerText, typeof(Sprite)) as Sprite;
+                //Tech[i].transform.Find("TechIcon").GetComponent<Image>().sprite = Resources.Load("TechnologyPictures/TechError", typeof(Sprite)) as Sprite;
                 int.TryParse(element.SelectSingleNode("posx").InnerText, out int posx);
                 int.TryParse(element.SelectSingleNode("posy").InnerText, out int posy);
                 Tech[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(posx, posy);
@@ -236,38 +230,45 @@ public class Scr_Tech : MonoBehaviour
                 Tech[i].GetComponent<Scr_TechButton>().isLock = false;
             }
         }
-        using (FileStream fs = new FileStream(Application.dataPath + "/Resources/Localization/Button.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+
+        string BLocalizationText = ((TextAsset)Resources.Load("Localization/" + Language.ToString() + "/Button")).text;
+        string[] BLocalizationArray = BLocalizationText.Split('\n');
+        for (int l = 0; l < BLocalizationArray.Length; l++)
         {
-            using (ExcelPackage excel = new ExcelPackage(fs))
+            string[] LocalArray = BLocalizationArray[l].Split(':');
+            switch (LocalArray[0])
             {
-                ExcelWorksheets workSheets = excel.Workbook.Worksheets;
-                ExcelWorksheet workSheet = workSheets[Language];//表1，即简体中文那张表
-                int rowCount = workSheet.Dimension.End.Row;//统计表的列数
-
-                for (int row = 1; row <= rowCount; row++)
-                {
-                    var text = workSheet.Cells[row, 1].Text ?? "Name Error";
-
-                    if (text == "NationalCondition")
-                    {
-                        Label[0] = workSheet.Cells[row, 2].Text ?? "Label Error";
-                    }
-                    if (text == "PolicyIssuance")
-                    {
-                        Label[1] = workSheet.Cells[row, 2].Text ?? "Label Error";
-                    }
-                    if (text == "MedicalResearch")
-                    {
-                        Label[2] = workSheet.Cells[row, 2].Text ?? "Label Error";
-                    }
-                    if (text == "Back")
-                    {
-                        Label[3] = workSheet.Cells[row, 2].Text ?? "Label Error";
-                    }
-                }
+                case "NationalCondition":
+                    Label[0] = LocalArray[1];
+                    break;
+                case "PolicyIssuance":
+                    Label[1] = LocalArray[1];
+                    break;
+                case "MedicalResearch":
+                    Label[2] = LocalArray[1];
+                    break;
+                case "Back":
+                    Label[3] = LocalArray[1];
+                    break;
+                default:
+                    break;
             }
         }
         hasLabel = true;
+
+        Key = new List<string>();
+        TextInfor = new List<string>();
+        string LocalizationText = ((TextAsset)Resources.Load("Localization/" + Language.ToString() + "/Tech")).text;
+        string[] LocalizationArray = LocalizationText.Split('\n');
+        for (int l = 0; l < LocalizationArray.Length; l++)
+        {
+            string[] LocalArray = LocalizationArray[l].Split(':');
+            if (LocalArray.Length == 2)
+            {
+                Key.Add(LocalArray[0]);
+                TextInfor.Add(LocalArray[1]);
+            }
+        }
     }
 
     void Awake()
@@ -295,7 +296,55 @@ public class Scr_Tech : MonoBehaviour
         {
             if (TechIndex >= -1)
             {
-                LoadText(TechIndex);
+                if (TechIndex != -1)
+                {
+                    XmlDocument xmlDoc = new XmlDocument();
+                    xmlDoc.LoadXml(((TextAsset)Resources.Load("Xml/Tech")).text);
+                    XmlElement xmlNode = xmlDoc.DocumentElement;
+                    foreach (XmlNode elements in xmlNode)
+                    {
+                        XmlElement element = elements as XmlElement;
+                        if (element == null)
+                            continue;
+                        if (element.LocalName == "tech")
+                        {
+                            if (element.Attributes["id"].Value == TechIndex.ToString())
+                            {
+                                TechTitle = element.SelectSingleNode("title").InnerText;
+                                TechDescribe = element.SelectSingleNode("describe").InnerText;
+                            }
+                        }
+                    }
+                    for (int l = 0; l < Key.Count; l++)
+                    {
+                        if (Key[l] == TechTitle)
+                        {
+                            TechTitle = TextInfor[l]; ;
+
+                        }
+                        if (Key[l] == TechDescribe)
+                        {
+                            TechDescribe = TextInfor[l]; ;
+
+                        }
+                    }
+
+                }
+                else
+                {
+                    for (int l = 0; l < Key.Count; l++)
+                    {
+                        if (Key[l] == "Introduce")
+                        {
+                            TechTitle = TextInfor[l]; ;
+
+                        }
+                        if (Key[l] == "Introduce_Describe")
+                        {
+                            TechDescribe = TextInfor[l]; ;
+                        }
+                    }
+                }
             }
             else
             {
@@ -319,96 +368,6 @@ public class Scr_Tech : MonoBehaviour
         }
     }
 
-    void LoadExcel(ExcelWorksheets workSheets, int SheetIndex, int TechnologyIndex)
-    {
-        ExcelWorksheet workSheet = workSheets[SheetIndex];//表1，即简体中文那张表
-        int rowCount = workSheet.Dimension.End.Row;//统计表的列数
-        if (TechIndex != -1)
-        {
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.LoadXml(((TextAsset)Resources.Load("Xml/Tech")).text);
-            XmlElement xmlNode = xmlDoc.DocumentElement;
-            foreach (XmlNode elements in xmlNode)
-            {
-                XmlElement element = elements as XmlElement;
-                if (element == null)
-                    continue;
-                if (element.LocalName == "tech")
-                {
-                    if (element.Attributes["id"].Value == TechIndex.ToString())
-                    {
-                        bool hasTitle = false;
-                        bool hasDescribe = false;
-                        for (int row = 1; row <= rowCount; row++)
-                        {
-                            var text = workSheet.Cells[row, 1].Text ?? "Name Error";
-
-                            if (text == element.SelectSingleNode("title").InnerText)
-                            {
-                                TechTitle = workSheet.Cells[row, 2].Text ?? "Title Error";
-                                hasTitle = true;
-                            }
-                            if (text == element.SelectSingleNode("describe").InnerText)
-                            {
-                                TechDescribe = workSheet.Cells[row, 2].Text ?? "Describe Error";
-                                hasDescribe = true;
-                            }
-                        }
-                        if (!hasTitle)
-                        {
-                            TechTitle = element.SelectSingleNode("title").InnerText;
-                        }
-                        if (!hasDescribe)
-                        {
-                            TechDescribe = element.SelectSingleNode("describe").InnerText;
-                        }
-                    }
-                }
-            }
-
-
-        }
-        else
-        {
-            bool hasTitle = false;
-            bool hasDescribe = false;
-            for (int row = 1; row <= rowCount; row++)
-            {
-                var text = workSheet.Cells[row, 1].Text ?? "Name Error";
-
-                if (text == "Introduce")
-                {
-                    TechTitle = workSheet.Cells[row, 2].Text ?? "Title Error";
-                    hasTitle = true;
-                }
-                if (text == "Introduce_Describe")
-                {
-                    TechDescribe = workSheet.Cells[row, 2].Text ?? "Describe Error";
-                    hasDescribe = true;
-                }
-            }
-            if (!hasTitle)
-            {
-                TechTitle = "Title Error";
-            }
-            if (!hasDescribe)
-            {
-                TechDescribe = "Describe Error";
-            }
-        }
-    }
-
-    void LoadText(int i)
-    {
-        using (FileStream fs = new FileStream(Application.dataPath + "/Resources/Localization/Technology.xlsx", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-        {
-            using (ExcelPackage excel = new ExcelPackage(fs))
-            {
-                ExcelWorksheets workSheets = excel.Workbook.Worksheets;
-                LoadExcel(workSheets, Language, i);
-            }
-        }
-    }
 
     public void CloseDescribe()
     {
