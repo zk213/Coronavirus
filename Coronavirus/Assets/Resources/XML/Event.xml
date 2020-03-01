@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?><!-- 固定格式 -->
 <events><!-- 中 -->
-  <eventAmount>4</eventAmount><!-- 事件的总数，由于事件0只是个例子，他不被包括在这里 -->
+  <eventAmount>30</eventAmount><!-- 事件的总数，由于事件0只是个例子，他不被包括在这里 -->
   <!-- 事件0是个例子，它不会正式出现在游戏中 -->
   <event id="0"><!-- 这里是填写事件的序号，应该从0开始按照顺序添加事件，如果不按顺序会出错 -->
     <title>Example</title><!-- 这里要填写事件的标题变量，对应Assets\Resources\Localization\Event.xlsx文件中的第一列 -->
@@ -58,7 +58,7 @@
   <event id="3">
     <title>FreeTreatment</title>
     <describe>FreeTreatment_Describe</describe>
-    <picture>EventPictures/EventPic</picture>
+    <picture>EventPictures/FreeTreatment</picture>
 	<trait>
 	  <subEvent />
     </trait>
@@ -71,10 +71,932 @@
   <event id="4">
     <title>BuildHospital</title>
     <describe>BuildHospital_Describe</describe>
-    <picture>EventPictures/CG/TempCG</picture>
+    <picture>EventPictures/CG/EventCG2</picture>
     <trait>
       <isImportant />
 	  <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 方舱医院加入抗疫 -->
+  <event id="5">
+    <title>ModuleHospital</title>
+    <describe>FreeTreatment_Describe</describe>
+    <picture>EventPictures/ModuleHospital</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 部分高校、机构宿舍被征用 -->
+  <event id="6">
+    <title>DormitoryRequisition</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="3" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 人民子弟兵驰援武汉 -->
+  <event id="7">
+    <title>TroopStationed</title>
+    <describe>TroopStationed_Describe</describe>
+    <picture>EventPictures/TroopStationed</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 野生动物交易被取缔 -->
+  <event id="8">
+    <title>BanningTransaction</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="4" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 部分城市开始实行封锁 -->
+  <event id="9">
+    <title>CityBlockade</title>
+    <describe>CityBlockade_Describe</describe>
+    <picture>EventPictures/CityBlockade</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 各地相继推行延期复工 -->
+  <event id="10">
+    <title>DeferredBack</title>
+    <describe>DeferredBack_Describe</describe>
+    <picture>EventPictures/DeferredBack</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 政府加强交通协调工作 -->
+  <event id="11">
+    <title>TrafficCoordination</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="5" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 复工保护措施出台 -->
+  <event id="12">
+    <title>BackProtection</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="6" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 城市消毒全面推行 -->
+  <event id="13">
+    <title>CityDisinfection</title>
+    <describe>CityDisinfection_Describe</describe>
+    <picture>EventPictures/CityDisinfection</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 部分地区开始实行封闭管理 -->
+  <event id="14">
+    <title>ClosedManagement</title>
+    <describe>ClosedManagement_Describe</describe>
+    <picture>EventPictures/ClosedManagement</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 官员监督、调查机制进一步加强 -->
+  <event id="15">
+    <title>OfficialInvestigation</title>
+    <describe>OfficialInvestigation_Describe</describe>
+    <picture>EventPictures/OfficialInvestigation</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 统筹物流管理工作 -->
+  <event id="16">
+    <title>LogisticsManagement</title>
+    <describe>LogisticsManagement_Describe</describe>
+    <picture>EventPictures/LogisticsManagement</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 政府对市场进行调控 -->
+  <event id="17">
+    <title>PriceRegulation</title>
+    <describe>PriceRegulation_Describe</describe>
+    <picture>EventPictures/PriceRegulation</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 各地开始推行志愿服务 -->
+  <event id="18">
+    <title>VolunteerService</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="7" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 政府推动增加产能 -->
+  <event id="19">
+    <title>IncreaseProductivity</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="8" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 政府助力稳定股市 -->
+  <event id="20">
+    <title>StabilizeStock</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="9" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 国家补助中小型企业 -->
+  <event id="21">
+    <title>StateSubsidy</title>
+    <describe>StateSubsidy_Describe</describe>
+    <picture>EventPictures/StateSubsidy</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 政府加强辟谣工作 -->
+  <event id="22">
+    <title>RumorRefuting</title>
+    <describe>RumorRefuting_Describe</describe>
+    <picture>EventPictures/RumorRefuting</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 各地开展就医宣传 -->
+  <event id="23">
+    <title>GoToDoc</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="10" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 民众齐心 共御疫情 -->
+  <event id="24">
+    <title>UnitedPeople</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="11" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 各地推动村落宣传 -->
+  <event id="25">
+    <title>VillagePropaganda</title>
+    <describe>VillagePropaganda_Describe</describe>
+    <picture>EventPictures/VillagePropaganda</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 鼓励血浆捐献，推动生命接力！ -->
+  <event id="26">
+    <title>PlasmaDonation</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="12" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 致敬,抗疫”一线的英雄!  -->
+  <event id="27">
+    <title>HeroIntroduction</title>
+    <describe>HeroIntroduction_Describe</describe>
+    <picture>EventPictures/CG/EventCG3</picture>
+    <trait>
+      <isImportant />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 政府推动症状公示 -->
+  <event id="28">
+    <title>SymptomsPublicity</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="13" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 构建疫情防控作战平台 -->
+  <event id="29">
+    <title>PlatformConstruction</title>
+    <describe>PlatformConstruction_Describe</describe>
+    <picture>EventPictures/PlatformConstruction</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 还原真相！ -->
+  <event id="30">
+    <title>ReplenishTruth</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="14" slot=""></effect>
+    </effects>
+  </event>
+  <!-- “云监工”见证中国速度！ -->
+  <event id="31">
+    <title>CloudSupervisor</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="15" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 接触调查开始进行 -->
+  <event id="32">
+    <title>ContactSurvey</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="16" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 途径调查开始进行 -->
+  <event id="33">
+    <title>PathwaySurvey</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="17" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 上报疫情将获得津贴 -->
+  <event id="34">
+    <title>ReportBonus</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="18" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 红外测温被启用 -->
+  <event id="35">
+    <title>InfraredMeasurement</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="19" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 公安机关强制佩戴口罩 -->
+  <event id="36">
+    <title>ForcedMask</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="20" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 全民普查开始进行 -->
+  <event id="37">
+    <title>GeneralSurvey</title>
+    <describe>GeneralSurvey_Describe</describe>
+    <picture>EventPictures/GeneralSurvey</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 娱乐减停工作持续开展 -->
+  <event id="38">
+    <title>ReducedEntertainment</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="21" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 特别国债开始发行 -->
+  <event id="39">
+    <title>GovernmentBonds</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="22" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 政府组织专家开展调查 -->
+  <event id="40">
+    <title>ExpertSurvey</title>
+    <describe>ExpertSurvey_Describe</describe>
+    <picture>EventPictures/ExpertSurvey</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 政府推进国际交流工作 -->
+  <event id="41">
+    <title>InternationalExchange</title>
+    <describe>InternationalExchange_Describe</describe>
+    <picture>EventPictures/InternationalExchange</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 多地启动”一级响应“ -->
+  <event id="42">
+    <title>PrimaryResponse</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="23" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 政府采取甲类防控措施 -->
+  <event id="43">
+    <title>ClassAPrevention</title>
+    <describe>ClassAPrevention_Describe</describe>
+    <picture>EventPictures/ClassAPrevention</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 集中优势资源 科学精准救治 -->
+  <event id="44">
+    <title>CentralizedTreatment</title>
+    <describe>CentralizedTreatment_Describe</describe>
+    <picture>EventPictures/CentralizedTreatment</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 疫情直报系统建立 -->
+  <event id="45">
+    <title>DirectReporting</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="24" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 加快发放政策得到贯彻 -->
+  <event id="46">
+    <title>ExpediteDistribution</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="25" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 轮休制度开始推行 -->
+  <event id="47">
+    <title>RotationSystem</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="26" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 电子化管理开始实行 -->
+  <event id="48">
+    <title>ElectronicManagement</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="27" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 党组织=抗疫堡垒 -->
+  <event id="49">
+    <title>PartyOrganization</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="28" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 一线女性需求得到重视 -->
+  <event id="50">
+    <title>FemaleSupplement</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="29" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 加强定点医院疫情防控工作 -->
+  <event id="51">
+    <title>ContractedMedical</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="30" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 病例筛查工作开展 -->
+  <event id="52">
+    <title>CaseScreening</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="31" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 基因测序工作开展 -->
+  <event id="53">
+    <title>GeneSequencing</title>
+    <describe>GeneSequencing_Describe</describe>
+    <picture>EventPictures/GeneSequencing</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 核酸检测方法得到推行 -->
+  <event id="54">
+    <title>NucleicDetection</title>
+    <describe>NucleicDetection_Describe</describe>
+    <picture>EventPictures/NucleicDetection</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 确诊标准降低 -->
+  <event id="55">
+    <title>LowerStandards</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="32" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 影响调查得到重视 -->
+  <event id="56">
+    <title>VideoSurvey</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="33" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 临床诊断纳入应用 -->
+  <event id="57">
+    <title>ClinicalDiagnosis</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="34" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 钳制“暴走”的疫情! -->
+  <event id="58">
+    <title>LgMDetection</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="35" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 抗疫情新药物正开展临床试验  -->
+  <event id="59">
+    <title>DrugPractice</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="36" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 疫苗研发工作开始！ -->
+  <event id="60">
+    <title>VaccineDevelopment</title>
+    <describe>VaccineDevelopment_Describe</describe>
+    <picture>EventPictures/CG/EventCG4</picture>
+    <trait>
+      <isImportant />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 药物筛选工作开展 -->
+  <event id="61">
+    <title>DrugScreening</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="37" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 中西医结合救治“组合拳” -->
+  <event id="62">
+    <title>CombinationCW</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="38" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 血浆研究工作开展 -->
+  <event id="63">
+    <title>BloodResearch</title>
+    <describe>BloodResearch_Describe</describe>
+    <picture>EventPictures/BloodResearch</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 新型芯片投入应用 -->
+  <event id="64">
+    <title>NewChip</title>
+    <describe>NewChip_Describe</describe>
+    <picture>EventPictures/NewChip</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 对疫苗审核并投入分类治疗 -->
+  <event id="65">
+    <title>ClassifiedTreatment</title>
+    <describe>ClassifiedTreatment_Describe</describe>
+    <picture>EventPictures/CG/EventCG1</picture>
+    <trait>
+      <isImportant />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 病理解剖工作得到批准 -->
+  <event id="66">
+    <title>PathologicalAnatomy</title>
+    <describe>PathologicalAnatomy_Describe</describe>
+    <picture>EventPictures/PathologicalAnatomy</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 国际支援！ -->
+  <event id="67">
+    <title>InternationalSupport</title>
+    <describe>*</describe>
+    <picture>*</picture>
+    <trait>
+      <isInvisible />
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="1">
+      <effect type="news" index="39" slot=""></effect>
+    </effects>
+  </event>
+  <!-- 社会各界自发物资募捐 -->
+  <event id="68">
+    <title>PeopleSupport</title>
+    <describe>PeopleSupport_Describe</describe>
+    <picture>EventPictures/PeopleSupport</picture>
+    <trait>
+      <subEvent />
+    </trait>
+    <conditions amount="0">
+    </conditions>
+    <effects amount="0">
+    </effects>
+  </event>
+  <!-- 红十字会物资滞后 -->
+  <event id="69">
+    <title>BadCross</title>
+    <describe>BadCross_Describe</describe>
+    <picture>EventPictures/BadCross</picture>
+    <trait>
+      <subEvent />
     </trait>
     <conditions amount="0">
     </conditions>

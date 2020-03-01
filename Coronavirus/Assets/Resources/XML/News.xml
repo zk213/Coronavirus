@@ -1,7 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <newsgroup>
-  <eventAmount>3</eventAmount>
+  <eventAmount>39</eventAmount>
   <news id="0">Influence_Value</news>
   <news id="1">DocPatIso_News</news>
   <news id="2">WardReform_News</news>
+  <news id="3">DormitoryRequisition_News</news>
+  <news id="4">BanningTransaction_News</news>
+  <news id="5">TrafficCoordination_News</news>
+  <news id="6">BackProtection_News</news>
+  <news id="7">VolunteerService_News</news>
+  <news id="8">IncreaseProductivity_News</news>
+  <news id="9">StabilizeStock_News</news>
+  <news id="10">GoToDoc_News</news>
+  <news id="11">UnitedPeople_News</news>
+  <news id="12">PlasmaDonation_News</news>
+  <news id="13">SymptomsPublicity_News</news>
+  <news id="14">ReplenishTruth_News</news>
+  <news id="15">CloudSupervisor_News</news>
+  <news id="16">ContactSurvey_News</news>
+  <news id="17">PathwaySurvey_News</news>
+  <news id="18">ReportBonus_News</news>
+  <news id="19">InfraredMeasurement_News</news>
+  <news id="20">ForcedMask_News</news>
+  <news id="21">ReducedEntertainment_News</news>
+  <news id="22">GovernmentBonds_News</news>
+  <news id="23">PrimaryResponse_News</news>
+  <news id="24">DirectReporting_News</news>
+  <news id="25">ExpediteDistribution_News</news>
+  <news id="26">RotationSystem_News</news>
+  <news id="27">ElectronicManagement_News</news>
+  <news id="28">PartyOrganization_News</news>
+  <news id="29">FemaleSupplement_News</news>
+  <news id="30">ContractedMedical_News</news>
+  <news id="31">CaseScreening_News</news>
+  <news id="32">LowerStandards_News</news>
+  <news id="33">VideoSurvey_News</news>
+  <news id="34">ClinicalDiagnosis_News</news>
+  <news id="35">LgMDetection_News</news>
+  <news id="36">DrugPractice_News</news>
+  <news id="37">DrugScreening_News</news>
+  <news id="38">CombinationCW_News</news>
+  <news id="39">InternationalSupport_News</news>
 </newsgroup>
