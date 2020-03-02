@@ -19,116 +19,116 @@ BanningTransaction_Describe:全面取缔野生动物交易，重点封锁武汉�
 CityBlockade:城市封锁
 CityBlockade_Describe:对新冠肺炎疫情爆发地所在城市采取“最大限度的封锁措施”，以阻止疫情扩散
 DeferredBack:延期复工
-DeferredBack_Describe:介绍
+DeferredBack_Describe:企业开始适当延期复工、高校延期开学
 TrafficCoordination:交通协调
-TrafficCoordination_Describe:介绍
+TrafficCoordination_Describe:恢复交通能力，保障人员与资源的大调度运输
 BackProtection:复工保护
-BackProtection_Describe:介绍
+BackProtection_Describe:出台针对复工的保护措施
 CityDisinfection:城市消毒
-CityDisinfection_Describe:介绍
+CityDisinfection_Describe:在全城范围内投放稀释过的杀毒剂，对自来水进行额外杀毒
 ClosedManagement:封闭管理
-ClosedManagement_Describe:介绍
+ClosedManagement_Describe:将居民进行封闭管理，尽量不出行，若必要出行则每户同时仅能出行一人，警察四处巡逻
 OfficialInvestigation:官员调查
-OfficialInvestigation_Describe:介绍
+OfficialInvestigation_Describe:调查低效率，贪污，无作为官员
 LogisticsManagement:物流管理
-LogisticsManagement_Describe:介绍
+LogisticsManagement_Describe:将救灾物资由专业的物流公司分配，保障物理运输的高效
 PriceRegulation:价格调控
-PriceRegulation_Describe:介绍
+PriceRegulation_Describe:使价格略高于正常价格，又不会过高，符合国家规定的界限
 VolunteerService:志愿服务
-VolunteerService_Describe:介绍
+VolunteerService_Describe:由政府协调，公务员、教师以及其他人员成立志愿者队伍，投入到生产中
 IncreaseProductivity:增加产能
-IncreaseProductivity_Describe:介绍
+IncreaseProductivity_Describe:由国家扶持援助，鼓励企业改建、增建防护装备生产线
 StabilizeStock:稳定股市
-StabilizeStock_Describe:介绍
+StabilizeStock_Describe:由于各地生产停止，股市暴跌，资金流失，为了稳定局面，保障生产，国家将进行调控
 StateSubsidy:国家补助
-StateSubsidy_Describe:介绍
+StateSubsidy_Describe:国家补助各类中小型企业，维持其运转
 RumorRefuting:驳斥谣言
-RumorRefuting_Describe:介绍
+RumorRefuting_Describe:减少谣言流传避免不必要恐慌
 GoToDoc﻿:就医宣传
-GoToDoc﻿_Describe:介绍
+GoToDoc﻿_Describe:向各地开展就医宣传，引导患者合理就医，避免引起不必要的误会
 UnitedPeople:民众齐心
-UnitedPeople_Describe:介绍
+UnitedPeople_Describe:隔离病毒，不隔离爱
 VillagePropaganda:村落宣传
-VillagePropaganda_Describe:介绍
+VillagePropaganda_Describe:将消息传达给每个村落，确保落后、老龄化的群落也能了解最新的消息，贯彻防疫措施
 PlasmaDonation:血浆捐献
-PlasmaDonation_Describe:介绍
+PlasmaDonation_Describe:鼓励捐献血浆，进行血浆治疗
 HeroIntroduction:英雄介绍
-HeroIntroduction_Describe:介绍
+HeroIntroduction_Describe:对英雄人物张定先、张继先等人进行公开奖赏，塑造典型人物
 SymptomsPublicity:症状公示
-SymptomsPublicity_Describe:介绍
+SymptomsPublicity_Describe:通过媒体力量，向群众展示主要症状，提醒患者遇到类似情况要及时就医
 PlatformConstruction:平台建设
-PlatformConstruction_Describe:介绍
+PlatformConstruction_Describe:由政府带头，让阿里、腾讯等企业构建平台，传播新闻、辟谣、寻找患者、紧急救援
 ReplenishTruth:补充真相
-ReplenishTruth_Describe:介绍
+ReplenishTruth_Describe:用真相跟随辟谣，恢复政府公信力
 CloudSupervisor:云监工
-CloudSupervisor_Describe:介绍
+CloudSupervisor_Describe:直播疫情下医院的建造工程，让公众共同参与监督和见证
 ContactSurvey:接触调查
-ContactSurvey_Describe:介绍
+ContactSurvey_Describe:对疫情防控重点地区开展接触情况调查
 PathwaySurvey:途径调查
-PathwaySurvey_Describe:介绍
+PathwaySurvey_Describe:对疫情传播途径开展调查
 ReportBonus:上报津贴
-ReportBonus_Describe:介绍
+ReportBonus_Describe:鼓励患者主动上报病情
 InfraredMeasurement:红外测温
-InfraredMeasurement_Describe:介绍
+InfraredMeasurement_Describe:在各地车站、机场等（后期包括小区社区等）进行红外测温，对发热人员进行上报隔离
 ForcedMask:强制口罩
-ForcedMask_Describe:介绍
+ForcedMask_Describe:对不戴口罩的人进行警告，若警告无效则进行拘留
 GeneralSurvey:全民普查
-GeneralSurvey_Describe:介绍
+GeneralSurvey_Describe:以社区为单位对各地居民进行普查，内容包括是否来自湖北或近期与湖北人接触、是否发热等
 ReducedEntertainment:娱乐减停
-ReducedEntertainment_Describe:介绍
+ReducedEntertainment_Describe:暂停各地的娱乐活动、设施，禁止聚众赌博，电视节目减少娱乐节目比例
 GovernmentBonds:特别国债
-GovernmentBonds_Describe:介绍
+GovernmentBonds_Describe:国家发放特别国债，缓解资金压力
 ExpertSurvey:专家调查
-ExpertSurvey_Describe:介绍
+ExpertSurvey_Describe:派遣专家进行调查，深入实验
 InternationalExchange:国际交流
-InternationalExchange_Describe:介绍
+InternationalExchange_Describe:国内外技术分享，领取国际援助
 PrimaryResponse:一级响应
-PrimaryResponse_Describe:介绍
+PrimaryResponse_Describe:重大突发公共卫生事件一级响应，使地方政府可以封城、限制出行、征用物资、调整物价
 ClassAPrevention:甲类防控
-ClassAPrevention_Describe:介绍
+ClassAPrevention_Describe:对患者进行强制隔离，对密切接触者进行隔离观察，如果患者或疑似患者瞒报或逃跑，可以入刑
 CentralizedTreatment:集中救治
-CentralizedTreatment_Describe:介绍
+CentralizedTreatment_Describe:从全国各地召集医生，聚集到武汉进行集中救治
 DirectReporting:直报系统
-DirectReporting_Describe:介绍
+DirectReporting_Describe:由地方医院可直接将数据向中央汇总，中央的指示也可直接传达给各地
 ExpediteDistribution:加快发放
-ExpediteDistribution_Describe:介绍
+ExpediteDistribution_Describe:由国家到地方实行快速发放政策，保障各地传染病医院迅速获取试纸进行检测
 RotationSystem:轮休制度
-RotationSystem_Describe:介绍
+RotationSystem_Describe:对一线医疗人员进行轮休制度，保障医疗人员精力充沛
 ElectronicManagement:电子化管理
-ElectronicManagement_Describe:介绍
+ElectronicManagement_Describe:医生对患者的管理更高效快速，减少医生对患者的接触
 PartyOrganization:党员组织
-PartyOrganization_Describe:介绍
+PartyOrganization_Describe:由党组织带头鼓舞士气
 FemaleSupplement:女性补助
-FemaleSupplement_Describe:介绍
+FemaleSupplement_Describe:女性医疗人员数量众多且在长期治疗过程中易出生活问题，对女性提供额外的物资、资金补助，保障女性医疗人员的生活健康
 ContractedMedical:定点医疗
-ContractedMedical_Describe:介绍
+ContractedMedical_Describe:加大对定点医院疫情防控工作的投入和协调
 CaseScreening:病例筛查
-CaseScreening_Describe:介绍
+CaseScreening_Describe:对有感染新冠病毒风险的人群进行严格筛查，从源头控制住疫情的蔓延和扩散。
 GeneSequencing:基因测序
-GeneSequencing_Describe:介绍
+GeneSequencing_Describe:获取基因序列，寻找其传染途径，为后续医疗做准备
 NucleicDetection:核酸检测
-NucleicDetection_Describe:介绍
+NucleicDetection_Describe:使用简单的核酸试纸进行检测，成功率很低
 LowerStandards:降低标准
-LowerStandards_Describe:介绍
+LowerStandards_Describe:降低确诊的评价标准，不能因为技术问题而放弃治疗患者
 VideoSurvey:影像调查
-VideoSurvey_Describe:介绍
+VideoSurvey_Describe:加大CT影像的观察，增加确诊概率
 ClinicalDiagnosis:临床诊断
-ClinicalDiagnosis_Describe:介绍
+ClinicalDiagnosis_Describe:结合临床诊断病理，把疑似病患中的患者排查出来
 LgMDetection:lgM快速检测
-LgMDetection_Describe:介绍
+LgMDetection_Describe:提取新冠病毒特异性的lgM作为试制，提高检测几率
 DrugPractice:药物实践
-DrugPractice_Describe:介绍
+DrugPractice_Describe:对“特效药”开展临床试验以及研究该药物的安全性和有效性
 VaccineDevelopment:疫苗研发
-VaccineDevelopment_Describe:介绍
+VaccineDevelopment_Describe:开展疫苗研发工作
 DrugScreening:药物筛选
-DrugScreening_Describe:介绍
+DrugScreening_Describe:从国内外治疗中获取经验，从中筛选有效的药物
 CombinationCW:中西结合
-CombinationCW_Describe:介绍
+CombinationCW_Describe:对轻患、中患使用中医进行调理，对重患用西医进行抢救
 BloodResearch:血桨研究
-BloodResearch_Describe:介绍
+BloodResearch_Describe:对患者与痊愈者的体内的抗体进行研究，找出针对新冠病毒的抗病毒蛋白
 NewChip:新式芯片
-NewChip_Describe:介绍
+NewChip_Describe:用新式芯片作为检测仪器，提高检测效率
 ClassifiedTreatment:疫苗审批
-ClassifiedTreatment_Describe:分类治疗
+ClassifiedTreatment_Describe:通过病理解剖得出的病毒感染、其他基础病还是炎症因子风暴等因素，把这些研究成果应用到临床，对患者进行分类治疗
 PathologicalAnatomy:病理解剖
-PathologicalAnatomy_Describe:介绍
+PathologicalAnatomy_Describe:将死者解剖，观察疾病的发病情况、内部结构
