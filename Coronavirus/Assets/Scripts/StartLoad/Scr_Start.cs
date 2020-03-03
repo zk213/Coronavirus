@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class Scr_Start : MonoBehaviour
 {
+
+    public GameObject SceneT;
     public GameObject Scene0;
     public GameObject Scene1;
     public GameObject Scene2;
@@ -27,6 +29,7 @@ public class Scr_Start : MonoBehaviour
     int alpha = 255;
     void Start()
     {
+        SceneT.SetActive(true);
         Scene0.SetActive(true);
         Scene1.SetActive(false);
         Scene2.SetActive(false);

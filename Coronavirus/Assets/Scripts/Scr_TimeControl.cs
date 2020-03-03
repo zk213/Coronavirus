@@ -113,6 +113,7 @@ public class Scr_TimeControl : MonoBehaviour
         }
         timeMode = TimeMode.Pause;
         OneSpeed();
+        GlobalTime.text = ShowFullTime;
     }
 
 

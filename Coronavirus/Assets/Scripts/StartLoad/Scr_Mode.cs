@@ -16,8 +16,7 @@ public class Scr_Mode : MonoBehaviour
     public GameObject Scene1;
     public GameObject Scene2;
     public GameObject Scene3;
-    [HideInInspector]
-
+    Scr_Load LoadS;
 
     void Awake()
     {
@@ -26,7 +25,7 @@ public class Scr_Mode : MonoBehaviour
         Scene2.SetActive(false);
         Scene3.SetActive(false);
          */
-
+        LoadS = FindObjectOfType<Scr_Load>();
         gameMode = GameMode.Normal;
         //DontDestroyOnLoad(gameObject);
         if (!Directory.Exists(Application.persistentDataPath + "/save"))
@@ -162,6 +161,7 @@ public class Scr_Mode : MonoBehaviour
         Scene2.SetActive(true);
         Scene1.SetActive(false);
         //SceneManager.LoadScene("StartA");
+        LoadS.isLoad = true;
     }
 
     public void NewStart()

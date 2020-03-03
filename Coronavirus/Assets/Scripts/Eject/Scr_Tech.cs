@@ -368,7 +368,7 @@ public class Scr_Tech : MonoBehaviour
             }
             if (page != 1)
             {
-                parent.transform.Find("UpGradePage" + page.ToString()).transform.Find("UpGradePage" + page.ToString() + "Ground").transform.Find("Describe").GetComponent<Text>().text = TechTitle + "\n\n" + TechDescribe;
+                parent.transform.Find("UpGradePage" + page.ToString()).transform.Find("UpGradePage" + page.ToString() + "Ground").transform.Find("Describe").GetComponent<Text>().text = "<b>" + TechTitle + "</b>" + "\n\n" + "<size=40>" + TechDescribe + "</size>";
             }
         }
         if (page != 1)
