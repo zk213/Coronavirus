@@ -8,6 +8,7 @@ public class Scr_Start : MonoBehaviour
     public GameObject Scene2;
     public GameObject Scene3;
     public GameObject CG;
+    public GameObject BlackG;
     public GameObject TextProcess;
     public GameObject TextInfor;
 
@@ -18,7 +19,12 @@ public class Scr_Start : MonoBehaviour
     public int step = 0;
 
     bool LoadOver = false;
+    bool LoadStart = false;
     int stepFull = 0;
+    int t = 0;
+    bool alphaMinus = false;
+    float changeSpeed = 0.1f;
+    int alpha = 255;
     void Start()
     {
         Scene0.SetActive(true);
@@ -38,11 +44,57 @@ public class Scr_Start : MonoBehaviour
     void Update()
     {
 
+
+        if (!LoadStart)
+        {
+            t++;
+            TextInfor.GetComponent<Text>().text = "";
+            TextProcess.GetComponent<Text>().text = "";
+
+            if (alpha > 0)
+            {
+                BlackG.GetComponent<Image>().color = new Color32(0, 0, 0, (byte)alpha);
+                alpha -= (int)(t * changeSpeed);
+            }
+            else
+            {
+                LoadStart = true;
+                alpha = 0;
+                t = 0;
+            }
+            return;
+        }
         if (LoadOver)
         {
-            Scene1.SetActive(true);
-            Scene0.SetActive(false);
-            gameObject.SetActive(false);
+            t++;
+            if (!alphaMinus)
+            {
+                if (alpha < 255)
+                {
+                    BlackG.GetComponent<Image>().color = new Color32(0, 0, 0, (byte)alpha);
+                    alpha += (int)(t * changeSpeed);
+                    return;
+                }
+                else
+                {
+                    alpha = 255;
+                    alphaMinus = true;
+                    Scene1.SetActive(true);
+                    CG.SetActive(false);
+                }
+            }
+
+            if (alpha > 0)
+            {
+                BlackG.GetComponent<Image>().color = new Color32(0, 0, 0, (byte)alpha);
+                alpha -= (int)(t * changeSpeed);
+            }
+            else
+            {
+                Scene0.SetActive(false);
+                gameObject.SetActive(false);
+            }
+            return;
         }
         if (step == 0)
         {
@@ -65,23 +117,22 @@ public class Scr_Start : MonoBehaviour
             TextInfor.GetComponent<Text>().text = "正在加载升级项目";
             Tech.Start1();
         }
-        if (step > stepFull)
-        {
-            TextInfor.GetComponent<Text>().text = "加载完成";
-            LoadOver = true;
-        }
 
+        if (step > stepFull + 5)
+        {
+            LoadOver = true;
+
+        }
         if (!LoadOver)
         {
             TextProcess.GetComponent<Text>().text = string.Format("{0:F0}", ((float)step / (float)stepFull) * 100) + "%";
             step += 1;
 
         }
-        else
+        if (step > stepFull)
         {
+            TextInfor.GetComponent<Text>().text = "加载完成";
             TextProcess.GetComponent<Text>().text = "100%";
         }
-
-
     }
 }
