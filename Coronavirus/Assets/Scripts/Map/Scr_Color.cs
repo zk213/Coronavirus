@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.UI;
@@ -577,8 +576,15 @@ public class Scr_Color : MonoBehaviour
             }
             //
 
+            //Provinces[a].GetComponent<RectTransform>().sizeDelta = new Vector2(w, h);
+            //Provinces[a].GetComponent<RectTransform>().position = new Vector2(w / 2, h / 2);
+            Provinces[a].GetComponent<RectTransform>().position = new Vector2(12.405f, 10.245f);
+            Provinces[a].GetComponent<SpriteRenderer>().sprite = Resources.Load("UI/Map/" + a.ToString(), typeof(Sprite)) as Sprite;
 
-            if (!Directory.Exists(Application.persistentDataPath + "/provinces"))
+
+
+            /*
+             if (!Directory.Exists(Application.persistentDataPath + "/provinces"))
             {
                 Directory.CreateDirectory(Application.persistentDataPath + "/provinces");
             }
@@ -620,6 +626,8 @@ public class Scr_Color : MonoBehaviour
 
 
             }
+             */
+
         }
         LoadOrder += 2;
         if (LoadOrder >= colorNum)
@@ -711,6 +719,7 @@ public class Scr_Color : MonoBehaviour
 
 
         Vector2 mouseP = new Vector2((int)((Input.mousePosition.x - Screen.width / 2) * correctX * Camera.main.orthographicSize / 5 + CCamera.transform.position.x * MoveSpeed * 20), (int)((Input.mousePosition.y - Screen.height / 2) * correctY * Camera.main.orthographicSize / 5 + CCamera.transform.position.y * MoveSpeed * 20));//获得鼠标的坐标
+        //Vector2 mouseP = new Vector2((int)((Input.mousePosition.x) * correctX * Camera.main.orthographicSize / 5 + CCamera.transform.position.x * MoveSpeed * 20), (int)((Input.mousePosition.y) * correctY * Camera.main.orthographicSize / 5 + CCamera.transform.position.y * MoveSpeed * 20));//获得鼠标的坐标
         if (Input.GetMouseButtonDown(0))
         {
             /*

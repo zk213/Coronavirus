@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &1858391630839961979
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -94,7 +94,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &1640234453314253029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,3 +113,25 @@ MonoBehaviour:
   myColor:
     serializedVersion: 2
     rgba: 4294967295
+  PPTransport: 0
+  IPTransport: 0
+  Population: 0
+  Medicine: 0
+  Material: 0
+  Personnel: 0
+  Bed: 0
+  Death: 0
+  Cure: 0
+  Heavy: 0
+  Suspected: 0
+  TotalPeople: 0
+  People: 
+  DIPTransport: []
+  DPopulation: []
+  DPPTransport: []
+  DMedicine: []
+  IncubationTurn: []
+  MildTurn: []
+  HeavyTurn: []
+  CureTurn: []
+  r0: 3

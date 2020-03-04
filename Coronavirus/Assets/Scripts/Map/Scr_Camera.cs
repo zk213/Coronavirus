@@ -3,37 +3,37 @@
 public class Scr_Camera : MonoBehaviour
 {
     public float speed = 5;
-    public float iniX = 15;
-    public float iniY = 10;
-    public float iniS = 13;
+    float iniX = 15;
+    float iniY = 10;
+    float iniS = 14;
 
-    public float zoomSpeed = 0.2f;
-    public float minZoom = 4;
-    public float maxZoom = 15;
+    float zoomSpeed = 0.2f;
+    float minZoom = 4;
+    float maxZoom = 14;
 
     float maxW = 21.5f;
     float maxH = 12.5f;
 
     Rigidbody2D rigid;
+    public GameObject BackGround;
 
     void Awake()
     {
-        speed = 5;
-        iniX = 15;
-        iniY = 10;
-        iniS = 15;
 
-        zoomSpeed = 0.2f;
-        minZoom = 4;
+
+
+        BackGround.transform.position = new Vector2(iniX, iniY);
         maxZoom = iniS;
 
         transform.position = new Vector2(iniX, iniY);
         rigid = GetComponent<Rigidbody2D>();
         Camera.main.orthographicSize = iniS;
+
     }
 
     void Update()
     {
+
         /*
         //Zoom out
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
