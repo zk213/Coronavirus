@@ -98,6 +98,7 @@ public class Scr_Tech : MonoBehaviour
     public RectTransform parent;
     //public RectTransform parent2;
     public Object prefab;
+    public Object Line;
 
     public List<GameObject> Tech = new List<GameObject>();
     public List<string> Label = new List<string>();
@@ -113,6 +114,7 @@ public class Scr_Tech : MonoBehaviour
 
     List<string> Key = new List<string>();
     List<string> TextInfor = new List<string>();
+    List<int> Type1 = new List<int>();
 
     Scr_Num Value;
     Scr_Event Events;
@@ -153,6 +155,7 @@ public class Scr_Tech : MonoBehaviour
                 {
                     case "gover":
                         page = 2;
+                        Type1.Add(i);
                         baseColor = new Color32(102, 202, 255, 255);
                         break;
                     case "medicine":
@@ -161,6 +164,7 @@ public class Scr_Tech : MonoBehaviour
                         break;
                     default:
                         page = 2;
+                        Type1.Add(i);
                         baseColor = new Color32(102, 202, 255, 255);
                         break;
                 }
@@ -186,6 +190,54 @@ public class Scr_Tech : MonoBehaviour
                 int.TryParse(element.SelectSingleNode("cost").InnerText, out int cost);
                 Tech[i].GetComponent<Scr_TechButton>().cost = cost;
                 Tech[i].transform.name = element.SelectSingleNode("title").InnerText;
+            }
+        }
+
+        //画线
+        for (int i = 0; i < Tech.Count; i++)
+        {
+            var father = Tech[i].GetComponent<Scr_TechButton>().father;
+            if (father != -1)
+            {
+                var Ip = Tech[i].transform.localPosition;
+                var Fp = Tech[father].transform.localPosition;
+                int page = 2;
+                if (Type1.Contains(i))
+                {
+                    page = 2;
+                }
+                else
+                {
+                    page = 3;
+                }
+
+                if (Fp.x == Ip.x)
+                {
+                    GameObject ALine = (GameObject)Instantiate(Line, transform.position, transform.rotation);
+                    ALine.transform.name = father.ToString() + "-" + i.ToString();
+                    ALine.transform.SetParent(parent.transform.Find("UpGradePage" + page.ToString()).transform.Find("LineGround"), false);
+                    ALine.GetComponent<RectTransform>().anchoredPosition = new Vector2(Ip.x, (Ip.y + Fp.y) / 2);
+                    ALine.GetComponent<RectTransform>().sizeDelta = new Vector2(5, Vector2.Distance(Ip, Fp));
+                }
+                else
+                {
+                    GameObject ALine = (GameObject)Instantiate(Line, transform.position, transform.rotation);
+                    GameObject BLine = (GameObject)Instantiate(Line, transform.position, transform.rotation);
+                    GameObject CLine = (GameObject)Instantiate(Line, transform.position, transform.rotation);
+                    ALine.transform.name = father.ToString() + "-" + i.ToString() + ",1";
+                    BLine.transform.name = father.ToString() + "-" + i.ToString() + ",2";
+                    CLine.transform.name = father.ToString() + "-" + i.ToString() + ",3";
+                    ALine.transform.SetParent(parent.transform.Find("UpGradePage" + page.ToString()).transform.Find("LineGround"), false);
+                    BLine.transform.SetParent(parent.transform.Find("UpGradePage" + page.ToString()).transform.Find("LineGround"), false);
+                    CLine.transform.SetParent(parent.transform.Find("UpGradePage" + page.ToString()).transform.Find("LineGround"), false);
+                    ALine.GetComponent<RectTransform>().anchoredPosition = new Vector2(Fp.x, (Ip.y + Fp.y) / 2 + Mathf.Abs(Ip.y - Fp.y) / 4);
+                    BLine.GetComponent<RectTransform>().anchoredPosition = new Vector2((Ip.x + Fp.x) / 2, (Ip.y + Fp.y) / 2);
+                    CLine.GetComponent<RectTransform>().anchoredPosition = new Vector2(Ip.x, (Ip.y + Fp.y) / 2 - Mathf.Abs(Ip.y - Fp.y) / 4);
+                    ALine.GetComponent<RectTransform>().sizeDelta = new Vector2(5, Mathf.Abs(Ip.y - Fp.y) / 2);
+                    BLine.GetComponent<RectTransform>().sizeDelta = new Vector2(Mathf.Abs(Ip.x - Fp.x), 5);
+                    CLine.GetComponent<RectTransform>().sizeDelta = new Vector2(5, Mathf.Abs(Ip.y - Fp.y) / 2);
+
+                }
             }
         }
     }
