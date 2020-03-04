@@ -7235,7 +7235,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &785777864
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7305,6 +7305,7 @@ MonoBehaviour:
   Scene1: {fileID: 1278395229}
   Scene2: {fileID: 1667204362}
   Scene3: {fileID: 339385667}
+  ContinueB: {fileID: 812854754}
 --- !u!1 &812854754
 GameObject:
   m_ObjectHideFlags: 0
@@ -7424,7 +7425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.47843137}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8939,7 +8940,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: cbf54e33a9bee3c419369ac45e0ed37a, type: 3}
   m_Color: {r: 0.20784314, g: 0.6313726, b: 1, a: 0.49019608}
   m_FlipX: 0
@@ -11038,7 +11039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1278395230
 Transform:
   m_ObjectHideFlags: 0
