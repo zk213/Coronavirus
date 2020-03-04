@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Xml;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum GameMode
 {
@@ -16,7 +17,9 @@ public class Scr_Mode : MonoBehaviour
     public GameObject Scene1;
     public GameObject Scene2;
     public GameObject Scene3;
+    public GameObject ContinueB;
     Scr_Load LoadS;
+    bool hasSave = false;
 
     void Awake()
     {
@@ -35,6 +38,7 @@ public class Scr_Mode : MonoBehaviour
         string path = Application.persistentDataPath + "/save/Save.save";
         if (!File.Exists(path))
         {
+
             XmlDocument xml = new XmlDocument();
             XmlDeclaration xmlDeclaration = xml.CreateXmlDeclaration("1.0", "UTF-8", null);//固定格式
             xml.AppendChild(xmlDeclaration);
@@ -42,6 +46,7 @@ public class Scr_Mode : MonoBehaviour
             root.SetAttribute("id", "1");
 
             XmlElement Day = xml.CreateElement("Day");
+            Day.InnerText = "0";
             root.AppendChild(Day);
 
             XmlElement UnActiveEvent = xml.CreateElement("UnActiveEvent");
@@ -77,31 +82,31 @@ public class Scr_Mode : MonoBehaviour
             XmlElement Vaccine = xml.CreateElement("Vaccine");
             root.AppendChild(Vaccine);
 
-            XmlElement PPTransport = xml.CreateElement("Vaccine");
+            XmlElement PPTransport = xml.CreateElement("PPTransport");
             root.AppendChild(PPTransport);
 
-            XmlElement IPTransport = xml.CreateElement("Vaccine");
+            XmlElement IPTransport = xml.CreateElement("IPTransport");
             root.AppendChild(IPTransport);
 
-            XmlElement Population = xml.CreateElement("Vaccine");
+            XmlElement Population = xml.CreateElement("Population");
             root.AppendChild(Population);
 
-            XmlElement Medicine = xml.CreateElement("Vaccine");
+            XmlElement Medicine = xml.CreateElement("Medicine");
             root.AppendChild(Medicine);
 
-            XmlElement Material = xml.CreateElement("Vaccine");
+            XmlElement Material = xml.CreateElement("Material");
             root.AppendChild(Material);
 
-            XmlElement Personnel = xml.CreateElement("Vaccine");
+            XmlElement Personnel = xml.CreateElement("Personnel");
             root.AppendChild(Personnel);
 
-            XmlElement Bed = xml.CreateElement("Vaccine");
+            XmlElement Bed = xml.CreateElement("Bed");
             root.AppendChild(Bed);
 
-            XmlElement Death = xml.CreateElement("Vaccine");
+            XmlElement Death = xml.CreateElement("Death");
             root.AppendChild(Death);
 
-            XmlElement Cure = xml.CreateElement("Vaccine");
+            XmlElement Cure = xml.CreateElement("Cure");
             root.AppendChild(Cure);
 
             for (int a = 1; a <= 35; a++)
@@ -114,10 +119,39 @@ public class Scr_Mode : MonoBehaviour
             //最后保存文件
             xml.Save(path);
         }
+        else
+        {
+            XmlDocument xmlSave = new XmlDocument();
+            xmlSave.Load(Application.persistentDataPath + "/save/Save.save");
+            XmlElement xmlNodeS = xmlSave.DocumentElement;
+            foreach (XmlNode elementsS in xmlNodeS)
+            {
+                if (elementsS == null)
+                    continue;
+                if (elementsS.LocalName == "Day")
+                {
+                    int.TryParse(elementsS.InnerText, out int day);
+                    if (day > 1)
+                    {
+                        hasSave = true;
+                    }
+                }
+            }
+        }
+        if (hasSave)
+        {
+            ContinueB.GetComponent<Image>().color = Color.white;
+        }
+        else
+        {
+            ContinueB.GetComponent<Image>().color = new Color32(255, 255, 255, 125);
+        }
     }
+
 
     public void Load()
     {
+        if (!hasSave) { return; }
         string path = Application.persistentDataPath + "/setting.set";
         if (!File.Exists(path))
         {

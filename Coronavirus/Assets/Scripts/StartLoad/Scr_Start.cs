@@ -41,6 +41,9 @@ public class Scr_Start : MonoBehaviour
         Provinces = FindObjectOfType<Scr_Color>();
         Events = FindObjectOfType<Scr_Event>();
         Tech = FindObjectOfType<Scr_Tech>();
+        //调整分辨率（还是有问题）
+        CG.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
+        BlackG.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
     }
 
     // Update is called once per frame
