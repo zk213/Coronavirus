@@ -36,14 +36,14 @@ public class Scr_Start : MonoBehaviour
         Scene3.SetActive(false);
         string path = "EventPictures/CG/OP/" + ((int)Random.Range(1, 1)).ToString();
         CG.GetComponent<Image>().sprite = Resources.Load(path, typeof(Sprite)) as Sprite;
-        CG.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
+        //CG.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
 
         Provinces = FindObjectOfType<Scr_Color>();
         Events = FindObjectOfType<Scr_Event>();
         Tech = FindObjectOfType<Scr_Tech>();
         //调整分辨率（还是有问题）
-        CG.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
-        BlackG.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
+        //CG.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
+        //BlackG.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
     }
 
     // Update is called once per frame
