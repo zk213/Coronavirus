@@ -42,7 +42,7 @@ public class Scr_Color : MonoBehaviour
     string NumHeavy = "";
     string NumSuspected = "";
     bool isLoad = false;
-
+    public bool chartUpdate = false;
 
     List<int> PPTransport = new List<int>();
     List<int> IPTransport = new List<int>();
@@ -130,7 +130,7 @@ public class Scr_Color : MonoBehaviour
                     NumDead = LocalArray[1];
                     break;
                 case "NumCure":
-                    NumDead = LocalArray[1];
+                    NumCure = LocalArray[1];
                     break;
                 case "NumHeavy":
                     NumHeavy = LocalArray[1];
@@ -296,9 +296,10 @@ public class Scr_Color : MonoBehaviour
 
         InfectedGrid.transform.Find("Name").GetComponent<Text>().text = NumInfected;
         DeadGrid.transform.Find("Name").GetComponent<Text>().text = NumDead;
-        CureGrid.transform.Find("Name").GetComponent<Text>().text = NumHeavy;
-        HeavyGrid.transform.Find("Name").GetComponent<Text>().text = NumInfected;
+        CureGrid.transform.Find("Name").GetComponent<Text>().text = NumCure;
+        HeavyGrid.transform.Find("Name").GetComponent<Text>().text = NumHeavy;
         SuspectedGrid.transform.Find("Name").GetComponent<Text>().text = NumSuspected;
+
     }
 
     public void LocalSave()
@@ -661,6 +662,7 @@ public class Scr_Color : MonoBehaviour
             GlobalCurePeople += Provinces[i].GetComponent<Scr_Provinces>().Cure;
             GlobalDeadPeople += Provinces[i].GetComponent<Scr_Provinces>().Death;
         }
+        chartUpdate = true;
         if (thisIndex >= 0)
         {
             InfectedGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().TotalPeople.ToString();

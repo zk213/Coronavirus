@@ -55,8 +55,8 @@ public class Scr_TimeControl : MonoBehaviour
     float daySpawn;//时间流逝间隔
     float TempDay = 0;
     int Year = 2019;
-    int Month = 12;
-    int Day = 1;
+    public int Month = 12;
+    public int Day = 1;
     string ShowFullTime;
     bool showbutton = false;
     bool showbuttonmovefinish = true;

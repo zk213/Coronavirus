@@ -4,7 +4,6 @@ public class Scr_Back : MonoBehaviour
 {
     public GameObject BackPage;
     public GameObject UpGradePage;
-    public GameObject StatisticPage;
 
     public GameObject Scene1;
     public GameObject Scene3;
@@ -29,7 +28,7 @@ public class Scr_Back : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!OpenBack && !UpGradePage.activeInHierarchy && !StatisticPage.activeInHierarchy)
+        if (!OpenBack && !UpGradePage.activeInHierarchy)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -39,7 +38,7 @@ public class Scr_Back : MonoBehaviour
                 }
             }
         }
-        else if (OpenBack && !UpGradePage.activeInHierarchy && !StatisticPage.activeInHierarchy)
+        else if (OpenBack && !UpGradePage.activeInHierarchy)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {

@@ -14,6 +14,7 @@ public class Scr_Load : MonoBehaviour
     Scr_Num Num;
     Scr_Tech Tech;
     Scr_News News;
+    Scr_Statistic Statistic;
 
     public bool StartControl = false;
     public bool isLoad = false;
@@ -28,6 +29,7 @@ public class Scr_Load : MonoBehaviour
         Num = FindObjectOfType<Scr_Num>();
         Tech = FindObjectOfType<Scr_Tech>();
         News = FindObjectOfType<Scr_News>();
+        Statistic = FindObjectOfType<Scr_Statistic>();
         BlackG.SetActive(false);
     }
 
@@ -48,6 +50,7 @@ public class Scr_Load : MonoBehaviour
         Events.Start2();
         Tech.Start2();
         News.Start1();
+        Statistic.Start1();
     }
     void Update()
     {

@@ -20,12 +20,14 @@ public class Scr_Upgrade : MonoBehaviour
     Scr_Tech Tech;
     Scr_TimeControl Time;
     Scr_Event Events;
+    Scr_Statistic Statistic;
 
     void OnEnable()
     {
         Tech = FindObjectOfType<Scr_Tech>();
         Time = FindObjectOfType<Scr_TimeControl>();
         Events = FindObjectOfType<Scr_Event>();
+        Statistic = FindObjectOfType<Scr_Statistic>();
         UpGradePage.SetActive(false);
         PressPage1.SetActive(true);
         PressPage2.SetActive(false);
@@ -80,6 +82,7 @@ public class Scr_Upgrade : MonoBehaviour
         UpGradePage.SetActive(true);
         MainPage.SetActive(false);
         PressPage1.SetActive(true);
+        Statistic.OpenStatiPage();
         Tech.TechIndex = -1;
         Tech.page = 1;
         Tech.TextUpdate = true;
@@ -90,6 +93,7 @@ public class Scr_Upgrade : MonoBehaviour
         UpGradePage.SetActive(true);
         MainPage.SetActive(false);
         PressPage2.SetActive(true);
+        Statistic.OpenStatiPage();
         Tech.TechIndex = -1;
         Tech.page = 2;
         Tech.TextUpdate = true;
@@ -100,6 +104,7 @@ public class Scr_Upgrade : MonoBehaviour
         UpGradePage.SetActive(true);
         MainPage.SetActive(false);
         PressPage3.SetActive(true);
+        Statistic.OpenStatiPage();
         Tech.TechIndex = -1;
         Tech.page = 3;
         Tech.TextUpdate = true;
@@ -113,6 +118,7 @@ public class Scr_Upgrade : MonoBehaviour
         PressPage1.SetActive(false);
         PressPage2.SetActive(false);
         PressPage3.SetActive(false);
+        Statistic.CloseStatiPage();
     }
 
     public void Press1Effect()
