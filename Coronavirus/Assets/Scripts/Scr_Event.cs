@@ -97,7 +97,7 @@ public class Scr_Event : MonoBehaviour
                 return false;
         }
     }
-    void EventEffectControl(int i)
+    public void EventEffectControl(int i)
     {
         XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.LoadXml(((TextAsset)Resources.Load("Xml/Event")).text);
@@ -116,6 +116,17 @@ public class Scr_Event : MonoBehaviour
                     for (int a = 0; a < amount; a++)
                     {
                         var effect = effects.ChildNodes[a] as XmlElement;
+                        if (isImportantList.Contains(i))
+                        {
+                            if (effect.HasAttribute("CG"))
+                            {
+                                int.TryParse(effect.Attributes["CG"].Value, out int CGI);
+                                if (CGI != CGIndex)
+                                {
+                                    continue;
+                                }
+                            }
+                        }
                         switch (effect.Attributes["type"].Value)
                         {
                             case "value":
@@ -170,6 +181,9 @@ public class Scr_Event : MonoBehaviour
                                         UnActiveEvent.Remove(eventIndex);
                                     }
                                 }
+                                break;
+                            case "message":
+                                Debug.Log(effect.InnerText);
                                 break;
                             default:
                                 break;
@@ -316,7 +330,11 @@ public class Scr_Event : MonoBehaviour
     public Text CGTitle;
     public Text CGDescribe;
     public Image CGPicture;
+    public Transform CGButton;
 
+    [HideInInspector]
+    public int CGIndex = 0;
+    public int CGHappen = 0;
     [HideInInspector]
     public bool showEvent;
 
@@ -410,7 +428,7 @@ public class Scr_Event : MonoBehaviour
                     var straitE = trait[0] as XmlElement;
 
                     //是否是子事件
-                    if (straitE.GetElementsByTagName("subEvent").Count == 1)
+                    if (straitE.GetElementsByTagName("subEvent").Count >= 1)
                     {
                         UnActiveEvent.Add(i);
                     }
@@ -420,18 +438,18 @@ public class Scr_Event : MonoBehaviour
                     }
 
                     //是否是隐藏事件
-                    if (straitE.GetElementsByTagName("isInvisible").Count == 1)
+                    if (straitE.GetElementsByTagName("isInvisible").Count >= 1)
                     {
                         isInvisibleList.Add(i);
                     }
                     //是否是重复事件
-                    if (straitE.GetElementsByTagName("isRepeat").Count == 1)
+                    if (straitE.GetElementsByTagName("isRepeat").Count >= 1)
                     {
                         isRepeatList.Add(i);
                         staticProbability.Add(dynamicProbability[i]);
                     }
                     //是否是重要事件
-                    if (straitE.GetElementsByTagName("isImportant").Count == 1)
+                    if (straitE.GetElementsByTagName("isImportant").Count >= 1)
                     {
                         isImportantList.Add(i);
 
@@ -785,6 +803,10 @@ public class Scr_Event : MonoBehaviour
             string path = "";
             string xmlTitle = "Title Missing";
             string xmlDescribe = "Describe Missing";
+            string CGInfor1 = "UnsetOption";
+            string CGInfor2 = "UnsetOption";
+            string CGInfor3 = "UnsetOption";
+            int CGBNum = 1;
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(((TextAsset)Resources.Load("Xml/Event")).text);
             XmlElement xmlNode = xmlDoc.DocumentElement;//SelectSingleNode("events").ChildNodes;
@@ -800,6 +822,30 @@ public class Scr_Event : MonoBehaviour
                         xmlTitle = element.SelectSingleNode("title").InnerText;
                         xmlDescribe = element.SelectSingleNode("describe").InnerText;
                         path = element.SelectSingleNode("picture").InnerText;
+                        var options = element.GetElementsByTagName("options");
+                        if (options.Count != 0)
+                        {
+                            var optionsE = options[0] as XmlElement;
+                            int.TryParse(optionsE.Attributes["amount"].Value, out CGBNum);
+                            foreach (XmlElement option in optionsE)
+                            {
+                                if (CGInfor1 == "UnsetOption")
+                                {
+                                    CGInfor1 = option.InnerText;
+                                    continue;
+                                }
+                                if (CGInfor2 == "UnsetOption")
+                                {
+                                    CGInfor2 = option.InnerText;
+                                    continue;
+                                }
+                                if (CGInfor3 == "UnsetOption")
+                                {
+                                    CGInfor3 = option.InnerText;
+                                    continue;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -808,6 +854,32 @@ public class Scr_Event : MonoBehaviour
             {
                 CGTitle.text = xmlTitle;
                 CGDescribe.text = xmlDescribe;
+                CGButton.transform.Find("CGButton1/Text").GetComponent<Text>().text = CGInfor1;
+                CGButton.transform.Find("CGButton2/Text").GetComponent<Text>().text = CGInfor2;
+                CGButton.transform.Find("CGButton3/Text").GetComponent<Text>().text = CGInfor3;
+                switch (CGBNum)
+                {
+                    case 1:
+                        CGButton.transform.Find("CGButton1").gameObject.SetActive(true);
+                        CGButton.transform.Find("CGButton2").gameObject.SetActive(false);
+                        CGButton.transform.Find("CGButton3").gameObject.SetActive(false);
+                        break;
+                    case 2:
+                        CGButton.transform.Find("CGButton1").gameObject.SetActive(true);
+                        CGButton.transform.Find("CGButton2").gameObject.SetActive(true);
+                        CGButton.transform.Find("CGButton3").gameObject.SetActive(false);
+                        break;
+                    case 3:
+                        CGButton.transform.Find("CGButton1").gameObject.SetActive(true);
+                        CGButton.transform.Find("CGButton2").gameObject.SetActive(true);
+                        CGButton.transform.Find("CGButton3").gameObject.SetActive(true);
+                        break;
+                    default:
+                        CGButton.transform.Find("CGButton1").gameObject.SetActive(true);
+                        CGButton.transform.Find("CGButton2").gameObject.SetActive(false);
+                        CGButton.transform.Find("CGButton3").gameObject.SetActive(false);
+                        break;
+                }
             }
             else
             {
@@ -837,6 +909,18 @@ public class Scr_Event : MonoBehaviour
                     {
                         Describe.text = TextInfor[l];
                     }
+                }
+                if (Key[l] == CGInfor1)
+                {
+                    CGButton.transform.Find("CGButton1/Text").GetComponent<Text>().text = TextInfor[l];
+                }
+                if (Key[l] == CGInfor2)
+                {
+                    CGButton.transform.Find("CGButton2/Text").GetComponent<Text>().text = TextInfor[l];
+                }
+                if (Key[l] == CGInfor3)
+                {
+                    CGButton.transform.Find("CGButton3/Text").GetComponent<Text>().text = TextInfor[l];
                 }
             }
 
@@ -881,7 +965,14 @@ public class Scr_Event : MonoBehaviour
 
 
         //执行事件的效果
-        EventEffectControl(HappenEvent[i]);
+        if (!isImportantList.Contains(HappenEvent[i]))
+        {
+            EventEffectControl(HappenEvent[i]);
+        }
+        else
+        {
+            CGHappen = HappenEvent[i];
+        }
 
         if (!isRepeatList.Contains(HappenEvent[i]))
         {

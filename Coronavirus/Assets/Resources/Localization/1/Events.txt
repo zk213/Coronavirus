@@ -1,3 +1,5 @@
+UnsetOption:确定
+BuildHospitalCG1:新建医院
 Example:事件范例
 Example_Describe:事件内容
 FreeTreatment:免费医疗开始推行

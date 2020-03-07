@@ -23,7 +23,7 @@ public class Scr_Camera : MonoBehaviour
 
 
         BackGround.transform.position = new Vector2(iniX, iniY);
-        maxZoom = iniS;
+
 
         transform.position = new Vector2(iniX, iniY);
         rigid = GetComponent<Rigidbody2D>();

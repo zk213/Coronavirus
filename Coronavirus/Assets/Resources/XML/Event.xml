@@ -76,9 +76,14 @@
       <isImportant />
 	  <subEvent />
     </trait>
+	<options amount="1">
+	  <option>BuildHospitalCG1</option>
+    </options>
     <conditions amount="0">
     </conditions>
-    <effects amount="0">
+    <effects amount="2">
+	  <effect type="message">aaaaaaa</effect>
+	  <effect type="message" CG="1">balabala</effect>
     </effects>
   </event>
   <!-- 方舱医院加入抗疫 -->
