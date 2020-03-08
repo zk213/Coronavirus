@@ -718,6 +718,18 @@ public class Scr_Color : MonoBehaviour
         }
 
 
+        //NOTES Mar, 8th, 2020
+      //  https://docs.unity3d.com/ScriptReference/Input.GetTouch.html
+       // https://docs.unity3d.com/Manual/CameraRays.html
+
+        //IOS input here
+        #if UNITY_IOS
+        #endif
+
+        //PC input here
+        #if UNITY_STANDALONE_WIN
+        #endif
+
 
 
         Vector2 mouseP = new Vector2((int)((Input.mousePosition.x - Screen.width / 2) * correctX * Camera.main.orthographicSize / 5 + CCamera.transform.position.x * MoveSpeed * 20), (int)((Input.mousePosition.y - Screen.height / 2) * correctY * Camera.main.orthographicSize / 5 + CCamera.transform.position.y * MoveSpeed * 20));//获得鼠标的坐标
@@ -762,8 +774,6 @@ public class Scr_Color : MonoBehaviour
                     }
                 }
             }
-
-
 
             if (!hasHit)
             {
