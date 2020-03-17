@@ -582,6 +582,18 @@ public class Scr_Color : MonoBehaviour
             Provinces[a].GetComponent<RectTransform>().position = new Vector2(12.405f, 10.245f);
             Provinces[a].GetComponent<SpriteRenderer>().sprite = Resources.Load("UI/Map/" + a.ToString(), typeof(Sprite)) as Sprite;
 
+            Destroy(Provinces[a].GetComponent<PolygonCollider2D>());
+            Provinces[a].AddComponent<PolygonCollider2D>();
+            /*
+             var newv = Provinces[a].GetComponent<SpriteRenderer>().sprite.vertices;
+            for (int v = 0; v < newv.Length; v++)
+            {
+                newv[v] *= 0.5f;
+            }
+             */
+
+            Provinces[a].GetComponent<PolygonCollider2D>().SetPath(0, Provinces[a].GetComponent<SpriteRenderer>().sprite.vertices);
+
 
 
             /*
@@ -686,6 +698,47 @@ public class Scr_Color : MonoBehaviour
     {// + CCamera.transform.position.x * MoveSpeed * 20
         //Debug.Log(Screen.width + "," + Screen.height);
         if (!LoadControl.StartControl) { return; }
+        if (Input.GetMouseButtonDown(0))
+        {
+            bool hasHit = false;
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            if (hit.collider != null)
+            {
+                Scr_Provinces province = hit.collider.gameObject.GetComponent<Scr_Provinces>();
+                int a = province.provinceIndex;
+
+                hasHit = true;
+                provincesName.text = nameS[a];
+                for (int l = 0; l < Key.Count; l++)
+                {
+                    if (Key[l] == nameS[a])
+                    {
+                        provincesName.text = TextInfor[l]; ;
+                        break;
+                    }
+                }
+
+                thisIndex = a;
+                province.isMe = true;
+                InfectedGrid.transform.Find("Number").GetComponent<Text>().text = province.TotalPeople.ToString();
+                DeadGrid.transform.Find("Number").GetComponent<Text>().text = province.Death.ToString();
+                CureGrid.transform.Find("Number").GetComponent<Text>().text = province.Cure.ToString();
+                HeavyGrid.transform.Find("Number").GetComponent<Text>().text = province.Heavy.ToString();
+                SuspectedGrid.transform.Find("Number").GetComponent<Text>().text = province.Suspected.ToString();
+            }
+            if (!hasHit)
+            {
+                provincesName.text = TotalName;
+                thisIndex = -1;
+                InfectedGrid.transform.Find("Number").GetComponent<Text>().text = GlobalPeople.ToString();
+                DeadGrid.transform.Find("Number").GetComponent<Text>().text = GlobalDeadPeople.ToString();
+                CureGrid.transform.Find("Number").GetComponent<Text>().text = GlobalCurePeople.ToString();
+                HeavyGrid.transform.Find("Number").GetComponent<Text>().text = GlobalHeavyPeople.ToString();
+                SuspectedGrid.transform.Find("Number").GetComponent<Text>().text = GlobalSuspectedPeople.ToString();
+            }
+
+        }
+        return;
         switch (((float)Screen.width / (float)Screen.height))
         {
             case (16f / 9f):
@@ -719,16 +772,16 @@ public class Scr_Color : MonoBehaviour
 
 
         //NOTES Mar, 8th, 2020
-      //  https://docs.unity3d.com/ScriptReference/Input.GetTouch.html
-       // https://docs.unity3d.com/Manual/CameraRays.html
+        //  https://docs.unity3d.com/ScriptReference/Input.GetTouch.html
+        // https://docs.unity3d.com/Manual/CameraRays.html
 
         //IOS input here
-        #if UNITY_IOS
-        #endif
+#if UNITY_IOS
+#endif
 
         //PC input here
-        #if UNITY_STANDALONE_WIN
-        #endif
+#if UNITY_STANDALONE_WIN
+#endif
 
 
 

@@ -31,6 +31,7 @@ public class Scr_Provinces : MonoBehaviour
     public List<float> DMedicine = new List<float>();
 
     SpriteRenderer spr;
+    //PolygonCollider2D pc2;
 
     float t = 0;
     bool tAdd = false;
@@ -47,7 +48,7 @@ public class Scr_Provinces : MonoBehaviour
     {
         provinces = FindObjectOfType<Scr_Color>();
         spr = GetComponent<SpriteRenderer>();
-
+        //pc2 = GetComponent<PolygonCollider2D>();
     }
 
     void Update()
