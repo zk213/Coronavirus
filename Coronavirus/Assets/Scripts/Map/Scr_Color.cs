@@ -592,7 +592,7 @@ public class Scr_Color : MonoBehaviour
             }
              */
 
-            Provinces[a].GetComponent<PolygonCollider2D>().SetPath(0, Provinces[a].GetComponent<SpriteRenderer>().sprite.vertices);
+            //Provinces[a].GetComponent<PolygonCollider2D>().SetPath(0, Provinces[a].GetComponent<SpriteRenderer>().sprite.vertices);
 
 
 
