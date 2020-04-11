@@ -70,7 +70,7 @@ public class Scr_TimeControl : MonoBehaviour
     {
         Year = 2019;
         Month = 12;
-        Day = 1;
+        Day = 27;
         showbutton = false;
         showbuttonmovefinish = true;
 
@@ -126,7 +126,7 @@ public class Scr_TimeControl : MonoBehaviour
         provinces = FindObjectOfType<Scr_Color>();
         LoadControl = FindObjectOfType<Scr_Load>();
         daySpawn = OneSpeedSpawn;
-        ShowFullTime = "2019 12 01";
+        ShowFullTime = "2019 12 27";
         extendbutton.SetActive(false);
 
     }

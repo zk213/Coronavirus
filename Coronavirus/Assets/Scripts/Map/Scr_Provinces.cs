@@ -24,6 +24,9 @@ public class Scr_Provinces : MonoBehaviour
 
     //public float
     public int TotalPeople = 0;
+    public int showTotalPeople = 0;
+    public int fakeSuspected = 0;
+    public int showSuspected = 0;
     public List<int> People = new List<int>();
     public List<float> DIPTransport = new List<float>();
     public List<float> DPopulation = new List<float>();
@@ -41,7 +44,7 @@ public class Scr_Provinces : MonoBehaviour
     public List<float> HeavyTurn = new List<float>();
     public List<float> CureTurn = new List<float>();
 
-    public float r0 = 3;
+    public float r0 = 4;
 
 
     void Awake()
@@ -96,7 +99,7 @@ public class Scr_Provinces : MonoBehaviour
             float MedicineTurn = DMedicine[Medicine] + 1;
 
 
-            int InfectionPeople = 0;
+            float InfectionPeople = 0;
             //潜伏患者
             int turn0 = 0;
             int turn1 = 0;
@@ -105,7 +108,7 @@ public class Scr_Provinces : MonoBehaviour
                 if (i != 0)
                 {
                     int tempTurn0 = turn0;
-                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100);
+                    InfectionPeople += (People[i] * r0 / 5.0f * InfectionProbability / 100);
                     turn0 = (int)(People[i] * IncubationTurn[0] / 100);
                     turn1 = (int)(People[i] * IncubationTurn[1] / 100);
                     if (i != 4)
@@ -134,7 +137,7 @@ public class Scr_Provinces : MonoBehaviour
                 }
                 else
                 {
-                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 50);
+                    InfectionPeople += (People[i] * r0 / 5.0f * InfectionProbability / 50);
                     turn1 = (int)(People[i] * IncubationTurn[1] / 100);
                     int turn2 = (int)(People[i] * IncubationTurn[2] / 100);
                     People[i + 2] += turn2;
@@ -142,6 +145,13 @@ public class Scr_Provinces : MonoBehaviour
                     People[i + 1] += turn1;
                 }
                 People[i] -= (turn1 + turn0);
+                if (turn1 == 0 && People[i] != 0)
+                {
+                    //此处待定
+                    //People[0] += 1;
+                    People[i] -= 1;
+                    People[i + 1] += 1;
+                }
             }
             //疑似未确诊
             turn0 = 0;
@@ -149,49 +159,66 @@ public class Scr_Provinces : MonoBehaviour
             for (int i = 9; i >= 5; i--)
             {
                 int turnA = (int)(People[i] * provinces.goToDoc / 100);
+                fakeSuspected += (int)(People[i] * r0 / 5);
                 People[i] -= turnA;
                 People[i + 5] += turnA;
-                if (i != 5)
-                {
-                    int tempTurn0 = turn0;
-                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.SuspectedInfected);
-                    turn0 = (int)(People[i] * MildTurn[0] / 100);
-                    turn1 = (int)(People[i] * MildTurn[1] / 100);
-                    if (i != 9)
+                if (turnA > 0)
+                    if (i != 5)
                     {
-
-                        if (i != 8)
+                        int tempTurn0 = turn0;
+                        InfectionPeople += (People[i] * r0 / 5.0f * InfectionProbability / 100 * provinces.SuspectedInfected);
+                        turn0 = (int)(People[i] * MildTurn[0] / 100);
+                        turn1 = (int)(People[i] * MildTurn[1] / 100);
+                        if (i != 9)
                         {
-                            int turn2 = (int)(People[i] * MildTurn[2] / 100);
-                            People[i + 2] += turn2;
-                            People[i] -= turn2;
+
+                            if (i != 8)
+                            {
+                                int turn2 = (int)(People[i] * MildTurn[2] / 100);
+                                People[i + 2] += turn2;
+                                People[i] -= turn2;
+                            }
+                            else
+                            {
+                                turn1 += (int)(People[i] * MildTurn[2] / 100);
+                            }
+                            People[i + 1] += turn1;
                         }
                         else
                         {
                             turn1 += (int)(People[i] * MildTurn[2] / 100);
+                            int turnB = (int)(turn1 * provinces.goToDoc / 100);
+                            People[15] += turn1 - turnB;
+                            People[20] += turnB;
                         }
-                        People[i + 1] += turn1;
+                        People[i] -= turn1;
+                        People[i] -= turn0;
+                        People[i] += tempTurn0;
                     }
                     else
                     {
-                        turn1 += (int)(People[i] * MildTurn[2] / 100);
-                        int turnB = (int)(turn1 * provinces.goToDoc / 100);
-                        People[15] += turn1 - turnB;
-                        People[20] += turnB;
+                        InfectionPeople += (People[i] * r0 / 5.0f * InfectionProbability / 100 * provinces.SuspectedInfected);
+                        turn1 = (int)(People[i] * MildTurn[1] / 100);
+                        int turn2 = (int)(People[i] * MildTurn[2] / 100);
+                        People[i + 2] += turn2;
+                        People[i] -= turn2;
+                        People[i + 1] += turn1;
+                        People[i] -= turn1;
                     }
-                    People[i] -= turn1;
-                    People[i] -= turn0;
-                    People[i] += tempTurn0;
-                }
-                else
+                if (turn1 == 0 && People[i] != 0)
                 {
-                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.SuspectedInfected);
-                    turn1 = (int)(People[i] * MildTurn[1] / 100);
-                    int turn2 = (int)(People[i] * MildTurn[2] / 100);
-                    People[i + 2] += turn2;
-                    People[i] -= turn2;
-                    People[i + 1] += turn1;
-                    People[i] -= turn1;
+                    //此处待定
+                    //People[0] += 1;
+                    if (i != 9)
+                    {
+                        People[i] -= 1;
+                        People[i + 1] += 1;
+                    }
+                    else
+                    {
+                        People[i] -= 1;
+                        People[21] += 1;
+                    }
                 }
             }
 
@@ -200,10 +227,11 @@ public class Scr_Provinces : MonoBehaviour
             turn1 = 0;
             for (int i = 14; i >= 10; i--)
             {
+                fakeSuspected += (int)(People[i] * r0 / 10);
                 if (i != 10)
                 {
                     int tempTurn0 = turn0;
-                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    InfectionPeople += (People[i] * r0 / 5.0f * InfectionProbability / 100 * provinces.QuarantineInfected);
                     turn0 = (int)(People[i] * MildTurn[0] / 100);
                     turn1 = (int)(People[i] * MildTurn[1] / 100);
                     if (i != 14)
@@ -234,13 +262,28 @@ public class Scr_Provinces : MonoBehaviour
                 }
                 else
                 {
-                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    InfectionPeople += (People[i] * r0 / 5.0f * InfectionProbability / 100 * provinces.QuarantineInfected);
                     turn1 = (int)(People[i] * MildTurn[1] / 100);
                     int turn2 = (int)(People[i] * MildTurn[2] / 100);
                     People[i + 2] += turn2;
                     People[i] -= turn2;
                     People[i + 1] += turn1;
                     People[i] -= turn1;
+                }
+                if (turn1 == 0 && People[i] != 0)
+                {
+                    //此处待定
+                    //People[0] += 1;
+                    if (i != 15)
+                    {
+                        People[i] -= 1;
+                        People[i + 1] += 1;
+                    }
+                    else
+                    {
+                        People[i] -= 1;
+                        People[25] += 1;
+                    }
                 }
             }
 
@@ -250,13 +293,14 @@ public class Scr_Provinces : MonoBehaviour
             turn1 = 0;
             for (int i = 19; i >= 15; i--)
             {
+                fakeSuspected += (int)(People[i] * r0 / 10);
                 int turnA = (int)(People[i] * provinces.goToDoc / 100);
                 People[i] -= turnA;
                 People[i + 5] += turnA;
                 if (i != 15)
                 {
                     int tempTurn0 = turn0;
-                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.SuspectedInfected);
+                    InfectionPeople += (People[i] * r0 / 5.0f * InfectionProbability / 100 * provinces.SuspectedInfected);
                     turn0 = (int)(People[i] * Mathf.Clamp(HeavyTurn[0] / 100 * MedicineTurn, 0, 1));
                     turn1 = (int)(People[i] * HeavyTurn[1] / 100);
                     if (i != 19)
@@ -285,7 +329,7 @@ public class Scr_Provinces : MonoBehaviour
                 }
                 else
                 {
-                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.SuspectedInfected);
+                    InfectionPeople += (People[i] * r0 / 5.0f * InfectionProbability / 100 * provinces.SuspectedInfected);
                     turn1 = (int)(People[i] * HeavyTurn[1] / 100);
                     int turn2 = (int)(People[i] * HeavyTurn[2] / 100);
                     turn0 = (int)(People[i] * Mathf.Clamp(HeavyTurn[0] / 100 * MedicineTurn, 0, 1));
@@ -296,6 +340,16 @@ public class Scr_Provinces : MonoBehaviour
                     People[i] -= turn0;
                     People[25] += turn0;
                 }
+                if (turn1 == 0 && People[i] != 0)
+                {
+                    //此处待定
+                    //People[0] += 1;
+
+                    People[i] -= 1;
+                    People[i + 5] += 1;
+
+
+                }
             }
 
             //重症确诊
@@ -303,10 +357,11 @@ public class Scr_Provinces : MonoBehaviour
             turn1 = 0;
             for (int i = 24; i >= 20; i--)
             {
+                fakeSuspected += (int)(People[i] * r0 / 20);
                 if (i != 20)
                 {
                     int tempTurn0 = turn0;
-                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    InfectionPeople += (People[i] * r0 / 5.0f * InfectionProbability / 100 * provinces.QuarantineInfected);
                     turn0 = (int)(People[i] * Mathf.Clamp(HeavyTurn[0] / 100 * MedicineTurn, 0, 1));
                     turn1 = (int)(People[i] * HeavyTurn[1] / 100);
                     if (i != 24)
@@ -335,7 +390,7 @@ public class Scr_Provinces : MonoBehaviour
                 }
                 else
                 {
-                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    InfectionPeople += (People[i] * r0 / 5.0f * InfectionProbability / 100 * provinces.QuarantineInfected);
                     turn1 = (int)(People[i] * HeavyTurn[1] / 100);
                     int turn2 = (int)(People[i] * HeavyTurn[2] / 100);
                     turn0 = (int)(People[i] * Mathf.Clamp(HeavyTurn[0] / 100 * MedicineTurn, 0, 1));
@@ -346,6 +401,15 @@ public class Scr_Provinces : MonoBehaviour
                     People[i] -= turn0;
                     People[25] += turn0;
                 }
+                if (turn1 == 0 && People[i] != 0)
+                {
+                    //此处待定
+                    //People[0] += 1;
+
+                    People[i] -= 1;
+                    People[26] += 1;
+
+                }
             }
 
             //治愈1阶段
@@ -353,10 +417,11 @@ public class Scr_Provinces : MonoBehaviour
             turn1 = 0;
             for (int i = 29; i >= 25; i--)
             {
+
                 if (i != 25)
                 {
                     int tempTurn0 = turn0;
-                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    InfectionPeople += (People[i] * r0 / 5.0f * InfectionProbability / 100 * provinces.QuarantineInfected);
                     turn0 = (int)(People[i] * CureTurn[0] / 100);
                     turn1 = (int)(People[i] * CureTurn[1] / 100);
                     if (i != 29)
@@ -385,7 +450,7 @@ public class Scr_Provinces : MonoBehaviour
                 }
                 else
                 {
-                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    InfectionPeople += (People[i] * r0 / 5.0f * InfectionProbability / 100 * provinces.QuarantineInfected);
                     turn1 = (int)(People[i] * CureTurn[1] / 100);
                     int turn2 = (int)(People[i] * CureTurn[2] / 100);
                     turn0 = (int)(People[i] * Mathf.Clamp(HeavyTurn[0] / 100 / MedicineTurn, 0, 1));
@@ -395,6 +460,15 @@ public class Scr_Provinces : MonoBehaviour
                     People[i] -= turn1;
                     People[i] -= turn0;
                     People[20] += turn0;
+                }
+                if (turn1 == 0 && People[i] != 0)
+                {
+                    //此处待定
+                    //People[0] += 1;
+
+                    People[i] -= 1;
+                    People[i + 1] += 1;
+
                 }
             }
 
@@ -406,7 +480,7 @@ public class Scr_Provinces : MonoBehaviour
                 if (i != 30)
                 {
                     int tempTurn0 = turn0;
-                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    InfectionPeople += (People[i] * r0 / 5.0f * InfectionProbability / 100 * provinces.QuarantineInfected);
                     turn0 = (int)(People[i] * CureTurn[0] / 100);
                     turn1 = (int)(People[i] * CureTurn[1] / 100);
                     if (i != 34)
@@ -435,7 +509,7 @@ public class Scr_Provinces : MonoBehaviour
                 }
                 else
                 {
-                    InfectionPeople += (int)(People[i] * r0 * InfectionProbability / 100 * provinces.QuarantineInfected);
+                    InfectionPeople += (People[i] * r0 / 5.0f * InfectionProbability / 100 * provinces.QuarantineInfected);
                     turn1 = (int)(People[i] * CureTurn[1] / 100);
                     int turn2 = (int)(People[i] * CureTurn[2] / 100);
                     People[i + 2] += turn2;
@@ -443,9 +517,24 @@ public class Scr_Provinces : MonoBehaviour
                     People[i + 1] += turn1;
                     People[i] -= turn1;
                 }
+                if (turn1 == 0 && People[i] != 0)
+                {
+                    //此处待定
+                    //People[0] += 1;
+                    if (i != 34)
+                    {
+                        People[i] -= 1;
+                        People[i + 1] += 1;
+                    }
+                    else
+                    {
+                        People[i] -= 1;
+                        Cure += 1;
+                    }
+                }
             }
 
-            People[0] += InfectionPeople;
+            People[0] += (int)InfectionPeople;
 
         }
 
@@ -455,20 +544,23 @@ public class Scr_Provinces : MonoBehaviour
 
             if (provinces.HuBeiPeople > 10)
             {
-                int HuBeiPeople = Mathf.Clamp(provinces.HuBeiPeople, 0, 20);
-                People[0] += (int)(HuBeiPeople * r0 * Random.Range(0, MoveProbability) / 100);
+                int HuBeiPeople = Mathf.Clamp(provinces.HuBeiPeople, 0, (int)(20 * Random.Range(0, MoveProbability) / 20.0f));
+                People[0] += (int)(HuBeiPeople * r0 / 5.0f);
             }
         }
         TotalPeople = 0;
+        Suspected = 0;
+        Heavy = 0;
+        showTotalPeople = 0;
         for (int i = 0; i < People.Count; i++)
         {
             TotalPeople += People[i];
-            /*
-             if (i >= 10)
+
+            if (i >= 10 && (i < 15 || i >= 20))
             {
-                TotalPeople += People[i];
+                showTotalPeople += People[i];
             }
-             */
+
 
             if ((i >= 5 && i < 10) || (i >= 15 && i < 20))
             {
@@ -479,13 +571,18 @@ public class Scr_Provinces : MonoBehaviour
                 Heavy += People[i];
             }
         }
-        int digit = TotalPeople.ToString().Length;
+        showSuspected = Suspected + fakeSuspected;
+        int digit = showTotalPeople.ToString().Length;
         switch (digit)
         {
             case 1:
-                if (TotalPeople == 0)
+                if (showTotalPeople == 0)
                 {
                     myColor = Color.white;
+                    if (showSuspected != 0)
+                    {
+                        myColor = new Color32(252, 235, 207, 255);
+                    }
                 }
                 else
                 {
@@ -496,7 +593,7 @@ public class Scr_Provinces : MonoBehaviour
                 myColor = new Color32(245, 158, 131, 255);
                 break;
             case 3:
-                if (TotalPeople < 500)
+                if (showTotalPeople < 500)
                 {
                     myColor = new Color32(228, 90, 79, 255);
                 }
@@ -512,11 +609,12 @@ public class Scr_Provinces : MonoBehaviour
                 myColor = new Color32(79, 9, 13, 255);
                 break;
         }
+
         spr.color = myColor;
         if (provinceIndex == 18)
         {
             int HuBeiPeople = 0;
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 10; i++)
             {
                 HuBeiPeople += People[i];
             }
@@ -526,16 +624,17 @@ public class Scr_Provinces : MonoBehaviour
     public void PeopleCheck()
     {
         TotalPeople = 0;
+        showTotalPeople = 0;
         for (int i = 0; i < People.Count; i++)
         {
-
             TotalPeople += People[i];
-            /*
-             if (i >= 10)
+
+            if (i >= 10 && (i < 15 || i >= 20))
             {
-                TotalPeople += People[i];
+                showTotalPeople += People[i];
             }
-             */
+
+
             if ((i >= 5 && i < 10) || (i >= 15 && i < 20))
             {
                 Suspected += People[i];
@@ -546,13 +645,18 @@ public class Scr_Provinces : MonoBehaviour
             }
         }
         TotalPeople += (Death + Cure);
-        int digit = TotalPeople.ToString().Length;
+        showSuspected = Suspected + fakeSuspected;
+        int digit = showTotalPeople.ToString().Length;
         switch (digit)
         {
             case 1:
-                if (TotalPeople == 0)
+                if (showTotalPeople == 0)
                 {
                     myColor = Color.white;
+                    if (showSuspected != 0)
+                    {
+                        myColor = new Color32(252, 235, 207, 255);
+                    }
                 }
                 else
                 {
@@ -563,7 +667,7 @@ public class Scr_Provinces : MonoBehaviour
                 myColor = new Color32(245, 158, 131, 255);
                 break;
             case 3:
-                if (TotalPeople < 500)
+                if (showTotalPeople < 500)
                 {
                     myColor = new Color32(228, 90, 79, 255);
                 }
@@ -579,6 +683,9 @@ public class Scr_Provinces : MonoBehaviour
                 myColor = new Color32(79, 9, 13, 255);
                 break;
         }
+
+
+
         spr.color = myColor;
         if (provinceIndex == 18)
         {

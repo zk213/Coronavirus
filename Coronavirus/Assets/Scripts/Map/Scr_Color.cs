@@ -282,8 +282,8 @@ public class Scr_Color : MonoBehaviour
         for (int i = 0; i < Provinces.Count; i++)
         {
             Provinces[i].GetComponent<Scr_Provinces>().PeopleCheck();
-            GlobalPeople += Provinces[i].GetComponent<Scr_Provinces>().TotalPeople;
-            GlobalSuspectedPeople += Provinces[i].GetComponent<Scr_Provinces>().Suspected;
+            GlobalPeople += Provinces[i].GetComponent<Scr_Provinces>().showTotalPeople;
+            GlobalSuspectedPeople += Provinces[i].GetComponent<Scr_Provinces>().showSuspected;
             GlobalHeavyPeople += Provinces[i].GetComponent<Scr_Provinces>().Heavy;
             GlobalCurePeople += Provinces[i].GetComponent<Scr_Provinces>().Cure;
             GlobalDeadPeople += Provinces[i].GetComponent<Scr_Provinces>().Death;
@@ -569,11 +569,17 @@ public class Scr_Color : MonoBehaviour
             }
             if (a == 18)
             {
-                ScrCompent.People[0] = 1;
+                ScrCompent.People[0] = 50;
+                ScrCompent.People[1] = 40;
+                ScrCompent.People[2] = 30;
+                ScrCompent.People[3] = 20;
+                ScrCompent.People[4] = 10;
+                ScrCompent.People[5] = 4;
             }
             else
             {
-                ScrCompent.r0 -= 0.5f;
+                ScrCompent.r0 -= 1;
+                ScrCompent.People[0] = ScrCompent.PPTransport * 3;
             }
             //
 
@@ -668,8 +674,8 @@ public class Scr_Color : MonoBehaviour
         for (int i = 0; i < Provinces.Count; i++)
         {
             Provinces[i].GetComponent<Scr_Provinces>().PeopleTurn();
-            GlobalPeople += Provinces[i].GetComponent<Scr_Provinces>().TotalPeople;
-            GlobalSuspectedPeople += Provinces[i].GetComponent<Scr_Provinces>().Suspected;
+            GlobalPeople += Provinces[i].GetComponent<Scr_Provinces>().showTotalPeople;
+            GlobalSuspectedPeople += Provinces[i].GetComponent<Scr_Provinces>().showSuspected;
             GlobalHeavyPeople += Provinces[i].GetComponent<Scr_Provinces>().Heavy;
             GlobalCurePeople += Provinces[i].GetComponent<Scr_Provinces>().Cure;
             GlobalDeadPeople += Provinces[i].GetComponent<Scr_Provinces>().Death;
@@ -677,11 +683,11 @@ public class Scr_Color : MonoBehaviour
         chartUpdate = true;
         if (thisIndex >= 0)
         {
-            InfectedGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().TotalPeople.ToString();
+            InfectedGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().showTotalPeople.ToString();
             DeadGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Death.ToString();
             CureGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Cure.ToString();
             HeavyGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Heavy.ToString();
-            SuspectedGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Suspected.ToString();
+            SuspectedGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().showSuspected.ToString();
         }
         else
         {
@@ -720,11 +726,11 @@ public class Scr_Color : MonoBehaviour
 
                 thisIndex = a;
                 province.isMe = true;
-                InfectedGrid.transform.Find("Number").GetComponent<Text>().text = province.TotalPeople.ToString();
+                InfectedGrid.transform.Find("Number").GetComponent<Text>().text = province.showTotalPeople.ToString();
                 DeadGrid.transform.Find("Number").GetComponent<Text>().text = province.Death.ToString();
                 CureGrid.transform.Find("Number").GetComponent<Text>().text = province.Cure.ToString();
                 HeavyGrid.transform.Find("Number").GetComponent<Text>().text = province.Heavy.ToString();
-                SuspectedGrid.transform.Find("Number").GetComponent<Text>().text = province.Suspected.ToString();
+                SuspectedGrid.transform.Find("Number").GetComponent<Text>().text = province.showSuspected.ToString();
             }
             if (!hasHit)
             {
@@ -819,11 +825,11 @@ public class Scr_Color : MonoBehaviour
 
                         thisIndex = a;
                         Provinces[a].GetComponent<Scr_Provinces>().isMe = true;
-                        InfectedGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().TotalPeople.ToString();
+                        InfectedGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().showTotalPeople.ToString();
                         DeadGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Death.ToString();
                         CureGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Cure.ToString();
                         HeavyGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Heavy.ToString();
-                        SuspectedGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().Suspected.ToString();
+                        SuspectedGrid.transform.Find("Number").GetComponent<Text>().text = Provinces[thisIndex].GetComponent<Scr_Provinces>().showSuspected.ToString();
                     }
                 }
             }
